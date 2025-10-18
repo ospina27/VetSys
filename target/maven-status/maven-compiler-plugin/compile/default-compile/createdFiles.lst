@@ -1,1 +1,6 @@
+project\vetsys\database\DBConnection.class
+project\vetsys\controller\Controller.class
+project\vetsys\model\User.class
 project\vetsys\VetSys.class
+project\vetsys\dao\UserDAO.class
+project\vetsys\view\Login.class

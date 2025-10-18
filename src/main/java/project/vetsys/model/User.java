@@ -12,15 +12,15 @@ public class User {
     
     private int id;
     private int clinicId;
-    private int roleId;
+    private Role role;
     private int statusId;
     private String username;
     private String password;
 
-    public User(int id, int clinicId, int roleId, int statusId, String username, String password) {
+    public User(int id, int clinicId, Role role, int statusId, String username, String password) {
         this.id = id;
         this.clinicId = clinicId;
-        this.roleId = roleId;
+        this.role = role;
         this.statusId = statusId;
         this.username = username;
         this.password = password;
@@ -40,14 +40,6 @@ public class User {
 
     public void setClinicId(int clinicId) {
         this.clinicId = clinicId;
-    }
-
-    public int getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
     }
 
     public int getStatusId() {
@@ -73,7 +65,15 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
     
     
-    
+   
 }
