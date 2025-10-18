@@ -4,6 +4,9 @@
 
 package project.vetsys;
 
+import java.sql.Connection;
+import project.vetsys.database.DBConnection;
+
 /**
  *
  * @author User
@@ -11,6 +14,7 @@ package project.vetsys;
 public class VetSys {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Connection connection = DBConnection.getConnection();
+        
     }
 }
