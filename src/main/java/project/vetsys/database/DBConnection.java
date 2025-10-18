@@ -10,9 +10,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
-    private static final String url = "jdbc:mysql://localhost:3306/vetsys?useSSL=false&serverTimezone=UTC";
-    private static final String user = "root";
-    private static final String password = "root";
+    private static final String url = ""/*"jdbc:mysql://localhost:3306/vetsys?useSSL=false&serverTimezone=UTC"*/;
+    private static final String user = ""/*"root"*/;
+    private static final String password = ""/*"root"*/;
     private static boolean mensaje = false;
     
     
