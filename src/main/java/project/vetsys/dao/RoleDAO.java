@@ -5,7 +5,7 @@
 package project.vetsys.dao;
 
 
-import project.vetsys.database.DBConnection;
+import project.vetsys.database.DBConnetion;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
