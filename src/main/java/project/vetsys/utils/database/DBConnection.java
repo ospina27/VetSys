@@ -5,6 +5,7 @@
 package project.vetsys.utils.database;
 
 
+
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -20,6 +21,21 @@ public class DBConnection {
     private static final String DB_URL = "jdbc:postgresql://localhost:5432/CentroMedicoSaludVitalTest";
     private static final String USER = "root";
     private static final String PASS = "MySQL";
+
+
+    private static HikariDataSource ds;
+
+    static {
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl(DB_URL);
+        config.setUsername(USER);
+        config.setPassword(PASS);
+        config.addDataSourceProperty("cachePrepStmts", "true");
+        config.setMaximumPoolSize(10);
+        config.setMinimumIdle(2);
+        config.setIdleTimeout(10000);
+        ds = new HikariDataSource(config);
+    }
 
     public static Connection getConnection() throws SQLException {
         return ds.getConnection();
