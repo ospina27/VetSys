@@ -19,6 +19,8 @@ public class UserDAO {
         
     }
    
+    
+    //probar con la base de datos local
     public boolean Create(User user){
         String sqlInsert = "Insert into user (id, clinic_id, role_id, status_id, username, password)VALUES(null,?,?,?,?,?)";
        try (Connection con = DBConnection.getConnection();
@@ -56,11 +58,6 @@ public class UserDAO {
         }
         return listUsers;
     }
-    
-    /*public User Read (int idUser){
-        //User newUser = new User();
-        //return newUser;
-    }*/ 
     
     public boolean Update(){
         return true;

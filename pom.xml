@@ -9,7 +9,6 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <!-- ✅ Solo una sección de dependencias -->
     <dependencies>
         <dependency>
             <groupId>de.wayofquality.blended</groupId>

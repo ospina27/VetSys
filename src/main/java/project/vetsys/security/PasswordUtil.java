@@ -7,6 +7,10 @@ package project.vetsys.security;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+
+
+///utilizar este metodo cuando se cree el login con la interface, para que reciba la contraseña y la encripte
+///se debe hacer la comparación en el login de la ingresada con la guardada en la base de datos, pero con el metodo de encriptación
 public class PasswordUtil { //recibe la contraseña y retorna otra cadena encriptada
     public static String encryptPassword(String password) {
         try {
