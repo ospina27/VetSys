@@ -13,7 +13,7 @@ public class AuthenticationService {
 
     public String authenticate(String username, String password) throws SQLException {
         String query = "SELECT check_creds(?,?)";
-        try(Connection conn = ConnectionSource.getConnection()) {
+        try(Connection conn = conn.getConnection()) {
             try (PreparedStatement statement = conn.prepareStatement(query)) {
 
                 if(HashGen.checkForInvalidChars(username) || HashGen.checkForInvalidChars(password))
