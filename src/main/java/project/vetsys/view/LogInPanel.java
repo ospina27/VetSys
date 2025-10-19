@@ -1,6 +1,8 @@
 package project.vetsys.view;
 
 import project.vetsys.utils.AccessPanel;
+import project.vetsys.utils.PlaceHoldersAction;
+import project.vetsys.utils.permissions.AuthenticationService;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
