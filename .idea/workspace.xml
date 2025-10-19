@@ -8,8 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/MainPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/MainPanel.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/MainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/MainPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +40,7 @@
   "keyToString": {
     "Application.VetSys.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "false",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "342",
     "git-widget-placeholder": "fronted",
     "kotlin-language-version-configured": "true",
@@ -73,7 +71,7 @@
       <updated>1760833173137</updated>
       <workItem from="1760833187254" duration="4000" />
       <workItem from="1760833203726" duration="1954000" />
-      <workItem from="1760892905445" duration="4232000" />
+      <workItem from="1760892905445" duration="5277000" />
     </task>
     <servers />
   </component>
