@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbc809e9-af47-4368-bb02-2040b85fd837" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/utils/AccessPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/utils/InitComboBoxes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/utils/PanelsMap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/utils/PlaceHoldersAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/LogInPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/LogInPanel.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/LogInPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/LogInPanel.java" afterDir="false" />
     </list>
@@ -46,7 +42,7 @@
   "keyToString": {
     "Application.VetSys.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "false",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "true",
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "342",
     "git-widget-placeholder": "fronted",
@@ -84,7 +80,7 @@
       <workItem from="1760833187254" duration="4000" />
       <workItem from="1760833203726" duration="1954000" />
       <workItem from="1760892905445" duration="5277000" />
-      <workItem from="1760905703965" duration="1279000" />
+      <workItem from="1760905703965" duration="2631000" />
     </task>
     <servers />
   </component>
