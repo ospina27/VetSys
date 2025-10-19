@@ -13,7 +13,7 @@ import java.util.Locale;
 import java.util.Set;
 
 public interface AccessPanel {
-    MainPanel = MAIN_PANEL = new MainPanel();
+    MainPanel MAIN_PANEL = new MainPanel();
     JPanel getPanel();
 
     Set<LocalDate> COLOMBIAN_HOLYDAYS = Set.of(
