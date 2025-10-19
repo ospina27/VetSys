@@ -14,8 +14,8 @@ public class InitPanel{
 
         this.InitPanel_BttnEnter.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                //
+                System.out.println("hello");
             }
-        })
+        });
     }
 }

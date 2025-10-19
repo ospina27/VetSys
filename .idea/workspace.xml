@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="dbc809e9-af47-4368-bb02-2040b85fd837" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +39,7 @@
     "Application.VetSys.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "false",
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "342",
     "git-widget-placeholder": "fronted",
     "kotlin-language-version-configured": "true",
@@ -53,6 +52,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\San\Documents\Universidad\Semestre 5\Desarrollo I\Proyecto Final\VetSys\src\main\java\project\vetsys" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
