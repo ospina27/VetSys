@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbc809e9-af47-4368-bb02-2040b85fd837" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/utils/AccessPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/utils/AccessPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/utils/permissions/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/VetSys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/VetSys.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/database/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/database/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project/vetsys/VetSys.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/vetsys/VetSys.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +82,7 @@
       <workItem from="1760833187254" duration="4000" />
       <workItem from="1760833203726" duration="1954000" />
       <workItem from="1760892905445" duration="5277000" />
-      <workItem from="1760905703965" duration="2955000" />
+      <workItem from="1760905703965" duration="3908000" />
     </task>
     <servers />
   </component>

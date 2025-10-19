@@ -1,0 +1,33 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package project.vetsys.utils.database;
+
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+public class DBConnection {
+    //Comentar la Base de Datos que no se va a usar
+
+    // Base de Datos Remota
+    private static final String DB_URL = System.getenv("DB_URL");
+    private static final String USER = System.getenv("DB_USER");
+    private static final String PASS = System.getenv("DB_PASSWORD");
+
+    // Base de Datos Local
+    private static final String DB_URL = "jdbc:postgresql://localhost:5432/CentroMedicoSaludVitalTest";
+    private static final String USER = "root";
+    private static final String PASS = "MySQL";
+
+    public static Connection getConnection() throws SQLException {
+        return ds.getConnection();
+    }
+
+    public static void closeConnectionPool(){
+        if (ds != null) {
+            ds.close();
+        }
+    }
+}
