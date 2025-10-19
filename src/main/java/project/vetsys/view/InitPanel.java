@@ -1,10 +1,12 @@
 package project.vetsys.view;
 
+import project.vetsys.utils.AccessPanel;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class InitPanel{
+public class InitPanel implements AccessPanel {
     private JPanel main;
     private JLabel InitPanel_lblTitleWelcome;
     private JButton InitPanel_BttnEnter;
@@ -18,4 +20,6 @@ public class InitPanel{
             }
         });
     }
+
+    public JPanel getPanel(){return main;}
 }
