@@ -5,12 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbc809e9-af47-4368-bb02-2040b85fd837" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/VetSys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/VetSys.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/LogInPanel.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/LogInPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/MainPanel.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/MainPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/Login.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/Login.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -31,9 +46,9 @@
   "keyToString": {
     "Application.VetSys.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "fronted",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/San/Documents/Universidad/Semestre 5/Desarrollo I/Proyecto Final/VetSys",
+    "last_opened_file_path": "C:/Users/San/Documents/Universidad/Semestre 4/Bases de Datos/Proyecto Final/Centro_Medico_Salud_Vital",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -59,7 +74,7 @@
       <option name="presentableId" value="Default" />
       <updated>1760833173137</updated>
       <workItem from="1760833187254" duration="4000" />
-      <workItem from="1760833203726" duration="898000" />
+      <workItem from="1760833203726" duration="1811000" />
     </task>
     <servers />
   </component>
