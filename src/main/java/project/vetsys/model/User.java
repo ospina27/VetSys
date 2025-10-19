@@ -10,44 +10,43 @@ package project.vetsys.model;
  */
 public class User {
     
-    private int id;
-    private int clinicId;
-    private Role role;
-    private int statusId;
+    private int id_user;
+    private int id_clinic;
+    private int id_role;
+    private int id_status;    
     private String username;
     private String password;
+    private String name_clinic;
+    private String name_role;
+    private String name_status;
+    
+    public User() {
+        
+    }
 
-    public User(int id, int clinicId, Role role, int statusId, String username, String password) {
-        this.id = id;
-        this.clinicId = clinicId;
-        this.role = role;
-        this.statusId = statusId;
+    public User(int id, String clinic, String role, String status, String username, String password) {
+        this.id_user = id;
+        this.name_clinic = clinic;
+        this.name_role = role;
+        this.name_status = status;
         this.username = username;
         this.password = password;
     }
-
-    public int getId() {
-        return id;
+    
+    public int getId_user() {
+        return id_user;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getId_clinic() {
+        return id_clinic;
     }
 
-    public int getClinicId() {
-        return clinicId;
+    public int getId_role() {
+        return id_role;
     }
 
-    public void setClinicId(int clinicId) {
-        this.clinicId = clinicId;
-    }
-
-    public int getStatusId() {
-        return statusId;
-    }
-
-    public void setStatusId(int statusId) {
-        this.statusId = statusId;
+    public int getId_status() {
+        return id_status;
     }
 
     public String getUsername() {
@@ -58,22 +57,58 @@ public class User {
         this.username = username;
     }
 
+
     public String getPassword() {
         return password;
+    }
+
+    public String getName_clinic() {
+        return name_clinic;
+    }
+
+    public String getName_role() {
+        return name_role;
+    }
+
+    public String getName_status() {
+        return name_status;
+    }
+
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+    }
+
+    public void setId_clinic(int id_clinic) {
+        this.id_clinic = id_clinic;
+    }
+
+    public void setId_role(int id_role) {
+        this.id_role = id_role;
+    }
+
+    public void setId_status(int id_status) {
+        this.id_status = id_status;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public Role getRole() {
-        return role;
+    public void setName_clinic(String name_clinic) {
+        this.name_clinic = name_clinic;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setName_role(String name_rol) {
+        this.name_role = name_rol;
     }
-    
-    
-   
+
+    public void setName_status(String name_status) {
+        this.name_status = name_status;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario: " + username + ", clinica: " + name_clinic + ", rol: " + name_role + ", estado: " + name_status;
+    }
+
 }

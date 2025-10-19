@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🐶 VetSys – Sistema de Gestión para Clínicas Veterinarias
 
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
@@ -17,3 +18,15 @@ Permite gestionar clientes, mascotas, citas, facturación, inventario y notifica
 Automatizar los procesos clínicos y administrativos de una veterinaria, mejorando la organización, eficiencia y atención al cliente.
 
 ---
+=======
+# VetSys
+
+En la carpeta `/database` se encuentran los archivos necesarios para configurar la base de datos MySQL local:
+
+**vetsys_schema.sql**: creación de tablas y relaciones.
+**vetsys_data.sql**: datos iniciales de roles, estados y clínica para prueba.
+
+Ejecutar ambos archivos en el siguiente orden:
+1. `vetsys_schema.sql`
+2. `vetsys_data.sql`
+>>>>>>> origin/login
