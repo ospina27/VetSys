@@ -33,6 +33,16 @@ public class User {
         this.username = username;
         this.password = password;
     }
+
+    public Clinic getClinic() {
+        return clinic;
+    }
+
+    public void setClinic(Clinic clinic) {
+        this.clinic = clinic;
+    }
+    
+    
     
     public int getId_user() {
         return id_user;
