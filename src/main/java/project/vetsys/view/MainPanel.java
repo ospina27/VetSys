@@ -11,7 +11,6 @@ public class MainPanel extends JFrame{
     private JPanel containerPanel;
     private JPanel PanelBar;
     private JButton TitleBar_BttnClose;
-    private JLabel TitleBarIcon;
     private JLabel TitleBarName;
     private Point initialClick;
 

@@ -19,9 +19,9 @@ public class DBConnection {
     private static final String PASS = System.getenv("DB_PASSWORD");
 */
     // Base de Datos Local
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/VetSys";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/vetsys";
     private static final String USER = "root";
-    private static final String PASS = "MySQL";
+    private static final String PASS = "mysql";
 
 
     private static HikariDataSource ds;

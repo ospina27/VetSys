@@ -23,6 +23,6 @@ public class VetSys {
             if (value instanceof javax.swing.plaf.FontUIResource)
                 UIManager.put (key, f);
         }
-        AccessPanel.changeContent("welcome");
+        AccessPanel.changeContent("Welcome");
     }
 }

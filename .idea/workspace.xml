@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbc809e9-af47-4368-bb02-2040b85fd837" name="Changes" comment="" />
+    <list default="true" id="dbc809e9-af47-4368-bb02-2040b85fd837" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/VetSys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/VetSys.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/utils/database/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/utils/database/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/MainPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/MainPanel.form" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,7 +48,7 @@
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "342",
     "git-widget-placeholder": "fronted",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/San/Documents/Universidad/Semestre 5/Desarrollo I/Proyecto Final/VetSys/src/main/java/project/vetsys/libraries/HikariCP-6.2.1.jar",
+    "last_opened_file_path": "C:/Users/San/Documents/Universidad/Semestre 5/Desarrollo I/Proyecto Final-IntelliJ/VetSys/src/main/java/project/vetsys/libraries/slf4j-simple-2.0.17.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -52,7 +57,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -100,7 +105,9 @@
       <workItem from="1760833187254" duration="4000" />
       <workItem from="1760833203726" duration="1954000" />
       <workItem from="1760892905445" duration="5277000" />
-      <workItem from="1760905703965" duration="6803000" />
+      <workItem from="1760905703965" duration="7384000" />
+      <workItem from="1760926739757" duration="404000" />
+      <workItem from="1760957489182" duration="728000" />
     </task>
     <servers />
   </component>
