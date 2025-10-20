@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbc809e9-af47-4368-bb02-2040b85fd837" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/utils/PanelsMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/utils/PanelsMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/LogInPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/LogInPanel.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/LogInPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/LogInPanel.java" afterDir="false" />
-    </list>
+    <list default="true" id="dbc809e9-af47-4368-bb02-2040b85fd837" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -109,7 +102,7 @@
       <workItem from="1760892905445" duration="5277000" />
       <workItem from="1760905703965" duration="7384000" />
       <workItem from="1760926739757" duration="404000" />
-      <workItem from="1760957489182" duration="2443000" />
+      <workItem from="1760957489182" duration="3617000" />
     </task>
     <servers />
   </component>
