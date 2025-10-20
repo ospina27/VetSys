@@ -4,10 +4,6 @@
  */
 package project.vetsys.model;
 
-/**
- *
- * @author User
- */
 public class Clinic {
     
     private int id_clinic;
@@ -87,5 +83,11 @@ public class Clinic {
 
     public void setId_status(int id_status) {
         this.id_status = id_status;
+    }
+    
+    @Override
+    public String toString() {
+        return "Clinica " + name_clinic + ", Nit: " + nit + ", Dirección: "
+                + address + ", Telefono: " + phone + "Fecha de Registro" +", Estado: "+ id_status;
     }
 }

@@ -19,14 +19,15 @@ public class User {
     private String name_clinic;
     private String name_role;
     private String name_status;
+    private Clinic clinic;
     
     public User() {
         
     }
 
-    public User(int id, String clinic, String role, String status, String username, String password) {
+    public User(int id, Clinic clinic, String role, String status, String username, String password) {
         this.id_user = id;
-        this.name_clinic = clinic;
+        this.clinic = clinic;
         this.name_role = role;
         this.name_status = status;
         this.username = username;
@@ -106,9 +107,11 @@ public class User {
         this.name_status = name_status;
     }
 
-    @Override
+     @Override
     public String toString() {
-        return "Usuario: " + username + ", clinica: " + name_clinic + ", rol: " + name_role + ", estado: " + name_status;
+        return "Usuario: " + username + ", Clinica: " 
+                + (clinic != null ? clinic.getName_clinic():"Sin asignar") 
+                + ", Rol: " + name_role + ", Estado: " + name_status;
     }
 
 }

@@ -10,12 +10,8 @@ import java.sql.ResultSet;
 import project.vetsys.database.DBConnection;
 import project.vetsys.model.Clinic;
 
-/**
- *
- * @author User
- */
+
 public class ClinicDAO {
-    
     
     Connection connection;
     PreparedStatement ps;
@@ -37,7 +33,7 @@ public class ClinicDAO {
             return true;
         }catch (Exception e){
             System.out.println("Error en la creación de la clinica: " + e.getMessage());
-            return false;  
-       
-    
+            return false; 
+        }
+    }   
 }

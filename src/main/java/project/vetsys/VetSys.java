@@ -5,6 +5,7 @@
 package project.vetsys;
 
 import java.sql.Connection;
+import java.util.List;
 import java.util.Scanner;
 import project.vetsys.dao.ClinicDAO;
 import project.vetsys.dao.UserDAO;
@@ -14,25 +15,25 @@ import project.vetsys.model.User;
 
 
 public class VetSys {
-
-    public static void main(String[] args) {
+    
+    public static void main(String[] args) throws ClassNotFoundException {
         
         Connection connection = DBConnection.getConnection();
         Scanner scanner = new Scanner(System.in);
         
         ///prueba en consola de la creación de la clinica
-        System.out.println("Crear clinica");
-        System.out.print("Nombre de la clinica: ");
+        /*System.out.println("Crear clinica");
+        System.out.println("Nombre de la clinica: ");
         String name_clinic = scanner.nextLine();
         System.out.println("Nit: ");
         String nit_clinic = scanner.nextLine();
-        System.out.print("Dirección: ");
+        System.out.println("Dirección: ");
         String address = scanner.nextLine();
-        System.out.print("Telefono: ");
+        System.out.println("Telefono: ");
         String phone = scanner.nextLine();
-        System.out.print("Fecha de registro: ");
+        System.out.println("Fecha de registro: ");
         String registration_date = scanner.nextLine();
-        System.out.print("Estado de la clinica: ");
+        System.out.println("Estado de la clinica: ");
         int id_status = scanner.nextInt();
         scanner.nextLine();
         
@@ -49,20 +50,23 @@ public class VetSys {
             System.out.println("Clinica creado con éxito!");
         } else {
             System.out.println("Fallo al crear a clinica.");
-        }
+        }*/
         
         ///creacion del usuario con su rol asociado a la clinica
+        /*System.out.println("Crear usuario:" );
         System.out.print("ID Clínica: ");
         int clinicId = scanner.nextInt();
         System.out.print("ID Rol: ");
         int roleId = scanner.nextInt();
         System.out.print("ID Estado: ");
         int statusId = scanner.nextInt();
-        scanner.nextLine();   
+        scanner.nextLine();
+        
         System.out.println("Usuario: ");
         String username = scanner.nextLine();
         System.out.println("Contraseña: ");
         String password = scanner.nextLine();
+        
         
         User user = new User();
         user.setId_clinic(clinicId);
@@ -77,22 +81,63 @@ public class VetSys {
             System.out.println("Usuario creado con éxito!");
         } else {
             System.out.println("Error al crear el usuario.");
-        }
+        }*/
         
-        ///Prueba de login en consola
+       ///prueba para listar usuarios
+       ///el numero entero se debe adaptar desde la interfaz para listar por clinica
+       UserDAO dao = new UserDAO();
+       List<User> users = dao.Read(2);
+       if(users!=null && !users.isEmpty())
+       {
+           for(User user : users){
+               System.out.println(user);
+           }
+       }else
+       {
+           System.out.println("No hay usuarios registrados"); 
+       }
+        
         System.out.print("Usuario: ");
         String usernameLogin = scanner.nextLine();
         System.out.print("Contraseña: ");
         String passwordLogin = scanner.nextLine();
-        
-        //UserDAO dao = new UserDAO();
         User userLog = dao.login(usernameLogin, passwordLogin);
-        if (user != null) {
-            System.out.println("Login exitoso: " + user.getUsername());
-            System.out.println(user);
+        if (userLog != null) {
+            System.out.println("Login exitoso: " + userLog.getUsername());
+            System.out.println(userLog);
         } else {
             System.out.println("Login no exitoso.");
         }
+       
+        User userUpdate = new User();
+        System.out.println("Ingrese id del usario a modificar: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Ingrese el nuevo usuario: ");
+        String newUser = scanner.nextLine();
+        System.out.println("Ingrese nueva contraseña: ");
+        String newPassword = scanner.nextLine();
+        System.out.println("Ingrese el nuevo rol: ");
+        int newRol = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Ingrese el estado: ");
+        int newStatus = scanner.nextInt();
+        scanner.nextLine();
+        
+        userUpdate.setId_user(id);
+        userUpdate.setUsername(newUser);
+        userUpdate.setPassword(newPassword);
+        userUpdate.setId_role(newRol); 
+        userUpdate.setId_status(newStatus);
+        
+        boolean update = dao.Update(userUpdate, userLog);
+        if(update)
+        {
+            System.out.println("Usuario actualizado");
+        }else
+        {
+            System.out.print("No se actualizo el usuario");
+        }    
         
     }
 }

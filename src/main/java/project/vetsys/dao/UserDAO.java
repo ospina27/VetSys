@@ -158,8 +158,7 @@ public class UserDAO {
             }
             
             int rowUpdate = ps.executeUpdate(); ///verificar en consola si se actualizo o no alguna fila
-            return rowUpdate > 0;            
-            
+            return rowUpdate > 0;                  
         } catch (Exception e) {
         }
         return true;
