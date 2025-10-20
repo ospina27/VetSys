@@ -11,12 +11,11 @@ import java.sql.SQLException;
 public class LogInPanel implements AccessPanel {
 
 
-    private JPanel main;
+    private JPanel LogInPanelMain;
     private JLabel LogInPanel_lblTitle;
     private JButton LogInPanel_BttnEnter;
     private JPasswordField LogInPanel_PasswordField;
     private JTextField LogInPanel_UsernameField;
-    private JLabel LogInPanel_Icon;
 
     public LogInPanel(){
         this.LogInPanel_UsernameField
@@ -33,8 +32,8 @@ public class LogInPanel implements AccessPanel {
                 authAction();
             }
         };
-        InputMap inputMap = main.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-        ActionMap actionMap = main.getActionMap();
+        InputMap inputMap = LogInPanelMain.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        ActionMap actionMap = LogInPanelMain.getActionMap();
         inputMap.put(KeyStroke.getKeyStroke("ENTER"), "EnterCap");
         actionMap.put("EnterCap", enterAction);
     }
@@ -46,9 +45,9 @@ public class LogInPanel implements AccessPanel {
             this.LogInPanel_UsernameField.setText("Usuario");
             this.LogInPanel_PasswordField.setText("Contraseña");
             switch(rol){
-                case "receptionist" -> AccessPanel.changeContent("r_menu");
-                case "manager" -> AccessPanel.changeContent("m_menu");
-                case "director" -> AccessPanel.changeContent("d_menu");
+                case "admin" -> AccessPanel.changeContent("Welcome");
+                case "asistente" -> AccessPanel.changeContent("Welcome");
+                case "veterinario" -> AccessPanel.changeContent("Welcome");
                 default ->  JOptionPane.showMessageDialog(null,
                         "Usuario o contraseña invalidos, intente nuevamente",
                         "Error al autenticar",
@@ -59,7 +58,7 @@ public class LogInPanel implements AccessPanel {
         } catch (SQLException | NullPointerException e ) {
             JOptionPane.showMessageDialog(null,
                     "Algo ha ido mal! verifica que los campos hayan sido rellenados correctamente solo se aceptan" +
-                            "letras, espacios y numeros",
+                            " letras, espacios y numeros",
                     "Error al autenticar",
                     JOptionPane.ERROR_MESSAGE);
         }
@@ -68,6 +67,6 @@ public class LogInPanel implements AccessPanel {
 
     @Override
     public JPanel getPanel() {
-        return main;
+        return LogInPanelMain;
     }
 }

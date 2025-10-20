@@ -7,19 +7,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class InitPanel implements AccessPanel {
-    private JPanel main;
+    private JPanel InitPanelMain;
     private JLabel InitPanel_lblTitleWelcome;
     private JButton InitPanel_BttnEnter;
-    private JLabel InitPanel_Icon;
 
     public InitPanel(){
 
         this.InitPanel_BttnEnter.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                System.out.println("hello");
+                AccessPanel.changeContent("Login");
             }
         });
     }
 
-    public JPanel getPanel(){return main;}
+    public JPanel getPanel(){return InitPanelMain;}
 }

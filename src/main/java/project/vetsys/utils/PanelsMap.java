@@ -7,7 +7,7 @@ import project.vetsys.view.LogInPanel;
 
 import javax.swing.JPanel;
 
-public enum PanelsMap {
+enum PanelsMap {
 
     WELCOME("Welcome", new InitPanel().getPanel()),
     LOGIN("Login", new LogInPanel().getPanel());

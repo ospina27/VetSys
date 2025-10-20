@@ -8,6 +8,6 @@ package project.vetsys.dao;
  *
  * @author User
  */
-public class UserDAO {
+public class managerDAO {
     
 }
