@@ -39,12 +39,13 @@ public class UserDAO {
             ps.setString(1, username);
             rs = ps.executeQuery();
             
-            ///comparación de hash creados en la base de datos con los ingresados en el login 
+            ///comparación de hash creados en la base de datos con el texto ingresado en el login 
             if (rs.next()) { 
+                
                 String storedPassHash = rs.getString("password");
-                String inputPassHash = PasswordUtil.encryptPassword(password);
-                if(!storedPassHash.equals(inputPassHash)){
-                    System.out.println("Contraseña Incorrecta");
+                if (!PasswordUtil.checkPassword(password, storedPassHash)) {
+                    System.out.println("Contraseña incorrecta");
+                    return null;
                 }
                 
                 String status = rs.getString("status_name");
@@ -53,7 +54,7 @@ public class UserDAO {
                     System.out.println("Usuario no activo");
                     return null;
                 }
-                
+                // si paso las validaciones se crean losobjetos
                 User user = new User();
                 user.setId_user(rs.getInt("id"));
                 user.setUsername(rs.getString("username"));
@@ -77,7 +78,7 @@ public class UserDAO {
                 if (ps != null) ps.close();
                 if (connection != null) connection.close();
             } catch (SQLException e) {
-                System.out.println(e.toString());
+                System.out.println("Error, cerrando conexión: " + e.getMessage());
             }
         }
         return null;
