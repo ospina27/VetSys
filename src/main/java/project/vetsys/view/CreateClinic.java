@@ -7,7 +7,10 @@ package project.vetsys.view;
 import project.vetsys.dao.ClinicDAO;
 import project.vetsys.model.Clinic;
 import java.time.LocalDate;
+import java.util.HashSet;
 import javax.swing.JOptionPane;
+import project.vetsys.dao.UserDAO;
+import project.vetsys.model.User;
 
 /**
  *
@@ -50,11 +53,14 @@ public class CreateClinic extends javax.swing.JFrame {
         phoneClinicField = new javax.swing.JTextField();
         addressClinicField = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        usernameClinicField = new javax.swing.JTextField();
+        passwordClinicField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Clinic");
         setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMinimumSize(new java.awt.Dimension(800, 600));
@@ -66,8 +72,6 @@ public class CreateClinic extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("VetSys");
-
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\San\\Documents\\Universidad\\Semestre 5\\Desarrollo I\\Proyecto Final-NetBeans\\src\\main\\java\\project\\vetsys\\resources\\heart_icon.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -105,14 +109,14 @@ public class CreateClinic extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(0, 102, 102));
         jButton1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("LogIn");
+        jButton1.setText("Volver al LogIn");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        nameClinicField.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        nameClinicField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         nameClinicField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameClinicFieldActionPerformed(evt);
@@ -120,7 +124,7 @@ public class CreateClinic extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel2.setText("Nombre");
+        jLabel2.setText("Nombre o razón social");
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel3.setText("Telefono");
@@ -131,21 +135,21 @@ public class CreateClinic extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel7.setText("Direccion");
 
-        nitClinicField.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        nitClinicField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         nitClinicField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nitClinicFieldActionPerformed(evt);
             }
         });
 
-        phoneClinicField.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        phoneClinicField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         phoneClinicField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 phoneClinicFieldActionPerformed(evt);
             }
         });
 
-        addressClinicField.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        addressClinicField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         addressClinicField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addressClinicFieldActionPerformed(evt);
@@ -162,64 +166,108 @@ public class CreateClinic extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel9.setText("Contraseña");
+
+        jLabel10.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel10.setText("Usuario");
+
+        usernameClinicField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        usernameClinicField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameClinicFieldActionPerformed(evt);
+            }
+        });
+
+        passwordClinicField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(62, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nameClinicField, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel3)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(nitClinicField, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addressClinicField, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
+                            .addComponent(nameClinicField)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel7)
+                                                .addComponent(jLabel3)
+                                                .addComponent(jLabel10))
+                                            .addGap(33, 33, 33))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                            .addComponent(jLabel9)
+                                            .addGap(18, 18, 18)))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(80, 80, 80)))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nitClinicField)
+                                    .addComponent(addressClinicField)
+                                    .addComponent(usernameClinicField)
+                                    .addComponent(phoneClinicField)
+                                    .addComponent(passwordClinicField)))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
-                            .addComponent(phoneClinicField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(49, 49, 49)
-                        .addComponent(jButton2)))
-                .addGap(48, 48, 48))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(145, 145, 145)
+                                .addComponent(jLabel8))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(50, 50, 50))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(nameClinicField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
+                        .addGap(114, 114, 114)
                         .addComponent(jLabel8))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nitClinicField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(32, 32, 32)
-                .addComponent(jLabel7)
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(nitClinicField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(addressClinicField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addComponent(addressClinicField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(phoneClinicField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addComponent(phoneClinicField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel10)
+                    .addComponent(usernameClinicField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(68, Short.MAX_VALUE))
+                    .addComponent(jLabel9)
+                    .addComponent(passwordClinicField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(69, 69, 69))
         );
 
         jPanel1.add(jPanel3);
@@ -239,6 +287,64 @@ public class CreateClinic extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String nameClinic = nameClinicField.getText();
+        String phoneClinic = phoneClinicField.getText();
+        String nitClinic = nitClinicField.getText();
+        String addressClinic = addressClinicField.getText();
+        String usernameClinic = usernameClinicField.getText();
+        String passwordClinic = passwordClinicField.getText();
+
+        // Validaciones simples
+        if (nameClinic.isEmpty() || nitClinic.isEmpty() || usernameClinic.isEmpty() || passwordClinic.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor completa todos los campos obligatorios");
+            return;
+        }
+
+        // Crear el objeto Clinic con los datos del formulario
+        Clinic clinic = new Clinic();
+        clinic.setName_clinic(nameClinic);
+        clinic.setNit(nitClinic);
+        clinic.setAddress(addressClinic);
+        clinic.setPhone(phoneClinic);
+        clinic.setRegistration_date(LocalDate.now().toString()); // fecha actual
+        clinic.setId_status(1); // 1 = Activo
+        
+        // crear DAO Clinic
+        ClinicDAO clinicDAO = new ClinicDAO();
+        int clinicId = clinicDAO.Create(clinic); // debe devolver el id generado
+        
+        if (clinicId > 0) {
+            //Crea el objeto User ascoaido a la clinica
+            User user = new User(); 
+            user.setId_clinic(clinicId); // asigna el id de la clinica recien creada
+            user.setUsername(usernameClinic);
+            user.setPassword(passwordClinic);
+            user.setId_role(1); // 1 = admnistrador
+            user.setId_status(1); // activo
+
+            // crea el DAO usuario administrador
+            UserDAO userDAO = new UserDAO();
+            boolean userSuccess = userDAO.Create(user);
+
+            if (userSuccess) {
+                JOptionPane.showMessageDialog(this, "Clínica y usuario administrador registrados correctamente");
+                // limpiar los campos
+                nameClinicField.setText("");
+                nitClinicField.setText("");
+                addressClinicField.setText("");
+                phoneClinicField.setText("");
+                usernameClinicField.setText("");
+                passwordClinicField.setText("");
+            } else {
+                JOptionPane.showMessageDialog(this, "Clínica creada, pero error al registrar el usuario administrador.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al registrar la clínica. Revisa la conexión o los datos.");
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     private void addressClinicFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressClinicFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addressClinicFieldActionPerformed
@@ -255,44 +361,6 @@ public class CreateClinic extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nameClinicFieldActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String nameClinic = nameClinicField.getText();
-        String phoneClinic = phoneClinicField.getText();
-        String nitClinic = nitClinicField.getText();
-        String addressClinic = addressClinicField.getText();
-        
-         // Validaciones simples
-    if (nameClinic.isEmpty() || nitClinic.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Por favor completa todos los campos obligatorios");
-        return;
-    }
-
-    // Crear el objeto Clinic con los datos del formulario
-    Clinic clinic = new Clinic();
-    clinic.setName_clinic(nameClinic);
-    clinic.setNit(nitClinic);
-    clinic.setAddress(addressClinic);
-    clinic.setPhone(phoneClinic);
-    clinic.setRegistration_date(LocalDate.now().toString()); // fecha actual
-    clinic.setId_status(1); // 1 = Activo
-
-    // Llamar al DAO
-    ClinicDAO clinicDAO = new ClinicDAO();
-    boolean success = clinicDAO.Create(clinic);
-
-    if (success) {
-        JOptionPane.showMessageDialog(this, "Clínica registrada correctamente 🎉");
-        // limpiar los campos
-        nameClinicField.setText("");
-        nitClinicField.setText("");
-        addressClinicField.setText("");
-        phoneClinicField.setText("");
-    } else {
-        JOptionPane.showMessageDialog(this, "Error al registrar la clínica. Revisa la conexión o los datos.");
-    }
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         LogIn LoginFrame = new LogIn();
         LoginFrame.setVisible(true);
@@ -300,6 +368,10 @@ public class CreateClinic extends javax.swing.JFrame {
         LoginFrame.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void usernameClinicFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameClinicFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameClinicFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -331,6 +403,7 @@ public class CreateClinic extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -338,11 +411,14 @@ public class CreateClinic extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField nameClinicField;
     private javax.swing.JTextField nitClinicField;
+    private javax.swing.JPasswordField passwordClinicField;
     private javax.swing.JTextField phoneClinicField;
+    private javax.swing.JTextField usernameClinicField;
     // End of variables declaration//GEN-END:variables
 }

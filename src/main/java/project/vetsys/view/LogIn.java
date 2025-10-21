@@ -44,7 +44,6 @@ public class LogIn extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LOGIN");
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMinimumSize(new java.awt.Dimension(800, 600));
@@ -53,8 +52,6 @@ public class LogIn extends javax.swing.JFrame {
 
         Right.setBackground(new java.awt.Color(0, 102, 102));
         Right.setPreferredSize(new java.awt.Dimension(400, 600));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\San\\Documents\\Universidad\\Semestre 5\\Desarrollo I\\Proyecto Final-NetBeans\\src\\main\\java\\project\\vetsys\\resources\\heart_icon.png")); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -115,11 +112,11 @@ public class LogIn extends javax.swing.JFrame {
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel4.setText("No tienes Cuenta?");
+        jLabel4.setText("No tienes clínica registrada?");
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 102, 102));
-        jButton2.setText("Crear Cuenta");
+        jButton2.setText("Crear Clínica");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -148,7 +145,7 @@ public class LogIn extends javax.swing.JFrame {
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton2)))))
-                .addContainerGap(479, Short.MAX_VALUE))
+                .addContainerGap(461, Short.MAX_VALUE))
         );
         LeftLayout.setVerticalGroup(
             LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +170,7 @@ public class LogIn extends javax.swing.JFrame {
         );
 
         jPanel1.add(Left);
-        Left.setBounds(400, 0, 800, 600);
+        Left.setBounds(400, 0, 800, 604);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -195,11 +192,12 @@ public class LogIn extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        CreateUser CreateUserFrame = new CreateUser();
-        CreateUserFrame.setVisible(true);
-        CreateUserFrame.pack();
-        CreateUserFrame.setLocationRelativeTo(null);
+        CreateClinic CreateClinicFrame = new CreateClinic();
+        CreateClinicFrame.setVisible(true);
+        CreateClinicFrame.pack();
+        CreateClinicFrame.setLocationRelativeTo(null);
         this.dispose();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

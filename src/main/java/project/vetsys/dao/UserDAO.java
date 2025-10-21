@@ -82,24 +82,36 @@ public class UserDAO {
         }
         return null;
     }
-     public boolean Create(User user){
-        String sqlInsert = "Insert into users (id, clinic_id, role_id, status_id, username, password)VALUES(null,?,?,?,?,?)";
+    
+    public boolean Create(User user){
+        String sqlInsert = "Insert into users (id, clinic_id, role_id, status_id, username, password) VALUES (null,?,?,?,?,?)";
+        
         try {
             connection = DBConnection.getConnection()
 ;           ps = connection.prepareStatement(sqlInsert);
+
             ps.setInt(1, user.getId_clinic());
             ps.setInt(2, user.getId_role());
             ps.setInt(3, user.getId_status());
             ps.setString(4, user.getUsername());
-            String passEncrypted = PasswordUtil.encryptPassword(user.getPassword()); //metodo para encriptar la contraseña
+            //metodo para encriptar la contraseña
+            String passEncrypted = PasswordUtil.encryptPassword(user.getPassword()); 
             ps.setString(5,passEncrypted);
-            ps.executeUpdate();
-            return true;
+            
+            int rows = ps.executeUpdate();
+            return rows > 0;
             
         } catch (Exception e) {
             System.out.println("Error en la creación del usuario: " + e.getMessage());
             return false;
-        }    
+        } finally {
+            try {
+                if (ps != null) ps.close();
+                if (connection != null) connection.close();
+            } catch (SQLException ex) {
+                System.out.println("Error cerrando la conexión: " + ex.getMessage());
+            }
+        }
     }
     
     public List<User> Read(int clinicId){

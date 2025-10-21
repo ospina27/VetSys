@@ -24,6 +24,7 @@ project\vetsys\VetSys.class
 project\vetsys\dao\UserDAO.class
 project\vetsys\dao\ClinicDAO.class
 project\vetsys\view\CreateClinic$5.class
+project\vetsys\view\CreateClinic$7.class
 project\vetsys\view\LogIn.class
 project\vetsys\model\User.class
 project\vetsys\view\CreateUser$2.class
@@ -39,4 +40,5 @@ project\vetsys\view\CreateClinic$4.class
 project\vetsys\view\SearchUser.class
 project\vetsys\view\MenuManager$1.class
 project\vetsys\view\SearchUser$4.class
+project\vetsys\view\MenuManager$4.class
 project\vetsys\view\MainPanel.class

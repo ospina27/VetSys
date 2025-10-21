@@ -255,13 +255,13 @@ public class SearchUser extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Asistente", "Veterinario" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vigente", "Vencido" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
 
         jLabel6.setText("Clinica");
 
         jLabel7.setText("Rol");
 
-        jLabel8.setText("Status");
+        jLabel8.setText("Estado");
 
         userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
