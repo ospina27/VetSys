@@ -7,6 +7,7 @@ package project.vetsys;
 import java.sql.Connection;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Logger;
 import project.vetsys.dao.ClinicDAO;
 import project.vetsys.dao.UserDAO;
 import project.vetsys.database.DBConnection;
@@ -16,6 +17,8 @@ import project.vetsys.view.LogIn;
 
 
 public class VetSys {
+    
+    private static final Logger logger = Logger.getLogger(VetSys.class.getName());
     
     public static void main(String[] args) throws ClassNotFoundException {
         
