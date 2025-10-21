@@ -302,9 +302,9 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="3">
-                    <StringItem index="0" value="1"/>
-                    <StringItem index="1" value="2"/>
-                    <StringItem index="2" value="3"/>
+                    <StringItem index="0" value="Administrador"/>
+                    <StringItem index="1" value="Asistente"/>
+                    <StringItem index="2" value="Veterinario"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -315,11 +315,9 @@
             <Component class="javax.swing.JComboBox" name="StatusComboBox">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
+                  <StringArray count="2">
+                    <StringItem index="0" value="Vigente"/>
+                    <StringItem index="1" value="Vencido"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -334,7 +332,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Role"/>
+                <Property name="text" type="java.lang.String" value="Rol"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">

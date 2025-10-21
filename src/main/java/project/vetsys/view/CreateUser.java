@@ -4,6 +4,8 @@
  */
 package project.vetsys.view;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author San
@@ -131,13 +133,13 @@ public class CreateUser extends javax.swing.JFrame {
         ClinicComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", " " }));
         ClinicComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        RoleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
+        RoleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Asistente", "Veterinario" }));
 
-        StatusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        StatusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vigente", "Vencido" }));
 
         jLabel4.setText("Clinica");
 
-        jLabel7.setText("Role");
+        jLabel7.setText("Rol");
 
         jLabel8.setText("Status");
 
@@ -246,23 +248,23 @@ public class CreateUser extends javax.swing.JFrame {
         }
 
         project.vetsys.model.User user = new project.vetsys.model.User();
-    user.setUsername(username);
-    user.setPassword(password);
-    user.setId_clinic(idClinic);
-    user.setId_role(roleID);
-    user.setId_status(statusID);
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setId_clinic(idClinic);
+        user.setId_role(roleID);
+        user.setId_status(statusID);
 
-    // Llamar al DAO
-    project.vetsys.dao.UserDAO userDAO = new project.vetsys.dao.UserDAO();
-    boolean success = userDAO.Create(user);
+        // Llamar al DAO
+        project.vetsys.dao.UserDAO userDAO = new project.vetsys.dao.UserDAO();
+        boolean success = userDAO.Create(user);
 
-    if (success) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Usuario creado correctamente 🎉");
-        usernameField.setText("");
-        passwordField.setText("");
-    } else {
-        javax.swing.JOptionPane.showMessageDialog(this, "Error al crear el usuario. Revisa los datos o la conexión.");
-    }
+        if (success) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Usuario creado correctamente 🎉");
+            usernameField.setText("");
+            passwordField.setText("");
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error al crear el usuario. Revisa los datos o la conexión.");
+        }
 
 
     }//GEN-LAST:event_jButton2ActionPerformed
