@@ -12,6 +12,7 @@ import project.vetsys.dao.UserDAO;
 import project.vetsys.database.DBConnection;
 import project.vetsys.model.Clinic;
 import project.vetsys.model.User;
+import project.vetsys.view.LogIn;
 
 
 public class VetSys {
@@ -20,6 +21,30 @@ public class VetSys {
         
         Connection connection = DBConnection.getConnection();
         Scanner scanner = new Scanner(System.in);
+        
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        LogIn LoginFrame = new LogIn();
+        LoginFrame.setVisible(true);
+        LoginFrame.pack();
+        LoginFrame.setLocationRelativeTo(null);
+        
         
         ///prueba en consola de la creación de la clinica
         /*System.out.println("Crear clinica");
