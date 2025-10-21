@@ -63,8 +63,6 @@ public class CreateUser extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("VetSys");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\San\\Documents\\Universidad\\Semestre 5\\Desarrollo I\\Proyecto Final-NetBeans\\src\\main\\java\\project\\vetsys\\resources\\heart_icon.png")); // NOI18N
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -119,7 +117,7 @@ public class CreateUser extends javax.swing.JFrame {
             }
         });
 
-        usernameField.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        usernameField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         usernameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usernameFieldActionPerformed(evt);
@@ -259,7 +257,7 @@ public class CreateUser extends javax.swing.JFrame {
         boolean success = userDAO.Create(user);
 
         if (success) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Usuario creado correctamente 🎉");
+            javax.swing.JOptionPane.showMessageDialog(this, "Usuario creado correctamente");
             usernameField.setText("");
             passwordField.setText("");
         } else {

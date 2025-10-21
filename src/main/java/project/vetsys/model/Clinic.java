@@ -87,7 +87,6 @@ public class Clinic {
     
     @Override
     public String toString() {
-        return "Clinica " + name_clinic + ", Nit: " + nit + ", Dirección: "
-                + address + ", Telefono: " + phone + "Fecha de Registro" +", Estado: "+ id_status;
+        return name_clinic;
     }
 }
