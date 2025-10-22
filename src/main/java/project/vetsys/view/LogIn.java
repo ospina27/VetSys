@@ -95,7 +95,7 @@ public class LogIn extends javax.swing.JFrame {
 
         jLabel2.setText("Usuario");
 
-        txtUsername.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        txtUsername.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         txtUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsernameActionPerformed(evt);
@@ -176,7 +176,7 @@ public class LogIn extends javax.swing.JFrame {
         );
 
         jPanel1.add(Left);
-        Left.setBounds(400, 0, 800, 604);
+        Left.setBounds(400, 0, 813, 604);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -233,7 +233,7 @@ public class LogIn extends javax.swing.JFrame {
             // Credenciales correctas
             JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso. Bienvenido " + user.getUsername());
             
-            MenuManager MenuManagerFrame = new MenuManager();
+            MenuManager MenuManagerFrame = new MenuManager(user);
             MenuManagerFrame.setVisible(true);
             MenuManagerFrame.pack();
             MenuManagerFrame.setLocationRelativeTo(null);

@@ -113,8 +113,8 @@ public class VetSys {
         
        ///prueba para listar usuarios
        ///el numero entero se debe adaptar desde la interfaz para listar por clinica
-       UserDAO dao = new UserDAO();
-       List<User> users = dao.Read(2);
+       /*UserDAO dao = new UserDAO();
+       List<User> users = dao.ReadByClinic(2);
        if(users!=null && !users.isEmpty())
        {
            for(User user : users){
@@ -166,6 +166,6 @@ public class VetSys {
         {
             System.out.print("No se actualizo el usuario");
         }    
-        
+        */
     }
 }

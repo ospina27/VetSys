@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import project.vetsys.database.DBConnection;
 import project.vetsys.model.Clinic;
 
@@ -55,6 +57,29 @@ public class ClinicDAO {
             }   
         }
         return generatedId;
+    }
+    
+    public List<Clinic> ReadAll() {
+        
+        List<Clinic> list = new ArrayList<>();
+        String sql = "SELECT id, name FROM clinic";
+
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                Clinic clinic = new Clinic();
+                clinic.setId_clinic(rs.getInt("id"));
+                clinic.setName_clinic(rs.getString("name"));
+                list.add(clinic);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al cargar clínicas: " + e.getMessage());
+        }
+
+        return list;
     }
     
 }
