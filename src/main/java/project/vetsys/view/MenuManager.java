@@ -154,6 +154,9 @@ public class MenuManager extends javax.swing.JFrame {
                 .addGap(85, 85, 85))
         );
 
+        btnConsultar.getAccessibleContext().setAccessibleDescription("CONSULTAR USUARIO");
+        jButton3.getAccessibleContext().setAccessibleDescription("SALIR");
+
         jPanel1.add(jPanel3);
         jPanel3.setBounds(400, 10, 400, 600);
 
@@ -177,6 +180,8 @@ public class MenuManager extends javax.swing.JFrame {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         //Buscar puede ser el mismo SearchUser quitando el boton de actualizar
+        System.out.println("DEBUG MenuManager -> logUser: " +
+        (logUser != null ? logUser.getUsername() + " id_clinic=" + logUser.getId_clinic() + " role=" + logUser.getName_role() : "logUser es null"));
         SearchUser SearchUserFrame = new SearchUser(logUser);
         SearchUserFrame.setVisible(true);
         SearchUserFrame.pack();

@@ -65,6 +65,7 @@ public class UserDAO {
                 clinic.setId_clinic(rs.getInt("clinic_id"));
                 clinic.setName_clinic(rs.getString("clinic_name"));
                 user.setClinic(clinic);
+                user.setId_clinic(rs.getInt("clinic_id"));
                 return user;
             } else {
                 System.out.println("Usuario o contraseña incorrectos");
@@ -115,7 +116,7 @@ public class UserDAO {
         }
     }
     
-    public List<User> ReadAll() {
+    public List<User> ReadAll(User logUser) {  ///Lista los usuarios según la clinica del user logueado 
         
         List<User> listUsers = new ArrayList<>();
 
@@ -126,13 +127,15 @@ public class UserDAO {
                    + "FROM users u "
                    + "JOIN role r ON u.role_id = r.id "
                    + "JOIN status s ON u.status_id = s.id "
-                   + "JOIN clinic c ON u.clinic_id = c.id";
+                   + "JOIN clinic c ON u.clinic_id = c.id "
+                   + "WHERE c.id = ?";
 
         try (Connection con = DBConnection.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-
-            while (rs.next()) {
+             PreparedStatement ps = con.prepareStatement(sql)){
+            //ResultSet rs = ps.executeQuery()) {
+            ps.setInt(1,logUser.getId_clinic()); ///pasar el id de la clinica para listar
+            try (ResultSet rs = ps.executeQuery()){
+                while (rs.next()) {
                 User user = new User();
                 Clinic clinic = new Clinic();
 
@@ -147,12 +150,11 @@ public class UserDAO {
                 user.setName_clinic(clinic.getName_clinic());
 
                 listUsers.add(user);
+                }
             }
-
         } catch (SQLException e) {
             System.out.println("Error al listar todos los usuarios: " + e.getMessage());
         }
-
         return listUsers;
     }
     
@@ -191,69 +193,65 @@ public class UserDAO {
 
                 return user;
             }
-
         } catch (SQLException e) {
             System.out.println("Error al buscar usuario por ID: " + e.getMessage());
         }
         return null;
     }
-    
-    public List<User> ReadByClinic(int clinicId){
-        
+   
+     
+    public List<User> ReadByClinicAndRole(int clinicId, Integer roleId) {
         List<User> listUsers = new ArrayList<>();
-        //query filtrar por el id de la clinica
-        String sqlRead = "SELECT u.id AS user_id, " 
-                       + "u.username, u.role_id, u.status_id, "
-                       + "r.name AS role_name, "
-                       + "s.name AS status_name,"
-                       + "c.id AS clinic_id, "
-                       + "c.name AS clinic_name, "
-                       + "c.nit, c.address, c.phone, c.registration_date "
-                       + "FROM users u "
-                       + "JOIN role r ON u.role_id = r.id "
-                       + "JOIN status s ON u.status_id = s.id "
-                       + "JOIN clinic c ON u.clinic_id = c.id "
-                       + "WHERE u.clinic_id = ?";  // Filtro por el id de la clinica
+       
+        StringBuilder sql = new StringBuilder(
+            "SELECT u.id AS user_id, u.username, " +
+            "r.id AS role_id, r.name AS role_name, " +
+            "s.name AS status_name, c.id AS clinic_id, c.name AS clinic_name " +
+            "FROM users u " +
+            "JOIN role r ON u.role_id = r.id " +
+            "JOIN status s ON u.status_id = s.id " +
+            "JOIN clinic c ON u.clinic_id = c.id " +
+            "WHERE c.id = ?"
+            );
         
-        // filtro por rol
-        // sqlRead += "AND u.role_id = ? ";
-        
+        if (roleId != null && roleId >0) {
+            sql.append(" AND r.id = ?");
+        }
 
         try (Connection con = DBConnection.getConnection();
-            PreparedStatement ps = con.prepareStatement(sqlRead)) {
-            
-            ps.setInt(1, clinicId);  ///primero asignamos el id de la clinica para listar
+             PreparedStatement ps = con.prepareStatement(sql.toString())) {
+
+            ps.setInt(1, clinicId);
+            if (roleId != null && roleId >0){
+                ps.setInt(2, roleId);
+            }
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     User user = new User();
                     Clinic clinic = new Clinic();
-                    //datos del usuario
+
                     user.setId_user(rs.getInt("user_id"));
                     user.setUsername(rs.getString("username"));
                     user.setName_role(rs.getString("role_name"));
                     user.setName_status(rs.getString("status_name"));
-                    //datos de clinca
                     clinic.setId_clinic(rs.getInt("clinic_id"));
                     clinic.setName_clinic(rs.getString("clinic_name"));
-                    clinic.setNit(rs.getString("nit"));
-                    clinic.setAddress(rs.getString("address"));
-                    clinic.setPhone(rs.getString("phone"));
-                    clinic.setRegistration_date(rs.getString("registration_date"));
-
+                    user.setId_role(rs.getInt("role_id"));
                     user.setClinic(clinic);
                     user.setName_clinic(clinic.getName_clinic());
+
                     listUsers.add(user);
                 }
             }
-
-        } catch (Exception e) {
-            System.out.println("Error al listar usuarios por clínica");
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("Error al listar usuarios por clínica y rol: " + e.getMessage());
         }
 
         return listUsers;
     }
+
+
     
     public boolean Update(User user, User logUser){
         

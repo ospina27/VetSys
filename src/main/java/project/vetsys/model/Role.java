@@ -20,6 +20,7 @@ public class Role {
         this.description = description;
     }
 
+
     public int getId() {
         return id;
     }
@@ -45,7 +46,9 @@ public class Role {
     }
     
     
-    
-    
-   
+    @Override
+    public String toString() 
+    {
+        return name;
+    } 
 }
