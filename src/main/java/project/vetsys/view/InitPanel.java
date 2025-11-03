@@ -22,7 +22,6 @@ public class InitPanel extends javax.swing.JFrame {
         InitPanel_lblTittle = new javax.swing.JLabel();
         InitPanel_BttnEnter = new javax.swing.JPanel();
         InitPanel_lblBttnEnter = new javax.swing.JLabel();
-        wallpaperMain = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(800, 600));
@@ -31,7 +30,7 @@ public class InitPanel extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
 
-        background.setBackground(new java.awt.Color(255, 255, 255));
+        background.setBackground(new java.awt.Color(204, 204, 255));
         background.setMaximumSize(new java.awt.Dimension(800, 600));
         background.setMinimumSize(new java.awt.Dimension(800, 600));
         background.setPreferredSize(new java.awt.Dimension(800, 600));
@@ -76,11 +75,6 @@ public class InitPanel extends javax.swing.JFrame {
         );
 
         background.add(InitPanel_BttnEnter, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 290, 70));
-
-        wallpaperMain.setMaximumSize(new java.awt.Dimension(800, 600));
-        wallpaperMain.setMinimumSize(new java.awt.Dimension(800, 600));
-        wallpaperMain.setPreferredSize(new java.awt.Dimension(800, 600));
-        background.add(wallpaperMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,6 +122,5 @@ public class InitPanel extends javax.swing.JFrame {
     private javax.swing.JLabel InitPanel_lblBttnEnter;
     private javax.swing.JLabel InitPanel_lblTittle;
     private javax.swing.JPanel background;
-    private javax.swing.JLabel wallpaperMain;
     // End of variables declaration//GEN-END:variables
 }
