@@ -1,19 +1,20 @@
-C:\Users\Asus\Documents\UniValle\2025-2\Desarrollo I\Proyecto\VetSys\src\main\java\project\vetsys\controller\Controller.java
-C:\Users\Asus\Documents\UniValle\2025-2\Desarrollo I\Proyecto\VetSys\src\main\java\project\vetsys\dao\ClinicDAO.java
-C:\Users\Asus\Documents\UniValle\2025-2\Desarrollo I\Proyecto\VetSys\src\main\java\project\vetsys\dao\RoleDAO.java
-C:\Users\Asus\Documents\UniValle\2025-2\Desarrollo I\Proyecto\VetSys\src\main\java\project\vetsys\dao\UserDAO.java
-C:\Users\Asus\Documents\UniValle\2025-2\Desarrollo I\Proyecto\VetSys\src\main\java\project\vetsys\database\DBConnection.java
-C:\Users\Asus\Documents\UniValle\2025-2\Desarrollo I\Proyecto\VetSys\src\main\java\project\vetsys\model\Clinic.java
-C:\Users\Asus\Documents\UniValle\2025-2\Desarrollo I\Proyecto\VetSys\src\main\java\project\vetsys\model\Role.java
-C:\Users\Asus\Documents\UniValle\2025-2\Desarrollo I\Proyecto\VetSys\src\main\java\project\vetsys\model\Status.java
-C:\Users\Asus\Documents\UniValle\2025-2\Desarrollo I\Proyecto\VetSys\src\main\java\project\vetsys\model\User.java
-C:\Users\Asus\Documents\UniValle\2025-2\Desarrollo I\Proyecto\VetSys\src\main\java\project\vetsys\security\PasswordUtil.java
-C:\Users\Asus\Documents\UniValle\2025-2\Desarrollo I\Proyecto\VetSys\src\main\java\project\vetsys\VetSys.java
-C:\Users\Asus\Documents\UniValle\2025-2\Desarrollo I\Proyecto\VetSys\src\main\java\project\vetsys\view\CreateClinic.java
-C:\Users\Asus\Documents\UniValle\2025-2\Desarrollo I\Proyecto\VetSys\src\main\java\project\vetsys\view\CreateUser.java
-C:\Users\Asus\Documents\UniValle\2025-2\Desarrollo I\Proyecto\VetSys\src\main\java\project\vetsys\view\InitPanel.java
-C:\Users\Asus\Documents\UniValle\2025-2\Desarrollo I\Proyecto\VetSys\src\main\java\project\vetsys\view\LogIn.java
-C:\Users\Asus\Documents\UniValle\2025-2\Desarrollo I\Proyecto\VetSys\src\main\java\project\vetsys\view\LogInPanel.java
-C:\Users\Asus\Documents\UniValle\2025-2\Desarrollo I\Proyecto\VetSys\src\main\java\project\vetsys\view\MainPanel.java
-C:\Users\Asus\Documents\UniValle\2025-2\Desarrollo I\Proyecto\VetSys\src\main\java\project\vetsys\view\MenuManager.java
-C:\Users\Asus\Documents\UniValle\2025-2\Desarrollo I\Proyecto\VetSys\src\main\java\project\vetsys\view\SearchUser.java
+C:\Users\San\Documents\Universidad\Semestre 5\Desarrollo I\Proyecto Final-NetBeans\src\main\java\project\vetsys\controller\Controller.java
+C:\Users\San\Documents\Universidad\Semestre 5\Desarrollo I\Proyecto Final-NetBeans\src\main\java\project\vetsys\dao\ClinicDAO.java
+C:\Users\San\Documents\Universidad\Semestre 5\Desarrollo I\Proyecto Final-NetBeans\src\main\java\project\vetsys\dao\RoleDAO.java
+C:\Users\San\Documents\Universidad\Semestre 5\Desarrollo I\Proyecto Final-NetBeans\src\main\java\project\vetsys\dao\UserDAO.java
+C:\Users\San\Documents\Universidad\Semestre 5\Desarrollo I\Proyecto Final-NetBeans\src\main\java\project\vetsys\database\DBConnection.java
+C:\Users\San\Documents\Universidad\Semestre 5\Desarrollo I\Proyecto Final-NetBeans\src\main\java\project\vetsys\model\Clinic.java
+C:\Users\San\Documents\Universidad\Semestre 5\Desarrollo I\Proyecto Final-NetBeans\src\main\java\project\vetsys\model\Role.java
+C:\Users\San\Documents\Universidad\Semestre 5\Desarrollo I\Proyecto Final-NetBeans\src\main\java\project\vetsys\model\Status.java
+C:\Users\San\Documents\Universidad\Semestre 5\Desarrollo I\Proyecto Final-NetBeans\src\main\java\project\vetsys\model\User.java
+C:\Users\San\Documents\Universidad\Semestre 5\Desarrollo I\Proyecto Final-NetBeans\src\main\java\project\vetsys\security\PasswordUtil.java
+C:\Users\San\Documents\Universidad\Semestre 5\Desarrollo I\Proyecto Final-NetBeans\src\main\java\project\vetsys\VetSys.java
+C:\Users\San\Documents\Universidad\Semestre 5\Desarrollo I\Proyecto Final-NetBeans\src\main\java\project\vetsys\view\CreateClinic.java
+C:\Users\San\Documents\Universidad\Semestre 5\Desarrollo I\Proyecto Final-NetBeans\src\main\java\project\vetsys\view\CreateUser.java
+C:\Users\San\Documents\Universidad\Semestre 5\Desarrollo I\Proyecto Final-NetBeans\src\main\java\project\vetsys\view\InitPanel.java
+C:\Users\San\Documents\Universidad\Semestre 5\Desarrollo I\Proyecto Final-NetBeans\src\main\java\project\vetsys\view\LogIn.java
+C:\Users\San\Documents\Universidad\Semestre 5\Desarrollo I\Proyecto Final-NetBeans\src\main\java\project\vetsys\view\LogInPanel.java
+C:\Users\San\Documents\Universidad\Semestre 5\Desarrollo I\Proyecto Final-NetBeans\src\main\java\project\vetsys\view\MainPanel.java
+C:\Users\San\Documents\Universidad\Semestre 5\Desarrollo I\Proyecto Final-NetBeans\src\main\java\project\vetsys\view\MenuManager.java
+C:\Users\San\Documents\Universidad\Semestre 5\Desarrollo I\Proyecto Final-NetBeans\src\main\java\project\vetsys\view\PasswordRecovery.java
+C:\Users\San\Documents\Universidad\Semestre 5\Desarrollo I\Proyecto Final-NetBeans\src\main\java\project\vetsys\view\SearchUser.java
