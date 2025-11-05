@@ -4,6 +4,7 @@
  */
 package project.vetsys.view;
 
+import project.vetsys.view.security.LogIn;
 import javax.swing.JOptionPane;
 
 /**

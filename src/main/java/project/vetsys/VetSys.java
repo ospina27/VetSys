@@ -10,7 +10,7 @@ import project.vetsys.database.DBConnection;
 import project.vetsys.model.Clinic;
 import project.vetsys.model.User;
 import project.vetsys.view.InitPanel;
-import project.vetsys.view.LogIn;
+import project.vetsys.view.security.LogIn;
 
 
 public class VetSys {

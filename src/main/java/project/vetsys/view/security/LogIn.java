@@ -1,4 +1,4 @@
-package project.vetsys.view;
+package project.vetsys.view.security;
 
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -39,7 +39,6 @@ public class LogIn extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LOGIN");
-        setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
@@ -87,7 +86,7 @@ public class LogIn extends javax.swing.JFrame {
         LogInPanel_lblUsername.setText("Usuario");
 
         LogInPanel_txtUsername.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        LogInPanel_txtUsername.setForeground(new java.awt.Color(204, 204, 204));
+        LogInPanel_txtUsername.setForeground(java.awt.Color.gray);
         LogInPanel_txtUsername.setText("Ingrese su nombre de usuario");
         LogInPanel_txtUsername.setToolTipText("");
         LogInPanel_txtUsername.setAlignmentY(0.0F);
@@ -127,7 +126,7 @@ public class LogIn extends javax.swing.JFrame {
             }
         });
 
-        LogInPanel_txtPassword.setForeground(new java.awt.Color(204, 204, 204));
+        LogInPanel_txtPassword.setForeground(java.awt.Color.gray);
         LogInPanel_txtPassword.setText("**********");
         LogInPanel_txtPassword.setBorder(null);
         LogInPanel_txtPassword.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -258,7 +257,13 @@ public class LogIn extends javax.swing.JFrame {
     }//GEN-LAST:event_LogInPanel_txtUsernameActionPerformed
 
     private void LogInPanel_lblBttnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogInPanel_lblBttnLoginMouseClicked
-        // TODO add your handling code here:
+        boolean flag = true;
+        
+        if(flag){
+            javax.swing.JOptionPane.showMessageDialog(this, "Bienvenido");
+        }else {
+            javax.swing.JOptionPane.showMessageDialog(this, "No tiene Credenciales");
+        }
     }//GEN-LAST:event_LogInPanel_lblBttnLoginMouseClicked
 
     private void LogInPanel_lblBttnLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogInPanel_lblBttnLoginMouseEntered

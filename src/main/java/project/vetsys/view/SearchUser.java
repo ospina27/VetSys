@@ -4,6 +4,7 @@
  */
 package project.vetsys.view;
 
+import project.vetsys.view.manager.MenuManager;
 import java.util.List;
 import project.vetsys.dao.UserDAO;
 import project.vetsys.model.User;

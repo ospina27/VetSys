@@ -4,6 +4,7 @@
  */
 package project.vetsys.view;
 
+import project.vetsys.view.security.LogIn;
 import project.vetsys.dao.ClinicDAO;
 import project.vetsys.model.Clinic;
 import java.time.LocalDate;

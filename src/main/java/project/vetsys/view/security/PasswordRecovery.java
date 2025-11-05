@@ -1,5 +1,6 @@
-package project.vetsys.view;
+package project.vetsys.view.security;
 
+import project.vetsys.view.security.LogIn;
 import java.awt.Color;
 
 public class PasswordRecovery extends javax.swing.JFrame {
@@ -49,12 +50,12 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_lblBttnCheckCredentials = new javax.swing.JLabel();
         PassRec_BttnSavePassword = new javax.swing.JPanel();
         PassRec_lblBttnSavePassword = new javax.swing.JLabel();
+        PassRec_BttnBack = new javax.swing.JPanel();
+        PassRec_lblBttnBack = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("PasswordRecovery");
-        setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
 
@@ -108,7 +109,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_lblNewPasswordOK.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         PassRec_lblNewPasswordOK.setText("Confirmar Contraseña");
 
-        PassRec_textUser.setForeground(new java.awt.Color(204, 204, 204));
+        PassRec_textUser.setForeground(java.awt.Color.gray);
         PassRec_textUser.setText("Ingrese su nombre");
         PassRec_textUser.setBorder(null);
         PassRec_textUser.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -122,7 +123,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
             }
         });
 
-        PassRec_textID.setForeground(new java.awt.Color(204, 204, 204));
+        PassRec_textID.setForeground(java.awt.Color.gray);
         PassRec_textID.setText("Ingrese numero de cedula");
         PassRec_textID.setBorder(null);
         PassRec_textID.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -131,8 +132,8 @@ public class PasswordRecovery extends javax.swing.JFrame {
             }
         });
 
-        PassRec_textDateOfBirth.setForeground(new java.awt.Color(204, 204, 204));
-        PassRec_textDateOfBirth.setText("Ingrese fecha de nacimiento DD-MM-YYYY");
+        PassRec_textDateOfBirth.setForeground(java.awt.Color.gray);
+        PassRec_textDateOfBirth.setText("Ingrese fecha de nacimiento (DD-MM-YYYY)");
         PassRec_textDateOfBirth.setBorder(null);
         PassRec_textDateOfBirth.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -140,13 +141,23 @@ public class PasswordRecovery extends javax.swing.JFrame {
             }
         });
 
-        PassRec_textNewPassword.setForeground(new java.awt.Color(204, 204, 204));
-        PassRec_textNewPassword.setText("*********");
+        PassRec_textNewPassword.setForeground(java.awt.Color.gray);
+        PassRec_textNewPassword.setText("**********");
         PassRec_textNewPassword.setBorder(null);
+        PassRec_textNewPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                PassRec_textNewPasswordMousePressed(evt);
+            }
+        });
 
-        PassRec_textNewPasswordOK.setForeground(new java.awt.Color(204, 204, 204));
-        PassRec_textNewPasswordOK.setText("*********");
+        PassRec_textNewPasswordOK.setForeground(java.awt.Color.gray);
+        PassRec_textNewPasswordOK.setText("**********");
         PassRec_textNewPasswordOK.setBorder(null);
+        PassRec_textNewPasswordOK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                PassRec_textNewPasswordOKMousePressed(evt);
+            }
+        });
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -161,7 +172,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_BttnCheckCredentials.setBackground(new java.awt.Color(0, 153, 153));
         PassRec_BttnCheckCredentials.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        PassRec_lblBttnCheckCredentials.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        PassRec_lblBttnCheckCredentials.setFont(new java.awt.Font("Arial Black", 1, 21)); // NOI18N
         PassRec_lblBttnCheckCredentials.setForeground(new java.awt.Color(255, 255, 255));
         PassRec_lblBttnCheckCredentials.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PassRec_lblBttnCheckCredentials.setText("Verificar");
@@ -182,7 +193,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_BttnCheckCredentials.setLayout(PassRec_BttnCheckCredentialsLayout);
         PassRec_BttnCheckCredentialsLayout.setHorizontalGroup(
             PassRec_BttnCheckCredentialsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PassRec_lblBttnCheckCredentials, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+            .addComponent(PassRec_lblBttnCheckCredentials, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
         );
         PassRec_BttnCheckCredentialsLayout.setVerticalGroup(
             PassRec_BttnCheckCredentialsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,7 +203,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_BttnSavePassword.setBackground(new java.awt.Color(0, 153, 153));
         PassRec_BttnSavePassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        PassRec_lblBttnSavePassword.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        PassRec_lblBttnSavePassword.setFont(new java.awt.Font("Arial Black", 1, 21)); // NOI18N
         PassRec_lblBttnSavePassword.setForeground(new java.awt.Color(255, 255, 255));
         PassRec_lblBttnSavePassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PassRec_lblBttnSavePassword.setText("Guardar");
@@ -210,15 +221,48 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_BttnSavePassword.setLayout(PassRec_BttnSavePasswordLayout);
         PassRec_BttnSavePasswordLayout.setHorizontalGroup(
             PassRec_BttnSavePasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 155, Short.MAX_VALUE)
+            .addGap(0, 140, Short.MAX_VALUE)
             .addGroup(PassRec_BttnSavePasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(PassRec_lblBttnSavePassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
+                .addComponent(PassRec_lblBttnSavePassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
         );
         PassRec_BttnSavePasswordLayout.setVerticalGroup(
             PassRec_BttnSavePasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 35, Short.MAX_VALUE)
+            .addGap(0, 40, Short.MAX_VALUE)
             .addGroup(PassRec_BttnSavePasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(PassRec_lblBttnSavePassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(PassRec_lblBttnSavePassword, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+        );
+
+        PassRec_BttnBack.setBackground(new java.awt.Color(0, 153, 153));
+        PassRec_BttnBack.setMaximumSize(new java.awt.Dimension(111, 35));
+        PassRec_BttnBack.setMinimumSize(new java.awt.Dimension(111, 35));
+        PassRec_BttnBack.setPreferredSize(new java.awt.Dimension(155, 35));
+
+        PassRec_lblBttnBack.setFont(new java.awt.Font("Arial Black", 1, 21)); // NOI18N
+        PassRec_lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
+        PassRec_lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PassRec_lblBttnBack.setText("Cancelar");
+        PassRec_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PassRec_lblBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PassRec_lblBttnBackMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                PassRec_lblBttnBackMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                PassRec_lblBttnBackMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PassRec_BttnBackLayout = new javax.swing.GroupLayout(PassRec_BttnBack);
+        PassRec_BttnBack.setLayout(PassRec_BttnBackLayout);
+        PassRec_BttnBackLayout.setHorizontalGroup(
+            PassRec_BttnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(PassRec_lblBttnBack, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+        );
+        PassRec_BttnBackLayout.setVerticalGroup(
+            PassRec_BttnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(PassRec_lblBttnBack, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout Right_PasswordRecoveryLayout = new javax.swing.GroupLayout(Right_PasswordRecovery);
@@ -244,9 +288,14 @@ public class PasswordRecovery extends javax.swing.JFrame {
                         .addComponent(PassRec_textNewPassword)
                         .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                         .addComponent(PassRec_textNewPasswordOK))
-                    .addComponent(PassRec_BttnSavePassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PassRec_BttnCheckCredentials, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(84, Short.MAX_VALUE))
+                    .addGroup(Right_PasswordRecoveryLayout.createSequentialGroup()
+                        .addComponent(PassRec_BttnCheckCredentials, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PassRec_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(Right_PasswordRecoveryLayout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(PassRec_BttnSavePassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
         Right_PasswordRecoveryLayout.setVerticalGroup(
             Right_PasswordRecoveryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,8 +319,10 @@ public class PasswordRecovery extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addComponent(PassRec_BttnCheckCredentials, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGroup(Right_PasswordRecoveryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(PassRec_BttnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PassRec_BttnCheckCredentials, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
                 .addComponent(PassRec_lblNewPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PassRec_textNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -283,9 +334,9 @@ public class PasswordRecovery extends javax.swing.JFrame {
                 .addComponent(PassRec_textNewPasswordOK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(32, 32, 32)
                 .addComponent(PassRec_BttnSavePassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         PasswordRecoveryPanel.add(Right_PasswordRecovery, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, -1, -1));
@@ -360,7 +411,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
             PassRec_textID.setForeground(Color.gray);
         }
         if(PassRec_textDateOfBirth.getText().isEmpty()){
-            PassRec_textDateOfBirth.setText("Ingrese fecha de nacimiento DD-MM-YYYY");
+            PassRec_textDateOfBirth.setText("Ingrese fecha de nacimiento (DD-MM-YYYY)");
             PassRec_textDateOfBirth.setForeground(Color.gray);
         }
     }//GEN-LAST:event_PassRec_textUserMousePressed
@@ -375,13 +426,13 @@ public class PasswordRecovery extends javax.swing.JFrame {
             PassRec_textUser.setForeground(Color.gray);
         }
         if (PassRec_textDateOfBirth.getText().isEmpty()){
-            PassRec_textDateOfBirth.setText("Ingrese fecha de nacimiento DD-MM-YYYY");
+            PassRec_textDateOfBirth.setText("Ingrese fecha de nacimiento (DD-MM-YYYY)");
             PassRec_textDateOfBirth.setForeground(Color.gray);
         }
     }//GEN-LAST:event_PassRec_textIDMousePressed
 
     private void PassRec_textDateOfBirthMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_textDateOfBirthMousePressed
-        if(PassRec_textDateOfBirth.getText().equals("Ingrese fecha de nacimiento DD-MM-YYYY")){
+        if(PassRec_textDateOfBirth.getText().equals("Ingrese fecha de nacimiento (DD-MM-YYYY)")){
             PassRec_textDateOfBirth.setText("");
             PassRec_textDateOfBirth.setForeground(Color.black);
         }
@@ -395,6 +446,44 @@ public class PasswordRecovery extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_PassRec_textDateOfBirthMousePressed
 
+    private void PassRec_textNewPasswordMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_textNewPasswordMousePressed
+        if (String.valueOf(PassRec_textNewPassword.getPassword()).equals("**********")){
+            PassRec_textNewPassword.setText("");
+            PassRec_textNewPassword.setForeground(Color.black);
+        }
+        if (String.valueOf(PassRec_textNewPasswordOK.getPassword()).isEmpty()){
+            PassRec_textNewPasswordOK.setText("**********");
+            PassRec_textNewPasswordOK.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_PassRec_textNewPasswordMousePressed
+
+    private void PassRec_textNewPasswordOKMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_textNewPasswordOKMousePressed
+        if (String.valueOf(PassRec_textNewPasswordOK.getPassword()).equals("**********")){
+            PassRec_textNewPasswordOK.setText("");
+            PassRec_textNewPasswordOK.setForeground(Color.black);
+        }
+        if (String.valueOf(PassRec_textNewPassword.getPassword()).isEmpty()){
+            PassRec_textNewPassword.setText("**********");
+            PassRec_textNewPassword.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_PassRec_textNewPasswordOKMousePressed
+
+    private void PassRec_lblBttnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_lblBttnBackMouseEntered
+        PassRec_BttnBack.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_PassRec_lblBttnBackMouseEntered
+
+    private void PassRec_lblBttnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_lblBttnBackMouseExited
+        PassRec_BttnBack.setBackground(new Color(0,153,153));
+    }//GEN-LAST:event_PassRec_lblBttnBackMouseExited
+
+    private void PassRec_lblBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_lblBttnBackMouseClicked
+        LogIn LogInFrame = new LogIn();
+        LogInFrame.setVisible(true);
+        LogInFrame.pack();
+        LogInFrame.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_PassRec_lblBttnBackMouseClicked
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new PasswordRecovery().setVisible(true));
     }
@@ -402,8 +491,10 @@ public class PasswordRecovery extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Left_PasswordRecovery;
     private javax.swing.JLabel LogInPanel_lblTittle;
+    private javax.swing.JPanel PassRec_BttnBack;
     private javax.swing.JPanel PassRec_BttnCheckCredentials;
     private javax.swing.JPanel PassRec_BttnSavePassword;
+    private javax.swing.JLabel PassRec_lblBttnBack;
     private javax.swing.JLabel PassRec_lblBttnCheckCredentials;
     private javax.swing.JLabel PassRec_lblBttnSavePassword;
     private javax.swing.JLabel PassRec_lblDateOfBirth;

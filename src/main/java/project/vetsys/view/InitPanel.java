@@ -1,5 +1,6 @@
 package project.vetsys.view;
 
+import project.vetsys.view.security.LogIn;
 import java.awt.Color;
 
 
@@ -12,6 +13,16 @@ public class InitPanel extends javax.swing.JFrame {
      */
     public InitPanel() {
         initComponents();
+        background.getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW)
+            .put(javax.swing.KeyStroke.getKeyStroke("ENTER"), "enterPressed");
+
+        background.getActionMap().put("enterPressed", new javax.swing.AbstractAction() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+            // Simula el clic en el botón "Empezar"
+                InitPanel_lblBttnEnterMouseClicked(null);
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
