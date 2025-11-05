@@ -13,8 +13,8 @@ C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\VetSys.java
 C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\CreateClinic.java
 C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\CreateUser.java
 C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\InitPanel.java
-C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\LogIn.java
-C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\LogInPanel.java
 C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\MainPanel.java
-C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\MenuManager.java
+C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\manager\MenuManager.java
 C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\SearchUser.java
+C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\security\LogIn.java
+C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\security\PasswordRecovery.java

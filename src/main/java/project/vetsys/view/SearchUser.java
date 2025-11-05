@@ -4,6 +4,8 @@
  */
 package project.vetsys.view;
 
+import java.util.ArrayList;
+import project.vetsys.view.manager.MenuManager;
 import java.util.List;
 import javax.swing.JOptionPane;
 import project.vetsys.dao.ClinicDAO;
@@ -21,6 +23,7 @@ public class SearchUser extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SearchUser.class.getName());
     private User logUser; //user que inicio sesion
+    private boolean filters;
 
     /**
      * Creates new form SearchUser
@@ -38,7 +41,7 @@ public class SearchUser extends javax.swing.JFrame {
         if(!"Administrador".equalsIgnoreCase(logUser.getName_role())){
             btnActualizar.setEnabled(false);
         }
-        System.out.println("Usuario logueado recibido: " + logUser.getUsername()); //prueba debug
+        System.out.println("Usuario logueado recibido: " + logUser.getUsername()); //prueba en consola
         initListeners();
         
         userTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -73,6 +76,7 @@ public class SearchUser extends javax.swing.JFrame {
         for (Role r : roles) {
             if (r != null && r.getId() > 0 && r.getName() != null) {
                 cboxRole.addItem(r); /// agrega el objeto Role completo
+                filters = true;
             }
         }
     } 
@@ -134,8 +138,11 @@ public class SearchUser extends javax.swing.JFrame {
 
     UserDAO userDAO = new UserDAO();
     List<User> users = userDAO.ReadByClinicAndRole(idClinic, idRole);
-
-    System.out.println("Usuarios devueltos por DAO: " + (users == null ? 0 : users.size())); ///verificar por consola que se esta devolviendo de la base de datos  y que no sea null
+    
+    if (users == null)
+        users = new ArrayList<>();
+    
+    System.out.println("Usuarios devueltos por DAO: " + users.size()); ///verificar por consola que se esta devolviendo de la base de datos  y que no sea null
  
     javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel() {
         @Override
@@ -149,7 +156,7 @@ public class SearchUser extends javax.swing.JFrame {
     model.addColumn("Estado");
     model.addColumn("Clínica");
 
-    if (users != null && !users.isEmpty()) {
+    if (!users.isEmpty()) {
         for (User user : users) {
             model.addRow(new Object[]{
                 user.getId_user(),
@@ -160,8 +167,12 @@ public class SearchUser extends javax.swing.JFrame {
             });
         }
     } else {
-        // Si no hay usuarios, dejamos la tabla vacía
-        JOptionPane.showMessageDialog(this,"No se encontraron usuarios en la clínica con el filtro seleccionado");
+        if(filters){
+          // Si no hay usuarios, dejamos la tabla vacía
+          //JOptionPane.showMessageDialog(this,"No se encontraron usuarios en la clínica con el filtro seleccionado");
+          System.out.println("Sin resultados para el filtro.");   
+        }
+       
     }
 
     userTable.setModel(model);
