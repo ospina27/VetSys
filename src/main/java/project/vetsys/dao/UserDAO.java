@@ -25,13 +25,16 @@ public class UserDAO {
     
     public User login(String username, String password) throws ClassNotFoundException {
         
-        String sql = "SELECT u.id, u.username, u.password, "
-            + "r.name AS role_name, c.name AS clinic_name, s.name AS status_name, c.id AS clinic_id "
-            + "FROM users u "
-            + "JOIN role r ON u.role_id = r.id "
-            + "JOIN clinic c ON u.clinic_id = c.id "
-            + "JOIN status s ON u.status_id = s.id "
-            + "WHERE u.username = ? ";
+        String sql = "SELECT u.id_usuario, u.username, u.contrasena, "
+            + "r.nombre AS role_name, "
+            + "c.nombre AS clinic_name, "
+            + "e.nombre AS status_name, "
+            + "c.id_clinica AS clinic_id "
+            + "FROM usuario u "
+            + "JOIN rol r ON u.id_rol = r.id_rol "
+            + "JOIN clinica c ON u.id_clinica = c.id_clinica "
+            + "JOIN estado e ON u.id_estado = e.id_estado "
+                + "WHERE u.username = ? ";
         
         try {
             connection = DBConnection.getConnection();
@@ -42,11 +45,14 @@ public class UserDAO {
             ///comparación de hash creados en la base de datos con el texto ingresado en el login 
             if (rs.next()) { 
                 
-                String storedPassHash = rs.getString("password");
+                String storedPassHash = rs.getString("contrasena");
+                System.out.println("HASH ingresado: " + PasswordUtil.encryptPassword(password));
+                System.out.println("HASH BD:        " + storedPassHash);
                 if (!PasswordUtil.checkPassword(password, storedPassHash)) {
                     System.out.println("Contraseña incorrecta");
                     return null;
                 }
+                
                 
                 String status = rs.getString("status_name");
                 
@@ -56,7 +62,7 @@ public class UserDAO {
                 }
                 // si paso las validaciones se crean losobjetos
                 User user = new User();
-                user.setId_user(rs.getInt("id"));
+                user.setId_user(rs.getInt("id_usuario"));
                 user.setUsername(rs.getString("username"));
                 user.setName_role(rs.getString("role_name"));
                 user.setName_status(rs.getString("status_name"));
@@ -86,19 +92,27 @@ public class UserDAO {
     }
     
     public boolean Create(User user){
-        String sqlInsert = "Insert into users (id, clinic_id, role_id, status_id, username, password) VALUES (null,?,?,?,?,?)";
+        String sqlInsert = "Insert into usuario (id_clinica, nombres, apellidos, documento, telefono, correo, "
+                + "username, contrasena, id_rol, id_estado) VALUES (?,?,?,?,?,?,?,?,?,?)";
         
         try {
             connection = DBConnection.getConnection()
 ;           ps = connection.prepareStatement(sqlInsert);
 
             ps.setInt(1, user.getId_clinic());
-            ps.setInt(2, user.getId_role());
-            ps.setInt(3, user.getId_status());
-            ps.setString(4, user.getUsername());
+            ps.setString(2, user.getName_user());
+            ps.setString(3,user.getLast_name());
+            ps.setString(4, user.getDocument());
+            ps.setString(5, user.getPhone());
+            ps.setString(6, user.getEmail());
+            ps.setString(7, user.getUsername());
+            
             //metodo para encriptar la contraseña
             String passEncrypted = PasswordUtil.encryptPassword(user.getPassword()); 
-            ps.setString(5,passEncrypted);
+            ps.setString(8,passEncrypted);
+            
+            ps.setInt(9, user.getId_role());
+            ps.setInt(10, user.getId_status());
             
             int rows = ps.executeUpdate();
             return rows > 0;
@@ -120,15 +134,15 @@ public class UserDAO {
         
         List<User> listUsers = new ArrayList<>();
 
-        String sql = "SELECT u.id AS user_id, "
-                   + "u.username, u.password, "
-                   + "r.name AS role_name, s.name AS status_name, "
-                   + "c.id AS clinic_id, c.name AS clinic_name "
-                   + "FROM users u "
-                   + "JOIN role r ON u.role_id = r.id "
-                   + "JOIN status s ON u.status_id = s.id "
-                   + "JOIN clinic c ON u.clinic_id = c.id "
-                   + "WHERE c.id = ?";
+        String sql = "SELECT u.id_usuario AS user_id, "
+                   + "u.username, u.contrasena, "
+                   + "r.nombre AS role_name, e.nombre AS status_name, "
+                   + "c.id_clinica AS clinic_id, c.nombre AS clinic_name "
+                   + "FROM usuario u "
+                   + "JOIN rol r ON u.id_rol = r.id_rol "
+                   + "JOIN estado e ON u.id_estado = e.id_estado "
+                   + "JOIN clinica c ON u.id_clinica = c.id_clinica "
+                   + "WHERE c.id_clinica = ?";
 
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)){
@@ -159,15 +173,15 @@ public class UserDAO {
     }
     
     public User ReadById(int id) {
-        String sql = "SELECT u.id AS user_id, u.username, u.password, "
-                   + "r.id AS role_id, r.name AS role_name, "
-                   + "s.id AS status_id, s.name AS status_name, "
-                   + "c.id AS clinic_id, c.name AS clinic_name "
-                   + "FROM users u "
-                   + "JOIN role r ON u.role_id = r.id "
-                   + "JOIN status s ON u.status_id = s.id "
-                   + "JOIN clinic c ON u.clinic_id = c.id "
-                   + "WHERE u.id = ?";
+        String sql = "SELECT u.id_usuario AS user_id, u.username, u.contrasena, "
+                   + "r.id_rol AS role_id, r.nombre AS role_name, "
+                   + "e.id_estado AS status_id, e.nombre AS status_name, "
+                   + "c.id_clinica AS clinic_id, c.nombre AS clinic_name "
+                   + "FROM usuario u "
+                   + "JOIN rol r ON u.id_rol = r.id_rol "
+                   + "JOIN estado e ON u.id_estado = e.id_estado "
+                   + "JOIN clinica c ON u.id_clinica = c.id_clinica "
+                   + "WHERE u.id_usuario = ?";
 
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -204,18 +218,18 @@ public class UserDAO {
         List<User> listUsers = new ArrayList<>();
        
         StringBuilder sql = new StringBuilder(
-            "SELECT u.id AS user_id, u.username, " +
-            "r.id AS role_id, r.name AS role_name, " +
-            "s.name AS status_name, c.id AS clinic_id, c.name AS clinic_name " +
-            "FROM users u " +
-            "JOIN role r ON u.role_id = r.id " +
-            "JOIN status s ON u.status_id = s.id " +
-            "JOIN clinic c ON u.clinic_id = c.id " +
-            "WHERE c.id = ?"
+            "SELECT u.id_usuario AS user_id, u.username, " +
+            "r.id_rol AS role_id, r.nombre AS role_name, " +
+            "e.nombre AS status_name, c.id_clinica AS clinic_id, c.nombre AS clinic_name " +
+            "FROM usuario u " +
+            "JOIN rol r ON u.id_rol = r.id_rol " +
+            "JOIN estado e ON u.id_estado = e.id_estado " +
+            "JOIN clinica c ON u.id_clinica = c.id_clinica " +
+            "WHERE c.id_clinica = ?"
             );
         
         if (roleId != null && roleId >0) {
-            sql.append(" AND r.id = ?");
+            sql.append(" AND r.id_rol = ?");
         }
 
         try (Connection con = DBConnection.getConnection();

@@ -12,10 +12,15 @@ public class User {
     
     private int id_user;
     private int id_clinic;
-    private int id_role;
-    private int id_status;    
+    private String name_user;
+    private String last_name;
+    private String document;
+    private String phone;
+    private String email;
     private String username;
     private String password;
+    private int id_role;
+    private int id_status;    
     private String name_clinic;
     private String name_role;
     private String name_status;
@@ -25,15 +30,64 @@ public class User {
         
     }
 
-    public User(int id, Clinic clinic, String role, String status, String username, String password) {
+    public User(int id, Clinic clinic, String name_user, String last_name,
+            String document, String phone, String email,
+            String role, String status, String username, String password) {
         this.id_user = id;
         this.clinic = clinic;
         this.name_role = role;
         this.name_status = status;
         this.username = username;
         this.password = password;
+        this.name_user = name_user;
+        this.last_name = last_name;
+        this.document = document;
+        this.phone = phone;
+        this.email = email;
     }
 
+    public String getName_user() {
+        return name_user;
+    }
+
+    public void setName_user(String name_user) {
+        this.name_user = name_user;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
+
+    public String getDocument() {
+        return document;
+    }
+
+    public void setDocument(String document) {
+        this.document = document;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    
+    
     public Clinic getClinic() {
         return clinic;
     }

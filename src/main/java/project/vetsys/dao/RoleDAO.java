@@ -16,15 +16,15 @@ public class RoleDAO {
     
     public List<Role> getAllRole(User logUser){
         List<Role> roles = new ArrayList<>();
-        String sql = "Select * FROM role";
+        String sql = "Select * FROM rol";
         try (Connection con = DBConnection.getConnection();
              Statement st = con.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) {
                 roles.add(new Role(
-                    rs.getInt("id"),
-                    rs.getString("name"),
-                    rs.getString("description")
+                    rs.getInt("id_rol"),
+                    rs.getString("nombre"),
+                    rs.getString("descripcion")
                 ));
             }
         } catch (SQLException e) {
@@ -35,10 +35,10 @@ public class RoleDAO {
     
     public List<Role> getRolesByClinic(int clinicId) {
     List<Role> roles = new ArrayList<>();
-    String sql = "SELECT DISTINCT r.id, r.name, r.description "
-               + "FROM role r "
-               + "JOIN users u ON u.role_id = r.id "
-               + "WHERE u.clinic_id = ?";
+    String sql = "SELECT DISTINCT r.id_rol, r.nombre, r.descripcion "
+               + "FROM rol r "
+               + "JOIN usuario u ON u.id_rol = r.id_rol "
+               + "WHERE u.id_clinica = ?";
 
     try (Connection con = DBConnection.getConnection();
          PreparedStatement ps = con.prepareStatement(sql)) {
@@ -47,9 +47,9 @@ public class RoleDAO {
         while (rs.next()) 
         {
             roles.add(new Role(
-                rs.getInt("id"),
-                rs.getString("name"),
-                rs.getString("description")
+                rs.getInt("id_rol"),
+                rs.getString("nombre"),
+                rs.getString("descripcion")
             ));
         }
     } catch (SQLException e) 
