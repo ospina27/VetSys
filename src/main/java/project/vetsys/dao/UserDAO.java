@@ -25,7 +25,9 @@ public class UserDAO {
     
     public User login(String username, String password) throws ClassNotFoundException {
         
-        String sql = "SELECT u.id_usuario, u.username, u.contrasena, "
+        String sql = "SELECT u.id_usuario, u.nombres, u.apellidos, "
+              + "u.documento, u.telefono, u.correo, "
+            + "u.username, u.contrasena, "
             + "r.nombre AS role_name, "
             + "c.nombre AS clinic_name, "
             + "e.nombre AS status_name, "
@@ -53,7 +55,6 @@ public class UserDAO {
                     return null;
                 }
                 
-                
                 String status = rs.getString("status_name");
                 
                 if (!status.equalsIgnoreCase("Activo")) {
@@ -63,6 +64,11 @@ public class UserDAO {
                 // si paso las validaciones se crean losobjetos
                 User user = new User();
                 user.setId_user(rs.getInt("id_usuario"));
+                user.setName_user(rs.getString("nombres"));
+                user.setLast_name(rs.getString("apellidos"));
+                user.setDocument(rs.getString("documento"));
+                user.setPhone(rs.getString("telefono"));
+                user.setEmail(rs.getString("correo"));
                 user.setUsername(rs.getString("username"));
                 user.setName_role(rs.getString("role_name"));
                 user.setName_status(rs.getString("status_name"));
@@ -135,7 +141,8 @@ public class UserDAO {
         List<User> listUsers = new ArrayList<>();
 
         String sql = "SELECT u.id_usuario AS user_id, "
-                   + "u.username, u.contrasena, "
+                    + "u.nombres, u.apellidos, u.documento, "
+                    + "u.telefono, u.correo, u.username, "
                    + "r.nombre AS role_name, e.nombre AS status_name, "
                    + "c.id_clinica AS clinic_id, c.nombre AS clinic_name "
                    + "FROM usuario u "
@@ -154,6 +161,11 @@ public class UserDAO {
                 Clinic clinic = new Clinic();
 
                 user.setId_user(rs.getInt("user_id"));
+                user.setName_user(rs.getString("nombres"));
+                user.setLast_name(rs.getString("apellidos"));
+                user.setDocument(rs.getString("documento"));
+                user.setPhone(rs.getString("telefono"));
+                user.setEmail(rs.getString("correo"));
                 user.setUsername(rs.getString("username"));
                 user.setName_role(rs.getString("role_name"));
                 user.setName_status(rs.getString("status_name"));
@@ -172,8 +184,10 @@ public class UserDAO {
         return listUsers;
     }
     
-    public User ReadById(int id) {
-        String sql = "SELECT u.id_usuario AS user_id, u.username, u.contrasena, "
+    public User ReadById(int id) {  
+        String sql = "SELECT u.id_usuario AS user_id, "
+                  + "u.nombres, u.apellidos, u.documento, u.telefono, u.correo, "
+                   + "u.username, u.contrasena, "
                    + "r.id_rol AS role_id, r.nombre AS role_name, "
                    + "e.id_estado AS status_id, e.nombre AS status_name, "
                    + "c.id_clinica AS clinic_id, c.nombre AS clinic_name "
@@ -194,6 +208,11 @@ public class UserDAO {
                 Clinic clinic = new Clinic();
 
                 user.setId_user(rs.getInt("user_id"));
+                user.setName_user(rs.getString("nombres"));
+                user.setLast_name(rs.getString("apellidos"));
+                user.setDocument(rs.getString("documento"));
+                user.setPhone(rs.getString("telefono"));
+                user.setEmail(rs.getString("correo"));
                 user.setUsername(rs.getString("username"));
                 user.setId_role(rs.getInt("role_id"));
                 user.setName_role(rs.getString("role_name"));
@@ -218,7 +237,9 @@ public class UserDAO {
         List<User> listUsers = new ArrayList<>();
        
         StringBuilder sql = new StringBuilder(
-            "SELECT u.id_usuario AS user_id, u.username, " +
+            "SELECT u.id_usuario AS user_id, "
+            + "u.nombres, u. apellidos, u.documento, "
+            + "u.telefono, u.correo, u.username, " +
             "r.id_rol AS role_id, r.nombre AS role_name, " +
             "e.nombre AS status_name, c.id_clinica AS clinic_id, c.nombre AS clinic_name " +
             "FROM usuario u " +
@@ -246,9 +267,15 @@ public class UserDAO {
                     Clinic clinic = new Clinic();
 
                     user.setId_user(rs.getInt("user_id"));
+                    user.setName_user(rs.getString("nombres"));
+                    user.setLast_name(rs.getString("apellidos"));
+                    user.setDocument(rs.getString("documento"));
+                    user.setPhone(rs.getString("telefono"));
+                    user.setEmail(rs.getString("correo"));
                     user.setUsername(rs.getString("username"));
                     user.setName_role(rs.getString("role_name"));
                     user.setName_status(rs.getString("status_name"));
+                    
                     clinic.setId_clinic(rs.getInt("clinic_id"));
                     clinic.setName_clinic(rs.getString("clinic_name"));
                     user.setId_role(rs.getInt("role_id"));
@@ -283,14 +310,14 @@ public class UserDAO {
                                                                                          ///según lo que elija el usuario
         String sqlUpdate;
         if(updatePass){
-            sqlUpdate = "UPDATE users SET role_id=?, status_id=?, "
-                + "username=?, password=? "
-                + "WHERE id=?";
+            sqlUpdate = "UPDATE usuarios SET id_rol=?, id_estado=?, "
+                + "username=?, contrasena=? "
+                + "WHERE id_usuario=?";
         }else 
         {
-            sqlUpdate = "UPDATE users SET role_id = ?, status_id = ?, " 
+            sqlUpdate = "UPDATE usuario SET id_rol = ?, id_estado = ?, " 
                     + "username = ? "
-                    + "WHERE id = ?";
+                    + "WHERE id_usuario = ?";
         }
         try {
             connection = DBConnection.getConnection();

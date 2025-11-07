@@ -10,6 +10,7 @@ project\vetsys\view\SearchUser$7.class
 project\vetsys\view\CreateUser.class
 project\vetsys\view\SearchUser$12.class
 project\vetsys\model\Clinic.class
+project\vetsys\view\SearchUser$15.class
 project\vetsys\view\security\LogIn$1.class
 project\vetsys\view\SearchUser$3.class
 project\vetsys\view\security\PasswordRecovery$6.class
@@ -23,6 +24,7 @@ project\vetsys\view\CreateClinic$7.class
 project\vetsys\model\User.class
 project\vetsys\view\SearchUser$6.class
 project\vetsys\view\SearchUser$13.class
+project\vetsys\view\SearchUser$16.class
 project\vetsys\view\security\PasswordRecovery$1.class
 project\vetsys\view\CreateUser$7.class
 project\vetsys\view\CreateClinic$4.class
@@ -36,6 +38,7 @@ project\vetsys\view\MainPanel.class
 project\vetsys\view\CreateUser$10.class
 project\vetsys\model\Role.class
 project\vetsys\controller\Controller.class
+project\vetsys\view\SearchUser$17.class
 project\vetsys\view\CreateUser$1.class
 project\vetsys\view\SearchUser$5.class
 project\vetsys\view\CreateClinic$6.class
@@ -55,6 +58,7 @@ project\vetsys\view\InitPanel$1.class
 project\vetsys\view\security\PasswordRecovery$3.class
 project\vetsys\view\security\LogIn$3.class
 project\vetsys\view\CreateUser$2.class
+project\vetsys\view\SearchUser$18.class
 project\vetsys\view\security\PasswordRecovery$8.class
 project\vetsys\model\Status.class
 project\vetsys\view\manager\MenuManager$3.class
@@ -66,4 +70,5 @@ project\vetsys\view\CreateClinic.class
 project\vetsys\view\security\PasswordRecovery$5.class
 project\vetsys\view\security\PasswordRecovery.class
 project\vetsys\view\SearchUser$4.class
+project\vetsys\view\SearchUser$14.class
 project\vetsys\view\CreateUser$9.class
