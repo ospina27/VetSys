@@ -2,11 +2,15 @@ package project.vetsys.view.security;
 
 import project.vetsys.view.security.LogIn;
 import java.awt.Color;
+import javax.swing.JOptionPane;
+import project.vetsys.dao.UserDAO;
+import project.vetsys.model.User;
+import project.vetsys.security.PasswordUtil;
 
 public class PasswordRecovery extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PasswordRecovery.class.getName());
-
+    private User user = null;
     
     public PasswordRecovery() {
         initComponents();
@@ -170,13 +174,13 @@ public class PasswordRecovery extends javax.swing.JFrame {
         jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
 
         PassRec_BttnCheckCredentials.setBackground(new java.awt.Color(0, 153, 153));
-        PassRec_BttnCheckCredentials.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PassRec_BttnCheckCredentials.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         PassRec_lblBttnCheckCredentials.setFont(new java.awt.Font("Arial Black", 1, 21)); // NOI18N
         PassRec_lblBttnCheckCredentials.setForeground(new java.awt.Color(255, 255, 255));
         PassRec_lblBttnCheckCredentials.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PassRec_lblBttnCheckCredentials.setText("Verificar");
-        PassRec_lblBttnCheckCredentials.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PassRec_lblBttnCheckCredentials.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PassRec_lblBttnCheckCredentials.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PassRec_lblBttnCheckCredentialsMouseClicked(evt);
@@ -201,14 +205,17 @@ public class PasswordRecovery extends javax.swing.JFrame {
         );
 
         PassRec_BttnSavePassword.setBackground(new java.awt.Color(0, 153, 153));
-        PassRec_BttnSavePassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PassRec_BttnSavePassword.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         PassRec_lblBttnSavePassword.setFont(new java.awt.Font("Arial Black", 1, 21)); // NOI18N
         PassRec_lblBttnSavePassword.setForeground(new java.awt.Color(255, 255, 255));
         PassRec_lblBttnSavePassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PassRec_lblBttnSavePassword.setText("Guardar");
-        PassRec_lblBttnSavePassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PassRec_lblBttnSavePassword.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PassRec_lblBttnSavePassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PassRec_lblBttnSavePasswordMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 PassRec_lblBttnSavePasswordMouseEntered(evt);
             }
@@ -241,7 +248,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
         PassRec_lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PassRec_lblBttnBack.setText("Cancelar");
-        PassRec_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PassRec_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PassRec_lblBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PassRec_lblBttnBackMouseClicked(evt);
@@ -379,10 +386,33 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_BttnCheckCredentials.setBackground(new Color(0,153,153));
     }//GEN-LAST:event_PassRec_lblBttnCheckCredentialsMouseExited
 
+    
+    ///boton que verifica los datos
     private void PassRec_lblBttnCheckCredentialsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_lblBttnCheckCredentialsMouseClicked
-        boolean flag = true;
+
+        String name = PassRec_textUser.getText().trim();
+        String document = PassRec_textID.getText().trim();
         
-        if(flag){
+        if(name.isEmpty() || document.isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Complete todos los campos", "CAMPOS OBLIGATORIOS", HEIGHT);
+            System.out.println("Complete todos los campos");
+            return;
+        }
+        
+        UserDAO userDao = new UserDAO();
+        
+        ///validar que el usuario exista
+        boolean userExists = userDao.userExists(name, document);
+        if(!userExists)
+        {
+            JOptionPane.showMessageDialog(this, "Usuario no encontrado");
+            return;
+        }
+        ///se valida que el usuario este activo
+        user = userDao.searchUserPass(name, document);
+        
+        if(user != null){
             PassRec_lblNewPassword.setVisible(true);
             PassRec_textNewPassword.setVisible(true);
             jSeparator4.setVisible(true);
@@ -394,13 +424,15 @@ public class PasswordRecovery extends javax.swing.JFrame {
         
             PassRec_textNewPassword.setEnabled(true);
             PassRec_textNewPasswordOK.setEnabled(true);
+            System.out.println(user.getUsername());
+            
         }else {
-            javax.swing.JOptionPane.showMessageDialog(this, "No tiene Credenciales");
-        }
-        
-        
+            javax.swing.JOptionPane.showMessageDialog(this, "Usuario Inactivo.");
+        } 
     }//GEN-LAST:event_PassRec_lblBttnCheckCredentialsMouseClicked
-
+    
+    
+    
     private void PassRec_textUserMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_textUserMousePressed
         if(PassRec_textUser.getText().equals("Ingrese su nombre")){
             PassRec_textUser.setText("");
@@ -483,6 +515,44 @@ public class PasswordRecovery extends javax.swing.JFrame {
         LogInFrame.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_PassRec_lblBttnBackMouseClicked
+
+    
+    ///guarda la contraseña nueva
+    private void PassRec_lblBttnSavePasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_lblBttnSavePasswordMouseClicked
+        
+        if (user == null) 
+        {
+            JOptionPane.showMessageDialog(this, "Verifique las credenciales.");
+            return;
+        }
+        String passNew = String.valueOf(PassRec_textNewPassword.getPassword());
+        String passConfirm = String.valueOf(PassRec_textNewPasswordOK.getPassword());
+       
+        
+        ///verificar que ambas contraseñas sean iguales)
+        if (!passNew.equals(passConfirm)) {
+            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden.");
+            PassRec_textNewPassword.setText("");
+            PassRec_textNewPasswordOK.setText("");
+            return;
+        }
+
+        if (passNew.length() < 6) {
+            JOptionPane.showMessageDialog(this, "La contraseña debe tener mínimo 6 caracteres.");
+            return;
+        }
+
+        UserDAO dao = new UserDAO();
+        boolean updated = dao.updatePassword(user.getId_user(), passNew);
+
+        if (updated) {
+            JOptionPane.showMessageDialog(this, "Contraseña actualizada correctamente.");
+            this.dispose();
+            new LogIn().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al actualizar contraseña.");
+        }
+    }//GEN-LAST:event_PassRec_lblBttnSavePasswordMouseClicked
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new PasswordRecovery().setVisible(true));
