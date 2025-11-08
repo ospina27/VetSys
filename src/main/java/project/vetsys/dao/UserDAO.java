@@ -54,7 +54,7 @@ public class UserDAO {
                 if (!PasswordUtil.checkPassword(password, storedPassHash)) {
                     System.out.println("Contraseña incorrecta");
                     return null;
-                }
+                }   
                 
                 String status = rs.getString("status_name");
                 
@@ -355,9 +355,93 @@ public class UserDAO {
         return false;
     }
     
-    
+     ///buscar los datos del usuario para hacer la verificacion en la BD
+    public User searchUserPass(String name, String document) {
+        
+        String sql = "SELECT * FROM usuario WHERE nombres = ? AND documento = ? AND id_estado = 1";
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setString(1, name);
+            ps.setString(2, document);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    User user = new User();
+                    user.setId_user(rs.getInt("id_usuario"));
+                    user.setName_user(rs.getString("nombres"));
+                    user.setDocument(rs.getString("documento"));
+                    user.setPassword(rs.getString("contrasena"));
+                    return user;
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error buscando usuario: " + e.getMessage());
+        }
+
+        return null;
+    }
+  
+   
+   ///actualizar la contraseña 
+    public boolean updatePassword(int idUser, String password){
+       
+       String passEncrypted = PasswordUtil.encryptPassword(password); ///encripta la clave nueva
+       String sql = "UPDATE usuario SET contrasena = ? WHERE id_usuario = ?";
+       
+       try {
+            connection = DBConnection.getConnection();
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, passEncrypted);
+            ps.setInt(2, idUser);
+            
+            return ps.executeUpdate() > 0;           
+            
+        } catch (Exception e) {
+            System.out.println("Error al actualizar la contraseña "+e.getMessage());
+            return false;
+        }finally
+        {
+            try 
+            {
+                if(ps!= null) ps.close();
+                if(connection != null) connection.close();
+            } catch (Exception e) 
+            {
+                System.out.println(e.toString());  
+            }     
+        }       
+    }
+   
+   
+   ///verificar que el usuario exista, para el cambio de clave
+   public boolean userExists(String nombre, String documento) {
+        String sql = "SELECT COUNT(*) FROM usuario WHERE nombres = ? AND documento = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, nombre);
+            ps.setString(2, documento);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error validando usuario: " + e.getMessage());
+        }
+        return false;
+    }
+
+
     
     public boolean Delete(User user, User logUser){
+        ///No borramos al usuario de la tabla, por las llaves foraneas
+        ///que estan en otras tablas, entonces lo desactivamos y así ya no
+        ///tiene acceso de nuevo a la aplicación
         
         String sql = "UPDATE usuario SET id_estado = 2 WHERE id_usuario = ? AND id_clinica = ?";
         
