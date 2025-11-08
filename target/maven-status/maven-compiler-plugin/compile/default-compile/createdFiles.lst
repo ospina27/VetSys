@@ -33,6 +33,7 @@ project\vetsys\view\SearchUser.class
 project\vetsys\view\CreateUser$4.class
 project\vetsys\view\security\LogIn$5.class
 project\vetsys\view\manager\MenuManager$1.class
+project\vetsys\view\SearchUser$19.class
 project\vetsys\view\security\PasswordRecovery$7.class
 project\vetsys\view\MainPanel.class
 project\vetsys\view\CreateUser$10.class

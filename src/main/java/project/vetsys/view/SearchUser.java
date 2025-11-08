@@ -40,6 +40,7 @@ public class SearchUser extends javax.swing.JFrame {
         //validacion del rol, para que no pueda modificar usuarios si no es administrador
         if(!"Administrador".equalsIgnoreCase(logUser.getName_role())){
             btnActualizar.setVisible(false);
+            btnDelete.setVisible(false);
             //btnActualizar.setEnabled(false);
         }
         System.out.println("Usuario logueado recibido: " + logUser.getUsername()); //prueba en consola
@@ -78,7 +79,7 @@ public class SearchUser extends javax.swing.JFrame {
         for (Role r : roles) {
             if (r != null && r.getId() > 0 && r.getName() != null) {
                 cboxRole.addItem(r); /// agrega el objeto Role completo
-                cboxRoleEdit.addItem(r);
+                cboxRoleEdit.addItem(r); ///agrego los mismo roles al cbobx de edicion de usuarios
                 filters = true;
             }
         }
@@ -224,6 +225,9 @@ public class SearchUser extends javax.swing.JFrame {
             name_userField.setText(user.getName_user());
             LastNameField.setText(user.getLast_name());
             
+            
+            ///FALTA AGREGAR ESTADO EN UN CBOBOX
+            /// 
             ///se muestra en el cbox el rol del usuario clickeado
             for(int i= 0;i < cboxRoleEdit.getItemCount(); i++)
             {
@@ -300,6 +304,7 @@ public class SearchUser extends javax.swing.JFrame {
         userTable = new javax.swing.JTable();
         btnActualizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 102, 102));
@@ -569,6 +574,15 @@ public class SearchUser extends javax.swing.JFrame {
             }
         });
 
+        btnDelete.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(0, 102, 102));
+        btnDelete.setText("Eliminar");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -589,6 +603,8 @@ public class SearchUser extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(btnActualizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnDelete)
+                .addGap(12, 12, 12)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -604,7 +620,8 @@ public class SearchUser extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnActualizar)
-                    .addComponent(btnSalir))
+                    .addComponent(btnSalir)
+                    .addComponent(btnDelete))
                 .addContainerGap(223, Short.MAX_VALUE))
         );
 
@@ -731,6 +748,31 @@ public class SearchUser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_idUserFieldActionPerformed
 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        try {
+            int idUser = Integer.parseInt(idUserField.getText().trim());
+            
+            User user = new User();
+            user.setId_user(idUser);
+
+            UserDAO userDAO = new UserDAO();
+            boolean delete = userDAO.Delete(user, logUser);
+            
+            if(delete)
+            {
+                JOptionPane.showMessageDialog(this, "Usuario eliminado correctamente.");
+            }else 
+            {
+                JOptionPane.showMessageDialog(this,"No fue posible eliminar el usuario.\n" +
+                "Puede que no pertenezca a su clínica o no exista.");
+            }
+        } catch (Exception e) 
+        {
+            JOptionPane.showMessageDialog(this, 
+            "Error: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -764,6 +806,7 @@ public class SearchUser extends javax.swing.JFrame {
     private javax.swing.JTextField PhoneField;
     private javax.swing.JTextField StatusField;
     private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<Role> cboxRole;
     private javax.swing.JComboBox<Role> cboxRoleEdit;
@@ -783,7 +826,6 @@ public class SearchUser extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField name_userField;
     private javax.swing.JTable userTable;
