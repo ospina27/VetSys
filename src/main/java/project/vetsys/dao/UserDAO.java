@@ -14,6 +14,7 @@ import project.vetsys.model.User;
 import project.vetsys.security.PasswordUtil;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import project.vetsys.model.Clinic;
 
 
@@ -356,7 +357,22 @@ public class UserDAO {
     
     
     
-    public boolean Delete(){
-        return true; 
+    public boolean Delete(User user, User logUser){
+        
+        String sql = "UPDATE usuario SET id_estado = 2 WHERE id_usuario = ? AND id_clinica = ?";
+        
+        try (Connection conn = DBConnection.getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setInt(1, user.getId_user());
+        ps.setInt(2, logUser.getId_clinic());
+        int rowsAffected = ps.executeUpdate();
+        return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            System.out.println("Error desactivando el usuario: " + e.getMessage());
+            return false;
+        }
     }
+   
 }
