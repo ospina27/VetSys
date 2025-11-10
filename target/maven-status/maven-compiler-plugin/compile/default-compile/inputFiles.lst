@@ -15,10 +15,11 @@ C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\security\PasswordUti
 C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\VetSys.java
 C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\ComboBox.java
 C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\CreateClinic.java
-C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\CreateUser.java
 C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\InitPanel.java
-C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\MainPanel.java
+C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\manager\CreateUser.java
+C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\manager\Menu_Appointment.java
 C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\manager\MenuManager.java
-C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\SearchUser.java
+C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\manager\SearchUser.java
+C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\manager\UsersMenu.java
 C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\security\LogIn.java
 C:\Users\User\Documents\VetSys\src\main\java\project\vetsys\view\security\PasswordRecovery.java

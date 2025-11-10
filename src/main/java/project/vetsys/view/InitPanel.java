@@ -61,7 +61,7 @@ public class InitPanel extends javax.swing.JFrame {
         InitPanel_lblBttnEnter.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         InitPanel_lblBttnEnter.setText("Empezar");
         InitPanel_lblBttnEnter.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        InitPanel_lblBttnEnter.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        InitPanel_lblBttnEnter.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         InitPanel_lblBttnEnter.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 InitPanel_lblBttnEnterMouseClicked(evt);
