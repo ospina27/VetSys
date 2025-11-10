@@ -16,7 +16,7 @@ public class Menu_Appointment extends javax.swing.JFrame {
 
         Menu_AppointmentPanel = new javax.swing.JPanel();
         Left = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        MenuAppointment_lblTitle = new javax.swing.JLabel();
         Right = new javax.swing.JPanel();
         MenuAppointment_BttnAddAppointment = new javax.swing.JPanel();
         MenuAppointment_lblBttnAddAppointment = new javax.swing.JLabel();
@@ -31,7 +31,6 @@ public class Menu_Appointment extends javax.swing.JFrame {
         setTitle("Appointment_Menu");
         setMaximumSize(new java.awt.Dimension(1000, 800));
         setMinimumSize(new java.awt.Dimension(1000, 800));
-        setPreferredSize(new java.awt.Dimension(1000, 800));
 
         Menu_AppointmentPanel.setMaximumSize(new java.awt.Dimension(1000, 800));
         Menu_AppointmentPanel.setMinimumSize(new java.awt.Dimension(1000, 800));
@@ -43,20 +42,20 @@ public class Menu_Appointment extends javax.swing.JFrame {
         Left.setMinimumSize(new java.awt.Dimension(500, 800));
         Left.setPreferredSize(new java.awt.Dimension(500, 800));
 
-        jLabel1.setFont(new java.awt.Font("Arial Black", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("VetSys");
+        MenuAppointment_lblTitle.setFont(new java.awt.Font("Arial Black", 1, 48)); // NOI18N
+        MenuAppointment_lblTitle.setForeground(new java.awt.Color(255, 255, 255));
+        MenuAppointment_lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        MenuAppointment_lblTitle.setText("VetSys");
 
         javax.swing.GroupLayout LeftLayout = new javax.swing.GroupLayout(Left);
         Left.setLayout(LeftLayout);
         LeftLayout.setHorizontalGroup(
             LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(MenuAppointment_lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
         );
         LeftLayout.setVerticalGroup(
             LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(MenuAppointment_lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
 
         Menu_AppointmentPanel.add(Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -208,8 +207,8 @@ public class Menu_Appointment extends javax.swing.JFrame {
     private javax.swing.JLabel MenuAppointment_lblBttnBack;
     private javax.swing.JLabel MenuAppointment_lblBttnDeleteAppointment;
     private javax.swing.JLabel MenuAppointment_lblBttnSearchAppointment;
+    private javax.swing.JLabel MenuAppointment_lblTitle;
     private javax.swing.JPanel Menu_AppointmentPanel;
     private javax.swing.JPanel Right;
-    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
