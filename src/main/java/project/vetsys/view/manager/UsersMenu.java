@@ -6,9 +6,6 @@ public class UsersMenu extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(UsersMenu.class.getName());
 
-    /**
-     * Creates new form UsersMenu
-     */
     public UsersMenu() {
         initComponents();
     }

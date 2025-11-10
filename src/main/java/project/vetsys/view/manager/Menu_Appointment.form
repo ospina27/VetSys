@@ -204,6 +204,10 @@
                       <Dimension value="[250, 60]"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MenuAppointment_lblBttnAddAppointmentMouseEntered"/>
+                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MenuAppointment_lblBttnAddAppointmentMouseExited"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -244,6 +248,10 @@
                       <Dimension value="[250, 60]"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MenuAppointment_lblBttnSearchAppointmentMouseEntered"/>
+                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MenuAppointment_lblBttnSearchAppointmentMouseExited"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -281,6 +289,10 @@
                       <Color id="Hand Cursor"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MenuAppointment_lblBttnDeleteAppointmentMouseEntered"/>
+                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MenuAppointment_lblBttnDeleteAppointmentMouseExited"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -318,6 +330,10 @@
                       <Color id="Hand Cursor"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MenuAppointment_lblBttnBackMouseEntered"/>
+                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MenuAppointment_lblBttnBackMouseExited"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
