@@ -27,6 +27,10 @@ public class MenuManager extends javax.swing.JFrame {
         initComponents();
         this.logUser = logUser;
         System.out.println("Usuario logueado en MenuManager: " + logUser.getUsername());
+        if(!"Administrador".equalsIgnoreCase(logUser.getName_role()))
+        {
+            btnCreate.setVisible(false);
+        }
     }
     
     public MenuManager() {
@@ -184,7 +188,7 @@ public class MenuManager extends javax.swing.JFrame {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         //Buscar puede ser el mismo SearchUser quitando el boton de actualizar
-        System.out.println("DEBUG MenuManager -> logUser: " +
+        System.out.println("MenuManager -> logUser: " +
         (logUser != null ? logUser.getUsername() + " id_clinic=" + logUser.getId_clinic() + " role=" + logUser.getName_role() : "logUser es null"));
         SearchUser SearchUserFrame = new SearchUser(logUser);
         SearchUserFrame.setVisible(true);
@@ -202,7 +206,9 @@ public class MenuManager extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        CreateUser CreateUserFrame = new CreateUser();
+        System.out.println("MenuManager -> logUser: " +
+        (logUser != null ? logUser.getUsername() + " id_clinic=" + logUser.getId_clinic() + " role=" + logUser.getName_role() : "logUser es null"));
+        CreateUser CreateUserFrame = new CreateUser(logUser); ///usar constructor con logUser, para no perder la sesión y evitar logUser = null
         CreateUserFrame.setVisible(true);
         CreateUserFrame.pack();
         CreateUserFrame.setLocationRelativeTo(null);
