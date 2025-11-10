@@ -1,10 +1,22 @@
 package project.vetsys.view.manager;
 
 import java.awt.Color;
+import project.vetsys.model.User;
 
 public class UsersMenu extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(UsersMenu.class.getName());
+    private User logUser;
+    
+    public UsersMenu(User logUser) {
+        initComponents();
+        this.logUser = logUser;
+        System.out.println("Usuario logueado en MenuManager: " + logUser.getUsername());
+        if(!"Administrador".equalsIgnoreCase(logUser.getName_role()))
+        {
+            MenuUsers_BttnAddUsers.setVisible(false);
+        }
+    }
 
     public UsersMenu() {
         initComponents();
@@ -79,6 +91,9 @@ public class UsersMenu extends javax.swing.JFrame {
         MenuUsers_lblBttnAddUsers.setMinimumSize(new java.awt.Dimension(140, 40));
         MenuUsers_lblBttnAddUsers.setPreferredSize(new java.awt.Dimension(140, 40));
         MenuUsers_lblBttnAddUsers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuUsers_lblBttnAddUsersMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 MenuUsers_lblBttnAddUsersMouseEntered(evt);
             }
@@ -112,6 +127,9 @@ public class UsersMenu extends javax.swing.JFrame {
         MenuUsers_lblBttnSearchUsers.setMinimumSize(new java.awt.Dimension(140, 40));
         MenuUsers_lblBttnSearchUsers.setPreferredSize(new java.awt.Dimension(140, 40));
         MenuUsers_lblBttnSearchUsers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuUsers_lblBttnSearchUsersMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 MenuUsers_lblBttnSearchUsersMouseEntered(evt);
             }
@@ -277,6 +295,27 @@ public class UsersMenu extends javax.swing.JFrame {
     private void MenuUsers_lblBttnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnBackMouseExited
         MenuUsers_BttnBack.setBackground(new Color(0,153,153));
     }//GEN-LAST:event_MenuUsers_lblBttnBackMouseExited
+
+    private void MenuUsers_lblBttnAddUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnAddUsersMouseClicked
+        System.out.println("MenuManager -> logUser: " +
+        (logUser != null ? logUser.getUsername() + " id_clinic=" + logUser.getId_clinic() + " role=" + logUser.getName_role() : "logUser es null"));
+        CreateUser CreateUserFrame = new CreateUser(logUser); ///usar constructor con logUser, para no perder la sesión y evitar logUser = null
+        CreateUserFrame.setVisible(true);
+        CreateUserFrame.pack();
+        CreateUserFrame.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_MenuUsers_lblBttnAddUsersMouseClicked
+
+    private void MenuUsers_lblBttnSearchUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnSearchUsersMouseClicked
+        //Buscar puede ser el mismo SearchUser quitando el boton de actualizar
+        System.out.println("MenuManager -> logUser: " +
+        (logUser != null ? logUser.getUsername() + " id_clinic=" + logUser.getId_clinic() + " role=" + logUser.getName_role() : "logUser es null"));
+        SearchUser SearchUserFrame = new SearchUser(logUser);
+        SearchUserFrame.setVisible(true);
+        SearchUserFrame.pack();
+        SearchUserFrame.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_MenuUsers_lblBttnSearchUsersMouseClicked
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new UsersMenu().setVisible(true));

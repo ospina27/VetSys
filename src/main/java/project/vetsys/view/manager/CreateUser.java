@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package project.vetsys.view;
+package project.vetsys.view.manager;
 
 import java.util.List;
 import project.vetsys.view.security.LogIn;
@@ -12,6 +12,7 @@ import project.vetsys.dao.StatusDAO;
 import project.vetsys.model.Role;
 import project.vetsys.model.Status;
 import project.vetsys.model.User;
+import project.vetsys.view.ComboBox;
 import project.vetsys.view.manager.MenuManager;
 
 /**

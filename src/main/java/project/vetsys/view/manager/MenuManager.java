@@ -1,7 +1,5 @@
 package project.vetsys.view.manager;
 
-import project.vetsys.view.CreateUser;
-import project.vetsys.view.SearchUser;
 import project.vetsys.view.security.LogIn;
 
 import project.vetsys.model.User;
@@ -172,14 +170,7 @@ public class MenuManager extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        //Buscar puede ser el mismo SearchUser quitando el boton de actualizar
-        System.out.println("MenuManager -> logUser: " +
-        (logUser != null ? logUser.getUsername() + " id_clinic=" + logUser.getId_clinic() + " role=" + logUser.getName_role() : "logUser es null"));
-        SearchUser SearchUserFrame = new SearchUser(logUser);
-        SearchUserFrame.setVisible(true);
-        SearchUserFrame.pack();
-        SearchUserFrame.setLocationRelativeTo(null);
-        this.dispose();
+        
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -191,13 +182,7 @@ public class MenuManager extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        System.out.println("MenuManager -> logUser: " +
-        (logUser != null ? logUser.getUsername() + " id_clinic=" + logUser.getId_clinic() + " role=" + logUser.getName_role() : "logUser es null"));
-        CreateUser CreateUserFrame = new CreateUser(logUser); ///usar constructor con logUser, para no perder la sesión y evitar logUser = null
-        CreateUserFrame.setVisible(true);
-        CreateUserFrame.pack();
-        CreateUserFrame.setLocationRelativeTo(null);
-        this.dispose();
+        
     }//GEN-LAST:event_btnCreateActionPerformed
 
     
