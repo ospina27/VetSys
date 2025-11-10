@@ -17,6 +17,7 @@ project\vetsys\database\DBConnection.class
 project\vetsys\view\ComboBox.class
 project\vetsys\view\security\LogIn.class
 project\vetsys\dao\UserDAO.class
+project\vetsys\model\Pet.class
 project\vetsys\view\CreateClinic$5.class
 project\vetsys\view\manager\MenuManager$2.class
 project\vetsys\view\security\LogIn$4.class
@@ -67,6 +68,7 @@ project\vetsys\view\SearchUser$11.class
 project\vetsys\view\SearchUser$1.class
 project\vetsys\view\InitPanel.class
 project\vetsys\view\CreateClinic$2.class
+project\vetsys\dao\PetDAO.class
 project\vetsys\view\CreateClinic.class
 project\vetsys\view\security\PasswordRecovery$5.class
 project\vetsys\view\security\PasswordRecovery.class

@@ -103,8 +103,8 @@ public class UserDAO {
                 + "username, contrasena, id_rol, id_estado) VALUES (?,?,?,?,?,?,?,?,?,?)";
         
         try {
-            connection = DBConnection.getConnection()
-;           ps = connection.prepareStatement(sqlInsert);
+            connection = DBConnection.getConnection();
+           ps = connection.prepareStatement(sqlInsert);
 
             ps.setInt(1, user.getId_clinic());
             ps.setString(2, user.getName_user());

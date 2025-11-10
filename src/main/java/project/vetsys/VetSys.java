@@ -1,13 +1,16 @@
 package project.vetsys;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 import project.vetsys.dao.ClinicDAO;
+import project.vetsys.dao.PetDAO;
 import project.vetsys.dao.UserDAO;
 import project.vetsys.database.DBConnection;
 import project.vetsys.model.Clinic;
+import project.vetsys.model.Pet;
 import project.vetsys.model.User;
 import project.vetsys.view.InitPanel;
 import project.vetsys.view.security.LogIn;
@@ -20,14 +23,8 @@ public class VetSys {
     public static void main(String[] args) throws ClassNotFoundException {
         
         Connection connection = DBConnection.getConnection();
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         
-        /*
-        LogIn LoginFrame = new LogIn();
-        LoginFrame.setVisible(true);
-        LoginFrame.pack();
-        LoginFrame.setLocationRelativeTo(null);
-        */
         
         
         InitPanel Init = new InitPanel();
@@ -36,37 +33,6 @@ public class VetSys {
         Init.setLocationRelativeTo(null);
         
         
-        
-        ///prueba en consola de la creación de la clinica
-        /*System.out.println("Crear clinica");
-        System.out.println("Nombre de la clinica: ");
-        String name_clinic = scanner.nextLine();
-        System.out.println("Nit: ");
-        String nit_clinic = scanner.nextLine();
-        System.out.println("Dirección: ");
-        String address = scanner.nextLine();
-        System.out.println("Telefono: ");
-        String phone = scanner.nextLine();
-        System.out.println("Fecha de registro: ");
-        String registration_date = scanner.nextLine();
-        System.out.println("Estado de la clinica: ");
-        int id_status = scanner.nextInt();
-        scanner.nextLine();
-        
-        Clinic newClinic = new Clinic();
-        newClinic.setName_clinic(name_clinic);
-        newClinic.setNit(nit_clinic);
-        newClinic.setAddress(address);
-        newClinic.setPhone(phone);
-        newClinic.setRegistration_date(registration_date);
-        newClinic.setId_status(id_status);
-        
-        ClinicDAO clinicDAO = new ClinicDAO();
-        if(clinicDAO.Create(newClinic)){
-            System.out.println("Clinica creado con éxito!");
-        } else {
-            System.out.println("Fallo al crear a clinica.");
-        }*/
         
         ///creacion del usuario con su rol asociado a la clinica
         /*System.out.println("Crear usuario:" );
@@ -111,49 +77,93 @@ public class VetSys {
        }else
        {
            System.out.println("No hay usuarios registrados"); 
-       }
+       }*/
         
         System.out.print("Usuario: ");
-        String usernameLogin = scanner.nextLine();
+        String usernameLogin = sc.nextLine();
         System.out.print("Contraseña: ");
-        String passwordLogin = scanner.nextLine();
-        User userLog = dao.login(usernameLogin, passwordLogin);
-        if (userLog != null) {
-            System.out.println("Login exitoso: " + userLog.getUsername());
-            System.out.println(userLog);
+        String passwordLogin = sc.nextLine();
+        UserDAO dao = new UserDAO();
+        User logUser = dao.login(usernameLogin, passwordLogin);
+        if (logUser != null) {
+            System.out.println("Login exitoso: " + logUser.getUsername());
+            System.out.println(logUser);
         } else {
             System.out.println("Login no exitoso.");
         }
+        
+        PetDAO daoPet = new PetDAO();
+        
+        
+        ///crear mascota
+        /*Pet newPet = new  Pet();
+        newPet.setId_Client(2);
+        newPet.setId_Clinic(logUser.getId_clinic());
+        newPet.setName_Pet("Max");
+        newPet.setSpecies("Perro");
+        newPet.setBred("Beagle");
+        newPet.setColor("Cafe");
+        newPet.setSex("Macho");
+        newPet.setDate_of_birth(Date.valueOf("2020-01-15"));
+        
+        boolean create = daoPet.Create(newPet);
+        System.out.println("Resultado de la creación: " + create);*/
+        
+             
+        
+        //List<Pet> pets = daoPet.ReadAll(logUser);
+        List<Pet> pets = daoPet.ReadForClient(2,logUser);
+        System.out.println("=========== LISTA DE MASCOTAS ===========");
+
+        for (Pet p : pets) {
+            System.out.println("ID: " + p.getId_pet());
+            System.out.println("NOMBRE: " + p.getName_Pet());
+            System.out.println("ESPECIE: " + p.getSpecies());
+            System.out.println("RAZA: " + p.getBred());
+            System.out.println("COLOR: " + p.getColor());
+            System.out.println("SEXO: " + p.getSex());
+            System.out.println("FECHA NAC: " + p.getDate_of_birth());
+            System.out.println("-----------------------------------------");
+        }
+            
+        ///Actualizar mascota
+        Pet pet = new Pet();
+        pet.setId_pet(1);
+        pet.setId_Client(1);
+        pet.setId_Clinic(logUser.getId_clinic());
+        pet.setName_Pet("Mateo");
+        pet.setSpecies("Felino");
+        pet.setBred("Angora");
+        pet.setColor("Amarillo");
+        pet.setSex("macho");
+        pet.setDate_of_birth(Date.valueOf("2010-07-18"));
+
+        boolean result = daoPet.Update(pet, logUser);
+
+        System.out.println("Resultado Update: " + result);
+        
+        System.out.println("Lista de mascotas actualizada de la clinica "+logUser.getClinic().getName_clinic());
+        pets = daoPet.ReadAll(logUser);
+        for (Pet p : pets) {
+            System.out.println("ID: " + p.getId_pet());
+            System.out.println("NOMBRE: " + p.getName_Pet());
+            System.out.println("ESPECIE: " + p.getSpecies());
+            System.out.println("RAZA: " + p.getBred());
+            System.out.println("COLOR: " + p.getColor());
+            System.out.println("SEXO: " + p.getSex());
+            System.out.println("FECHA NAC: " + p.getDate_of_birth());
+            System.out.println("-----------------------------------------");
+        }
+        
+        Pet deletePet = new Pet();
+        deletePet.setId_pet(5);
+        boolean resultDelete = daoPet.Delete(deletePet, logUser);
+        System.out.println("Resultado delete "+ resultDelete);
        
-        User userUpdate = new User();
-        System.out.println("Ingrese id del usario a modificar: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Ingrese el nuevo usuario: ");
-        String newUser = scanner.nextLine();
-        System.out.println("Ingrese nueva contraseña: ");
-        String newPassword = scanner.nextLine();
-        System.out.println("Ingrese el nuevo rol: ");
-        int newRol = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Ingrese el estado: ");
-        int newStatus = scanner.nextInt();
-        scanner.nextLine();
-        
-        userUpdate.setId_user(id);
-        userUpdate.setUsername(newUser);
-        userUpdate.setPassword(newPassword);
-        userUpdate.setId_role(newRol); 
-        userUpdate.setId_status(newStatus);
-        
-        boolean update = dao.Update(userUpdate, userLog);
-        if(update)
-        {
-            System.out.println("Usuario actualizado");
-        }else
-        {
-            System.out.print("No se actualizo el usuario");
-        }    
-        */
+      
+ 
+
+           
+    
     }
 }
