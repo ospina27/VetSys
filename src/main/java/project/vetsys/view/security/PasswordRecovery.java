@@ -164,7 +164,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_lblBttnCheckCredentials.setForeground(new java.awt.Color(255, 255, 255));
         PassRec_lblBttnCheckCredentials.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PassRec_lblBttnCheckCredentials.setText("Verificar");
-        PassRec_lblBttnCheckCredentials.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        PassRec_lblBttnCheckCredentials.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         PassRec_lblBttnCheckCredentials.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PassRec_lblBttnCheckCredentialsMouseClicked(evt);
@@ -195,7 +195,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_lblBttnSavePassword.setForeground(new java.awt.Color(255, 255, 255));
         PassRec_lblBttnSavePassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PassRec_lblBttnSavePassword.setText("Guardar");
-        PassRec_lblBttnSavePassword.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        PassRec_lblBttnSavePassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         PassRec_lblBttnSavePassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PassRec_lblBttnSavePasswordMouseClicked(evt);
@@ -232,7 +232,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
         PassRec_lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PassRec_lblBttnBack.setText("Cancelar");
-        PassRec_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        PassRec_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         PassRec_lblBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PassRec_lblBttnBackMouseClicked(evt);

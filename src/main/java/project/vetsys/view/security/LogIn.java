@@ -143,12 +143,13 @@ public class LogIn extends javax.swing.JFrame {
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 
         LogInPanel_BttnLogin.setBackground(new java.awt.Color(0, 153, 153));
-        LogInPanel_BttnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        LogInPanel_BttnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         LogInPanel_lblBttnLogin.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         LogInPanel_lblBttnLogin.setForeground(new java.awt.Color(255, 255, 255));
         LogInPanel_lblBttnLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LogInPanel_lblBttnLogin.setText("Ingresar");
+        LogInPanel_lblBttnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         LogInPanel_lblBttnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LogInPanel_lblBttnLoginMouseClicked(evt);
