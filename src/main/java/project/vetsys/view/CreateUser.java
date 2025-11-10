@@ -4,8 +4,15 @@
  */
 package project.vetsys.view;
 
+import java.util.List;
 import project.vetsys.view.security.LogIn;
 import javax.swing.JOptionPane;
+import project.vetsys.dao.RoleDAO;
+import project.vetsys.dao.StatusDAO;
+import project.vetsys.model.Role;
+import project.vetsys.model.Status;
+import project.vetsys.model.User;
+import project.vetsys.view.manager.MenuManager;
 
 /**
  *
@@ -14,13 +21,60 @@ import javax.swing.JOptionPane;
 public class CreateUser extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CreateUser.class.getName());
-
+    private User logUser;
+    
     /**
-     * Creates new form CreateUser
+     * Creates new form SearchUser
+     * @param logUser
      */
+    
     public CreateUser() {
         initComponents();
+        initListeners();
     }
+    
+    public CreateUser(User logUser) {
+        this.logUser = logUser;
+        initComponents();
+        loadRolesStatus();
+        initListeners();
+       
+    }
+    
+     private void initListeners() {
+        //cboxRoleCreate.addActionListener(e -> loadRolesStatus());
+        //cboxStatusCreate.addActionListener(e-> loadRolesStatus());
+    }
+    
+    
+    private void loadRolesStatus() {
+            RoleDAO roleDAO = new RoleDAO();
+            StatusDAO statusDAO = new StatusDAO();
+
+            List<Role> roles = roleDAO.getAllRole(logUser);
+            List<Status> status = statusDAO.getAllStatus(logUser);
+            //cboxRoleCreate.removeAllItems();
+
+            /// mostrar todos los roles
+            Role defaultRole = new Role(0, "Todos", "Mostrar todos los roles");
+            ComboBox.fillComboBox(cboxRoleCreate, roles, defaultRole);
+            ComboBox.fillComboBox(cboxStatusCreate, status, null);
+
+
+            ///verificar en consola que usuarios se estan cargando
+            System.out.println("Roles cargados en el combo:");
+            for (int i = 0; i < cboxRoleCreate.getItemCount(); i++) {
+                Object item = cboxRoleCreate.getItemAt(i);
+                System.out.println("   - " + item + " (" + item.getClass().getSimpleName() + ")");
+            }
+            System.out.println("Estados cargados en el combo:");
+            for (int i = 0; i < cboxStatusCreate.getItemCount(); i++) {
+            Object item = cboxStatusCreate.getItemAt(i);
+            System.out.println("   - " + item + " (" + item.getClass().getSimpleName() + ")");
+        }
+    }
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,6 +85,7 @@ public class CreateUser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -38,27 +93,27 @@ public class CreateUser extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        usernameField = new javax.swing.JTextField();
-        passwordField = new javax.swing.JPasswordField();
+        btnCreateUser = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        ClinicComboBox = new javax.swing.JComboBox<>();
-        RoleComboBox = new javax.swing.JComboBox<>();
-        StatusComboBox = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         nameLbl = new javax.swing.JLabel();
-        nameFiel = new javax.swing.JTextField();
         lastnameLbl = new javax.swing.JLabel();
-        lastnameField = new javax.swing.JTextField();
-        phoneField = new javax.swing.JTextField();
         phoneLbl = new javax.swing.JLabel();
-        specialtyField = new javax.swing.JTextField();
         specialtyLbl = new javax.swing.JLabel();
         emailLbl = new javax.swing.JLabel();
         emailFiel = new javax.swing.JTextField();
+        documentField = new javax.swing.JTextField();
+        phoneField = new javax.swing.JTextField();
+        lastnameField = new javax.swing.JTextField();
+        nameFiel = new javax.swing.JTextField();
+        usernameField = new javax.swing.JTextField();
+        passwordField = new javax.swing.JPasswordField();
+        cboxRoleCreate = new javax.swing.JComboBox<>();
+        cboxStatusCreate = new javax.swing.JComboBox<>();
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,23 +173,14 @@ public class CreateUser extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 102, 102));
-        jButton2.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Crear");
-        jButton2.setPreferredSize(new java.awt.Dimension(124, 33));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCreateUser.setBackground(new java.awt.Color(0, 102, 102));
+        btnCreateUser.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        btnCreateUser.setForeground(new java.awt.Color(255, 255, 255));
+        btnCreateUser.setText("Crear");
+        btnCreateUser.setPreferredSize(new java.awt.Dimension(124, 33));
+        btnCreateUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        usernameField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        usernameField.setMinimumSize(new java.awt.Dimension(68, 26));
-        usernameField.setPreferredSize(new java.awt.Dimension(68, 26));
-        usernameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameFieldActionPerformed(evt);
+                btnCreateUserActionPerformed(evt);
             }
         });
 
@@ -142,72 +188,17 @@ public class CreateUser extends javax.swing.JFrame {
 
         jLabel3.setText("Contraseña");
 
-        ClinicComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", " " }));
-        ClinicComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        ClinicComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ClinicComboBoxActionPerformed(evt);
-            }
-        });
-
-        RoleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Asistente", "Veterinario" }));
-        RoleComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RoleComboBoxActionPerformed(evt);
-            }
-        });
-
-        StatusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vigente", "Vencido" }));
-
-        jLabel4.setText("Clinica");
-
         jLabel7.setText("Rol");
 
         jLabel8.setText("Estado");
 
         nameLbl.setText("Nombre");
 
-        nameFiel.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        nameFiel.setMinimumSize(new java.awt.Dimension(68, 26));
-        nameFiel.setPreferredSize(new java.awt.Dimension(68, 26));
-        nameFiel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameFielActionPerformed(evt);
-            }
-        });
-
         lastnameLbl.setText("Apellidos");
-
-        lastnameField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        lastnameField.setMinimumSize(new java.awt.Dimension(68, 26));
-        lastnameField.setPreferredSize(new java.awt.Dimension(68, 26));
-        lastnameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastnameFieldActionPerformed(evt);
-            }
-        });
-
-        phoneField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        phoneField.setMinimumSize(new java.awt.Dimension(68, 26));
-        phoneField.setPreferredSize(new java.awt.Dimension(68, 26));
-        phoneField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phoneFieldActionPerformed(evt);
-            }
-        });
 
         phoneLbl.setText("Telefono");
 
-        specialtyField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        specialtyField.setMinimumSize(new java.awt.Dimension(68, 26));
-        specialtyField.setPreferredSize(new java.awt.Dimension(68, 26));
-        specialtyField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                specialtyFieldActionPerformed(evt);
-            }
-        });
-
-        specialtyLbl.setText("Especialidad");
+        specialtyLbl.setText("Documento");
 
         emailLbl.setText("Correo electronico");
 
@@ -220,6 +211,63 @@ public class CreateUser extends javax.swing.JFrame {
             }
         });
 
+        documentField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        documentField.setMinimumSize(new java.awt.Dimension(68, 26));
+        documentField.setPreferredSize(new java.awt.Dimension(68, 26));
+        documentField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                documentFieldActionPerformed(evt);
+            }
+        });
+
+        phoneField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        phoneField.setMinimumSize(new java.awt.Dimension(68, 26));
+        phoneField.setPreferredSize(new java.awt.Dimension(68, 26));
+        phoneField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phoneFieldActionPerformed(evt);
+            }
+        });
+
+        lastnameField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        lastnameField.setMinimumSize(new java.awt.Dimension(68, 26));
+        lastnameField.setPreferredSize(new java.awt.Dimension(68, 26));
+        lastnameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lastnameFieldActionPerformed(evt);
+            }
+        });
+
+        nameFiel.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        nameFiel.setMinimumSize(new java.awt.Dimension(68, 26));
+        nameFiel.setPreferredSize(new java.awt.Dimension(68, 26));
+        nameFiel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameFielActionPerformed(evt);
+            }
+        });
+
+        usernameField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        usernameField.setMinimumSize(new java.awt.Dimension(68, 26));
+        usernameField.setPreferredSize(new java.awt.Dimension(68, 26));
+        usernameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameFieldActionPerformed(evt);
+            }
+        });
+
+        cboxRoleCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboxRoleCreateActionPerformed(evt);
+            }
+        });
+
+        cboxStatusCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboxStatusCreateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -229,10 +277,6 @@ public class CreateUser extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lastnameField, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(phoneField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(specialtyField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(nameFiel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(phoneLbl)
@@ -242,32 +286,32 @@ public class CreateUser extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(emailLbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(emailFiel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(60, 60, 60)
+                                .addGap(182, 182, 182))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(nameFiel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lastnameField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(phoneField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(documentField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(emailFiel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(60, 60, 60)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7)
                             .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(RoleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ClinicComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(StatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8))))
-                        .addGap(14, 14, 14))
+                            .addComponent(cboxRoleCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboxStatusCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(44, 44, 44))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCreateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(112, 112, 112))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -287,15 +331,15 @@ public class CreateUser extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lastnameLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lastnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lastnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -303,33 +347,29 @@ public class CreateUser extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(phoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(specialtyLbl)
+                        .addComponent(specialtyLbl))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(12, 12, 12)
+                        .addComponent(cboxStatusCreate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(specialtyField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(documentField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(emailLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(emailFiel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(88, 88, 88)
-                        .addComponent(jButton1)
-                        .addGap(86, 86, 86))
+                        .addComponent(emailFiel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ClinicComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(StatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(RoleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(117, 117, 117)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(111, 111, 111))))
+                        .addGap(13, 13, 13)
+                        .addComponent(cboxRoleCreate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(110, 110, 110)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCreateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1))))
+                .addGap(104, 104, 104))
         );
 
         nameLbl.getAccessibleContext().setAccessibleDescription("lblName");
@@ -355,9 +395,72 @@ public class CreateUser extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void specialtyFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_specialtyFieldActionPerformed
+    private void btnCreateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateUserActionPerformed
+        
+        String name_user = nameFiel.getText();
+        String last_name = lastnameField.getText();
+        String phone = phoneField.getText();
+        String document = documentField.getText();
+        String email = emailFiel.getText();
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        
+        Role r = (Role) cboxRoleCreate.getSelectedItem();
+        if(r == null){JOptionPane.showMessageDialog(this, "Debe seleccionar un rol");return;}
+                     
+        Status s = (Status) cboxStatusCreate.getSelectedItem();
+        if(s == null){JOptionPane.showMessageDialog(this, "Debe seleccionar un estado");return;}
+        
+        // Validaciones simples
+        if (name_user.isEmpty() || last_name.isEmpty() || document.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty()) 
+        {
+            JOptionPane.showMessageDialog(this, "Por favor completa todos los campos obligatorios");
+            return;
+        }
+        
+        User user = new User();
+        user.setName_user(name_user);
+        user.setLast_name(last_name);
+        user.setPhone(phone);
+        user.setDocument(document);
+        user.setEmail(email);
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setId_role(r.getId());   ///se actualizan los roles con el id y el nombre en el combobox
+        user.setName_role(r.getName());
+        user.setId_status(s.getId());
+        user.setName_status(s.getName());
+        user.setId_clinic(logUser.getId_clinic());
+        
+       
+        // Llamar al DAO
+        project.vetsys.dao.UserDAO userDAO = new project.vetsys.dao.UserDAO();
+        boolean success = userDAO.Create(user);
+
+        if (success) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Usuario creado correctamente");
+            usernameField.setText("");
+            passwordField.setText("");
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error al crear el usuario. Revisa los datos o la conexión.");
+        }
+    }//GEN-LAST:event_btnCreateUserActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        MenuManager MenuManagerFrame = new MenuManager(logUser);  ///siempre que se llame al menumanager, hacerlo con el constructor con parametro de loguser
+        MenuManagerFrame.setVisible(true);
+        MenuManagerFrame.pack();
+        MenuManagerFrame.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void emailFielActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFielActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_specialtyFieldActionPerformed
+    }//GEN-LAST:event_emailFielActionPerformed
+
+    private void documentFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_documentFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_documentFieldActionPerformed
 
     private void phoneFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneFieldActionPerformed
         // TODO add your handling code here:
@@ -371,62 +474,17 @@ public class CreateUser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nameFielActionPerformed
 
-    private void RoleComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RoleComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RoleComboBoxActionPerformed
-
     private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameFieldActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        int idClinic = ClinicComboBox.getSelectedIndex() + 1;
-        int roleID = RoleComboBox.getSelectedIndex() + 1;
-        int statusID = StatusComboBox.getSelectedIndex() + 1;
-
-        // Validaciones simples
-        if (username.isEmpty() || password.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor completa todos los campos obligatorios");
-            return;
-        }
-
-        project.vetsys.model.User user = new project.vetsys.model.User();
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setId_clinic(idClinic);
-        user.setId_role(roleID);
-        user.setId_status(statusID);
-
-        // Llamar al DAO
-        project.vetsys.dao.UserDAO userDAO = new project.vetsys.dao.UserDAO();
-        boolean success = userDAO.Create(user);
-
-        if (success) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Usuario creado correctamente");
-            usernameField.setText("");
-            passwordField.setText("");
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Error al crear el usuario. Revisa los datos o la conexión.");
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        LogIn LoginFrame = new LogIn();
-        LoginFrame.setVisible(true);
-        LoginFrame.pack();
-        LoginFrame.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void emailFielActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFielActionPerformed
+    private void cboxRoleCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxRoleCreateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailFielActionPerformed
+    }//GEN-LAST:event_cboxRoleCreateActionPerformed
 
-    private void ClinicComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClinicComboBoxActionPerformed
+    private void cboxStatusCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxStatusCreateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ClinicComboBoxActionPerformed
+    }//GEN-LAST:event_cboxStatusCreateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -454,17 +512,17 @@ public class CreateUser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> ClinicComboBox;
-    private javax.swing.JComboBox<String> RoleComboBox;
-    private javax.swing.JComboBox<String> StatusComboBox;
+    private javax.swing.JButton btnCreateUser;
+    private javax.swing.JComboBox<Role> cboxRoleCreate;
+    private javax.swing.JComboBox<Status> cboxStatusCreate;
+    private javax.swing.JTextField documentField;
     private javax.swing.JTextField emailFiel;
     private javax.swing.JLabel emailLbl;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -479,7 +537,6 @@ public class CreateUser extends javax.swing.JFrame {
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField phoneField;
     private javax.swing.JLabel phoneLbl;
-    private javax.swing.JTextField specialtyField;
     private javax.swing.JLabel specialtyLbl;
     private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables

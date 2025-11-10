@@ -10,9 +10,11 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import project.vetsys.dao.ClinicDAO;
 import project.vetsys.dao.RoleDAO;
+import project.vetsys.dao.StatusDAO;
 import project.vetsys.dao.UserDAO;
 import project.vetsys.model.Clinic;
 import project.vetsys.model.Role;
+import project.vetsys.model.Status;
 import project.vetsys.model.User;
 
 /**
@@ -35,14 +37,16 @@ public class SearchUser extends javax.swing.JFrame {
         initComponents();
         this.logUser = logUser;
         loadAllUsers(logUser);
-        loadRoles();   ///mostrar usuarios por rol
+        loadRolesStatus(); 
         
         //validacion del rol, para que no pueda modificar usuarios si no es administrador
         if(!"Administrador".equalsIgnoreCase(logUser.getName_role())){
             btnActualizar.setVisible(false);
             btnDelete.setVisible(false);
-            //btnActualizar.setEnabled(false);
         }
+        ClinicField3.setEditable(false); ///no editar la clinica ni el id 
+        idUserField.setEditable(false);
+        
         System.out.println("Usuario logueado recibido: " + logUser.getUsername()); //prueba en consola
         initListeners();
         
@@ -66,32 +70,29 @@ public class SearchUser extends javax.swing.JFrame {
         });
     }
     
-    ///cargar roles al combobox
-    ///cargar por clinica
-    private void loadRoles() {
+    ///cargar roles y estado al combobox
+    private void loadRolesStatus() {
     RoleDAO roleDAO = new RoleDAO();
+    StatusDAO statusDAO = new StatusDAO();
     List<Role> roles = roleDAO.getAllRole(logUser);
+    List<Status> status = statusDAO.getAllStatus(logUser);
     cboxRole.removeAllItems();
     
     /// mostrar todos los roles
-    cboxRole.addItem(new Role(0, "Todos", "Mostrar todos los roles"));
-    if (roles != null && !roles.isEmpty()) {
-        for (Role r : roles) {
-            if (r != null && r.getId() > 0 && r.getName() != null) {
-                cboxRole.addItem(r); /// agrega el objeto Role completo
-                cboxRoleEdit.addItem(r); ///agrego los mismo roles al cbobx de edicion de usuarios
-                filters = true;
-            }
-        }
-    } 
-    cboxRole.addActionListener(e -> {
-        loadUsersByClinicandRole(logUser);
-    });
+    Role defaultRole = new Role(0, "Todos", "Mostrar todos los roles");
+    ComboBox.fillComboBox(cboxRole, roles, defaultRole);
+    ComboBox.fillComboBox(cboxRoleEdit, roles, null);
+    ComboBox.fillComboBox(cboxStatusEdit, status, null);
     
     ///verificar en consola que usuarios se estan cargando
     System.out.println("Roles cargados en el combo:");
     for (int i = 0; i < cboxRole.getItemCount(); i++) {
         Object item = cboxRole.getItemAt(i);
+        System.out.println("   - " + item + " (" + item.getClass().getSimpleName() + ")");
+    }
+    System.out.println("Estados cargados en el combo:");
+    for (int i = 0; i < cboxStatusEdit.getItemCount(); i++) {
+        Object item = cboxStatusEdit.getItemAt(i);
         System.out.println("   - " + item + " (" + item.getClass().getSimpleName() + ")");
     }
 }
@@ -238,8 +239,18 @@ public class SearchUser extends javax.swing.JFrame {
                     break;
                 }
             }
+             for(int i= 0;i < cboxStatusEdit.getItemCount(); i++)
+            {
+                Status s = (Status) cboxStatusEdit.getItemAt(i);
+                if(s.getId()== user.getId_status())
+                {
+                    cboxStatusEdit.setSelectedIndex(i);
+                    break;
+                }
+            }
+            
             usernameField.setText(user.getUsername());
-            StatusField.setText(user.getName_status());
+            //StatusField.setText(user.getName_status());
             usernameField.setText(user.getUsername());
             ClinicField3.setText(user.getName_clinic());
             DocumentField.setText(user.getDocument());
@@ -283,7 +294,6 @@ public class SearchUser extends javax.swing.JFrame {
         usernameField3 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        StatusField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         DocumentField = new javax.swing.JTextField();
         PhoneField = new javax.swing.JTextField();
@@ -297,6 +307,7 @@ public class SearchUser extends javax.swing.JFrame {
         cboxRoleEdit = new javax.swing.JComboBox<>();
         idUserField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        cboxStatusEdit = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         cboxRole = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
@@ -363,13 +374,6 @@ public class SearchUser extends javax.swing.JFrame {
             }
         });
 
-        StatusField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        StatusField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                StatusFieldActionPerformed(evt);
-            }
-        });
-
         jLabel9.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Usuario");
@@ -432,6 +436,7 @@ public class SearchUser extends javax.swing.JFrame {
         });
 
         idUserField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        idUserField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         idUserField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idUserFieldActionPerformed(evt);
@@ -442,6 +447,12 @@ public class SearchUser extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("ID");
 
+        cboxStatusEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboxStatusEditActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -449,17 +460,16 @@ public class SearchUser extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cboxStatusEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
                     .addComponent(ClinicField3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
                     .addComponent(jLabel12)
                     .addComponent(EmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(StatusField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2)
                     .addComponent(LastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
                     .addComponent(jButton2)
                     .addComponent(usernameField3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DocumentField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -470,11 +480,12 @@ public class SearchUser extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cboxRoleEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
-                            .addComponent(idUserField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(idUserField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(118, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -499,8 +510,8 @@ public class SearchUser extends javax.swing.JFrame {
                 .addGap(9, 9, 9)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(StatusField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cboxStatusEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
                 .addComponent(jLabel9)
                 .addGap(4, 4, 4)
                 .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -656,37 +667,42 @@ public class SearchUser extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void StatusFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatusFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_StatusFieldActionPerformed
-
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
         
         try {
             int idUser = Integer.parseInt(idUserField.getText().trim());
             String username = usernameField.getText().trim();
-            String statusName = StatusField.getText().trim();
+            
 
             if (username.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "El nombre de usuario no puede estar vacío.");
                 return;
             }
             
+            
             Role r = (Role) cboxRoleEdit.getSelectedItem();
             if(r == null)
             {
-                JOptionPane.showMessageDialog(this, "Debe seleccionar un rol");
+                JOptionPane.showMessageDialog(this, "Debe seleccionar un rol");  
+               
                 return;
             }
+            Status s = (Status) cboxStatusEdit.getSelectedItem();
+            if(s == null)
+            {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar un estado");
+                return;
+            }
+            
             // Crear usuario a actualizar
             User user = new User();
             user.setId_user(idUser);
             user.setUsername(username); 
             user.setId_role(r.getId());   ///se actualizan los roles con el id y el nombre en el combobox
             user.setName_role(r.getName());
-            user.setId_status(getStatusIdByName(statusName));
-            user.setName_status(statusName);
+            user.setId_status(s.getId());
+            user.setName_status(s.getName());
             user.setId_clinic(logUser.getId_clinic()); // mismo id de clínica
 
             // Llamar al DAO
@@ -709,7 +725,7 @@ public class SearchUser extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        MenuManager MenuManagerFrame = new MenuManager();
+        MenuManager MenuManagerFrame = new MenuManager(logUser);
         MenuManagerFrame.setVisible(true);
         MenuManagerFrame.pack();
         MenuManagerFrame.setLocationRelativeTo(null);
@@ -773,6 +789,10 @@ public class SearchUser extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void cboxStatusEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxStatusEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboxStatusEditActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -804,12 +824,12 @@ public class SearchUser extends javax.swing.JFrame {
     private javax.swing.JTextField EmailField;
     private javax.swing.JTextField LastNameField;
     private javax.swing.JTextField PhoneField;
-    private javax.swing.JTextField StatusField;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<Role> cboxRole;
     private javax.swing.JComboBox<Role> cboxRoleEdit;
+    private javax.swing.JComboBox<Status> cboxStatusEdit;
     private javax.swing.JTextField idUserField;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel10;

@@ -18,6 +18,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_textNewPasswordOK.setVisible(false);
         PassRec_BttnSavePassword.setVisible(false);
         PassRec_lblBttnSavePassword.setVisible(false);
+        
         PassRec_lblNewPassword.setVisible(false);
         PassRec_lblNewPasswordOK.setVisible(false);
         jSeparator4.setVisible(false);
@@ -37,17 +38,14 @@ public class PasswordRecovery extends javax.swing.JFrame {
         Right_PasswordRecovery = new javax.swing.JPanel();
         PassRec_lblUser = new javax.swing.JLabel();
         PassRec_lblID = new javax.swing.JLabel();
-        PassRec_lblDateOfBirth = new javax.swing.JLabel();
         PassRec_lblNewPassword = new javax.swing.JLabel();
         PassRec_lblNewPasswordOK = new javax.swing.JLabel();
         PassRec_textUser = new javax.swing.JTextField();
         PassRec_textID = new javax.swing.JTextField();
-        PassRec_textDateOfBirth = new javax.swing.JTextField();
         PassRec_textNewPassword = new javax.swing.JPasswordField();
         PassRec_textNewPasswordOK = new javax.swing.JPasswordField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         PassRec_BttnCheckCredentials = new javax.swing.JPanel();
@@ -104,9 +102,6 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_lblID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         PassRec_lblID.setText("Numero de Identificación");
 
-        PassRec_lblDateOfBirth.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        PassRec_lblDateOfBirth.setText("Fecha de Nacimiento");
-
         PassRec_lblNewPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         PassRec_lblNewPassword.setText("Contraseña Nueva");
 
@@ -136,15 +131,6 @@ public class PasswordRecovery extends javax.swing.JFrame {
             }
         });
 
-        PassRec_textDateOfBirth.setForeground(java.awt.Color.gray);
-        PassRec_textDateOfBirth.setText("Ingrese fecha de nacimiento (DD-MM-YYYY)");
-        PassRec_textDateOfBirth.setBorder(null);
-        PassRec_textDateOfBirth.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                PassRec_textDateOfBirthMousePressed(evt);
-            }
-        });
-
         PassRec_textNewPassword.setForeground(java.awt.Color.gray);
         PassRec_textNewPassword.setText("**********");
         PassRec_textNewPassword.setBorder(null);
@@ -166,8 +152,6 @@ public class PasswordRecovery extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-
-        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
 
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -282,7 +266,6 @@ public class PasswordRecovery extends javax.swing.JFrame {
                     .addGroup(Right_PasswordRecoveryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-                        .addComponent(PassRec_lblDateOfBirth)
                         .addComponent(PassRec_textUser)
                         .addComponent(PassRec_lblNewPasswordOK)
                         .addComponent(PassRec_lblNewPassword)
@@ -290,8 +273,6 @@ public class PasswordRecovery extends javax.swing.JFrame {
                         .addComponent(PassRec_textID)
                         .addComponent(PassRec_lblID)
                         .addComponent(jSeparator1)
-                        .addComponent(PassRec_textDateOfBirth)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                         .addComponent(PassRec_textNewPassword)
                         .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                         .addComponent(PassRec_textNewPasswordOK))
@@ -319,13 +300,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
                 .addComponent(PassRec_textID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(PassRec_lblDateOfBirth)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PassRec_textDateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(97, 97, 97)
                 .addGroup(Right_PasswordRecoveryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(PassRec_BttnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PassRec_BttnCheckCredentials, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -366,147 +341,13 @@ public class PasswordRecovery extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PassRec_textUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PassRec_textUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PassRec_textUserActionPerformed
-
-    private void PassRec_lblBttnCheckCredentialsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_lblBttnCheckCredentialsMouseEntered
-        PassRec_BttnCheckCredentials.setBackground(Color.LIGHT_GRAY);
-    }//GEN-LAST:event_PassRec_lblBttnCheckCredentialsMouseEntered
-
-    private void PassRec_lblBttnSavePasswordMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_lblBttnSavePasswordMouseEntered
-        PassRec_BttnSavePassword.setBackground(Color.LIGHT_GRAY);
-    }//GEN-LAST:event_PassRec_lblBttnSavePasswordMouseEntered
-
-    private void PassRec_lblBttnSavePasswordMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_lblBttnSavePasswordMouseExited
-        PassRec_BttnSavePassword.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_PassRec_lblBttnSavePasswordMouseExited
-
-    private void PassRec_lblBttnCheckCredentialsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_lblBttnCheckCredentialsMouseExited
-        PassRec_BttnCheckCredentials.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_PassRec_lblBttnCheckCredentialsMouseExited
-
-    
-    ///boton que verifica los datos
-    private void PassRec_lblBttnCheckCredentialsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_lblBttnCheckCredentialsMouseClicked
-
-        String name = PassRec_textUser.getText().trim();
-        String document = PassRec_textID.getText().trim();
-        
-        if(name.isEmpty() || document.isEmpty())
-        {
-            JOptionPane.showMessageDialog(this, "Complete todos los campos", "CAMPOS OBLIGATORIOS", HEIGHT);
-            System.out.println("Complete todos los campos");
-            return;
-        }
-        
-        UserDAO userDao = new UserDAO();
-        
-        ///validar que el usuario exista
-        boolean userExists = userDao.userExists(name, document);
-        if(!userExists)
-        {
-            JOptionPane.showMessageDialog(this, "Usuario no encontrado");
-            return;
-        }
-        ///se valida que el usuario este activo
-        user = userDao.searchUserPass(name, document);
-        
-        if(user != null){
-            PassRec_lblNewPassword.setVisible(true);
-            PassRec_textNewPassword.setVisible(true);
-            jSeparator4.setVisible(true);
-            PassRec_lblNewPasswordOK.setVisible(true);
-            PassRec_textNewPasswordOK.setVisible(true);
-            jSeparator5.setVisible(true);
-            PassRec_BttnSavePassword.setVisible(true);
-            PassRec_lblBttnSavePassword.setVisible(true);
-        
-            PassRec_textNewPassword.setEnabled(true);
-            PassRec_textNewPasswordOK.setEnabled(true);
-            System.out.println(user.getUsername());
-            
-        }else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Usuario Inactivo.");
-        } 
-    }//GEN-LAST:event_PassRec_lblBttnCheckCredentialsMouseClicked
-    
-    
-    
-    private void PassRec_textUserMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_textUserMousePressed
-        if(PassRec_textUser.getText().equals("Ingrese su nombre")){
-            PassRec_textUser.setText("");
-            PassRec_textUser.setForeground(Color.black);
-        }
-        if(PassRec_textID.getText().isEmpty()){
-            PassRec_textID.setText("Ingrese numero de cedula");
-            PassRec_textID.setForeground(Color.gray);
-        }
-        if(PassRec_textDateOfBirth.getText().isEmpty()){
-            PassRec_textDateOfBirth.setText("Ingrese fecha de nacimiento (DD-MM-YYYY)");
-            PassRec_textDateOfBirth.setForeground(Color.gray);
-        }
-    }//GEN-LAST:event_PassRec_textUserMousePressed
-
-    private void PassRec_textIDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_textIDMousePressed
-        if (PassRec_textID.getText().equals("Ingrese numero de cedula")){
-            PassRec_textID.setText("");
-            PassRec_textID.setForeground(Color.black);
-        }
-        if (PassRec_textUser.getText().isEmpty()){
-            PassRec_textUser.setText("Ingrese su nombre");
-            PassRec_textUser.setForeground(Color.gray);
-        }
-        if (PassRec_textDateOfBirth.getText().isEmpty()){
-            PassRec_textDateOfBirth.setText("Ingrese fecha de nacimiento (DD-MM-YYYY)");
-            PassRec_textDateOfBirth.setForeground(Color.gray);
-        }
-    }//GEN-LAST:event_PassRec_textIDMousePressed
-
-    private void PassRec_textDateOfBirthMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_textDateOfBirthMousePressed
-        if(PassRec_textDateOfBirth.getText().equals("Ingrese fecha de nacimiento (DD-MM-YYYY)")){
-            PassRec_textDateOfBirth.setText("");
-            PassRec_textDateOfBirth.setForeground(Color.black);
-        }
-        if (PassRec_textUser.getText().isEmpty()){
-            PassRec_textUser.setText("Ingrese su nombre");
-            PassRec_textUser.setForeground(Color.gray);
-        }
-        if(PassRec_textID.getText().isEmpty()){
-            PassRec_textID.setText("Ingrese numero de cedula");
-            PassRec_textID.setForeground(Color.gray);
-        }
-    }//GEN-LAST:event_PassRec_textDateOfBirthMousePressed
-
-    private void PassRec_textNewPasswordMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_textNewPasswordMousePressed
-        if (String.valueOf(PassRec_textNewPassword.getPassword()).equals("**********")){
-            PassRec_textNewPassword.setText("");
-            PassRec_textNewPassword.setForeground(Color.black);
-        }
-        if (String.valueOf(PassRec_textNewPasswordOK.getPassword()).isEmpty()){
-            PassRec_textNewPasswordOK.setText("**********");
-            PassRec_textNewPasswordOK.setForeground(Color.gray);
-        }
-    }//GEN-LAST:event_PassRec_textNewPasswordMousePressed
-
-    private void PassRec_textNewPasswordOKMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_textNewPasswordOKMousePressed
-        if (String.valueOf(PassRec_textNewPasswordOK.getPassword()).equals("**********")){
-            PassRec_textNewPasswordOK.setText("");
-            PassRec_textNewPasswordOK.setForeground(Color.black);
-        }
-        if (String.valueOf(PassRec_textNewPassword.getPassword()).isEmpty()){
-            PassRec_textNewPassword.setText("**********");
-            PassRec_textNewPassword.setForeground(Color.gray);
-        }
-    }//GEN-LAST:event_PassRec_textNewPasswordOKMousePressed
+    private void PassRec_lblBttnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_lblBttnBackMouseExited
+        PassRec_BttnBack.setBackground(new Color(0,153,153));
+    }//GEN-LAST:event_PassRec_lblBttnBackMouseExited
 
     private void PassRec_lblBttnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_lblBttnBackMouseEntered
         PassRec_BttnBack.setBackground(Color.LIGHT_GRAY);
     }//GEN-LAST:event_PassRec_lblBttnBackMouseEntered
-
-    private void PassRec_lblBttnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_lblBttnBackMouseExited
-        PassRec_BttnBack.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_PassRec_lblBttnBackMouseExited
 
     private void PassRec_lblBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_lblBttnBackMouseClicked
         LogIn LogInFrame = new LogIn();
@@ -516,19 +357,25 @@ public class PasswordRecovery extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_PassRec_lblBttnBackMouseClicked
 
-    
+    private void PassRec_lblBttnSavePasswordMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_lblBttnSavePasswordMouseExited
+        PassRec_BttnSavePassword.setBackground(new Color(0,153,153));
+    }//GEN-LAST:event_PassRec_lblBttnSavePasswordMouseExited
+
+    private void PassRec_lblBttnSavePasswordMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_lblBttnSavePasswordMouseEntered
+        PassRec_BttnSavePassword.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_PassRec_lblBttnSavePasswordMouseEntered
+
     ///guarda la contraseña nueva
     private void PassRec_lblBttnSavePasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_lblBttnSavePasswordMouseClicked
-        
-        if (user == null) 
+
+        if (user == null)
         {
             JOptionPane.showMessageDialog(this, "Verifique las credenciales.");
             return;
         }
         String passNew = String.valueOf(PassRec_textNewPassword.getPassword());
         String passConfirm = String.valueOf(PassRec_textNewPasswordOK.getPassword());
-       
-        
+
         ///verificar que ambas contraseñas sean iguales)
         if (!passNew.equals(passConfirm)) {
             JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden.");
@@ -554,6 +401,111 @@ public class PasswordRecovery extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_PassRec_lblBttnSavePasswordMouseClicked
 
+    private void PassRec_lblBttnCheckCredentialsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_lblBttnCheckCredentialsMouseExited
+        PassRec_BttnCheckCredentials.setBackground(new Color(0,153,153));
+    }//GEN-LAST:event_PassRec_lblBttnCheckCredentialsMouseExited
+
+    private void PassRec_lblBttnCheckCredentialsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_lblBttnCheckCredentialsMouseEntered
+        PassRec_BttnCheckCredentials.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_PassRec_lblBttnCheckCredentialsMouseEntered
+
+    private void PassRec_lblBttnCheckCredentialsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_lblBttnCheckCredentialsMouseClicked
+        // TODO add your handling code here:
+
+        String name = PassRec_textUser.getText().trim();
+        String document = PassRec_textID.getText().trim();
+
+        if(name.isEmpty() || document.isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Complete todos los campos", "CAMPOS OBLIGATORIOS", HEIGHT);
+            System.out.println("Complete todos los campos");
+            return;
+        }
+
+        UserDAO userDao = new UserDAO();
+
+        ///validar que el usuario exista
+        boolean userExists = userDao.userExists(name, document);
+        if(!userExists)
+        {
+            JOptionPane.showMessageDialog(this, "Usuario no encontrado");
+            return;
+        }
+        ///se valida que el usuario este activo
+        user = userDao.searchUserPass(name, document);
+
+        if(user != null){
+            PassRec_lblNewPassword.setVisible(true);
+            PassRec_textNewPassword.setVisible(true);
+            jSeparator4.setVisible(true);
+            PassRec_lblNewPasswordOK.setVisible(true);
+            PassRec_textNewPasswordOK.setVisible(true);
+            jSeparator5.setVisible(true);
+            PassRec_BttnSavePassword.setVisible(true);
+            PassRec_lblBttnSavePassword.setVisible(true);
+
+            PassRec_textNewPassword.setEnabled(true);
+            PassRec_textNewPasswordOK.setEnabled(true);
+            System.out.println(user.getUsername());
+
+        }else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Usuario Inactivo.");
+        }
+    }//GEN-LAST:event_PassRec_lblBttnCheckCredentialsMouseClicked
+
+    private void PassRec_textNewPasswordOKMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_textNewPasswordOKMousePressed
+        if (String.valueOf(PassRec_textNewPasswordOK.getPassword()).equals("**********")){
+            PassRec_textNewPasswordOK.setText("");
+            PassRec_textNewPasswordOK.setForeground(Color.black);
+        }
+        if (String.valueOf(PassRec_textNewPassword.getPassword()).isEmpty()){
+            PassRec_textNewPassword.setText("**********");
+            PassRec_textNewPassword.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_PassRec_textNewPasswordOKMousePressed
+
+    private void PassRec_textNewPasswordMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_textNewPasswordMousePressed
+        if (String.valueOf(PassRec_textNewPassword.getPassword()).equals("**********")){
+            PassRec_textNewPassword.setText("");
+            PassRec_textNewPassword.setForeground(Color.black);
+        }
+        if (String.valueOf(PassRec_textNewPasswordOK.getPassword()).isEmpty()){
+            PassRec_textNewPasswordOK.setText("**********");
+            PassRec_textNewPasswordOK.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_PassRec_textNewPasswordMousePressed
+
+    private void PassRec_textIDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_textIDMousePressed
+        if (PassRec_textID.getText().equals("Ingrese numero de cedula")){
+            PassRec_textID.setText("");
+            PassRec_textID.setForeground(Color.black);
+        }
+        if (PassRec_textUser.getText().isEmpty()){
+            PassRec_textUser.setText("Ingrese su nombre");
+            PassRec_textUser.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_PassRec_textIDMousePressed
+
+    private void PassRec_textUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PassRec_textUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PassRec_textUserActionPerformed
+
+    private void PassRec_textUserMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_textUserMousePressed
+        if(PassRec_textUser.getText().equals("Ingrese su nombre")){
+            PassRec_textUser.setText("");
+            PassRec_textUser.setForeground(Color.black);
+        }
+        if(PassRec_textID.getText().isEmpty()){
+            PassRec_textID.setText("Ingrese numero de cedula");
+            PassRec_textID.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_PassRec_textUserMousePressed
+
+    
+   
+    
+    
+    
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new PasswordRecovery().setVisible(true));
     }
@@ -567,12 +519,10 @@ public class PasswordRecovery extends javax.swing.JFrame {
     private javax.swing.JLabel PassRec_lblBttnBack;
     private javax.swing.JLabel PassRec_lblBttnCheckCredentials;
     private javax.swing.JLabel PassRec_lblBttnSavePassword;
-    private javax.swing.JLabel PassRec_lblDateOfBirth;
     private javax.swing.JLabel PassRec_lblID;
     private javax.swing.JLabel PassRec_lblNewPassword;
     private javax.swing.JLabel PassRec_lblNewPasswordOK;
     private javax.swing.JLabel PassRec_lblUser;
-    private javax.swing.JTextField PassRec_textDateOfBirth;
     private javax.swing.JTextField PassRec_textID;
     private javax.swing.JPasswordField PassRec_textNewPassword;
     private javax.swing.JPasswordField PassRec_textNewPasswordOK;
@@ -581,7 +531,6 @@ public class PasswordRecovery extends javax.swing.JFrame {
     private javax.swing.JPanel Right_PasswordRecovery;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     // End of variables declaration//GEN-END:variables

@@ -1,5 +1,4 @@
 project\vetsys\view\CreateClinic$1.class
-project\vetsys\view\security\PasswordRecovery$9.class
 project\vetsys\view\InitPanel$2.class
 project\vetsys\view\security\PasswordRecovery$2.class
 project\vetsys\model\Veterinarian.class
@@ -15,6 +14,7 @@ project\vetsys\view\security\LogIn$1.class
 project\vetsys\view\SearchUser$3.class
 project\vetsys\view\security\PasswordRecovery$6.class
 project\vetsys\database\DBConnection.class
+project\vetsys\view\ComboBox.class
 project\vetsys\view\security\LogIn.class
 project\vetsys\dao\UserDAO.class
 project\vetsys\view\CreateClinic$5.class
