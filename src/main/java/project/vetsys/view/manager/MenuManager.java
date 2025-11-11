@@ -19,8 +19,7 @@ public class MenuManager extends javax.swing.JFrame {
         System.out.println("Usuario logueado en MenuManager: " + logUser.getUsername());
         if(!"Administrador".equalsIgnoreCase(logUser.getName_role()))
         {
-            
-//btnCreate.setVisible(false);
+           //btnCreate.setVisible(false);
         }
     }
     
@@ -83,7 +82,7 @@ public class MenuManager extends javax.swing.JFrame {
         Right.setPreferredSize(new java.awt.Dimension(500, 800));
 
         MenuManager_BttnUsers.setBackground(new java.awt.Color(0, 153, 153));
-        MenuManager_BttnUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuManager_BttnUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuManager_BttnUsers.setMaximumSize(new java.awt.Dimension(140, 40));
         MenuManager_BttnUsers.setMinimumSize(new java.awt.Dimension(140, 40));
         MenuManager_BttnUsers.setPreferredSize(new java.awt.Dimension(140, 40));
@@ -116,7 +115,7 @@ public class MenuManager extends javax.swing.JFrame {
         );
 
         MenuManager_BttnAppointments.setBackground(new java.awt.Color(0, 153, 153));
-        MenuManager_BttnAppointments.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuManager_BttnAppointments.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuManager_BttnAppointments.setMaximumSize(new java.awt.Dimension(140, 40));
         MenuManager_BttnAppointments.setMinimumSize(new java.awt.Dimension(140, 40));
         MenuManager_BttnAppointments.setPreferredSize(new java.awt.Dimension(140, 40));
@@ -149,7 +148,7 @@ public class MenuManager extends javax.swing.JFrame {
         );
 
         MenuManager_BttnPatient.setBackground(new java.awt.Color(0, 153, 153));
-        MenuManager_BttnPatient.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuManager_BttnPatient.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuManager_BttnPatient.setMaximumSize(new java.awt.Dimension(140, 40));
         MenuManager_BttnPatient.setMinimumSize(new java.awt.Dimension(140, 40));
         MenuManager_BttnPatient.setPreferredSize(new java.awt.Dimension(140, 40));
@@ -182,7 +181,7 @@ public class MenuManager extends javax.swing.JFrame {
         );
 
         MenuManager_BttnLogOut.setBackground(new java.awt.Color(0, 153, 153));
-        MenuManager_BttnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuManager_BttnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuManager_BttnLogOut.setMaximumSize(new java.awt.Dimension(140, 40));
         MenuManager_BttnLogOut.setMinimumSize(new java.awt.Dimension(140, 40));
 
@@ -218,13 +217,13 @@ public class MenuManager extends javax.swing.JFrame {
         RightLayout.setHorizontalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RightLayout.createSequentialGroup()
-                .addGap(139, 139, 139)
+                .addGap(145, 145, 145)
                 .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(MenuManager_BttnUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MenuManager_BttnAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MenuManager_BttnPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MenuManager_BttnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         RightLayout.setVerticalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,10 +301,16 @@ public class MenuManager extends javax.swing.JFrame {
 
     private void MenuManager_lblBttnPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuManager_lblBttnPatientMouseClicked
         JOptionPane.showMessageDialog(this, "Proximo Sprint");
+        Patient patientFrame = new Patient(logUser);
+        patientFrame.setVisible(true);
+        patientFrame.pack();
+        patientFrame.setLocationRelativeTo(null);
+        this.dispose();
+                   
     }//GEN-LAST:event_MenuManager_lblBttnPatientMouseClicked
 
     private void MenuManager_lblBttnAppointmentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuManager_lblBttnAppointmentsMouseClicked
-        Menu_Appointment MenuAppointmentFrame = new Menu_Appointment();
+        Menu_Appointment MenuAppointmentFrame = new Menu_Appointment(logUser);
         MenuAppointmentFrame.setVisible(true);
         MenuAppointmentFrame.pack();
         MenuAppointmentFrame.setLocationRelativeTo(null);
@@ -313,7 +318,7 @@ public class MenuManager extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuManager_lblBttnAppointmentsMouseClicked
 
     private void MenuManager_lblBttnUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuManager_lblBttnUsersMouseClicked
-        UsersMenu MenuUserFrame = new UsersMenu();
+        UsersMenu MenuUserFrame = new UsersMenu(logUser);
         MenuUserFrame.setVisible(true);
         MenuUserFrame.pack();
         MenuUserFrame.setLocationRelativeTo(null);

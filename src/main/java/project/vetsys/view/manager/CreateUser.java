@@ -536,7 +536,7 @@ public class CreateUser extends javax.swing.JFrame {
 
     private void CreateUser_lblBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_lblBttnBackMouseClicked
         //siempre que se llame al MenuManager, hacerlo con el constructor con parametro de logUser
-        MenuManager MenuManagerFrame = new MenuManager(logUser);  
+        UsersMenu MenuManagerFrame = new UsersMenu(logUser);  
         MenuManagerFrame.setVisible(true);
         MenuManagerFrame.pack();
         MenuManagerFrame.setLocationRelativeTo(null);

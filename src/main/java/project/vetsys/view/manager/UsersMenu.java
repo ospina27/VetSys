@@ -40,9 +40,7 @@ public class UsersMenu extends javax.swing.JFrame {
         MenuUsers_lblBttnBack = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1000, 800));
         setMinimumSize(new java.awt.Dimension(1000, 800));
-        setPreferredSize(new java.awt.Dimension(1000, 800));
 
         MenuUsersPanel.setMaximumSize(new java.awt.Dimension(1000, 800));
         MenuUsersPanel.setMinimumSize(new java.awt.Dimension(1000, 800));
@@ -78,7 +76,7 @@ public class UsersMenu extends javax.swing.JFrame {
         Right.setMinimumSize(new java.awt.Dimension(500, 800));
 
         MenuUsers_BttnAddUsers.setBackground(new java.awt.Color(0, 153, 153));
-        MenuUsers_BttnAddUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuUsers_BttnAddUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuUsers_BttnAddUsers.setMaximumSize(new java.awt.Dimension(140, 40));
         MenuUsers_BttnAddUsers.setMinimumSize(new java.awt.Dimension(140, 40));
         MenuUsers_BttnAddUsers.setPreferredSize(new java.awt.Dimension(140, 40));
@@ -114,7 +112,7 @@ public class UsersMenu extends javax.swing.JFrame {
         );
 
         MenuUsers_BttnSearchUsers.setBackground(new java.awt.Color(0, 153, 153));
-        MenuUsers_BttnSearchUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuUsers_BttnSearchUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuUsers_BttnSearchUsers.setMaximumSize(new java.awt.Dimension(140, 40));
         MenuUsers_BttnSearchUsers.setMinimumSize(new java.awt.Dimension(140, 40));
         MenuUsers_BttnSearchUsers.setPreferredSize(new java.awt.Dimension(140, 40));
@@ -152,7 +150,7 @@ public class UsersMenu extends javax.swing.JFrame {
         );
 
         MenuUsers_BttnDeleteUsers.setBackground(new java.awt.Color(0, 153, 153));
-        MenuUsers_BttnDeleteUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuUsers_BttnDeleteUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuUsers_BttnDeleteUsers.setMaximumSize(new java.awt.Dimension(140, 40));
         MenuUsers_BttnDeleteUsers.setMinimumSize(new java.awt.Dimension(140, 40));
         MenuUsers_BttnDeleteUsers.setPreferredSize(new java.awt.Dimension(140, 40));
@@ -193,8 +191,11 @@ public class UsersMenu extends javax.swing.JFrame {
         MenuUsers_lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
         MenuUsers_lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuUsers_lblBttnBack.setText("Regresar");
-        MenuUsers_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuUsers_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuUsers_lblBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuUsers_lblBttnBackMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 MenuUsers_lblBttnBackMouseEntered(evt);
             }
@@ -316,6 +317,16 @@ public class UsersMenu extends javax.swing.JFrame {
         SearchUserFrame.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_MenuUsers_lblBttnSearchUsersMouseClicked
+
+    private void MenuUsers_lblBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnBackMouseClicked
+        // TODO add your handling code here:
+        MenuManager menuManager = new MenuManager(logUser);
+        menuManager.setVisible(true);
+        menuManager.pack();
+        menuManager.setLocationRelativeTo(null);
+        this.dispose();
+          
+    }//GEN-LAST:event_MenuUsers_lblBttnBackMouseClicked
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new UsersMenu().setVisible(true));

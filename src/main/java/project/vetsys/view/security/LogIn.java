@@ -262,12 +262,12 @@ public class LogIn extends javax.swing.JFrame {
     private void LogInPanel_lblBttnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogInPanel_lblBttnLoginMouseClicked
         boolean flag = true;
         
-        if(flag){
+        /*if(flag){
             javax.swing.JOptionPane.showMessageDialog(this, "Bienvenido");
         }else {
             javax.swing.JOptionPane.showMessageDialog(this, "No tiene Credenciales");
-        }
-        /*
+        }*/
+        
         String username = LogInPanel_txtUsername.getText().trim();
         String password = new String(LogInPanel_txtPassword.getPassword());
 
@@ -302,7 +302,7 @@ public class LogIn extends javax.swing.JFrame {
         // Usuario o contraseña incorrectos
         JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.", "Error de inicio de sesión", JOptionPane.ERROR_MESSAGE);
         }
-*/
+
     }//GEN-LAST:event_LogInPanel_lblBttnLoginMouseClicked
 
     private void LogInPanel_lblBttnLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogInPanel_lblBttnLoginMouseEntered
