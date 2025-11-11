@@ -300,13 +300,11 @@ public class MenuManager extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuManager_lblBttnLogOutMouseClicked
 
     private void MenuManager_lblBttnPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuManager_lblBttnPatientMouseClicked
-
         PatientsMenu patientFrame = new PatientsMenu(logUser);
         patientFrame.setVisible(true);
         patientFrame.pack();
         patientFrame.setLocationRelativeTo(null);
-        this.dispose();
-                   
+        this.dispose();        
     }//GEN-LAST:event_MenuManager_lblBttnPatientMouseClicked
 
     private void MenuManager_lblBttnAppointmentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuManager_lblBttnAppointmentsMouseClicked

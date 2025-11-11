@@ -25,7 +25,14 @@ public class PetDAO {
     PreparedStatement ps;
     ResultSet rs;
     
-        public boolean Create(Pet pet){
+    
+        ///se crea la mascota buscando la cedula del cliente la cual trae su ID con el metodo creado 
+        public boolean Create(Pet pet, String document){
+            
+            int idOwner = searchIdOwner(document);
+            pet.setId_Client(idOwner);
+            
+            if(idOwner == -1){System.out.println("No se encontro cliente con cedula "+document);}
             String sqlInsert = "Insert into mascota (id_cliente, id_clinica, nombre, "
                     + "especie, raza, color, sexo, fecha_nacimiento)"
                     + " VALUES (?,?,?,?,?,?,?,?)";
@@ -58,6 +65,35 @@ public class PetDAO {
                 }
             }
         }
+        
+        
+        
+       ///seleccionar el id del cliente para encontrar su cedula
+       public int searchIdOwner(String document){
+           String sql = "SELECT id_cliente FROM cliente WHERE documento = ?";
+           
+           
+           try {
+               connection = DBConnection.getConnection();
+               ps = connection.prepareStatement(sql);
+               ps.setString(1,document);
+               
+               rs = ps.executeQuery();
+               if(rs.next()){
+                   return rs.getInt("id_cliente");
+               }
+           } catch (Exception e) {
+               System.out.println("Error al obtener el id_cliente: " + e.getMessage());
+           }finally {
+               try {
+                 if (ps != null) ps.close();
+                 if (connection != null) connection.close();
+                } catch (SQLException ex) {
+                 System.out.println("Error cerrando la conexión: " + ex.getMessage());
+                }
+           }
+           return -1;           
+       }
 
     
     
