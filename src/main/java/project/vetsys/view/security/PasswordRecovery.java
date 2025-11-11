@@ -14,6 +14,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
     
     public PasswordRecovery() {
         initComponents();
+       
         PassRec_textNewPassword.setVisible(false);
         PassRec_textNewPasswordOK.setVisible(false);
         PassRec_BttnSavePassword.setVisible(false);
@@ -164,7 +165,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_lblBttnCheckCredentials.setForeground(new java.awt.Color(255, 255, 255));
         PassRec_lblBttnCheckCredentials.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PassRec_lblBttnCheckCredentials.setText("Verificar");
-        PassRec_lblBttnCheckCredentials.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PassRec_lblBttnCheckCredentials.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PassRec_lblBttnCheckCredentials.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PassRec_lblBttnCheckCredentialsMouseClicked(evt);
@@ -195,7 +196,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_lblBttnSavePassword.setForeground(new java.awt.Color(255, 255, 255));
         PassRec_lblBttnSavePassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PassRec_lblBttnSavePassword.setText("Guardar");
-        PassRec_lblBttnSavePassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PassRec_lblBttnSavePassword.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PassRec_lblBttnSavePassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PassRec_lblBttnSavePasswordMouseClicked(evt);
@@ -232,7 +233,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
         PassRec_lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PassRec_lblBttnBack.setText("Cancelar");
-        PassRec_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PassRec_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PassRec_lblBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PassRec_lblBttnBackMouseClicked(evt);
@@ -321,21 +322,21 @@ public class PasswordRecovery extends javax.swing.JFrame {
                 .addContainerGap(80, Short.MAX_VALUE))
         );
 
-        PasswordRecoveryPanel.add(Right_PasswordRecovery, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, -1, -1));
+        PasswordRecoveryPanel.add(Right_PasswordRecovery, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 400, 600));
+        Right_PasswordRecovery.getAccessibleContext().setAccessibleName("Recuperar Contraseña");
+        Right_PasswordRecovery.getAccessibleContext().setAccessibleDescription("Recuperar Contraseña");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(PasswordRecoveryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 46, Short.MAX_VALUE))
+            .addComponent(PasswordRecoveryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(PasswordRecoveryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 72, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();

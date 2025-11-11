@@ -17,6 +17,7 @@ project\vetsys\view\manager\CreateUser$9.class
 project\vetsys\view\manager\CreateUser.class
 project\vetsys\view\manager\SearchUser$19.class
 project\vetsys\view\manager\SearchUser$3.class
+project\vetsys\view\manager\Patient$5.class
 project\vetsys\view\manager\CreateUser$14.class
 project\vetsys\view\CreateClinic$4.class
 project\vetsys\view\manager\UsersMenu$3.class
@@ -24,6 +25,7 @@ project\vetsys\view\manager\CreateUser$17.class
 project\vetsys\view\security\LogIn$5.class
 project\vetsys\view\manager\MenuManager$1.class
 project\vetsys\view\security\PasswordRecovery$7.class
+project\vetsys\view\manager\Patient$2.class
 project\vetsys\view\manager\SearchUser$16.class
 project\vetsys\model\Role.class
 project\vetsys\controller\Controller.class
@@ -31,6 +33,7 @@ project\vetsys\view\manager\SearchUser$15.class
 project\vetsys\view\CreateClinic$6.class
 project\vetsys\view\security\PasswordRecovery$4.class
 project\vetsys\view\manager\MenuManager$4.class
+project\vetsys\view\manager\Patient.class
 project\vetsys\view\manager\Menu_Appointment$2.class
 project\vetsys\view\manager\SearchUser$4.class
 project\vetsys\security\PasswordUtil.class
@@ -46,6 +49,7 @@ project\vetsys\view\security\PasswordRecovery$5.class
 project\vetsys\view\manager\SearchUser$14.class
 project\vetsys\view\security\PasswordRecovery.class
 project\vetsys\view\manager\CreateUser$7.class
+project\vetsys\view\manager\Patient$4.class
 project\vetsys\view\manager\CreateUser$15.class
 project\vetsys\view\manager\SearchUser$5.class
 project\vetsys\view\manager\CreateUser$13.class
@@ -57,6 +61,7 @@ project\vetsys\model\Veterinarian.class
 project\vetsys\view\manager\CreateUser$8.class
 project\vetsys\view\manager\SearchUser.class
 project\vetsys\view\manager\CreateUser$16.class
+project\vetsys\view\manager\Patient$3.class
 project\vetsys\view\manager\UsersMenu$4.class
 project\vetsys\view\security\LogIn$1.class
 project\vetsys\view\manager\SearchUser$17.class
@@ -75,6 +80,7 @@ project\vetsys\view\manager\CreateUser$2.class
 project\vetsys\view\manager\UsersMenu.class
 project\vetsys\view\manager\CreateUser$3.class
 project\vetsys\view\manager\SearchUser$7.class
+project\vetsys\view\manager\Patient$1.class
 project\vetsys\view\CreateClinic$3.class
 project\vetsys\view\manager\SearchUser$18.class
 project\vetsys\view\security\LogIn$2.class
