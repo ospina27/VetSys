@@ -2,6 +2,7 @@ package project.vetsys.view.manager;
 
 import java.awt.Color;
 import project.vetsys.model.User;
+import project.vetsys.view.assistant.DeleteAppointment;
 import project.vetsys.view.assistant.SearchAppointment;
 
 
@@ -143,6 +144,9 @@ public class Menu_Appointment extends javax.swing.JFrame {
         MenuAppointment_lblBttnDeleteAppointment.setText("Eliminar Cita");
         MenuAppointment_lblBttnDeleteAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuAppointment_lblBttnDeleteAppointment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuAppointment_lblBttnDeleteAppointmentMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 MenuAppointment_lblBttnDeleteAppointmentMouseEntered(evt);
             }
@@ -288,6 +292,14 @@ public class Menu_Appointment extends javax.swing.JFrame {
         SearchAppointment.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_MenuAppointment_lblBttnSearchAppointmentMouseClicked
+
+    private void MenuAppointment_lblBttnDeleteAppointmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAppointment_lblBttnDeleteAppointmentMouseClicked
+        DeleteAppointment DeleteAppointment = new DeleteAppointment(logUser);
+        DeleteAppointment.setVisible(true);
+        DeleteAppointment.pack();
+        DeleteAppointment.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_MenuAppointment_lblBttnDeleteAppointmentMouseClicked
 
     
     public static void main(String args[]) {

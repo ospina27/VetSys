@@ -54,7 +54,6 @@ public class SearchAppointment extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1000, 800));
         setMinimumSize(new java.awt.Dimension(1000, 800));
-        setPreferredSize(new java.awt.Dimension(1000, 800));
         setSize(new java.awt.Dimension(1000, 800));
 
         SearchAppointmentPanel.setBackground(new java.awt.Color(255, 255, 255));
