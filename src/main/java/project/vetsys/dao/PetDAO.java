@@ -65,14 +65,13 @@ public class PetDAO {
                 }
             }
         }
-        
+       
         
         
        ///seleccionar el id del cliente para encontrar su cedula
        public int searchIdOwner(String document){
            String sql = "SELECT id_cliente FROM cliente WHERE documento = ?";
-           
-           
+          
            try {
                connection = DBConnection.getConnection();
                ps = connection.prepareStatement(sql);
@@ -94,10 +93,37 @@ public class PetDAO {
            }
            return -1;           
        }
+       
+       
+    public Pet ReadId(int idPet) {
+        String sql = "SELECT id_mascota, nombre, especie, raza, color, sexo, fecha_nacimiento "
+                   + "FROM mascota WHERE id_mascota = ?";
 
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, idPet);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    Pet pet = new Pet();
+                    pet.setId_pet(rs.getInt("id_mascota"));
+                    pet.setName_Pet(rs.getString("nombre"));
+                    pet.setSpecies(rs.getString("especie"));
+                    pet.setBred(rs.getString("raza"));
+                    pet.setColor(rs.getString("color"));
+                    pet.setSex(rs.getString("sexo"));
+                    pet.setDate_of_birth(rs.getDate("fecha_nacimiento"));
+                    return pet;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al buscar mascota: " + e.getMessage());
+        }
+        return null;
+    }
     
-    
-       public List<Pet> ReadAll(User logUser) {
+       public List<Pet> Read(User logUser) {
             List<Pet> listPets = new ArrayList<>();
 
             String sql = "SELECT id_mascota, nombre, especie, raza, color, "

@@ -143,7 +143,7 @@ public class VetSys {
         System.out.println("Resultado Update: " + result);
         
         System.out.println("Lista de mascotas actualizada de la clinica "+logUser.getClinic().getName_clinic());
-        pets = daoPet.ReadAll(logUser);
+        pets = daoPet.Read(logUser);
         for (Pet p : pets) {
             System.out.println("ID: " + p.getId_pet());
             System.out.println("NOMBRE: " + p.getName_Pet());

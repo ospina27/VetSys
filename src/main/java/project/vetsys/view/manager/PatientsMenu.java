@@ -324,6 +324,11 @@ public class PatientsMenu extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // boton consultar mascota
+        SearchPet searchPetFrame = new SearchPet(logUser);
+        searchPetFrame.setVisible(true);
+        searchPetFrame.pack();
+        searchPetFrame.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
