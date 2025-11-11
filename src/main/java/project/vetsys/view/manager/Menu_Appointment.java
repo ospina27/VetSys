@@ -81,6 +81,7 @@ public class Menu_Appointment extends javax.swing.JFrame {
         MenuAppointment_lblBttnAddAppointment.setForeground(new java.awt.Color(255, 255, 255));
         MenuAppointment_lblBttnAddAppointment.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuAppointment_lblBttnAddAppointment.setText("Crear Cita");
+        MenuAppointment_lblBttnAddAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuAppointment_lblBttnAddAppointment.setPreferredSize(new java.awt.Dimension(250, 60));
         MenuAppointment_lblBttnAddAppointment.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -108,7 +109,7 @@ public class Menu_Appointment extends javax.swing.JFrame {
         MenuAppointment_lblBttnSearchAppointment.setForeground(new java.awt.Color(255, 255, 255));
         MenuAppointment_lblBttnSearchAppointment.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuAppointment_lblBttnSearchAppointment.setText("Consultar Cita");
-        MenuAppointment_lblBttnSearchAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuAppointment_lblBttnSearchAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuAppointment_lblBttnSearchAppointment.setPreferredSize(new java.awt.Dimension(250, 60));
         MenuAppointment_lblBttnSearchAppointment.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -136,7 +137,7 @@ public class Menu_Appointment extends javax.swing.JFrame {
         MenuAppointment_lblBttnDeleteAppointment.setForeground(new java.awt.Color(255, 255, 255));
         MenuAppointment_lblBttnDeleteAppointment.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuAppointment_lblBttnDeleteAppointment.setText("Eliminar Cita");
-        MenuAppointment_lblBttnDeleteAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuAppointment_lblBttnDeleteAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuAppointment_lblBttnDeleteAppointment.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 MenuAppointment_lblBttnDeleteAppointmentMouseEntered(evt);
@@ -163,7 +164,7 @@ public class Menu_Appointment extends javax.swing.JFrame {
         MenuAppointment_lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
         MenuAppointment_lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuAppointment_lblBttnBack.setText("Regresar");
-        MenuAppointment_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuAppointment_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuAppointment_lblBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuAppointment_lblBttnBackMouseClicked(evt);

@@ -131,9 +131,10 @@ public class CreateClient extends javax.swing.JFrame {
         jFormattedTextFechaInicioMembresia = new javax.swing.JFormattedTextField();
         jFormattedTextFechaFinMembresia = new javax.swing.JFormattedTextField();
         jComboBoxMembresia = new javax.swing.JComboBox<>();
-        btnRegistrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        CreateUser_BttnRegister = new javax.swing.JPanel();
+        CreateUser_lblBttnRegister = new javax.swing.JLabel();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -338,21 +339,44 @@ public class CreateClient extends javax.swing.JFrame {
             }
         });
 
-        btnRegistrar.setBackground(new java.awt.Color(0, 159, 159));
-        btnRegistrar.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
-        btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistrar.setText("Registrar");
-        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarActionPerformed(evt);
-            }
-        });
-
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setText("yyyy/mm/dd");
 
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setText("yyyy/mm/dd");
+
+        CreateUser_BttnRegister.setBackground(new java.awt.Color(0, 153, 153));
+        CreateUser_BttnRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        CreateUser_lblBttnRegister.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        CreateUser_lblBttnRegister.setForeground(new java.awt.Color(255, 255, 255));
+        CreateUser_lblBttnRegister.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CreateUser_lblBttnRegister.setText("Registrar");
+        CreateUser_lblBttnRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        CreateUser_lblBttnRegister.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CreateUser_lblBttnRegisterMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CreateUser_lblBttnRegisterMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                CreateUser_lblBttnRegisterMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout CreateUser_BttnRegisterLayout = new javax.swing.GroupLayout(CreateUser_BttnRegister);
+        CreateUser_BttnRegister.setLayout(CreateUser_BttnRegisterLayout);
+        CreateUser_BttnRegisterLayout.setHorizontalGroup(
+            CreateUser_BttnRegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(CreateUser_lblBttnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+        );
+        CreateUser_BttnRegisterLayout.setVerticalGroup(
+            CreateUser_BttnRegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CreateUser_BttnRegisterLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(CreateUser_lblBttnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout DownLayout = new javax.swing.GroupLayout(Down);
         Down.setLayout(DownLayout);
@@ -396,11 +420,14 @@ public class CreateClient extends javax.swing.JFrame {
                             .addComponent(jFormattedTextFechaInicioMembresia)
                             .addComponent(jComboBoxMembresia, 0, 377, Short.MAX_VALUE)))
                     .addGroup(DownLayout.createSequentialGroup()
-                        .addGap(304, 304, 304)
-                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(106, 106, 106)
+                        .addGap(248, 248, 248)
                         .addComponent(CreateUser_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 31, Short.MAX_VALUE))
+            .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DownLayout.createSequentialGroup()
+                    .addContainerGap(601, Short.MAX_VALUE)
+                    .addComponent(CreateUser_BttnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(224, 224, 224)))
         );
         DownLayout.setVerticalGroup(
             DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,11 +469,14 @@ public class CreateClient extends javax.swing.JFrame {
                 .addComponent(CreateUser_lblDireccion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
-                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CreateUser_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(90, 90, 90))
+                .addGap(65, 65, 65)
+                .addComponent(CreateUser_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(82, 82, 82))
+            .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DownLayout.createSequentialGroup()
+                    .addContainerGap(570, Short.MAX_VALUE)
+                    .addComponent(CreateUser_BttnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(80, 80, 80)))
         );
 
         CreateUser_lblName.getAccessibleContext().setAccessibleDescription("lblName");
@@ -540,8 +570,7 @@ public class CreateClient extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextFechaFinMembresiaActionPerformed
 
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        
+    private void CreateUser_lblBttnRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_lblBttnRegisterMouseClicked
         try {
             // Validar campos vacíos
             if (txtNombreCliente.getText().trim().isEmpty() ||
@@ -601,7 +630,15 @@ public class CreateClient extends javax.swing.JFrame {
                 "Error", 
                 JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btnRegistrarActionPerformed
+    }//GEN-LAST:event_CreateUser_lblBttnRegisterMouseClicked
+
+    private void CreateUser_lblBttnRegisterMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_lblBttnRegisterMouseEntered
+        CreateUser_BttnBack.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_CreateUser_lblBttnRegisterMouseEntered
+
+    private void CreateUser_lblBttnRegisterMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_lblBttnRegisterMouseExited
+        CreateUser_BttnBack.setBackground(new Color(0,153,153));
+    }//GEN-LAST:event_CreateUser_lblBttnRegisterMouseExited
 
     
     public static void main(String args[]) {
@@ -611,8 +648,10 @@ public class CreateClient extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CreateUserPanel;
     private javax.swing.JPanel CreateUser_BttnBack;
+    private javax.swing.JPanel CreateUser_BttnRegister;
     private javax.swing.JLabel CreateUser_LastName;
     private javax.swing.JLabel CreateUser_lblBttnBack;
+    private javax.swing.JLabel CreateUser_lblBttnRegister;
     private javax.swing.JLabel CreateUser_lblDireccion;
     private javax.swing.JLabel CreateUser_lblEmail;
     private javax.swing.JLabel CreateUser_lblFechaFin;
@@ -625,7 +664,6 @@ public class CreateClient extends javax.swing.JFrame {
     private javax.swing.JLabel CreateUser_lbl_ID;
     private javax.swing.JPanel Down;
     private javax.swing.JPanel Up;
-    private javax.swing.JButton btnRegistrar;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBoxMembresia;
     private javax.swing.JFormattedTextField jFormattedTextFechaFinMembresia;
