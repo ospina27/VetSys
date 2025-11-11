@@ -123,7 +123,6 @@ project\vetsys\view\CreateClinic$3.class
 project\vetsys\view\manager\SearchUser$18.class
 project\vetsys\view\security\LogIn$2.class
 project\vetsys\view\manager\CreateClient$7.class
-project\vetsys\view\manager\CreatePet$17.class
 project\vetsys\view\manager\MenuManager.class
 project\vetsys\view\manager\CreateUser$11.class
 project\vetsys\VetSys.class
@@ -149,5 +148,4 @@ project\vetsys\view\manager\CreatePet$6.class
 project\vetsys\view\manager\SearchUser$11.class
 project\vetsys\controller\ClienteController.class
 project\vetsys\view\manager\SearchPet$1.class
-project\vetsys\view\manager\CreatePet$18.class
 project\vetsys\view\manager\CreateUser$12.class
