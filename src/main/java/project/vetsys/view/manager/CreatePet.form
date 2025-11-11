@@ -82,9 +82,9 @@
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
                   <Component id="CreatePet_BtnCreate" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                   <Component id="CreatePet_BtnExit" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="248" max="-2" attributes="0"/>
               </Group>
@@ -129,7 +129,7 @@
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="CreatePet_SexField" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="CreatePet_BtnCreate" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="CreatePet_BtnExit" alignment="3" min="-2" max="-2" attributes="0"/>
