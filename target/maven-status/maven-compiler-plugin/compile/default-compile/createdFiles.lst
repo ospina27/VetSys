@@ -75,6 +75,7 @@ project\vetsys\view\security\PasswordRecovery.class
 project\vetsys\view\manager\CreateClient$4.class
 project\vetsys\view\manager\CreateUser$7.class
 project\vetsys\view\manager\CreateUser$15.class
+project\vetsys\view\manager\SearchPet$13.class
 project\vetsys\view\manager\SearchUser$5.class
 project\vetsys\view\manager\CreateUser$13.class
 project\vetsys\view\manager\Menu_Appointment$4.class

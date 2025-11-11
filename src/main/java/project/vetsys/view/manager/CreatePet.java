@@ -579,7 +579,7 @@ public class CreatePet extends javax.swing.JFrame {
 
     private void CreatePet_lblBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreatePet_lblBttnBackMouseClicked
         //siempre que se llame al MenuManager, hacerlo con el constructor con parametro de logUser
-        UsersMenu MenuManagerFrame = new UsersMenu(logUser);
+        PatientsMenu MenuManagerFrame = new PatientsMenu(logUser);
         MenuManagerFrame.setVisible(true);
         MenuManagerFrame.pack();
         MenuManagerFrame.setLocationRelativeTo(null);

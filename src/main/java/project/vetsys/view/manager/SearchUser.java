@@ -216,7 +216,6 @@ public class SearchUser extends javax.swing.JFrame {
             SearchUser_textName.setText(user.getName_user());
             SearchUser_textLastName.setText(user.getLast_name());
             
-            
             ///FALTA AGREGAR ESTADO EN UN CBOBOX
             /// 
             ///se muestra en el cbox el rol del usuario clickeado

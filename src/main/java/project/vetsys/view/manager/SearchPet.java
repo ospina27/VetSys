@@ -4,6 +4,10 @@
  */
 package project.vetsys.view.manager;
 
+import java.util.List;
+import javax.swing.JOptionPane;
+import project.vetsys.dao.PetDAO;
+import project.vetsys.dao.UserDAO;
 import project.vetsys.model.Pet;
 import project.vetsys.model.User;
 
@@ -21,12 +25,77 @@ public class SearchPet extends javax.swing.JFrame {
      */
     public SearchPet() {
         initComponents();
+                
+       
     }
     
     public SearchPet(User logUser){
         initComponents();
         this.logUser = logUser;
+        loadAllPet(logUser);
+        petTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            petTableMouseClicked(evt);
+            }
+        });
     }
+    
+  
+    private void loadAllPet(User logUser) {
+        PetDAO petDao = new PetDAO();
+        List<Pet> pets = petDao.Read(logUser); //cargar todos a latbla
+
+        javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Nombre");
+        model.addColumn("Especie");
+        model.addColumn("Raza");
+        model.addColumn("Color");
+        model.addColumn("Sexo");
+        model.addColumn("Fecha Nacimiento");
+
+        for (Pet pet : pets) {
+            model.addRow(new Object[]{
+                pet.getId_pet(),
+                pet.getName_Pet(),
+                pet.getSpecies(),
+                pet.getBred(),
+                pet.getColor(),
+                pet.getSex(),
+                pet.getDate_of_birth(),
+         
+            });
+        }
+        petTable.setModel(model);
+    }
+    
+    private void petTableMouseClicked(java.awt.event.MouseEvent evt){
+        
+        int selectedRow = petTable.getSelectedRow();
+        if(selectedRow>=0){
+            int idPet = Integer.parseInt(petTable.getValueAt(selectedRow, 0).toString());
+            
+            PetDAO petDao = new PetDAO();
+            Pet pet = petDao.ReadId(idPet);            
+                    
+            if(pet != null){
+                idPet_Field.setText(String.valueOf(pet.getId_pet()));
+                namePet_Field.setText(pet.getName_Pet());
+                SpeciesPet_Field.setText(pet.getSpecies());
+                bredPet_Field.setText(pet.getBred());
+                colorPet_Field.setText(pet.getColor());
+                sexPet_Field.setText(pet.getSex());
+                dateOfBirthPet_field.setText(String.valueOf(pet.getDate_of_birth()));
+            }
+               
+        }    
+        
+    }
+    
+    
+ 
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,25 +108,24 @@ public class SearchPet extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        SpeciesPetField = new javax.swing.JTextField();
-        namePetField = new javax.swing.JTextField();
+        SpeciesPet_Field = new javax.swing.JTextField();
+        namePet_Field = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        sexPetField = new javax.swing.JTextField();
+        sexPet_Field = new javax.swing.JTextField();
         dateOfBirthPet_field = new javax.swing.JTextField();
-        colorPetField = new javax.swing.JTextField();
+        colorPet_Field = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        bredPetField = new javax.swing.JTextField();
+        bredPet_Field = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        idUserField = new javax.swing.JTextField();
+        idPet_Field = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         cboxRole = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        userTable = new javax.swing.JTable();
+        petTable = new javax.swing.JTable();
         btnActualizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
@@ -71,17 +139,17 @@ public class SearchPet extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre Mascosta");
 
-        SpeciesPetField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        SpeciesPetField.addActionListener(new java.awt.event.ActionListener() {
+        SpeciesPet_Field.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        SpeciesPet_Field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SpeciesPetFieldActionPerformed(evt);
+                SpeciesPet_FieldActionPerformed(evt);
             }
         });
 
-        namePetField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        namePetField.addActionListener(new java.awt.event.ActionListener() {
+        namePet_Field.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        namePet_Field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                namePetFieldActionPerformed(evt);
+                namePet_FieldActionPerformed(evt);
             }
         });
 
@@ -89,23 +157,14 @@ public class SearchPet extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Especie");
 
-        jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 102, 102));
-        jButton2.setText("Crear Cuenta");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         jLabel9.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Raza");
 
-        sexPetField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        sexPetField.addActionListener(new java.awt.event.ActionListener() {
+        sexPet_Field.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        sexPet_Field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sexPetFieldActionPerformed(evt);
+                sexPet_FieldActionPerformed(evt);
             }
         });
 
@@ -116,10 +175,10 @@ public class SearchPet extends javax.swing.JFrame {
             }
         });
 
-        colorPetField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        colorPetField.addActionListener(new java.awt.event.ActionListener() {
+        colorPet_Field.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        colorPet_Field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                colorPetFieldActionPerformed(evt);
+                colorPet_FieldActionPerformed(evt);
             }
         });
 
@@ -131,10 +190,10 @@ public class SearchPet extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Fecha de Nacimiento");
 
-        bredPetField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        bredPetField.addActionListener(new java.awt.event.ActionListener() {
+        bredPet_Field.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        bredPet_Field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bredPetFieldActionPerformed(evt);
+                bredPet_FieldActionPerformed(evt);
             }
         });
 
@@ -142,11 +201,11 @@ public class SearchPet extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Color");
 
-        idUserField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        idUserField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        idUserField.addActionListener(new java.awt.event.ActionListener() {
+        idPet_Field.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        idPet_Field.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        idPet_Field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idUserFieldActionPerformed(evt);
+                idPet_FieldActionPerformed(evt);
             }
         });
 
@@ -162,20 +221,19 @@ public class SearchPet extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(idUserField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idPet_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(colorPetField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(colorPet_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
                     .addComponent(jLabel10)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2)
-                    .addComponent(SpeciesPetField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2)
-                    .addComponent(sexPetField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(namePetField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SpeciesPet_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sexPet_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(namePet_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dateOfBirthPet_field, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
-                    .addComponent(bredPetField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bredPet_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -184,34 +242,32 @@ public class SearchPet extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(idUserField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(idPet_Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(namePetField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(namePet_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(SpeciesPetField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SpeciesPet_Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addGap(4, 4, 4)
-                .addComponent(bredPetField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bredPet_Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(colorPetField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(colorPet_Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sexPetField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sexPet_Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dateOfBirthPet_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(61, 61, 61))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -227,18 +283,24 @@ public class SearchPet extends javax.swing.JFrame {
 
         jLabel6.setText("Especie|");
 
-        userTable.setModel(new javax.swing.table.DefaultTableModel(
+        jScrollPane2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jScrollPane2MouseClicked(evt);
+            }
+        });
+
+        petTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title  9", "Title 10"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7"
             }
         ));
-        jScrollPane2.setViewportView(userTable);
+        jScrollPane2.setViewportView(petTable);
 
         btnActualizar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnActualizar.setForeground(new java.awt.Color(0, 102, 102));
@@ -339,57 +401,48 @@ public class SearchPet extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SpeciesPetFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SpeciesPetFieldActionPerformed
+    private void SpeciesPet_FieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SpeciesPet_FieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_SpeciesPetFieldActionPerformed
+    }//GEN-LAST:event_SpeciesPet_FieldActionPerformed
 
-    private void namePetFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namePetFieldActionPerformed
+    private void namePet_FieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namePet_FieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_namePetFieldActionPerformed
+    }//GEN-LAST:event_namePet_FieldActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void sexPet_FieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sexPet_FieldActionPerformed
         // TODO add your handling code here:
-        CreateUser CreateUserFrame = new CreateUser();
-        CreateUserFrame.setVisible(true);
-        CreateUserFrame.pack();
-        CreateUserFrame.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void sexPetFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sexPetFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sexPetFieldActionPerformed
+    }//GEN-LAST:event_sexPet_FieldActionPerformed
 
     private void dateOfBirthPet_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateOfBirthPet_fieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_dateOfBirthPet_fieldActionPerformed
 
-    private void colorPetFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorPetFieldActionPerformed
+    private void colorPet_FieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorPet_FieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_colorPetFieldActionPerformed
+    }//GEN-LAST:event_colorPet_FieldActionPerformed
 
-    private void bredPetFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bredPetFieldActionPerformed
+    private void bredPet_FieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bredPet_FieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_bredPetFieldActionPerformed
+    }//GEN-LAST:event_bredPet_FieldActionPerformed
 
-    private void idUserFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idUserFieldActionPerformed
+    private void idPet_FieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idPet_FieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_idUserFieldActionPerformed
+    }//GEN-LAST:event_idPet_FieldActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
-
-      
+         
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        UsersMenu MenuManagerFrame = new UsersMenu(logUser);
-        MenuManagerFrame.setVisible(true);
-        MenuManagerFrame.pack();
-        MenuManagerFrame.setLocationRelativeTo(null);
+        PatientsMenu patientsMenuFrame = new PatientsMenu(logUser);
+        patientsMenuFrame.setVisible(true);
+        patientsMenuFrame.pack();
+        patientsMenuFrame.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         
     }//GEN-LAST:event_btnDeleteActionPerformed
@@ -397,6 +450,10 @@ public class SearchPet extends javax.swing.JFrame {
     private void cboxRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxRoleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cboxRoleActionPerformed
+
+    private void jScrollPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jScrollPane2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -424,16 +481,15 @@ public class SearchPet extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField SpeciesPetField;
-    private javax.swing.JTextField bredPetField;
+    private javax.swing.JTextField SpeciesPet_Field;
+    private javax.swing.JTextField bredPet_Field;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<Pet> cboxRole;
-    private javax.swing.JTextField colorPetField;
+    private javax.swing.JTextField colorPet_Field;
     private javax.swing.JTextField dateOfBirthPet_field;
-    private javax.swing.JTextField idUserField;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTextField idPet_Field;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -445,8 +501,8 @@ public class SearchPet extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField namePetField;
-    private javax.swing.JTextField sexPetField;
-    private javax.swing.JTable userTable;
+    private javax.swing.JTextField namePet_Field;
+    private javax.swing.JTable petTable;
+    private javax.swing.JTextField sexPet_Field;
     // End of variables declaration//GEN-END:variables
 }
