@@ -124,6 +124,7 @@ public class MenuManager extends javax.swing.JFrame {
         MenuManager_lblBttnAppointments.setForeground(new java.awt.Color(255, 255, 255));
         MenuManager_lblBttnAppointments.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuManager_lblBttnAppointments.setText("Citas");
+        MenuManager_lblBttnAppointments.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuManager_lblBttnAppointments.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuManager_lblBttnAppointmentsMouseClicked(evt);
@@ -157,6 +158,7 @@ public class MenuManager extends javax.swing.JFrame {
         MenuManager_lblBttnPatient.setForeground(new java.awt.Color(255, 255, 255));
         MenuManager_lblBttnPatient.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuManager_lblBttnPatient.setText("Pacientes");
+        MenuManager_lblBttnPatient.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuManager_lblBttnPatient.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuManager_lblBttnPatientMouseClicked(evt);
@@ -189,6 +191,7 @@ public class MenuManager extends javax.swing.JFrame {
         MenuManager_lblBttnLogOut.setForeground(new java.awt.Color(255, 255, 255));
         MenuManager_lblBttnLogOut.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuManager_lblBttnLogOut.setText("Cerrar Sesion");
+        MenuManager_lblBttnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuManager_lblBttnLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuManager_lblBttnLogOutMouseClicked(evt);
