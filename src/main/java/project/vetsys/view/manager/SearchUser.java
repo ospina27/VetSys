@@ -31,8 +31,8 @@ public class SearchUser extends javax.swing.JFrame {
         
         //validacion del rol, para que no pueda modificar usuarios si no es administrador
         if(!"Administrador".equalsIgnoreCase(logUser.getName_role())){
-            btnActualizar.setVisible(false);
-            btnDelete.setVisible(false);
+            SearchUser_BttnUpdate.setVisible(false);
+            SearchUser_BttnDelete.setVisible(false);
         }
         SearchUser_textClinic.setEditable(false); ///no editar la clinica ni el id 
         idUserField.setEditable(false);

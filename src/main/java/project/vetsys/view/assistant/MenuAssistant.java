@@ -44,7 +44,6 @@ public class MenuAssistant extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1000, 800));
         setMinimumSize(new java.awt.Dimension(1000, 800));
-        setPreferredSize(new java.awt.Dimension(1000, 800));
 
         MenuAssistantPanel.setMaximumSize(new java.awt.Dimension(1000, 800));
         MenuAssistantPanel.setMinimumSize(new java.awt.Dimension(1000, 800));

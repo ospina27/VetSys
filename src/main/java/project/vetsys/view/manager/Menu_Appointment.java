@@ -2,6 +2,7 @@ package project.vetsys.view.manager;
 
 import java.awt.Color;
 import project.vetsys.model.User;
+import project.vetsys.view.assistant.SearchAppointment;
 
 
 public class Menu_Appointment extends javax.swing.JFrame {
@@ -112,6 +113,9 @@ public class Menu_Appointment extends javax.swing.JFrame {
         MenuAppointment_lblBttnSearchAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuAppointment_lblBttnSearchAppointment.setPreferredSize(new java.awt.Dimension(250, 60));
         MenuAppointment_lblBttnSearchAppointment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuAppointment_lblBttnSearchAppointmentMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 MenuAppointment_lblBttnSearchAppointmentMouseEntered(evt);
             }
@@ -276,6 +280,14 @@ public class Menu_Appointment extends javax.swing.JFrame {
         menuManager.setLocationRelativeTo(null);
         this.dispose();    
     }//GEN-LAST:event_MenuAppointment_lblBttnBackMouseClicked
+
+    private void MenuAppointment_lblBttnSearchAppointmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAppointment_lblBttnSearchAppointmentMouseClicked
+        SearchAppointment SearchAppointment = new SearchAppointment(logUser);
+        SearchAppointment.setVisible(true);
+        SearchAppointment.pack();
+        SearchAppointment.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_MenuAppointment_lblBttnSearchAppointmentMouseClicked
 
     
     public static void main(String args[]) {
