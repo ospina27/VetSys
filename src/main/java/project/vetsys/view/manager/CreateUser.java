@@ -305,13 +305,13 @@ public class CreateUser extends javax.swing.JFrame {
         });
 
         CreateUser_BttnBack.setBackground(new java.awt.Color(0, 153, 153));
-        CreateUser_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CreateUser_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         CreateUser_lblBttnBack.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         CreateUser_lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
         CreateUser_lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CreateUser_lblBttnBack.setText("Regresar");
-        CreateUser_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CreateUser_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         CreateUser_lblBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CreateUser_lblBttnBackMouseClicked(evt);
@@ -338,13 +338,13 @@ public class CreateUser extends javax.swing.JFrame {
         );
 
         CreateUser_BttnAdd.setBackground(new java.awt.Color(0, 153, 153));
-        CreateUser_BttnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CreateUser_BttnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         CreateUser_lblBttnAdd.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         CreateUser_lblBttnAdd.setForeground(new java.awt.Color(255, 255, 255));
         CreateUser_lblBttnAdd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CreateUser_lblBttnAdd.setText("Crear");
-        CreateUser_lblBttnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CreateUser_lblBttnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         CreateUser_lblBttnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CreateUser_lblBttnAddMouseClicked(evt);
@@ -377,22 +377,20 @@ public class CreateUser extends javax.swing.JFrame {
             .addGroup(DownLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DownLayout.createSequentialGroup()
-                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CreateUser_lblPhone)
-                            .addComponent(CreateUser_lbl_ID)
-                            .addComponent(CreateUser_lblName)
-                            .addComponent(CreateUser_LastName))
-                        .addGap(616, 616, 616))
-                    .addGroup(DownLayout.createSequentialGroup()
-                        .addComponent(CreateUser_lblEmail)
-                        .addGap(182, 182, 182))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(CreateUser_textName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(CreateUser_textLastName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(CreateUser_textPhone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(CreateUser_textID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CreateUser_textEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(CreateUser_textEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(DownLayout.createSequentialGroup()
+                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CreateUser_lblPhone)
+                            .addComponent(CreateUser_lbl_ID)
+                            .addComponent(CreateUser_lblName)
+                            .addComponent(CreateUser_LastName)
+                            .addComponent(CreateUser_lblEmail))
+                        .addGap(565, 565, 565)))
                 .addGap(41, 41, 41)
                 .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CreateUser_lblUsername)
@@ -408,7 +406,7 @@ public class CreateUser extends javax.swing.JFrame {
             .addGroup(DownLayout.createSequentialGroup()
                 .addGap(167, 167, 167)
                 .addComponent(CreateUser_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(132, 132, 132)
+                .addGap(95, 95, 95)
                 .addComponent(CreateUser_BttnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -592,37 +590,6 @@ public class CreateUser extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(this, "Error al crear el usuario. Revisa los datos o la conexión.");
         }
     }//GEN-LAST:event_CreateUser_lblBttnAddMouseClicked
-
-    private void CreateUser_textPasswordMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_textPasswordMousePressed
-        if (String.valueOf(CreateUser_textPassword.getPassword()).equals("**********")){
-            CreateUser_textPassword.setText("");
-            CreateUser_textPassword.setForeground(Color.black);
-        }
-        if (CreateUser_textName.getText().isEmpty()){
-            CreateUser_textName.setText("Ingrese su Nombre");
-            CreateUser_textName.setForeground(Color.gray);
-        }
-        if (CreateUser_textLastName.getText().isEmpty()){
-            CreateUser_textLastName.setText("Ingrese su Apellido");
-            CreateUser_textLastName.setForeground(Color.gray);
-        }
-        if (CreateUser_textPhone.getText().isEmpty()){
-            CreateUser_textPhone.setText("Ingrese su Numero de Telefono");
-            CreateUser_textPhone.setForeground(Color.gray);
-        }
-        if (CreateUser_textID.getText().isEmpty()){
-            CreateUser_textID.setText("Ingrese su Numero de Identificacion");
-            CreateUser_textID.setForeground(Color.gray);
-        }
-        if (CreateUser_textEmail.getText().isEmpty()){
-            CreateUser_textEmail.setText("Ingrese su Direccion de Correo Electronico");
-            CreateUser_textEmail.setForeground(Color.gray);
-        }
-        if (CreateUser_textUsername.getText().isEmpty()){
-            CreateUser_textUsername.setText("Nombre de Usuario");
-            CreateUser_textUsername.setForeground(Color.gray);
-        }
-    }//GEN-LAST:event_CreateUser_textPasswordMousePressed
 
     private void CreateUser_textUsernameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_textUsernameMousePressed
         if (CreateUser_textUsername.getText().equals("Nombre de Usuario")){
@@ -809,6 +776,37 @@ public class CreateUser extends javax.swing.JFrame {
             CreateUser_textPassword.setForeground(Color.gray);
         }
     }//GEN-LAST:event_CreateUser_textNameMousePressed
+
+    private void CreateUser_textPasswordMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_textPasswordMousePressed
+        if (String.valueOf(CreateUser_textPassword.getPassword()).equals("**********")){
+            CreateUser_textPassword.setText("");
+            CreateUser_textPassword.setForeground(Color.black);
+        }
+        if (CreateUser_textName.getText().isEmpty()){
+            CreateUser_textName.setText("Ingrese su Nombre");
+            CreateUser_textName.setForeground(Color.gray);
+        }
+        if (CreateUser_textLastName.getText().isEmpty()){
+            CreateUser_textLastName.setText("Ingrese su Apellido");
+            CreateUser_textLastName.setForeground(Color.gray);
+        }
+        if (CreateUser_textPhone.getText().isEmpty()){
+            CreateUser_textPhone.setText("Ingrese su Numero de Telefono");
+            CreateUser_textPhone.setForeground(Color.gray);
+        }
+        if (CreateUser_textID.getText().isEmpty()){
+            CreateUser_textID.setText("Ingrese su Numero de Identificacion");
+            CreateUser_textID.setForeground(Color.gray);
+        }
+        if (CreateUser_textEmail.getText().isEmpty()){
+            CreateUser_textEmail.setText("Ingrese su Direccion de Correo Electronico");
+            CreateUser_textEmail.setForeground(Color.gray);
+        }
+        if (CreateUser_textUsername.getText().isEmpty()){
+            CreateUser_textUsername.setText("Nombre de Usuario");
+            CreateUser_textUsername.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_CreateUser_textPasswordMousePressed
 
     
     public static void main(String args[]) {
