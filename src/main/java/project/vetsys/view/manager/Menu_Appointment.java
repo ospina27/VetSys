@@ -2,6 +2,8 @@ package project.vetsys.view.manager;
 
 import java.awt.Color;
 import project.vetsys.model.User;
+import project.vetsys.view.assistant.DeleteAppointment;
+import project.vetsys.view.assistant.SearchAppointment;
 
 
 public class Menu_Appointment extends javax.swing.JFrame {
@@ -81,6 +83,7 @@ public class Menu_Appointment extends javax.swing.JFrame {
         MenuAppointment_lblBttnAddAppointment.setForeground(new java.awt.Color(255, 255, 255));
         MenuAppointment_lblBttnAddAppointment.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuAppointment_lblBttnAddAppointment.setText("Crear Cita");
+        MenuAppointment_lblBttnAddAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuAppointment_lblBttnAddAppointment.setPreferredSize(new java.awt.Dimension(250, 60));
         MenuAppointment_lblBttnAddAppointment.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -108,9 +111,12 @@ public class Menu_Appointment extends javax.swing.JFrame {
         MenuAppointment_lblBttnSearchAppointment.setForeground(new java.awt.Color(255, 255, 255));
         MenuAppointment_lblBttnSearchAppointment.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuAppointment_lblBttnSearchAppointment.setText("Consultar Cita");
-        MenuAppointment_lblBttnSearchAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuAppointment_lblBttnSearchAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuAppointment_lblBttnSearchAppointment.setPreferredSize(new java.awt.Dimension(250, 60));
         MenuAppointment_lblBttnSearchAppointment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuAppointment_lblBttnSearchAppointmentMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 MenuAppointment_lblBttnSearchAppointmentMouseEntered(evt);
             }
@@ -136,8 +142,11 @@ public class Menu_Appointment extends javax.swing.JFrame {
         MenuAppointment_lblBttnDeleteAppointment.setForeground(new java.awt.Color(255, 255, 255));
         MenuAppointment_lblBttnDeleteAppointment.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuAppointment_lblBttnDeleteAppointment.setText("Eliminar Cita");
-        MenuAppointment_lblBttnDeleteAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuAppointment_lblBttnDeleteAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuAppointment_lblBttnDeleteAppointment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuAppointment_lblBttnDeleteAppointmentMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 MenuAppointment_lblBttnDeleteAppointmentMouseEntered(evt);
             }
@@ -163,7 +172,7 @@ public class Menu_Appointment extends javax.swing.JFrame {
         MenuAppointment_lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
         MenuAppointment_lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuAppointment_lblBttnBack.setText("Regresar");
-        MenuAppointment_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuAppointment_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuAppointment_lblBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuAppointment_lblBttnBackMouseClicked(evt);
@@ -275,6 +284,22 @@ public class Menu_Appointment extends javax.swing.JFrame {
         menuManager.setLocationRelativeTo(null);
         this.dispose();    
     }//GEN-LAST:event_MenuAppointment_lblBttnBackMouseClicked
+
+    private void MenuAppointment_lblBttnSearchAppointmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAppointment_lblBttnSearchAppointmentMouseClicked
+        SearchAppointment SearchAppointment = new SearchAppointment(logUser);
+        SearchAppointment.setVisible(true);
+        SearchAppointment.pack();
+        SearchAppointment.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_MenuAppointment_lblBttnSearchAppointmentMouseClicked
+
+    private void MenuAppointment_lblBttnDeleteAppointmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAppointment_lblBttnDeleteAppointmentMouseClicked
+        DeleteAppointment DeleteAppointment = new DeleteAppointment(logUser);
+        DeleteAppointment.setVisible(true);
+        DeleteAppointment.pack();
+        DeleteAppointment.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_MenuAppointment_lblBttnDeleteAppointmentMouseClicked
 
     
     public static void main(String args[]) {

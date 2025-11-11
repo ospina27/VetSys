@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package project.vetsys.view.manager;
 
+import java.awt.Color;
 import project.vetsys.view.manager.CreateUser;
 import java.util.ArrayList;
 import project.vetsys.view.manager.MenuManager;
@@ -19,20 +16,11 @@ import project.vetsys.model.Status;
 import project.vetsys.model.User;
 import project.vetsys.view.ComboBox;
 
-/**
- *
- * @author San
- */
 public class SearchUser extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SearchUser.class.getName());
     private User logUser; //user que inicio sesion
     private boolean filters;
-
-    /**
-     * Creates new form SearchUser
-     * @param logUser
-     */
     
     // Constructor que recibe el usuario logueado
     public SearchUser(User logUser) {
@@ -43,10 +31,10 @@ public class SearchUser extends javax.swing.JFrame {
         
         //validacion del rol, para que no pueda modificar usuarios si no es administrador
         if(!"Administrador".equalsIgnoreCase(logUser.getName_role())){
-            btnActualizar.setVisible(false);
-            btnDelete.setVisible(false);
+            SearchUser_BttnUpdate.setVisible(false);
+            SearchUser_BttnDelete.setVisible(false);
         }
-        ClinicField3.setEditable(false); ///no editar la clinica ni el id 
+        SearchUser_textClinic.setEditable(false); ///no editar la clinica ni el id 
         idUserField.setEditable(false);
         
         System.out.println("Usuario logueado recibido: " + logUser.getUsername()); //prueba en consola
@@ -78,23 +66,23 @@ public class SearchUser extends javax.swing.JFrame {
     StatusDAO statusDAO = new StatusDAO();
     List<Role> roles = roleDAO.getAllRole(logUser);
     List<Status> status = statusDAO.getAllStatus(logUser);
-    cboxRole.removeAllItems();
+    SearchUser_ComboBoxRoleRight.removeAllItems();
     
     /// mostrar todos los roles
     Role defaultRole = new Role(0, "Todos", "Mostrar todos los roles");
-    ComboBox.fillComboBox(cboxRole, roles, defaultRole);
-    ComboBox.fillComboBox(cboxRoleEdit, roles, null);
-    ComboBox.fillComboBox(cboxStatusEdit, status, null);
+    ComboBox.fillComboBox(SearchUser_ComboBoxRoleRight, roles, defaultRole);
+    ComboBox.fillComboBox(SearchUser_ComboBoxRole, roles, null);
+    ComboBox.fillComboBox(SearchUser_ComboBoxStatus, status, null);
     
     ///verificar en consola que usuarios se estan cargando
     System.out.println("Roles cargados en el combo:");
-    for (int i = 0; i < cboxRole.getItemCount(); i++) {
-        Object item = cboxRole.getItemAt(i);
+    for (int i = 0; i < SearchUser_ComboBoxRoleRight.getItemCount(); i++) {
+        Object item = SearchUser_ComboBoxRoleRight.getItemAt(i);
         System.out.println("   - " + item + " (" + item.getClass().getSimpleName() + ")");
     }
     System.out.println("Estados cargados en el combo:");
-    for (int i = 0; i < cboxStatusEdit.getItemCount(); i++) {
-        Object item = cboxStatusEdit.getItemAt(i);
+    for (int i = 0; i < SearchUser_ComboBoxStatus.getItemCount(); i++) {
+        Object item = SearchUser_ComboBoxStatus.getItemAt(i);
         System.out.println("   - " + item + " (" + item.getClass().getSimpleName() + ")");
     }
 }
@@ -138,7 +126,7 @@ public class SearchUser extends javax.swing.JFrame {
     /// Filtro por clínica seleccionada y por rol en el filtro de combobox 
     private void loadUsersByClinicandRole(User logUser) {
 
-    Object sel = cboxRole.getSelectedItem();     /// Obtener rol seleccionado
+    Object sel = SearchUser_ComboBoxRoleRight.getSelectedItem();     /// Obtener rol seleccionado
     Integer idRole = null;
     if (sel instanceof Role) {
         Role selectedRole = (Role) sel;
@@ -207,7 +195,7 @@ public class SearchUser extends javax.swing.JFrame {
   
     // Listener para el filtro por rol
     private void initListeners() {
-        cboxRole.addActionListener(e -> loadUsersByClinicandRole(logUser));
+        SearchUser_ComboBoxRoleRight.addActionListener(e -> loadUsersByClinicandRole(logUser));
     }
 
     private void userTableMouseClicked(java.awt.event.MouseEvent evt) {    
@@ -225,39 +213,38 @@ public class SearchUser extends javax.swing.JFrame {
             if (user != null) {
             // Asignar los datos a los campos de texto
             idUserField.setText(String.valueOf(user.getId_user()));
-            name_userField.setText(user.getName_user());
-            LastNameField.setText(user.getLast_name());
-            
+            SearchUser_textName.setText(user.getName_user());
+            SearchUser_textLastName.setText(user.getLast_name());
             
             ///FALTA AGREGAR ESTADO EN UN CBOBOX
             /// 
             ///se muestra en el cbox el rol del usuario clickeado
-            for(int i= 0;i < cboxRoleEdit.getItemCount(); i++)
+            for(int i= 0;i < SearchUser_ComboBoxRole.getItemCount(); i++)
             {
-                Role r = (Role) cboxRoleEdit.getItemAt(i);
+                Role r = (Role) SearchUser_ComboBoxRole.getItemAt(i);
                 if(r.getId() == user.getId_role())
                 {
-                    cboxRoleEdit.setSelectedIndex(i);
+                    SearchUser_ComboBoxRole.setSelectedIndex(i);
                     break;
                 }
             }
-             for(int i= 0;i < cboxStatusEdit.getItemCount(); i++)
+             for(int i= 0;i < SearchUser_ComboBoxStatus.getItemCount(); i++)
             {
-                Status s = (Status) cboxStatusEdit.getItemAt(i);
+                Status s = (Status) SearchUser_ComboBoxStatus.getItemAt(i);
                 if(s.getId()== user.getId_status())
                 {
-                    cboxStatusEdit.setSelectedIndex(i);
+                    SearchUser_ComboBoxStatus.setSelectedIndex(i);
                     break;
                 }
             }
             
-            usernameField.setText(user.getUsername());
+            SearchUser_textUsername.setText(user.getUsername());
             //StatusField.setText(user.getName_status());
-            usernameField.setText(user.getUsername());
-            ClinicField3.setText(user.getName_clinic());
-            DocumentField.setText(user.getDocument());
-            PhoneField.setText(user.getPhone());
-            EmailField.setText(user.getEmail());
+            SearchUser_textUsername.setText(user.getUsername());
+            SearchUser_textClinic.setText(user.getName_clinic());
+            SearhcUser_textID.setText(user.getDocument());
+            SearchUser_textPhone.setText(user.getPhone());
+            SearchUser_textEmail.setText(user.getEmail());
             } else {
                 JOptionPane.showMessageDialog(this, "No se pudo obtener la información del usuario seleccionado.");
             }
@@ -286,75 +273,154 @@ public class SearchUser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        LastNameField = new javax.swing.JTextField();
-        name_userField = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        SearchUserPanel = new javax.swing.JPanel();
+        Left = new javax.swing.JPanel();
+        SearchUser_lblName = new javax.swing.JLabel();
+        SearchUser_textName = new javax.swing.JTextField();
+        SearchUser_lblLastName = new javax.swing.JLabel();
+        SearchUser_textLastName = new javax.swing.JTextField();
+        SearchUser_lblRole = new javax.swing.JLabel();
+        SearchUser_ComboBoxRole = new javax.swing.JComboBox<>();
+        SearchUser_lblStatus = new javax.swing.JLabel();
+        SearchUser_ComboBoxStatus = new javax.swing.JComboBox<>();
+        SearchUser_lblUsername = new javax.swing.JLabel();
+        SearchUser_textUsername = new javax.swing.JTextField();
+        SearchUser_lblClinic = new javax.swing.JLabel();
+        SearchUser_textClinic = new javax.swing.JTextField();
+        SearchUser_lblID = new javax.swing.JLabel();
+        SearhcUser_textID = new javax.swing.JTextField();
+        SearchUser_lblPhone = new javax.swing.JLabel();
+        SearchUser_textPhone = new javax.swing.JTextField();
+        SearchUser_lblEmail = new javax.swing.JLabel();
+        SearchUser_textEmail = new javax.swing.JTextField();
         usernameField3 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        DocumentField = new javax.swing.JTextField();
-        PhoneField = new javax.swing.JTextField();
-        ClinicField3 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        EmailField = new javax.swing.JTextField();
-        usernameField = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        cboxRoleEdit = new javax.swing.JComboBox<>();
         idUserField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        cboxStatusEdit = new javax.swing.JComboBox<>();
-        jPanel3 = new javax.swing.JPanel();
-        cboxRole = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
+        Right = new javax.swing.JPanel();
+        SearchUser_lblRoleRight = new javax.swing.JLabel();
+        SearchUser_ComboBoxRoleRight = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         userTable = new javax.swing.JTable();
         btnActualizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        SearchUser_BttnUpdate = new javax.swing.JPanel();
+        SearchUser_lblBttnUpdate = new javax.swing.JLabel();
+        SearchUser_BttnDelete = new javax.swing.JPanel();
+        SearchUser_lblBttnDelete = new javax.swing.JLabel();
+        SearchUser_BttnBack = new javax.swing.JPanel();
+        SearchUser_lblBttnBack = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 102, 102));
-        getContentPane().setLayout(new java.awt.CardLayout());
 
-        jPanel1.setMinimumSize(new java.awt.Dimension(800, 600));
-        jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
-        jPanel1.setLayout(null);
+        SearchUserPanel.setMaximumSize(new java.awt.Dimension(1000, 800));
+        SearchUserPanel.setMinimumSize(new java.awt.Dimension(1000, 800));
+        SearchUserPanel.setPreferredSize(new java.awt.Dimension(1000, 800));
+        SearchUserPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
-        jPanel2.setMinimumSize(new java.awt.Dimension(400, 600));
+        Left.setBackground(new java.awt.Color(0, 153, 153));
+        Left.setMaximumSize(new java.awt.Dimension(350, 800));
+        Left.setMinimumSize(new java.awt.Dimension(350, 800));
+        Left.setPreferredSize(new java.awt.Dimension(350, 800));
 
-        jLabel2.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Nombres");
+        SearchUser_lblName.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        SearchUser_lblName.setForeground(new java.awt.Color(255, 255, 255));
+        SearchUser_lblName.setText("Nombres");
 
-        LastNameField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        LastNameField.addActionListener(new java.awt.event.ActionListener() {
+        SearchUser_textName.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        SearchUser_textName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LastNameFieldActionPerformed(evt);
+                SearchUser_textNameActionPerformed(evt);
             }
         });
 
-        name_userField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        name_userField.addActionListener(new java.awt.event.ActionListener() {
+        SearchUser_lblLastName.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        SearchUser_lblLastName.setForeground(new java.awt.Color(255, 255, 255));
+        SearchUser_lblLastName.setText("Apellidos");
+
+        SearchUser_textLastName.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        SearchUser_textLastName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                name_userFieldActionPerformed(evt);
+                SearchUser_textLastNameActionPerformed(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Apellidos");
+        SearchUser_lblRole.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        SearchUser_lblRole.setForeground(new java.awt.Color(255, 255, 255));
+        SearchUser_lblRole.setText("Rol");
 
-        jLabel4.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Estado");
+        SearchUser_ComboBoxRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchUser_ComboBoxRoleActionPerformed(evt);
+            }
+        });
+
+        SearchUser_lblStatus.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        SearchUser_lblStatus.setForeground(new java.awt.Color(255, 255, 255));
+        SearchUser_lblStatus.setText("Estado");
+
+        SearchUser_ComboBoxStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchUser_ComboBoxStatusActionPerformed(evt);
+            }
+        });
+
+        SearchUser_lblUsername.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        SearchUser_lblUsername.setForeground(new java.awt.Color(255, 255, 255));
+        SearchUser_lblUsername.setText("Usuario");
+
+        SearchUser_textUsername.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        SearchUser_textUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchUser_textUsernameActionPerformed(evt);
+            }
+        });
+
+        SearchUser_lblClinic.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        SearchUser_lblClinic.setForeground(new java.awt.Color(255, 255, 255));
+        SearchUser_lblClinic.setText("Clinica");
+
+        SearchUser_textClinic.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        SearchUser_textClinic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchUser_textClinicActionPerformed(evt);
+            }
+        });
+
+        SearchUser_lblID.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        SearchUser_lblID.setForeground(new java.awt.Color(255, 255, 255));
+        SearchUser_lblID.setText("Documento");
+
+        SearhcUser_textID.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        SearhcUser_textID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearhcUser_textIDActionPerformed(evt);
+            }
+        });
+
+        SearchUser_lblPhone.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        SearchUser_lblPhone.setForeground(new java.awt.Color(255, 255, 255));
+        SearchUser_lblPhone.setText("Telefono");
+
+        SearchUser_textPhone.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        SearchUser_textPhone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchUser_textPhoneActionPerformed(evt);
+            }
+        });
+
+        SearchUser_lblEmail.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        SearchUser_lblEmail.setForeground(new java.awt.Color(255, 255, 255));
+        SearchUser_lblEmail.setText("Correo");
+
+        SearchUser_textEmail.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        SearchUser_textEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchUser_textEmailActionPerformed(evt);
+            }
+        });
 
         usernameField3.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         usernameField3.addActionListener(new java.awt.event.ActionListener() {
@@ -363,77 +429,12 @@ public class SearchUser extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Rol");
-
         jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 102, 102));
         jButton2.setText("Crear Cuenta");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
-            }
-        });
-
-        jLabel9.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Usuario");
-
-        DocumentField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        DocumentField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DocumentFieldActionPerformed(evt);
-            }
-        });
-
-        PhoneField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        PhoneField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PhoneFieldActionPerformed(evt);
-            }
-        });
-
-        ClinicField3.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        ClinicField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ClinicField3ActionPerformed(evt);
-            }
-        });
-
-        jLabel10.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Documento");
-
-        jLabel12.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Telefono");
-
-        jLabel13.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Correo");
-
-        EmailField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        EmailField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EmailFieldActionPerformed(evt);
-            }
-        });
-
-        usernameField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        usernameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameFieldActionPerformed(evt);
-            }
-        });
-
-        jLabel11.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Clinica");
-
-        cboxRoleEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboxRoleEditActionPerformed(evt);
             }
         });
 
@@ -449,112 +450,107 @@ public class SearchUser extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("ID");
 
-        cboxStatusEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboxStatusEditActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout LeftLayout = new javax.swing.GroupLayout(Left);
+        Left.setLayout(LeftLayout);
+        LeftLayout.setHorizontalGroup(
+            LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LeftLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cboxStatusEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(ClinicField3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel12)
-                    .addComponent(EmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(LastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(SearchUser_ComboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchUser_lblUsername)
+                    .addComponent(SearchUser_textClinic, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchUser_lblEmail)
+                    .addComponent(SearchUser_lblPhone)
+                    .addComponent(SearchUser_textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchUser_lblID)
+                    .addComponent(SearchUser_lblLastName)
+                    .addComponent(SearchUser_lblName)
+                    .addComponent(SearchUser_textLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2)
                     .addComponent(usernameField3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DocumentField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(name_userField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11)
-                    .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cboxRoleEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4))
+                    .addComponent(SearhcUser_textID, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchUser_textName, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchUser_textPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchUser_lblClinic)
+                    .addComponent(SearchUser_textUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(LeftLayout.createSequentialGroup()
+                        .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(SearchUser_ComboBoxRole, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SearchUser_lblRole)
+                            .addComponent(SearchUser_lblStatus))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(idUserField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        LeftLayout.setVerticalGroup(
+            LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LeftLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(SearchUser_lblName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(name_userField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SearchUser_textName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(SearchUser_lblLastName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SearchUser_textLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SearchUser_lblRole)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboxRoleEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SearchUser_ComboBoxRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(idUserField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
-                .addComponent(jLabel4)
+                .addComponent(SearchUser_lblStatus)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cboxStatusEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SearchUser_ComboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
-                .addComponent(jLabel9)
+                .addComponent(SearchUser_lblUsername)
                 .addGap(4, 4, 4)
-                .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SearchUser_textUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11)
+                .addComponent(SearchUser_lblClinic)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ClinicField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SearchUser_textClinic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
+                .addComponent(SearchUser_lblID)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(DocumentField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SearhcUser_textID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(jLabel12)
+                .addComponent(SearchUser_lblPhone)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SearchUser_textPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel13)
+                .addComponent(SearchUser_lblEmail)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88)
+                .addComponent(SearchUser_textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67)
                 .addComponent(usernameField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(103, 103, 103))
         );
 
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 0, 300, 600);
+        SearchUserPanel.add(Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, -1));
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setAutoscrolls(true);
-        jPanel3.setMinimumSize(new java.awt.Dimension(600, 600));
-        jPanel3.setPreferredSize(new java.awt.Dimension(800, 800));
+        Right.setBackground(new java.awt.Color(255, 255, 255));
+        Right.setAutoscrolls(true);
+        Right.setMaximumSize(new java.awt.Dimension(650, 800));
+        Right.setMinimumSize(new java.awt.Dimension(650, 800));
+        Right.setName(""); // NOI18N
+        Right.setPreferredSize(new java.awt.Dimension(650, 800));
 
-        cboxRole.addActionListener(new java.awt.event.ActionListener() {
+        SearchUser_lblRoleRight.setText("Rol");
+
+        SearchUser_ComboBoxRoleRight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboxRoleActionPerformed(evt);
+                SearchUser_ComboBoxRoleRightActionPerformed(evt);
             }
         });
-
-        jLabel6.setText("Rol");
 
         userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -596,65 +592,189 @@ public class SearchUser extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+        SearchUser_BttnUpdate.setBackground(new java.awt.Color(0, 153, 153));
+        SearchUser_BttnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        SearchUser_lblBttnUpdate.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        SearchUser_lblBttnUpdate.setForeground(new java.awt.Color(255, 255, 255));
+        SearchUser_lblBttnUpdate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        SearchUser_lblBttnUpdate.setText("Actualizar");
+        SearchUser_lblBttnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SearchUser_lblBttnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SearchUser_lblBttnUpdateMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                SearchUser_lblBttnUpdateMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                SearchUser_lblBttnUpdateMouseExited(evt);
+            }
+        });
+        SearchUser_lblBttnUpdate.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                SearchUser_lblBttnUpdateKeyPressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout SearchUser_BttnUpdateLayout = new javax.swing.GroupLayout(SearchUser_BttnUpdate);
+        SearchUser_BttnUpdate.setLayout(SearchUser_BttnUpdateLayout);
+        SearchUser_BttnUpdateLayout.setHorizontalGroup(
+            SearchUser_BttnUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(SearchUser_lblBttnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+        );
+        SearchUser_BttnUpdateLayout.setVerticalGroup(
+            SearchUser_BttnUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(SearchUser_lblBttnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        SearchUser_BttnDelete.setBackground(new java.awt.Color(0, 153, 153));
+        SearchUser_BttnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        SearchUser_lblBttnDelete.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        SearchUser_lblBttnDelete.setForeground(new java.awt.Color(255, 255, 255));
+        SearchUser_lblBttnDelete.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        SearchUser_lblBttnDelete.setText("Eliminar");
+        SearchUser_lblBttnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SearchUser_lblBttnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SearchUser_lblBttnDeleteMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                SearchUser_lblBttnDeleteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                SearchUser_lblBttnDeleteMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout SearchUser_BttnDeleteLayout = new javax.swing.GroupLayout(SearchUser_BttnDelete);
+        SearchUser_BttnDelete.setLayout(SearchUser_BttnDeleteLayout);
+        SearchUser_BttnDeleteLayout.setHorizontalGroup(
+            SearchUser_BttnDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(SearchUser_lblBttnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+        );
+        SearchUser_BttnDeleteLayout.setVerticalGroup(
+            SearchUser_BttnDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(SearchUser_lblBttnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        SearchUser_BttnBack.setBackground(new java.awt.Color(0, 153, 153));
+        SearchUser_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        SearchUser_lblBttnBack.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        SearchUser_lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
+        SearchUser_lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        SearchUser_lblBttnBack.setText("Salir");
+        SearchUser_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SearchUser_lblBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SearchUser_lblBttnBackMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                SearchUser_lblBttnBackMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                SearchUser_lblBttnBackMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout SearchUser_BttnBackLayout = new javax.swing.GroupLayout(SearchUser_BttnBack);
+        SearchUser_BttnBack.setLayout(SearchUser_BttnBackLayout);
+        SearchUser_BttnBackLayout.setHorizontalGroup(
+            SearchUser_BttnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(SearchUser_lblBttnBack, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+        );
+        SearchUser_BttnBackLayout.setVerticalGroup(
+            SearchUser_BttnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(SearchUser_lblBttnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout RightLayout = new javax.swing.GroupLayout(Right);
+        Right.setLayout(RightLayout);
+        RightLayout.setHorizontalGroup(
+            RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RightLayout.createSequentialGroup()
+                .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cboxRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE))
+                    .addGroup(RightLayout.createSequentialGroup()
+                        .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(RightLayout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(SearchUser_ComboBoxRoleRight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(SearchUser_lblRoleRight)))
+                            .addGroup(RightLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(btnActualizar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnDelete)
+                                .addGap(12, 12, 12)
+                                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(RightLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(RightLayout.createSequentialGroup()
+                                        .addComponent(SearchUser_BttnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(SearchUser_BttnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(RightLayout.createSequentialGroup()
+                                        .addGap(103, 103, 103)
+                                        .addComponent(SearchUser_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(btnActualizar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnDelete)
-                .addGap(12, 12, 12)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        RightLayout.setVerticalGroup(
+            RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RightLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6)
+                .addComponent(SearchUser_lblRoleRight)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cboxRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SearchUser_ComboBoxRoleRight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnActualizar)
                     .addComponent(btnSalir)
                     .addComponent(btnDelete))
-                .addContainerGap(223, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(RightLayout.createSequentialGroup()
+                        .addComponent(SearchUser_BttnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
+                        .addComponent(SearchUser_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SearchUser_BttnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
-        cboxRole.getAccessibleContext().setAccessibleDescription("");
+        SearchUser_ComboBoxRoleRight.getAccessibleContext().setAccessibleDescription("");
 
-        jPanel1.add(jPanel3);
-        jPanel3.setBounds(300, 0, 500, 800);
+        SearchUserPanel.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 440, -1));
 
-        getContentPane().add(jPanel1, "card2");
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(SearchUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(SearchUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LastNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastNameFieldActionPerformed
+    private void SearchUser_textLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchUser_textLastNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_LastNameFieldActionPerformed
+    }//GEN-LAST:event_SearchUser_textLastNameActionPerformed
 
-    private void name_userFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_userFieldActionPerformed
+    private void SearchUser_textNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchUser_textNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_name_userFieldActionPerformed
+    }//GEN-LAST:event_SearchUser_textNameActionPerformed
 
     private void usernameField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField3ActionPerformed
         // TODO add your handling code here:
@@ -670,11 +790,62 @@ public class SearchUser extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        // TODO add your handling code here:
+               
         
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void SearhcUser_textIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearhcUser_textIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearhcUser_textIDActionPerformed
+
+    private void SearchUser_ComboBoxRoleRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchUser_ComboBoxRoleRightActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchUser_ComboBoxRoleRightActionPerformed
+
+    private void SearchUser_textPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchUser_textPhoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchUser_textPhoneActionPerformed
+
+    private void SearchUser_textClinicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchUser_textClinicActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchUser_textClinicActionPerformed
+
+    private void SearchUser_textEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchUser_textEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchUser_textEmailActionPerformed
+
+    private void SearchUser_textUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchUser_textUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchUser_textUsernameActionPerformed
+
+    private void SearchUser_ComboBoxRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchUser_ComboBoxRoleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchUser_ComboBoxRoleActionPerformed
+
+    private void idUserFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idUserFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idUserFieldActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void SearchUser_ComboBoxStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchUser_ComboBoxStatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchUser_ComboBoxStatusActionPerformed
+
+    private void SearchUser_lblBttnUpdateKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchUser_lblBttnUpdateKeyPressed
+        
+    }//GEN-LAST:event_SearchUser_lblBttnUpdateKeyPressed
+
+    private void SearchUser_lblBttnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchUser_lblBttnUpdateMouseClicked
         try {
             int idUser = Integer.parseInt(idUserField.getText().trim());
-            String username = usernameField.getText().trim();
+            String username = SearchUser_textUsername.getText().trim();
             
 
             if (username.isEmpty()) {
@@ -683,14 +854,14 @@ public class SearchUser extends javax.swing.JFrame {
             }
             
             
-            Role r = (Role) cboxRoleEdit.getSelectedItem();
+            Role r = (Role) SearchUser_ComboBoxRole.getSelectedItem();
             if(r == null)
             {
                 JOptionPane.showMessageDialog(this, "Debe seleccionar un rol");  
                
                 return;
             }
-            Status s = (Status) cboxStatusEdit.getSelectedItem();
+            Status s = (Status) SearchUser_ComboBoxStatus.getSelectedItem();
             if(s == null)
             {
                 JOptionPane.showMessageDialog(this, "Debe seleccionar un estado");
@@ -724,49 +895,41 @@ public class SearchUser extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al actualizar: " + e.getMessage());
             e.printStackTrace();
         }
-    }//GEN-LAST:event_btnActualizarActionPerformed
+    }//GEN-LAST:event_SearchUser_lblBttnUpdateMouseClicked
 
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+    private void SearchUser_lblBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchUser_lblBttnBackMouseClicked
         UsersMenu MenuManagerFrame = new UsersMenu(logUser);
         MenuManagerFrame.setVisible(true);
         MenuManagerFrame.pack();
         MenuManagerFrame.setLocationRelativeTo(null);
         this.dispose();
-    }//GEN-LAST:event_btnSalirActionPerformed
+    }//GEN-LAST:event_SearchUser_lblBttnBackMouseClicked
 
-    private void DocumentFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DocumentFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DocumentFieldActionPerformed
+    private void SearchUser_lblBttnDeleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchUser_lblBttnDeleteMouseEntered
+        SearchUser_BttnDelete.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_SearchUser_lblBttnDeleteMouseEntered
 
-    private void cboxRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxRoleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboxRoleActionPerformed
+    private void SearchUser_lblBttnDeleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchUser_lblBttnDeleteMouseExited
+        SearchUser_BttnDelete.setBackground(new Color(0,153,153));
+    }//GEN-LAST:event_SearchUser_lblBttnDeleteMouseExited
 
-    private void PhoneFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PhoneFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PhoneFieldActionPerformed
+    private void SearchUser_lblBttnUpdateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchUser_lblBttnUpdateMouseEntered
+        SearchUser_BttnUpdate.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_SearchUser_lblBttnUpdateMouseEntered
 
-    private void ClinicField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClinicField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ClinicField3ActionPerformed
+    private void SearchUser_lblBttnUpdateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchUser_lblBttnUpdateMouseExited
+        SearchUser_BttnUpdate.setBackground(new Color(0,153,153));
+    }//GEN-LAST:event_SearchUser_lblBttnUpdateMouseExited
 
-    private void EmailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EmailFieldActionPerformed
+    private void SearchUser_lblBttnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchUser_lblBttnBackMouseEntered
+        SearchUser_BttnBack.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_SearchUser_lblBttnBackMouseEntered
 
-    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameFieldActionPerformed
+    private void SearchUser_lblBttnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchUser_lblBttnBackMouseExited
+        SearchUser_BttnBack.setBackground(new Color(0,153,153));
+    }//GEN-LAST:event_SearchUser_lblBttnBackMouseExited
 
-    private void cboxRoleEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxRoleEditActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboxRoleEditActionPerformed
-
-    private void idUserFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idUserFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idUserFieldActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    private void SearchUser_lblBttnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchUser_lblBttnDeleteMouseClicked
         try {
             int idUser = Integer.parseInt(idUserField.getText().trim());
             
@@ -789,69 +952,50 @@ public class SearchUser extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, 
             "Error: " + e.getMessage());
         }
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }//GEN-LAST:event_SearchUser_lblBttnDeleteMouseClicked
 
-    private void cboxStatusEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxStatusEditActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboxStatusEditActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new SearchUser().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField ClinicField3;
-    private javax.swing.JTextField DocumentField;
-    private javax.swing.JTextField EmailField;
-    private javax.swing.JTextField LastNameField;
-    private javax.swing.JTextField PhoneField;
+    private javax.swing.JPanel Left;
+    private javax.swing.JPanel Right;
+    private javax.swing.JPanel SearchUserPanel;
+    private javax.swing.JPanel SearchUser_BttnBack;
+    private javax.swing.JPanel SearchUser_BttnDelete;
+    private javax.swing.JPanel SearchUser_BttnUpdate;
+    private javax.swing.JComboBox<Role> SearchUser_ComboBoxRole;
+    private javax.swing.JComboBox<Role> SearchUser_ComboBoxRoleRight;
+    private javax.swing.JComboBox<Status> SearchUser_ComboBoxStatus;
+    private javax.swing.JLabel SearchUser_lblBttnBack;
+    private javax.swing.JLabel SearchUser_lblBttnDelete;
+    private javax.swing.JLabel SearchUser_lblBttnUpdate;
+    private javax.swing.JLabel SearchUser_lblClinic;
+    private javax.swing.JLabel SearchUser_lblEmail;
+    private javax.swing.JLabel SearchUser_lblID;
+    private javax.swing.JLabel SearchUser_lblLastName;
+    private javax.swing.JLabel SearchUser_lblName;
+    private javax.swing.JLabel SearchUser_lblPhone;
+    private javax.swing.JLabel SearchUser_lblRole;
+    private javax.swing.JLabel SearchUser_lblRoleRight;
+    private javax.swing.JLabel SearchUser_lblStatus;
+    private javax.swing.JLabel SearchUser_lblUsername;
+    private javax.swing.JTextField SearchUser_textClinic;
+    private javax.swing.JTextField SearchUser_textEmail;
+    private javax.swing.JTextField SearchUser_textLastName;
+    private javax.swing.JTextField SearchUser_textName;
+    private javax.swing.JTextField SearchUser_textPhone;
+    private javax.swing.JTextField SearchUser_textUsername;
+    private javax.swing.JTextField SearhcUser_textID;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JComboBox<Role> cboxRole;
-    private javax.swing.JComboBox<Role> cboxRoleEdit;
-    private javax.swing.JComboBox<Status> cboxStatusEdit;
     private javax.swing.JTextField idUserField;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField name_userField;
     private javax.swing.JTable userTable;
-    private javax.swing.JTextField usernameField;
     private javax.swing.JTextField usernameField3;
     // End of variables declaration//GEN-END:variables
 }

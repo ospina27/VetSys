@@ -292,7 +292,7 @@ public class CreateUser extends javax.swing.JFrame {
         CreateUser_lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
         CreateUser_lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CreateUser_lblBttnBack.setText("Regresar");
-        CreateUser_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        CreateUser_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         CreateUser_lblBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CreateUser_lblBttnBackMouseClicked(evt);
@@ -325,7 +325,7 @@ public class CreateUser extends javax.swing.JFrame {
         CreateUser_lblBttnAdd.setForeground(new java.awt.Color(255, 255, 255));
         CreateUser_lblBttnAdd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CreateUser_lblBttnAdd.setText("Crear");
-        CreateUser_lblBttnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        CreateUser_lblBttnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         CreateUser_lblBttnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CreateUser_lblBttnAddMouseClicked(evt);
