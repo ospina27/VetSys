@@ -4,6 +4,9 @@
  */
 package project.vetsys.view.manager;
 
+import project.vetsys.model.Pet;
+import project.vetsys.model.User;
+
 /**
  *
  * @author User
@@ -11,12 +14,18 @@ package project.vetsys.view.manager;
 public class SearchPet extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SearchPet.class.getName());
+    private User logUser;
 
     /**
      * Creates new form SearchPet
      */
     public SearchPet() {
         initComponents();
+    }
+    
+    public SearchPet(User logUser){
+        initComponents();
+        this.logUser = logUser;
     }
 
     /**
@@ -28,6 +37,22 @@ public class SearchPet extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        SpeciesPetField = new javax.swing.JTextField();
+        namePetField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        sexPetField = new javax.swing.JTextField();
+        dateOfBirthPet_field = new javax.swing.JTextField();
+        colorPetField = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        bredPetField = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        idUserField = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         cboxRole = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
@@ -36,31 +61,158 @@ public class SearchPet extends javax.swing.JFrame {
         btnActualizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        LastNameField = new javax.swing.JTextField();
-        name_userField = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        usernameField3 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        DocumentField = new javax.swing.JTextField();
-        PhoneField = new javax.swing.JTextField();
-        ClinicField3 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        EmailField = new javax.swing.JTextField();
-        usernameField = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        cboxRoleEdit = new javax.swing.JComboBox<>();
-        idUserField = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        cboxStatusEdit = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel2.setMinimumSize(new java.awt.Dimension(400, 600));
+
+        jLabel2.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Nombre Mascosta");
+
+        SpeciesPetField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        SpeciesPetField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SpeciesPetFieldActionPerformed(evt);
+            }
+        });
+
+        namePetField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        namePetField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                namePetFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Especie");
+
+        jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 102, 102));
+        jButton2.setText("Crear Cuenta");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Raza");
+
+        sexPetField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        sexPetField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sexPetFieldActionPerformed(evt);
+            }
+        });
+
+        dateOfBirthPet_field.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        dateOfBirthPet_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dateOfBirthPet_fieldActionPerformed(evt);
+            }
+        });
+
+        colorPetField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        colorPetField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                colorPetFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Sexo");
+
+        jLabel12.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Fecha de Nacimiento");
+
+        bredPetField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        bredPetField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bredPetFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Color");
+
+        idUserField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        idUserField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        idUserField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idUserFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("ID");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(idUserField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(colorPetField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(SpeciesPetField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2)
+                    .addComponent(sexPetField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(namePetField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateOfBirthPet_field, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addComponent(bredPetField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(idUserField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(namePetField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(SpeciesPetField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel9)
+                .addGap(4, 4, 4)
+                .addComponent(bredPetField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(colorPetField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sexPetField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dateOfBirthPet_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(61, 61, 61))
+        );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setAutoscrolls(true);
@@ -73,17 +225,17 @@ public class SearchPet extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Rol");
+        jLabel6.setText("Especie|");
 
         userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title  9", "Title 10"
             }
         ));
         jScrollPane2.setViewportView(userTable);
@@ -127,8 +279,8 @@ public class SearchPet extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cboxRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
+                            .addComponent(jLabel6)
+                            .addComponent(cboxRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -154,307 +306,80 @@ public class SearchPet extends javax.swing.JFrame {
                     .addComponent(btnActualizar)
                     .addComponent(btnSalir)
                     .addComponent(btnDelete))
-                .addContainerGap(223, Short.MAX_VALUE))
-        );
-
-        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
-        jPanel2.setMinimumSize(new java.awt.Dimension(400, 600));
-
-        jLabel2.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Nombres");
-
-        LastNameField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        LastNameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LastNameFieldActionPerformed(evt);
-            }
-        });
-
-        name_userField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        name_userField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                name_userFieldActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Apellidos");
-
-        jLabel4.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Estado");
-
-        usernameField3.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        usernameField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameField3ActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Rol");
-
-        jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 102, 102));
-        jButton2.setText("Crear Cuenta");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jLabel9.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Usuario");
-
-        DocumentField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        DocumentField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DocumentFieldActionPerformed(evt);
-            }
-        });
-
-        PhoneField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        PhoneField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PhoneFieldActionPerformed(evt);
-            }
-        });
-
-        ClinicField3.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        ClinicField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ClinicField3ActionPerformed(evt);
-            }
-        });
-
-        jLabel10.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Documento");
-
-        jLabel12.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Telefono");
-
-        jLabel13.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Correo");
-
-        EmailField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        EmailField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EmailFieldActionPerformed(evt);
-            }
-        });
-
-        usernameField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        usernameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameFieldActionPerformed(evt);
-            }
-        });
-
-        jLabel11.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Clinica");
-
-        cboxRoleEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboxRoleEditActionPerformed(evt);
-            }
-        });
-
-        idUserField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        idUserField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        idUserField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idUserFieldActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("ID");
-
-        cboxStatusEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboxStatusEditActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cboxStatusEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(ClinicField3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel12)
-                    .addComponent(EmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(LastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2)
-                    .addComponent(usernameField3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DocumentField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(name_userField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11)
-                    .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cboxRoleEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(idUserField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(name_userField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboxRoleEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(idUserField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cboxStatusEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addComponent(jLabel9)
-                .addGap(4, 4, 4)
-                .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ClinicField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(DocumentField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88)
-                .addComponent(usernameField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(103, 103, 103))
+                .addGap(40, 40, 40))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(294, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 500, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 842, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cboxRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxRoleActionPerformed
+    private void SpeciesPetFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SpeciesPetFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cboxRoleActionPerformed
+    }//GEN-LAST:event_SpeciesPetFieldActionPerformed
+
+    private void namePetFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namePetFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_namePetFieldActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        CreateUser CreateUserFrame = new CreateUser();
+        CreateUserFrame.setVisible(true);
+        CreateUserFrame.pack();
+        CreateUserFrame.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void sexPetFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sexPetFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sexPetFieldActionPerformed
+
+    private void dateOfBirthPet_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateOfBirthPet_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dateOfBirthPet_fieldActionPerformed
+
+    private void colorPetFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorPetFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_colorPetFieldActionPerformed
+
+    private void bredPetFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bredPetFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bredPetFieldActionPerformed
+
+    private void idUserFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idUserFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idUserFieldActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
 
-        try {
-            int idUser = Integer.parseInt(idUserField.getText().trim());
-            String username = usernameField.getText().trim();
-
-            if (username.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "El nombre de usuario no puede estar vacío.");
-                return;
-            }
-
-            Role r = (Role) cboxRoleEdit.getSelectedItem();
-            if(r == null)
-            {
-                JOptionPane.showMessageDialog(this, "Debe seleccionar un rol");
-
-                return;
-            }
-            Status s = (Status) cboxStatusEdit.getSelectedItem();
-            if(s == null)
-            {
-                JOptionPane.showMessageDialog(this, "Debe seleccionar un estado");
-                return;
-            }
-
-            // Crear usuario a actualizar
-            User user = new User();
-            user.setId_user(idUser);
-            user.setUsername(username);
-            user.setId_role(r.getId());   ///se actualizan los roles con el id y el nombre en el combobox
-            user.setName_role(r.getName());
-            user.setId_status(s.getId());
-            user.setName_status(s.getName());
-            user.setId_clinic(logUser.getId_clinic()); // mismo id de clínica
-
-            // Llamar al DAO
-            UserDAO userDAO = new UserDAO();
-            boolean updated = userDAO.Update(user, logUser);
-
-            if (updated) {
-                JOptionPane.showMessageDialog(this, "Usuario actualizado correctamente.");
-                loadUsersByClinicandRole(logUser); // refrescar tabla
-            } else {
-                JOptionPane.showMessageDialog(this, "No se pudo actualizar el usuario. Verifica permisos o datos.");
-            }
-
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Error: ID de usuario inválido.");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al actualizar: " + e.getMessage());
-            e.printStackTrace();
-        }
+      
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -466,82 +391,12 @@ public class SearchPet extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        try {
-            int idUser = Integer.parseInt(idUserField.getText().trim());
-
-            User user = new User();
-            user.setId_user(idUser);
-
-            UserDAO userDAO = new UserDAO();
-            boolean delete = userDAO.Delete(user, logUser);
-
-            if(delete)
-            {
-                JOptionPane.showMessageDialog(this, "Usuario eliminado correctamente.");
-            }else
-            {
-                JOptionPane.showMessageDialog(this,"No fue posible eliminar el usuario.\n" +
-                    "Puede que no pertenezca a su clínica o no exista.");
-            }
-        } catch (Exception e)
-        {
-            JOptionPane.showMessageDialog(this,
-                "Error: " + e.getMessage());
-        }
+        
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void LastNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastNameFieldActionPerformed
+    private void cboxRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxRoleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_LastNameFieldActionPerformed
-
-    private void name_userFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_userFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_name_userFieldActionPerformed
-
-    private void usernameField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameField3ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        CreateUser CreateUserFrame = new CreateUser();
-        CreateUserFrame.setVisible(true);
-        CreateUserFrame.pack();
-        CreateUserFrame.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void DocumentFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DocumentFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DocumentFieldActionPerformed
-
-    private void PhoneFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PhoneFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PhoneFieldActionPerformed
-
-    private void ClinicField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClinicField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ClinicField3ActionPerformed
-
-    private void EmailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EmailFieldActionPerformed
-
-    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameFieldActionPerformed
-
-    private void cboxRoleEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxRoleEditActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboxRoleEditActionPerformed
-
-    private void idUserFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idUserFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idUserFieldActionPerformed
-
-    private void cboxStatusEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxStatusEditActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboxStatusEditActionPerformed
+    }//GEN-LAST:event_cboxRoleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -569,36 +424,29 @@ public class SearchPet extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField ClinicField3;
-    private javax.swing.JTextField DocumentField;
-    private javax.swing.JTextField EmailField;
-    private javax.swing.JTextField LastNameField;
-    private javax.swing.JTextField PhoneField;
+    private javax.swing.JTextField SpeciesPetField;
+    private javax.swing.JTextField bredPetField;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JComboBox<Role> cboxRole;
-    private javax.swing.JComboBox<Role> cboxRoleEdit;
-    private javax.swing.JComboBox<Status> cboxStatusEdit;
+    private javax.swing.JComboBox<Pet> cboxRole;
+    private javax.swing.JTextField colorPetField;
+    private javax.swing.JTextField dateOfBirthPet_field;
     private javax.swing.JTextField idUserField;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField name_userField;
+    private javax.swing.JTextField namePetField;
+    private javax.swing.JTextField sexPetField;
     private javax.swing.JTable userTable;
-    private javax.swing.JTextField usernameField;
-    private javax.swing.JTextField usernameField3;
     // End of variables declaration//GEN-END:variables
 }
