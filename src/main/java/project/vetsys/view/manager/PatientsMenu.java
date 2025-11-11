@@ -85,6 +85,7 @@ public class PatientsMenu extends javax.swing.JFrame {
         MenuUsers_lblBttnAddUsers.setForeground(new java.awt.Color(255, 255, 255));
         MenuUsers_lblBttnAddUsers.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuUsers_lblBttnAddUsers.setText("Registrar Cliente");
+        MenuUsers_lblBttnAddUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuUsers_lblBttnAddUsers.setMaximumSize(new java.awt.Dimension(140, 40));
         MenuUsers_lblBttnAddUsers.setMinimumSize(new java.awt.Dimension(140, 40));
         MenuUsers_lblBttnAddUsers.setPreferredSize(new java.awt.Dimension(140, 40));
@@ -121,6 +122,7 @@ public class PatientsMenu extends javax.swing.JFrame {
         MenuUsers_lblBttnSearchUsers.setForeground(new java.awt.Color(255, 255, 255));
         MenuUsers_lblBttnSearchUsers.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuUsers_lblBttnSearchUsers.setText("Consultar Cliente");
+        MenuUsers_lblBttnSearchUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuUsers_lblBttnSearchUsers.setMaximumSize(new java.awt.Dimension(140, 40));
         MenuUsers_lblBttnSearchUsers.setMinimumSize(new java.awt.Dimension(140, 40));
         MenuUsers_lblBttnSearchUsers.setPreferredSize(new java.awt.Dimension(140, 40));
@@ -156,7 +158,7 @@ public class PatientsMenu extends javax.swing.JFrame {
         MenuUsers_lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
         MenuUsers_lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuUsers_lblBttnBack.setText("Regresar");
-        MenuUsers_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuUsers_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuUsers_lblBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuUsers_lblBttnBackMouseClicked(evt);
@@ -184,6 +186,8 @@ public class PatientsMenu extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Registrar Mascota");
+        jButton1.setBorder(null);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -194,6 +198,8 @@ public class PatientsMenu extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Consultar Mascota");
+        jButton2.setBorder(null);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -287,10 +293,10 @@ public class PatientsMenu extends javax.swing.JFrame {
         //Boton buscar cliente
         System.out.println("MenuManager -> logUser: " +
             (logUser != null ? logUser.getUsername() + " id_clinic=" + logUser.getId_clinic() + " role=" + logUser.getName_role() : "logUser es null"));
-        SearchUser SearchUserFrame = new SearchUser(logUser);
-        SearchUserFrame.setVisible(true);
-        SearchUserFrame.pack();
-        SearchUserFrame.setLocationRelativeTo(null);
+        SearchClient SearchClientFrame = new SearchClient(logUser);
+        SearchClientFrame.setVisible(true);
+        SearchClientFrame.pack();
+        SearchClientFrame.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_MenuUsers_lblBttnSearchUsersMouseClicked
 

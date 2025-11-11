@@ -9,18 +9,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-import javax.swing.DefaultComboBoxModel;
-import project.vetsys.view.security.LogIn;
 import javax.swing.JOptionPane;
-import project.vetsys.model.Role;
-import project.vetsys.model.Status;
 import project.vetsys.model.User;
 import project.vetsys.dao.ClienteDAO;
 import project.vetsys.database.DBConnection;
 import project.vetsys.model.ClienteModel;
-import project.vetsys.view.ComboBox;
-import project.vetsys.view.manager.MenuManager;
 
 /**
  *
@@ -65,30 +58,30 @@ public class CreateClient extends javax.swing.JFrame {
         jFormattedTextFechaInicioMembresia.setText("");
         jFormattedTextFechaFinMembresia.setText("");
         jComboBoxMembresia.setSelectedIndex(0);
+        txtDescripcionMembresia.setText("");
+        txtPrecioMembresia.setText("");
     }
     
     private void cargarMembresias() {
-        try {
-            Connection con = DBConnection.getConnection();
-            String sql = "SELECT id_membresia, nombre FROM membresia WHERE id_clinica = ?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, logUser.getId_clinic()); // filtrar según clínica del usuario
-            ResultSet rs = ps.executeQuery();
+        try (Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT id_membresia, nombre FROM membresia WHERE id_clinica = ?")) {
 
-            DefaultComboBoxModel<String> modelocmbox = new DefaultComboBoxModel<>();
+            stmt.setInt(1, logUser.getId_clinic());
+            ResultSet rs = stmt.executeQuery();
+
             jComboBoxMembresia.removeAllItems();
+            jComboBoxMembresia.addItem("Ninguna");
 
             while (rs.next()) {
                 int id = rs.getInt("id_membresia");
                 String nombre = rs.getString("nombre");
-                // Guardar el ID de la membresía asociado al nombre
                 jComboBoxMembresia.addItem(id + " - " + nombre);
             }
+            jComboBoxMembresia.setSelectedIndex(0);
 
-            con.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, 
-                "Error al cargar membresías: " + e.getMessage(), 
+                "Error cargando membresías: " + e.getMessage(), 
                 "Error", 
                 JOptionPane.ERROR_MESSAGE);
         }
@@ -134,6 +127,10 @@ public class CreateClient extends javax.swing.JFrame {
         btnRegistrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        txtDescripcionMembresia = new javax.swing.JTextField();
+        txtPrecioMembresia = new javax.swing.JTextField();
+        CreateUser_lblMembresia1 = new javax.swing.JLabel();
+        CreateUser_lblMembresia2 = new javax.swing.JLabel();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -180,7 +177,7 @@ public class CreateClient extends javax.swing.JFrame {
         CreateUser_lblSubTittle.setText("Registro de Cliente");
 
         CreateUser_lblName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        CreateUser_lblName.setText("Nombre completo");
+        CreateUser_lblName.setText("Nombres");
 
         txtNombreCliente.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtNombreCliente.setForeground(java.awt.Color.gray);
@@ -338,6 +335,12 @@ public class CreateClient extends javax.swing.JFrame {
             }
         });
 
+        jComboBoxMembresia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxMembresiaActionPerformed(evt);
+            }
+        });
+
         btnRegistrar.setBackground(new java.awt.Color(0, 159, 159));
         btnRegistrar.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
@@ -354,6 +357,14 @@ public class CreateClient extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setText("yyyy/mm/dd");
 
+        txtPrecioMembresia.setToolTipText("");
+
+        CreateUser_lblMembresia1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        CreateUser_lblMembresia1.setText("Precio");
+
+        CreateUser_lblMembresia2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        CreateUser_lblMembresia2.setText("Descripción");
+
         javax.swing.GroupLayout DownLayout = new javax.swing.GroupLayout(Down);
         Down.setLayout(DownLayout);
         DownLayout.setHorizontalGroup(
@@ -364,37 +375,51 @@ public class CreateClient extends javax.swing.JFrame {
                     .addGroup(DownLayout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(CreateUser_lblName)
                                 .addComponent(CreateUser_LastName)
-                                .addComponent(txtDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtNombreCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DownLayout.createSequentialGroup()
-                                    .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(CreateUser_lbl_ID)
-                                        .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                                    .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(CreateUser_lblPhone))))
+                                    .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtNombreCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtApellidos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(DownLayout.createSequentialGroup()
+                                            .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(CreateUser_lbl_ID)
+                                                .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                                            .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(CreateUser_lblPhone)))
+                                        .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGap(80, 80, 80)))
                             .addComponent(CreateUser_lblEmail)
                             .addComponent(CreateUser_lblDireccion))
-                        .addGap(27, 27, 27)
-                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(CreateUser_lblMembresia)
+                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(DownLayout.createSequentialGroup()
-                                .addComponent(CreateUser_lblFechaIni)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel2))
+                                .addGap(26, 26, 26)
+                                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(CreateUser_lblMembresia1)
+                                    .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(DownLayout.createSequentialGroup()
+                                            .addComponent(CreateUser_lblFechaFin)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jLabel1))
+                                        .addComponent(jFormattedTextFechaInicioMembresia)
+                                        .addGroup(DownLayout.createSequentialGroup()
+                                            .addComponent(CreateUser_lblFechaIni)
+                                            .addGap(40, 40, 40)
+                                            .addComponent(jLabel2))
+                                        .addComponent(txtPrecioMembresia, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
+                                        .addComponent(jFormattedTextFechaFinMembresia))))
                             .addGroup(DownLayout.createSequentialGroup()
-                                .addComponent(CreateUser_lblFechaFin)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel1))
-                            .addComponent(jFormattedTextFechaFinMembresia)
-                            .addComponent(jFormattedTextFechaInicioMembresia)
-                            .addComponent(jComboBoxMembresia, 0, 377, Short.MAX_VALUE)))
+                                .addGap(27, 27, 27)
+                                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(CreateUser_lblMembresia2)
+                                    .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(CreateUser_lblMembresia)
+                                        .addComponent(jComboBoxMembresia, 0, 377, Short.MAX_VALUE)
+                                        .addComponent(txtDescripcionMembresia))))))
                     .addGroup(DownLayout.createSequentialGroup()
                         .addGap(304, 304, 304)
                         .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -405,8 +430,9 @@ public class CreateClient extends javax.swing.JFrame {
         DownLayout.setVerticalGroup(
             DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DownLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addComponent(CreateUser_lblSubTittle, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
+                .addGap(31, 31, 31)
                 .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CreateUser_lblName)
                     .addComponent(CreateUser_lblMembresia))
@@ -416,32 +442,40 @@ public class CreateClient extends javax.swing.JFrame {
                     .addComponent(jComboBoxMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CreateUser_lblFechaIni)
                     .addComponent(CreateUser_LastName)
-                    .addComponent(jLabel2))
+                    .addComponent(CreateUser_lblMembresia2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jFormattedTextFechaInicioMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDescripcionMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CreateUser_lbl_ID)
                     .addComponent(CreateUser_lblPhone)
+                    .addComponent(CreateUser_lblMembresia1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPrecioMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CreateUser_lblEmail)
+                    .addComponent(CreateUser_lblFechaIni)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextFechaInicioMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CreateUser_lblDireccion)
                     .addComponent(CreateUser_lblFechaFin)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextFechaFinMembresia))
-                .addGap(18, 18, 18)
-                .addComponent(CreateUser_lblEmail)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(CreateUser_lblDireccion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextFechaFinMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(57, 57, 57)
                 .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -560,9 +594,13 @@ public class CreateClient extends javax.swing.JFrame {
             
             //Obtener id de la membresía seleccionada
             String itemSeleccionado = (String) jComboBoxMembresia.getSelectedItem();
-            int idMembresia = 0;
+            Integer idMembresia = null;
+            
             if (itemSeleccionado != null && itemSeleccionado.contains(" - ")) {
-                idMembresia = Integer.parseInt(itemSeleccionado.split(" - ")[0]);
+                int idSeleccionado = Integer.parseInt(itemSeleccionado.split(" - ")[0]);
+                if (idSeleccionado != 0) { // Si no es null
+                   idMembresia = idSeleccionado;
+                }
             }
 
             // Crear objeto cliente
@@ -574,10 +612,18 @@ public class CreateClient extends javax.swing.JFrame {
             cliente.setTelefono(txtTelefono.getText());
             cliente.setCorreo(txtCorreo.getText());
             cliente.setDireccion(txtDireccion.getText());
-            cliente.setIdMembresia(jComboBoxMembresia.getSelectedIndex() + 1);
-            cliente.setFechaInicio(jFormattedTextFechaInicioMembresia.getText());
-            cliente.setFechaVigencia(jFormattedTextFechaFinMembresia.getText());
-            cliente.setEstadoMembresia(1);
+            cliente.setIdMembresia(idMembresia); // puede ser null
+            
+            // Si seleccionó membresía, toma fechas. Si no, deja vacías.
+            if (idMembresia != null) {
+                cliente.setFechaInicio(jFormattedTextFechaInicioMembresia.getText());
+                cliente.setFechaVigencia(jFormattedTextFechaFinMembresia.getText());
+                cliente.setEstadoMembresia(1); // activo
+            } else {
+                cliente.setFechaInicio(null);
+                cliente.setFechaVigencia(null);
+                cliente.setEstadoMembresia(0); // sin membresía
+            }
 
             // Insertar cliente DAO a la BD 
             ClienteDAO clienteDAO = new ClienteDAO();
@@ -602,6 +648,53 @@ public class CreateClient extends javax.swing.JFrame {
                 JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
+    
+    private void mostrarDetallesMembresia(int idMembresia) {
+        if (idMembresia == 0) {
+            txtDescripcionMembresia.setText("");
+            txtPrecioMembresia.setText("");
+            return;
+        }
+
+        try (Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT descripcion, precio FROM membresia WHERE id_membresia = ? AND id_clinica = ?")) {
+            stmt.setInt(1, idMembresia);
+            stmt.setInt(2, logUser.getId_clinic());
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                txtDescripcionMembresia.setText(rs.getString("descripcion"));
+                txtPrecioMembresia.setText("$" + rs.getDouble("precio"));
+                txtDescripcionMembresia.setEditable(false);
+                txtPrecioMembresia.setEditable(false);
+            } else {
+                txtDescripcionMembresia.setText("");
+                txtPrecioMembresia.setText("");
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, 
+                "Error obteniendo datos de membresía: " + e.getMessage(), 
+                "Error", 
+                JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void jComboBoxMembresiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMembresiaActionPerformed
+        String itemSeleccionado = (String) jComboBoxMembresia.getSelectedItem();
+        if (itemSeleccionado != null && itemSeleccionado.contains(" - ")) {
+            int idMembresia = Integer.parseInt(itemSeleccionado.split(" - ")[0]);
+            
+            if (idMembresia == 0) {
+                txtDescripcionMembresia.setText("");
+                txtPrecioMembresia.setText("");
+                jFormattedTextFechaInicioMembresia.setText("");
+                jFormattedTextFechaFinMembresia.setText("");
+            } else {
+                mostrarDetallesMembresia(idMembresia);
+            }
+        }
+    }//GEN-LAST:event_jComboBoxMembresiaActionPerformed
 
     
     public static void main(String args[]) {
@@ -618,6 +711,8 @@ public class CreateClient extends javax.swing.JFrame {
     private javax.swing.JLabel CreateUser_lblFechaFin;
     private javax.swing.JLabel CreateUser_lblFechaIni;
     private javax.swing.JLabel CreateUser_lblMembresia;
+    private javax.swing.JLabel CreateUser_lblMembresia1;
+    private javax.swing.JLabel CreateUser_lblMembresia2;
     private javax.swing.JLabel CreateUser_lblName;
     private javax.swing.JLabel CreateUser_lblPhone;
     private javax.swing.JLabel CreateUser_lblSubTittle;
@@ -634,9 +729,11 @@ public class CreateClient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtDescripcionMembresia;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtDocumento;
     private javax.swing.JTextField txtNombreCliente;
+    private javax.swing.JTextField txtPrecioMembresia;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

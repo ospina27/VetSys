@@ -12,16 +12,18 @@ public class ClienteModel {
     
     private int idCliente;
     private int idClinica;
+    private String nombreClinica;
     private String nombres;
     private String apellidos;
     private String documento;
     private String telefono;
     private String correo;
     private String direccion;
-    private int idMembresia;
+    private Integer idMembresia;
+    private String nombreMembresia;
     private String fechaInicio;
     private String fechaVigencia;
-    private int estadoMembresia;
+    private Integer estadoMembresia;
 
     public ClienteModel() {
     }
@@ -42,6 +44,23 @@ public class ClienteModel {
     public void setIdClinica(int idClinica) {
         this.idClinica = idClinica;
     }
+
+    public String getNombreClinica() {
+        return nombreClinica;
+    }
+
+    public void setNombreClinica(String nombreClinica) {
+        this.nombreClinica = nombreClinica;
+    }
+
+    public String getNombreMembresia() {
+        return nombreMembresia;
+    }
+
+    public void setNombreMembresia(String nombreMembresia) {
+        this.nombreMembresia = nombreMembresia;
+    }
+    
 
     public String getNombres() {
         return nombres;
@@ -91,11 +110,11 @@ public class ClienteModel {
         this.direccion = direccion;
     }
 
-    public int getIdMembresia() {
+    public Integer getIdMembresia() {
         return idMembresia;
     }
 
-    public void setIdMembresia(int idMembresia) {
+    public void setIdMembresia(Integer idMembresia) {
         this.idMembresia = idMembresia;
     }
 
@@ -115,11 +134,11 @@ public class ClienteModel {
         this.fechaVigencia = fechaVigencia;
     }
 
-    public int getEstadoMembresia() {
+    public Integer getEstadoMembresia() {
         return estadoMembresia;
     }
 
-    public void setEstadoMembresia(int estadoMembresia) {
+    public void setEstadoMembresia(Integer estadoMembresia) {
         this.estadoMembresia = estadoMembresia;
     }
     

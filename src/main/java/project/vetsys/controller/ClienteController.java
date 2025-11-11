@@ -17,8 +17,8 @@ public class ClienteController {
     
     private ClienteDAO clienteDAO = new ClienteDAO();
 
-    public boolean guardarCliente(ClienteModel c) {
-        return clienteDAO.insertarCliente(c);
+    public boolean guardarCliente(ClienteModel cliente) {
+        return clienteDAO.insertarCliente(cliente);
     }
 
     public List<ClienteModel> obtenerClientes(int idClinica) {
@@ -29,8 +29,8 @@ public class ClienteController {
         return clienteDAO.actualizarCliente(client);
     }
 
-    public boolean eliminarCliente(int idCliente, int idClinica) {
-        return clienteDAO.eliminarCliente(idCliente, idClinica);
+    public boolean eliminarCliente(int idCliente) {
+        return clienteDAO.eliminarCliente(idCliente);
     }
     
     
