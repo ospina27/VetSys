@@ -184,6 +184,11 @@ public class PatientsMenu extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Registrar Mascota");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -320,6 +325,16 @@ public class PatientsMenu extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // boton consultar mascota
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        CreatePet createPetFrame = new CreatePet(logUser);
+        createPetFrame.setVisible(true);
+        createPetFrame.pack();
+        createPetFrame.setLocationRelativeTo(null);
+        this.dispose();
+        
+    }//GEN-LAST:event_jButton1MouseClicked
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new PatientsMenu().setVisible(true));

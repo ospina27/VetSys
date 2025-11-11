@@ -115,6 +115,7 @@ project\vetsys\view\manager\PatientsMenu.class
 project\vetsys\view\manager\CreatePet$13.class
 project\vetsys\view\manager\CreateUser$3.class
 project\vetsys\view\manager\SearchUser$7.class
+project\vetsys\view\manager\PatientsMenu$6.class
 project\vetsys\model\ClienteModel.class
 project\vetsys\view\manager\CreateClient.class
 project\vetsys\view\manager\SearchPet$10.class

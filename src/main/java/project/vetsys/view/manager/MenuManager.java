@@ -302,12 +302,11 @@ public class MenuManager extends javax.swing.JFrame {
     private void MenuManager_lblBttnPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuManager_lblBttnPatientMouseClicked
 
         //JOptionPane.showMessageDialog(this, "Proximo Sprint");
-        /*CreatePet petFrame = new CreatePet(logUser);
+        PatientsMenu petFrame = new PatientsMenu(logUser);
         petFrame.setVisible(true);
         petFrame.pack();
-        petFrame.setLocationRelativeTo(null);*/
-
-        //this.dispose();
+        petFrame.setLocationRelativeTo(null);
+        this.dispose();
                    
     }//GEN-LAST:event_MenuManager_lblBttnPatientMouseClicked
 
