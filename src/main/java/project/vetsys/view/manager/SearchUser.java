@@ -681,7 +681,7 @@ public class SearchUser extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "El nombre de usuario no puede estar vacío.");
                 return;
             }
-            
+         
             
             Role r = (Role) cboxRoleEdit.getSelectedItem();
             if(r == null)
@@ -705,6 +705,14 @@ public class SearchUser extends javax.swing.JFrame {
             user.setName_role(r.getName());
             user.setId_status(s.getId());
             user.setName_status(s.getName());
+            user.setName_user(name_userField.getText());
+            user.setLast_name(LastNameField.getText());
+            user.setDocument(DocumentField.getText());
+            user.setEmail(EmailField.getText());
+            user.setPhone(PhoneField.getText());
+            
+            
+
             user.setId_clinic(logUser.getId_clinic()); // mismo id de clínica
 
             // Llamar al DAO

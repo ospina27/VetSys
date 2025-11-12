@@ -309,32 +309,25 @@ public class UserDAO {
         }
         boolean updatePass = user.getPassword() != null && !user.getPassword().isEmpty(); ///actualizar contraseña o dejar la misma
                                                                                          ///según lo que elija el usuario
-        String sqlUpdate;
-        if(updatePass){
-            sqlUpdate = "UPDATE usuarios SET id_rol=?, id_estado=?, "
-                + "username=?, contrasena=? "
+        String sqlUpdate = "UPDATE usuario SET nombres=?, apellidos=?, documento=?, telefono=?, correo=?, username=? "
+                + "id_estado=?, id_rol=? "
                 + "WHERE id_usuario=?";
-        }else 
-        {
-            sqlUpdate = "UPDATE usuario SET id_rol = ?, id_estado = ?, " 
-                    + "username = ? "
-                    + "WHERE id_usuario = ?";
-        }
+        
         try {
             connection = DBConnection.getConnection();
             ps = connection.prepareStatement(sqlUpdate);
-            ps.setInt(1, user.getId_role());
-            ps.setInt(2, user.getId_status());
-            ps.setString(3, user.getUsername());
+            ps.setString(1, user.getName_user());
+            ps.setString(2, user.getLast_name());
+            ps.setString(3, user.getDocument());            
+            ps.setString(4,user.getPhone());
+            ps.setString(5,user.getEmail());
+            ps.setString(6,user.getUsername());
+            ps.setInt(7,user.getId_status());
+            ps.setInt(8,user.getId_role());
+            ps.setInt(9,user.getId_user());
+           
+                    
             
-            if(updatePass){
-                String passEncrypted = PasswordUtil.encryptPassword(user.getPassword());
-                ps.setString(4, passEncrypted);
-                ps.setInt(5,user.getId_user());
-            }else
-            {
-                ps.setInt(4,user.getId_user());
-            }
             
             int rowUpdate = ps.executeUpdate(); ///verificar en consola si se actualizo o no alguna fila
             return rowUpdate > 0;            
