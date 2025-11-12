@@ -36,8 +36,10 @@ public class PatientsMenu extends javax.swing.JFrame {
         MenuUsers_lblBttnSearchUsers = new javax.swing.JLabel();
         MenuUsers_BttnBack = new javax.swing.JPanel();
         MenuUsers_lblBttnBack = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        MenuUsers_BttnRegisterPet = new javax.swing.JPanel();
+        MenuUsers_lblBttnRegisterPet = new javax.swing.JLabel();
+        MenuUsers_BttnSearchPet = new javax.swing.JPanel();
+        MenuUsers_lblBttnSearchPet = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 800));
@@ -76,7 +78,7 @@ public class PatientsMenu extends javax.swing.JFrame {
         Right.setMinimumSize(new java.awt.Dimension(500, 800));
 
         MenuUsers_BttnAddUsers.setBackground(new java.awt.Color(0, 153, 153));
-        MenuUsers_BttnAddUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuUsers_BttnAddUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuUsers_BttnAddUsers.setMaximumSize(new java.awt.Dimension(140, 40));
         MenuUsers_BttnAddUsers.setMinimumSize(new java.awt.Dimension(140, 40));
         MenuUsers_BttnAddUsers.setPreferredSize(new java.awt.Dimension(140, 40));
@@ -113,7 +115,7 @@ public class PatientsMenu extends javax.swing.JFrame {
         );
 
         MenuUsers_BttnSearchUsers.setBackground(new java.awt.Color(0, 153, 153));
-        MenuUsers_BttnSearchUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuUsers_BttnSearchUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuUsers_BttnSearchUsers.setMaximumSize(new java.awt.Dimension(140, 40));
         MenuUsers_BttnSearchUsers.setMinimumSize(new java.awt.Dimension(140, 40));
         MenuUsers_BttnSearchUsers.setPreferredSize(new java.awt.Dimension(140, 40));
@@ -152,6 +154,7 @@ public class PatientsMenu extends javax.swing.JFrame {
         );
 
         MenuUsers_BttnBack.setBackground(new java.awt.Color(0, 153, 153));
+        MenuUsers_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuUsers_BttnBack.setPreferredSize(new java.awt.Dimension(126, 35));
 
         MenuUsers_lblBttnBack.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -182,32 +185,69 @@ public class PatientsMenu extends javax.swing.JFrame {
             .addComponent(MenuUsers_lblBttnBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 153));
-        jButton1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Registrar Mascota");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        MenuUsers_BttnRegisterPet.setBackground(new java.awt.Color(0, 153, 153));
+        MenuUsers_BttnRegisterPet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuUsers_BttnRegisterPet.setPreferredSize(new java.awt.Dimension(126, 35));
+
+        MenuUsers_lblBttnRegisterPet.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        MenuUsers_lblBttnRegisterPet.setForeground(new java.awt.Color(255, 255, 255));
+        MenuUsers_lblBttnRegisterPet.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        MenuUsers_lblBttnRegisterPet.setText("Registrar Mascota");
+        MenuUsers_lblBttnRegisterPet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuUsers_lblBttnRegisterPet.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                MenuUsers_lblBttnRegisterPetMouseClicked(evt);
             }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                MenuUsers_lblBttnRegisterPetMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                MenuUsers_lblBttnRegisterPetMouseExited(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 153, 153));
-        jButton2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Consultar Mascota");
-        jButton2.setBorder(null);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        javax.swing.GroupLayout MenuUsers_BttnRegisterPetLayout = new javax.swing.GroupLayout(MenuUsers_BttnRegisterPet);
+        MenuUsers_BttnRegisterPet.setLayout(MenuUsers_BttnRegisterPetLayout);
+        MenuUsers_BttnRegisterPetLayout.setHorizontalGroup(
+            MenuUsers_BttnRegisterPetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(MenuUsers_lblBttnRegisterPet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        MenuUsers_BttnRegisterPetLayout.setVerticalGroup(
+            MenuUsers_BttnRegisterPetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(MenuUsers_lblBttnRegisterPet, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+        );
+
+        MenuUsers_BttnSearchPet.setBackground(new java.awt.Color(0, 153, 153));
+        MenuUsers_BttnSearchPet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuUsers_BttnSearchPet.setPreferredSize(new java.awt.Dimension(126, 35));
+
+        MenuUsers_lblBttnSearchPet.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        MenuUsers_lblBttnSearchPet.setForeground(new java.awt.Color(255, 255, 255));
+        MenuUsers_lblBttnSearchPet.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        MenuUsers_lblBttnSearchPet.setText("Consultar Mascota");
+        MenuUsers_lblBttnSearchPet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuUsers_lblBttnSearchPet.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuUsers_lblBttnSearchPetMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                MenuUsers_lblBttnSearchPetMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                MenuUsers_lblBttnSearchPetMouseExited(evt);
             }
         });
+
+        javax.swing.GroupLayout MenuUsers_BttnSearchPetLayout = new javax.swing.GroupLayout(MenuUsers_BttnSearchPet);
+        MenuUsers_BttnSearchPet.setLayout(MenuUsers_BttnSearchPetLayout);
+        MenuUsers_BttnSearchPetLayout.setHorizontalGroup(
+            MenuUsers_BttnSearchPetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(MenuUsers_lblBttnSearchPet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        MenuUsers_BttnSearchPetLayout.setVerticalGroup(
+            MenuUsers_BttnSearchPetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(MenuUsers_lblBttnSearchPet, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout RightLayout = new javax.swing.GroupLayout(Right);
         Right.setLayout(RightLayout);
@@ -217,19 +257,15 @@ public class PatientsMenu extends javax.swing.JFrame {
                 .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(RightLayout.createSequentialGroup()
                         .addGap(131, 131, 131)
-                        .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(MenuUsers_BttnAddUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(MenuUsers_BttnSearchUsers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(RightLayout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(MenuUsers_BttnAddUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(MenuUsers_BttnSearchUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                            .addComponent(MenuUsers_BttnRegisterPet, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                            .addComponent(MenuUsers_BttnSearchPet, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)))
                     .addGroup(RightLayout.createSequentialGroup()
                         .addGap(203, 203, 203)
                         .addComponent(MenuUsers_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(282, Short.MAX_VALUE))
+                .addContainerGap(283, Short.MAX_VALUE))
         );
         RightLayout.setVerticalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,11 +274,11 @@ public class PatientsMenu extends javax.swing.JFrame {
                 .addComponent(MenuUsers_BttnAddUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(87, 87, 87)
                 .addComponent(MenuUsers_BttnSearchUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addGap(87, 87, 87)
+                .addComponent(MenuUsers_BttnRegisterPet, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addComponent(MenuUsers_BttnSearchPet, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(93, 93, 93)
                 .addComponent(MenuUsers_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(126, 126, 126))
         );
@@ -322,28 +358,37 @@ public class PatientsMenu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_MenuUsers_lblBttnAddUsersMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // biton registrar mascota
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // boton consultar mascota
-        SearchPet searchPetFrame = new SearchPet(logUser);
-        searchPetFrame.setVisible(true);
-        searchPetFrame.pack();
-        searchPetFrame.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
+    private void MenuUsers_lblBttnRegisterPetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnRegisterPetMouseClicked
         CreatePet createPetFrame = new CreatePet(logUser);
         createPetFrame.setVisible(true);
         createPetFrame.pack();
         createPetFrame.setLocationRelativeTo(null);
         this.dispose();
-        
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_MenuUsers_lblBttnRegisterPetMouseClicked
+
+    private void MenuUsers_lblBttnRegisterPetMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnRegisterPetMouseEntered
+        MenuUsers_BttnRegisterPet.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_MenuUsers_lblBttnRegisterPetMouseEntered
+
+    private void MenuUsers_lblBttnRegisterPetMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnRegisterPetMouseExited
+        MenuUsers_BttnRegisterPet.setBackground(new Color(0,153,153));
+    }//GEN-LAST:event_MenuUsers_lblBttnRegisterPetMouseExited
+
+    private void MenuUsers_lblBttnSearchPetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnSearchPetMouseClicked
+        SearchPet searchPetFrame = new SearchPet(logUser);
+        searchPetFrame.setVisible(true);
+        searchPetFrame.pack();
+        searchPetFrame.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_MenuUsers_lblBttnSearchPetMouseClicked
+
+    private void MenuUsers_lblBttnSearchPetMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnSearchPetMouseEntered
+        MenuUsers_BttnSearchPet.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_MenuUsers_lblBttnSearchPetMouseEntered
+
+    private void MenuUsers_lblBttnSearchPetMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnSearchPetMouseExited
+        MenuUsers_BttnSearchPet.setBackground(new Color(0,153,153));
+    }//GEN-LAST:event_MenuUsers_lblBttnSearchPetMouseExited
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new PatientsMenu().setVisible(true));
@@ -354,13 +399,15 @@ public class PatientsMenu extends javax.swing.JFrame {
     private javax.swing.JPanel MenuUsersPanel;
     private javax.swing.JPanel MenuUsers_BttnAddUsers;
     private javax.swing.JPanel MenuUsers_BttnBack;
+    private javax.swing.JPanel MenuUsers_BttnRegisterPet;
+    private javax.swing.JPanel MenuUsers_BttnSearchPet;
     private javax.swing.JPanel MenuUsers_BttnSearchUsers;
     private javax.swing.JLabel MenuUsers_lblBttnAddUsers;
     private javax.swing.JLabel MenuUsers_lblBttnBack;
+    private javax.swing.JLabel MenuUsers_lblBttnRegisterPet;
+    private javax.swing.JLabel MenuUsers_lblBttnSearchPet;
     private javax.swing.JLabel MenuUsers_lblBttnSearchUsers;
     private javax.swing.JLabel MenuUsers_lblTitle;
     private javax.swing.JPanel Right;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables
 }
