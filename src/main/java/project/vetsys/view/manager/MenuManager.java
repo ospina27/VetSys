@@ -82,7 +82,7 @@ public class MenuManager extends javax.swing.JFrame {
         Right.setPreferredSize(new java.awt.Dimension(500, 800));
 
         MenuManager_BttnUsers.setBackground(new java.awt.Color(0, 153, 153));
-        MenuManager_BttnUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuManager_BttnUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuManager_BttnUsers.setMaximumSize(new java.awt.Dimension(140, 40));
         MenuManager_BttnUsers.setMinimumSize(new java.awt.Dimension(140, 40));
         MenuManager_BttnUsers.setPreferredSize(new java.awt.Dimension(140, 40));
@@ -91,6 +91,7 @@ public class MenuManager extends javax.swing.JFrame {
         MenuManager_lblBttnUsers.setForeground(new java.awt.Color(255, 255, 255));
         MenuManager_lblBttnUsers.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuManager_lblBttnUsers.setText("Usuarios");
+        MenuManager_lblBttnUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuManager_lblBttnUsers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuManager_lblBttnUsersMouseClicked(evt);
@@ -115,7 +116,7 @@ public class MenuManager extends javax.swing.JFrame {
         );
 
         MenuManager_BttnAppointments.setBackground(new java.awt.Color(0, 153, 153));
-        MenuManager_BttnAppointments.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuManager_BttnAppointments.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuManager_BttnAppointments.setMaximumSize(new java.awt.Dimension(140, 40));
         MenuManager_BttnAppointments.setMinimumSize(new java.awt.Dimension(140, 40));
         MenuManager_BttnAppointments.setPreferredSize(new java.awt.Dimension(140, 40));
@@ -149,7 +150,7 @@ public class MenuManager extends javax.swing.JFrame {
         );
 
         MenuManager_BttnPatient.setBackground(new java.awt.Color(0, 153, 153));
-        MenuManager_BttnPatient.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuManager_BttnPatient.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuManager_BttnPatient.setMaximumSize(new java.awt.Dimension(140, 40));
         MenuManager_BttnPatient.setMinimumSize(new java.awt.Dimension(140, 40));
         MenuManager_BttnPatient.setPreferredSize(new java.awt.Dimension(140, 40));
@@ -183,7 +184,7 @@ public class MenuManager extends javax.swing.JFrame {
         );
 
         MenuManager_BttnLogOut.setBackground(new java.awt.Color(0, 153, 153));
-        MenuManager_BttnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuManager_BttnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuManager_BttnLogOut.setMaximumSize(new java.awt.Dimension(140, 40));
         MenuManager_BttnLogOut.setMinimumSize(new java.awt.Dimension(140, 40));
 
