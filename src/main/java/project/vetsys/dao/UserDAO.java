@@ -153,8 +153,7 @@ public class UserDAO {
                    + "WHERE c.id_clinica = ?";
 
         try (Connection con = DBConnection.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)){
-            //ResultSet rs = ps.executeQuery()) {
+            PreparedStatement ps = con.prepareStatement(sql)){
             ps.setInt(1,logUser.getId_clinic()); ///pasar el id de la clinica para listar
             try (ResultSet rs = ps.executeQuery()){
                 while (rs.next()) {
@@ -188,7 +187,7 @@ public class UserDAO {
     public User ReadById(int id) {  
         String sql = "SELECT u.id_usuario AS user_id, "
                   + "u.nombres, u.apellidos, u.documento, u.telefono, u.correo, "
-                   + "u.username, u.contrasena, "
+                   + "u.username, "
                    + "r.id_rol AS role_id, r.nombre AS role_name, "
                    + "e.id_estado AS status_id, e.nombre AS status_name, "
                    + "c.id_clinica AS clinic_id, c.nombre AS clinic_name "
@@ -199,7 +198,7 @@ public class UserDAO {
                    + "WHERE u.id_usuario = ?";
 
         try (Connection con = DBConnection.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+            PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -239,7 +238,7 @@ public class UserDAO {
        
         StringBuilder sql = new StringBuilder(
             "SELECT u.id_usuario AS user_id, "
-            + "u.nombres, u. apellidos, u.documento, "
+            + "u.nombres, u.apellidos, u.documento, "
             + "u.telefono, u.correo, u.username, " +
             "r.id_rol AS role_id, r.nombre AS role_name, " +
             "e.nombre AS status_name, c.id_clinica AS clinic_id, c.nombre AS clinic_name " +
@@ -251,8 +250,8 @@ public class UserDAO {
             );
         
         if (roleId != null && roleId >0) {
-            sql.append(" AND r.id_rol = ?");
-        }
+                sql.append(" AND r.id_rol = ?");
+            }
 
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql.toString())) {
@@ -292,24 +291,55 @@ public class UserDAO {
 
         return listUsers;
     }
+    
+    
+    public User SearchUserDocument(String document, int idClinic){
+        
+        User user = null;
+        
+    String sql = "SELECT " +
+            "u.id_usuario, u.nombres, u.apellidos, u.documento, u.telefono, u.correo, " +
+            "u.username, u.id_rol, r.nombre AS nombre_rol, " +
+            "u.id_estado, e.nombre AS nombre_estado " +
+            "FROM usuario u " +
+            "LEFT JOIN rol r ON u.id_rol = r.id_rol " +
+            "LEFT JOIN estado e ON u.id_estado = e.id_estado " +
+            "WHERE u.documento = ? AND u.id_clinica = ?";    
+    
+        try (Connection con = DBConnection.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, document);
+            ps.setInt(2, idClinic);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) 
+            {
+                user = new User();
+                user.setId_user(rs.getInt("id_usuario"));
+                user.setName_user(rs.getString("nombres"));
+                user.setLast_name(rs.getString("apellidos"));
+                user.setDocument(rs.getString("documento"));
+                user.setPhone(rs.getString("telefono"));
+                user.setEmail(rs.getString("correo"));
+                user.setUsername(rs.getString("username"));
+                user.setId_role(rs.getInt("id_rol"));
+                user.setName_role(rs.getString("nombre_rol"));
+                user.setId_status(rs.getInt("id_estado"));
+                user.setName_status(rs.getString("nombre_estado"));              
+            }
+            return user;
+        } catch (SQLException e) {
+            System.out.println("Error al buscar usuario por documento: " + e.getMessage());
+        }
+        return null;
+    }
 
 
     
     public boolean Update(User user, User logUser){
-        
-        if(!"Administrador".equalsIgnoreCase(logUser.getName_role()))
-        {
-            System.out.println("Solo un administrador puede modificar");
-            return false;
-        }
-        if(user.getId_clinic()!= logUser.getId_clinic())
-        {
-            System.out.print("No se puede actualizar usuarios de otra clinica");
-            return false;
-        }
-        boolean updatePass = user.getPassword() != null && !user.getPassword().isEmpty(); ///actualizar contraseña o dejar la misma
-                                                                                         ///según lo que elija el usuario
-        String sqlUpdate = "UPDATE usuario SET nombres=?, apellidos=?, documento=?, telefono=?, correo=?, username=? "
+             
+        String sqlUpdate = "UPDATE usuario SET nombres=?, apellidos=?, documento=?, telefono=?, correo=?, username=?, "
                 + "id_estado=?, id_rol=? "
                 + "WHERE id_usuario=?";
         
@@ -326,9 +356,7 @@ public class UserDAO {
             ps.setInt(8,user.getId_role());
             ps.setInt(9,user.getId_user());
            
-                    
-            
-            
+                
             int rowUpdate = ps.executeUpdate(); ///verificar en consola si se actualizo o no alguna fila
             return rowUpdate > 0;            
             
@@ -432,22 +460,19 @@ public class UserDAO {
 
     
     public boolean Delete(User user, User logUser){
-        ///No borramos al usuario de la tabla, por las llaves foraneas
-        ///que estan en otras tablas, entonces lo desactivamos y así ya no
-        ///tiene acceso de nuevo a la aplicación
         
-        String sql = "UPDATE usuario SET id_estado = 2 WHERE id_usuario = ? AND id_clinica = ?";
+        String sql = "DELETE FROM usuario WHERE id_usuario =?";
         
         try (Connection conn = DBConnection.getConnection();
         PreparedStatement ps = conn.prepareStatement(sql)) {
 
         ps.setInt(1, user.getId_user());
-        ps.setInt(2, logUser.getId_clinic());
+        
         int rowsAffected = ps.executeUpdate();
         return rowsAffected > 0;
 
         } catch (SQLException e) {
-            System.out.println("Error desactivando el usuario: " + e.getMessage());
+            System.out.println("Error al eliminar el usuario: " + e.getMessage());
             return false;
         }
     }

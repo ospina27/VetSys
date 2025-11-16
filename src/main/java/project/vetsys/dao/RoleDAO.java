@@ -23,8 +23,8 @@ public class RoleDAO {
             while (rs.next()) {
                 roles.add(new Role(
                     rs.getInt("id_rol"),
-                    rs.getString("nombre"),
-                    rs.getString("descripcion")
+                    rs.getString("nombre")
+                    //rs.getString("descripcion")
                 ));
             }
         } catch (SQLException e) {
@@ -48,8 +48,8 @@ public class RoleDAO {
         {
             roles.add(new Role(
                 rs.getInt("id_rol"),
-                rs.getString("nombre"),
-                rs.getString("descripcion")
+                rs.getString("nombre")
+                //rs.getString("descripcion")
             ));
         }
     } catch (SQLException e) 
