@@ -4,6 +4,7 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import project.vetsys.dao.UserDAO;
 import project.vetsys.model.User;
+import project.vetsys.view.Nimbus;
 import project.vetsys.view.manager.MenuManager;
 
 
@@ -12,11 +13,14 @@ public class LogIn extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LogIn.class.getName());
 
-    /**
-     * Creates new form LogIn
-     */
     public LogIn() {
         initComponents();
+        Nimbus.LookandFeel();
+        Nimbus.styleAllTextFields(this);
+        Nimbus.styleLabel(LogInPanel_lblUsername);
+        Nimbus.styleLabel(LogInPanel_lblPassword);
+        //Nimbus.styleAllLabelsExcept(this, LogInPanel_lblTittle);
+       
     }
 
     @SuppressWarnings("unchecked")
@@ -34,8 +38,6 @@ public class LogIn extends javax.swing.JFrame {
         LogInPanel_lblResetPassword = new javax.swing.JLabel();
         LogInPanel_BttnResetPassword = new javax.swing.JLabel();
         LogInPanel_txtPassword = new javax.swing.JPasswordField();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
         LogInPanel_BttnLogin = new javax.swing.JPanel();
         LogInPanel_lblBttnLogin = new javax.swing.JLabel();
 
@@ -115,7 +117,7 @@ public class LogIn extends javax.swing.JFrame {
         LogInPanel_BttnResetPassword.setForeground(new java.awt.Color(0, 153, 153));
         LogInPanel_BttnResetPassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LogInPanel_BttnResetPassword.setText("Click Aquí");
-        LogInPanel_BttnResetPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        LogInPanel_BttnResetPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         LogInPanel_BttnResetPassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LogInPanel_BttnResetPasswordMouseClicked(evt);
@@ -137,11 +139,6 @@ public class LogIn extends javax.swing.JFrame {
             }
         });
 
-        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-
-        jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
-        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-
         LogInPanel_BttnLogin.setBackground(new java.awt.Color(0, 153, 153));
         LogInPanel_BttnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -149,7 +146,7 @@ public class LogIn extends javax.swing.JFrame {
         LogInPanel_lblBttnLogin.setForeground(new java.awt.Color(255, 255, 255));
         LogInPanel_lblBttnLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LogInPanel_lblBttnLogin.setText("Ingresar");
-        LogInPanel_lblBttnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        LogInPanel_lblBttnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         LogInPanel_lblBttnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LogInPanel_lblBttnLoginMouseClicked(evt);
@@ -186,10 +183,8 @@ public class LogIn extends javax.swing.JFrame {
                 .addGap(0, 400, Short.MAX_VALUE))
             .addGroup(RightLayout.createSequentialGroup()
                 .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LogInPanel_lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LogInPanel_txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(RightLayout.createSequentialGroup()
                             .addGap(65, 65, 65)
@@ -214,15 +209,11 @@ public class LogIn extends javax.swing.JFrame {
                 .addComponent(LogInPanel_lblUsername)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(LogInPanel_txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(52, 52, 52)
                 .addComponent(LogInPanel_lblPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LogInPanel_txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
+                .addGap(58, 58, 58)
                 .addComponent(LogInPanel_BttnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -262,12 +253,6 @@ public class LogIn extends javax.swing.JFrame {
     private void LogInPanel_lblBttnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogInPanel_lblBttnLoginMouseClicked
         boolean flag = true;
         
-        /*if(flag){
-            javax.swing.JOptionPane.showMessageDialog(this, "Bienvenido");
-        }else {
-            javax.swing.JOptionPane.showMessageDialog(this, "No tiene Credenciales");
-        }*/
-        
         String username = LogInPanel_txtUsername.getText().trim();
         String password = new String(LogInPanel_txtPassword.getPassword());
 
@@ -290,7 +275,7 @@ public class LogIn extends javax.swing.JFrame {
         if (user != null) {
             
             // Credenciales correctas
-            JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso. Bienvenido " + user.getUsername());
+            JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso. Bienvenido " + user.getUsername(),user.getClinic().getName_clinic(),JOptionPane.INFORMATION_MESSAGE);
             
             MenuManager MenuManagerFrame = new MenuManager(user);
             MenuManagerFrame.setVisible(true);
@@ -358,7 +343,5 @@ public class LogIn extends javax.swing.JFrame {
     private javax.swing.JPasswordField LogInPanel_txtPassword;
     private javax.swing.JTextField LogInPanel_txtUsername;
     private javax.swing.JPanel Right;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }

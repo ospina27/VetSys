@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import project.vetsys.dao.UserDAO;
 import project.vetsys.model.User;
 import project.vetsys.security.PasswordUtil;
+import project.vetsys.view.Nimbus;
 
 public class PasswordRecovery extends javax.swing.JFrame {
     
@@ -14,7 +15,9 @@ public class PasswordRecovery extends javax.swing.JFrame {
     
     public PasswordRecovery() {
         initComponents();
-       
+        Nimbus.LookandFeel();
+        Nimbus.styleAllTextFields(this);
+        Nimbus.styleAllLabelsExcept(this,LogInPanel_lblTittle);
         PassRec_textNewPassword.setVisible(false);
         PassRec_textNewPasswordOK.setVisible(false);
         PassRec_BttnSavePassword.setVisible(false);
@@ -112,25 +115,10 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_textUser.setForeground(java.awt.Color.gray);
         PassRec_textUser.setText("Ingrese su nombre");
         PassRec_textUser.setBorder(null);
-        PassRec_textUser.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                PassRec_textUserMousePressed(evt);
-            }
-        });
-        PassRec_textUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PassRec_textUserActionPerformed(evt);
-            }
-        });
 
         PassRec_textID.setForeground(java.awt.Color.gray);
         PassRec_textID.setText("Ingrese numero de cedula");
         PassRec_textID.setBorder(null);
-        PassRec_textID.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                PassRec_textIDMousePressed(evt);
-            }
-        });
 
         PassRec_textNewPassword.setForeground(java.awt.Color.gray);
         PassRec_textNewPassword.setText("**********");
@@ -144,11 +132,6 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_textNewPasswordOK.setForeground(java.awt.Color.gray);
         PassRec_textNewPasswordOK.setText("**********");
         PassRec_textNewPasswordOK.setBorder(null);
-        PassRec_textNewPasswordOK.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                PassRec_textNewPasswordOKMousePressed(evt);
-            }
-        });
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -165,7 +148,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_lblBttnCheckCredentials.setForeground(new java.awt.Color(255, 255, 255));
         PassRec_lblBttnCheckCredentials.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PassRec_lblBttnCheckCredentials.setText("Verificar");
-        PassRec_lblBttnCheckCredentials.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PassRec_lblBttnCheckCredentials.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PassRec_lblBttnCheckCredentials.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PassRec_lblBttnCheckCredentialsMouseClicked(evt);
@@ -196,7 +179,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_lblBttnSavePassword.setForeground(new java.awt.Color(255, 255, 255));
         PassRec_lblBttnSavePassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PassRec_lblBttnSavePassword.setText("Guardar");
-        PassRec_lblBttnSavePassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PassRec_lblBttnSavePassword.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PassRec_lblBttnSavePassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PassRec_lblBttnSavePasswordMouseClicked(evt);
@@ -233,7 +216,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
         PassRec_lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PassRec_lblBttnBack.setText("Cancelar");
-        PassRec_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PassRec_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PassRec_lblBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PassRec_lblBttnBackMouseClicked(evt);
@@ -454,17 +437,6 @@ public class PasswordRecovery extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_PassRec_lblBttnCheckCredentialsMouseClicked
 
-    private void PassRec_textNewPasswordOKMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_textNewPasswordOKMousePressed
-        if (String.valueOf(PassRec_textNewPasswordOK.getPassword()).equals("**********")){
-            PassRec_textNewPasswordOK.setText("");
-            PassRec_textNewPasswordOK.setForeground(Color.black);
-        }
-        if (String.valueOf(PassRec_textNewPassword.getPassword()).isEmpty()){
-            PassRec_textNewPassword.setText("**********");
-            PassRec_textNewPassword.setForeground(Color.gray);
-        }
-    }//GEN-LAST:event_PassRec_textNewPasswordOKMousePressed
-
     private void PassRec_textNewPasswordMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_textNewPasswordMousePressed
         if (String.valueOf(PassRec_textNewPassword.getPassword()).equals("**********")){
             PassRec_textNewPassword.setText("");
@@ -475,32 +447,6 @@ public class PasswordRecovery extends javax.swing.JFrame {
             PassRec_textNewPasswordOK.setForeground(Color.gray);
         }
     }//GEN-LAST:event_PassRec_textNewPasswordMousePressed
-
-    private void PassRec_textIDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_textIDMousePressed
-        if (PassRec_textID.getText().equals("Ingrese numero de cedula")){
-            PassRec_textID.setText("");
-            PassRec_textID.setForeground(Color.black);
-        }
-        if (PassRec_textUser.getText().isEmpty()){
-            PassRec_textUser.setText("Ingrese su nombre");
-            PassRec_textUser.setForeground(Color.gray);
-        }
-    }//GEN-LAST:event_PassRec_textIDMousePressed
-
-    private void PassRec_textUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PassRec_textUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PassRec_textUserActionPerformed
-
-    private void PassRec_textUserMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_textUserMousePressed
-        if(PassRec_textUser.getText().equals("Ingrese su nombre")){
-            PassRec_textUser.setText("");
-            PassRec_textUser.setForeground(Color.black);
-        }
-        if(PassRec_textID.getText().isEmpty()){
-            PassRec_textID.setText("Ingrese numero de cedula");
-            PassRec_textID.setForeground(Color.gray);
-        }
-    }//GEN-LAST:event_PassRec_textUserMousePressed
 
     
    

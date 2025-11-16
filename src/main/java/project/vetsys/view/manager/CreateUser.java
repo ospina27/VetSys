@@ -9,56 +9,71 @@ import project.vetsys.dao.StatusDAO;
 import project.vetsys.model.Role;
 import project.vetsys.model.Status;
 import project.vetsys.model.User;
-import project.vetsys.view.ComboBox;
+import project.vetsys.view.Nimbus;
+import project.vetsys.view.Utils;
 import project.vetsys.view.manager.MenuManager;
 
 public class CreateUser extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CreateUser.class.getName());
     private User logUser;
+    private Utils utils;
 
     public CreateUser() {
         initComponents();
-        initListeners();
     }
     
     public CreateUser(User logUser) {
-        this.logUser = logUser;
+        Nimbus.LookandFeel();
+        this.logUser = logUser;  
+        this.utils = new Utils();
         initComponents();
+        Nimbus.styleAllTextFields(this);
+        setTitle("Gestion de usuarios");
+        CreateUser_lblTittle.setText("Usuarios "+ logUser.getClinic().getName_clinic());
+        Nimbus.styleTitleLabel(CreateUser_lblTittle);
+        Nimbus.styleAllLabelsExcept(this,CreateUser_lblTittle);
         loadRolesStatus();
-        initListeners();
        
     }
+      
+    private void emptyFields(){
+         nameUser_field.setText("");
+         lastNameUser_field.setText("");
+         phoneUser_field.setText("");
+         documentUser_field.setText("");
+         emailUser_field.setText("");
+         usernameUser_field.setText("");
+         passwordUser_psfield.setText("");
+         cboxRoleUser.setSelectedIndex(-1);
+         cboxStatusUser.setSelectedIndex(-1);
+     }
     
-     private void initListeners() {
-        //cboxRoleCreate.addActionListener(e -> loadRolesStatus());
-        //cboxStatusCreate.addActionListener(e-> loadRolesStatus());
-    }
     
-    
+    ///cargar los combobox
     private void loadRolesStatus() {
             RoleDAO roleDAO = new RoleDAO();
             StatusDAO statusDAO = new StatusDAO();
 
             List<Role> roles = roleDAO.getAllRole(logUser);
             List<Status> status = statusDAO.getAllStatus(logUser);
-            //cboxRoleCreate.removeAllItems();
 
             /// mostrar todos los roles
-            Role defaultRole = new Role(0, "Todos", "Mostrar todos los roles");
-            ComboBox.fillComboBox(CreateUser_comboBoxRol, roles, defaultRole);
-            ComboBox.fillComboBox(CreateUser_comboBoxStatus, status, null);
-
+            Role defaultRole = new Role(0,"Todos");
+            Status defaulStatus = new Status(0,"");
+            utils.fillComboBox(cboxRoleUser, roles, defaultRole);
+            utils.fillComboBox(cboxStatusUser, status, defaulStatus);
+            cboxRoleUser.setSelectedIndex(-1);
 
             ///verificar en consola que usuarios se estan cargando
             System.out.println("Roles cargados en el combo:");
-            for (int i = 0; i < CreateUser_comboBoxRol.getItemCount(); i++) {
-                Object item = CreateUser_comboBoxRol.getItemAt(i);
+            for (int i = 0; i < cboxRoleUser.getItemCount(); i++) {
+                Object item = cboxRoleUser.getItemAt(i);
                 System.out.println("   - " + item + " (" + item.getClass().getSimpleName() + ")");
             }
             System.out.println("Estados cargados en el combo:");
-            for (int i = 0; i < CreateUser_comboBoxStatus.getItemCount(); i++) {
-            Object item = CreateUser_comboBoxStatus.getItemAt(i);
+            for (int i = 0; i < cboxStatusUser.getItemCount(); i++) {
+            Object item = cboxStatusUser.getItemAt(i);
             System.out.println("   - " + item + " (" + item.getClass().getSimpleName() + ")");
         }
     }
@@ -67,42 +82,37 @@ public class CreateUser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
         CreateUserPanel = new javax.swing.JPanel();
         Up = new javax.swing.JPanel();
         CreateUser_lblTittle = new javax.swing.JLabel();
         Down = new javax.swing.JPanel();
         CreateUser_lblSubTittle = new javax.swing.JLabel();
         CreateUser_lblName = new javax.swing.JLabel();
-        CreateUser_textName = new javax.swing.JTextField();
+        nameUser_field = new javax.swing.JTextField();
         CreateUser_LastName = new javax.swing.JLabel();
-        CreateUser_textLastName = new javax.swing.JTextField();
+        lastNameUser_field = new javax.swing.JTextField();
         CreateUser_lblPhone = new javax.swing.JLabel();
-        CreateUser_textPhone = new javax.swing.JTextField();
+        phoneUser_field = new javax.swing.JTextField();
         CreateUser_lbl_ID = new javax.swing.JLabel();
-        CreateUser_textID = new javax.swing.JTextField();
+        documentUser_field = new javax.swing.JTextField();
         CreateUser_lblEmail = new javax.swing.JLabel();
-        CreateUser_textEmail = new javax.swing.JTextField();
+        emailUser_field = new javax.swing.JTextField();
         CreateUser_lblUsername = new javax.swing.JLabel();
-        CreateUser_textUsername = new javax.swing.JTextField();
+        usernameUser_field = new javax.swing.JTextField();
         CreateUser_lblPassword = new javax.swing.JLabel();
-        CreateUser_textPassword = new javax.swing.JPasswordField();
+        passwordUser_psfield = new javax.swing.JPasswordField();
         CreateUser_lblRol = new javax.swing.JLabel();
-        CreateUser_comboBoxRol = new javax.swing.JComboBox<>();
+        cboxRoleUser = new javax.swing.JComboBox<>();
         CreateUser_lblStatus = new javax.swing.JLabel();
-        CreateUser_comboBoxStatus = new javax.swing.JComboBox<>();
-        CreateUser_BttnBack = new javax.swing.JPanel();
-        CreateUser_lblBttnBack = new javax.swing.JLabel();
-        CreateUser_BttnAdd = new javax.swing.JPanel();
-        CreateUser_lblBttnAdd = new javax.swing.JLabel();
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboxStatusUser = new javax.swing.JComboBox<>();
+        btnCreateUser = new javax.swing.JButton();
+        btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        CreateUserPanel.setMaximumSize(new java.awt.Dimension(1000, 800));
-        CreateUserPanel.setMinimumSize(new java.awt.Dimension(1000, 800));
-        CreateUserPanel.setPreferredSize(new java.awt.Dimension(1000, 800));
+        CreateUserPanel.setMaximumSize(new java.awt.Dimension(800, 600));
+        CreateUserPanel.setMinimumSize(new java.awt.Dimension(800, 600));
+        CreateUserPanel.setPreferredSize(new java.awt.Dimension(800, 600));
         CreateUserPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Up.setBackground(new java.awt.Color(0, 153, 153));
@@ -113,13 +123,14 @@ public class CreateUser extends javax.swing.JFrame {
         CreateUser_lblTittle.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
         CreateUser_lblTittle.setForeground(new java.awt.Color(255, 255, 255));
         CreateUser_lblTittle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        CreateUser_lblTittle.setText("VetSys");
 
         javax.swing.GroupLayout UpLayout = new javax.swing.GroupLayout(Up);
         Up.setLayout(UpLayout);
         UpLayout.setHorizontalGroup(
             UpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(CreateUser_lblTittle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addGroup(UpLayout.createSequentialGroup()
+                .addComponent(CreateUser_lblTittle, javax.swing.GroupLayout.PREFERRED_SIZE, 795, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 205, Short.MAX_VALUE))
         );
         UpLayout.setVerticalGroup(
             UpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,311 +152,200 @@ public class CreateUser extends javax.swing.JFrame {
         CreateUser_lblSubTittle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CreateUser_lblSubTittle.setText("Crear Usuario");
 
-        CreateUser_lblName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        CreateUser_lblName.setText("Nombre");
+        CreateUser_lblName.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        CreateUser_lblName.setText("Nombres *");
 
-        CreateUser_textName.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        CreateUser_textName.setForeground(java.awt.Color.gray);
-        CreateUser_textName.setText("Ingrese su Nombre");
-        CreateUser_textName.setMinimumSize(new java.awt.Dimension(68, 26));
-        CreateUser_textName.setPreferredSize(new java.awt.Dimension(68, 26));
-        CreateUser_textName.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                CreateUser_textNameMousePressed(evt);
-            }
-        });
-        CreateUser_textName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CreateUser_textNameActionPerformed(evt);
-            }
-        });
+        nameUser_field.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        nameUser_field.setForeground(java.awt.Color.gray);
+        nameUser_field.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        nameUser_field.setMinimumSize(new java.awt.Dimension(68, 26));
+        nameUser_field.setPreferredSize(new java.awt.Dimension(68, 26));
 
-        CreateUser_LastName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        CreateUser_LastName.setText("Apellidos");
+        CreateUser_LastName.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        CreateUser_LastName.setText("Apellidos *");
 
-        CreateUser_textLastName.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        CreateUser_textLastName.setForeground(java.awt.Color.gray);
-        CreateUser_textLastName.setText("Ingrese su Apellido");
-        CreateUser_textLastName.setMinimumSize(new java.awt.Dimension(68, 26));
-        CreateUser_textLastName.setPreferredSize(new java.awt.Dimension(68, 26));
-        CreateUser_textLastName.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                CreateUser_textLastNameMousePressed(evt);
-            }
-        });
-        CreateUser_textLastName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CreateUser_textLastNameActionPerformed(evt);
-            }
-        });
+        lastNameUser_field.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lastNameUser_field.setForeground(java.awt.Color.gray);
+        lastNameUser_field.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        lastNameUser_field.setMinimumSize(new java.awt.Dimension(68, 26));
+        lastNameUser_field.setName(""); // NOI18N
+        lastNameUser_field.setPreferredSize(new java.awt.Dimension(68, 26));
 
-        CreateUser_lblPhone.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        CreateUser_lblPhone.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         CreateUser_lblPhone.setText("Telefono");
 
-        CreateUser_textPhone.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        CreateUser_textPhone.setForeground(java.awt.Color.gray);
-        CreateUser_textPhone.setText("Ingrese su Numero de Telefono");
-        CreateUser_textPhone.setMinimumSize(new java.awt.Dimension(68, 26));
-        CreateUser_textPhone.setPreferredSize(new java.awt.Dimension(68, 26));
-        CreateUser_textPhone.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                CreateUser_textPhoneMousePressed(evt);
-            }
-        });
-        CreateUser_textPhone.addActionListener(new java.awt.event.ActionListener() {
+        phoneUser_field.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        phoneUser_field.setForeground(java.awt.Color.gray);
+        phoneUser_field.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        phoneUser_field.setMinimumSize(new java.awt.Dimension(68, 26));
+        phoneUser_field.setPreferredSize(new java.awt.Dimension(68, 26));
+
+        CreateUser_lbl_ID.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        CreateUser_lbl_ID.setText("Documento *");
+
+        documentUser_field.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        documentUser_field.setForeground(java.awt.Color.gray);
+        documentUser_field.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        documentUser_field.setMinimumSize(new java.awt.Dimension(68, 26));
+        documentUser_field.setPreferredSize(new java.awt.Dimension(68, 26));
+
+        CreateUser_lblEmail.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        CreateUser_lblEmail.setText("Correo electronico *");
+
+        emailUser_field.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        emailUser_field.setForeground(java.awt.Color.gray);
+        emailUser_field.setMinimumSize(new java.awt.Dimension(68, 26));
+        emailUser_field.setPreferredSize(new java.awt.Dimension(68, 26));
+
+        CreateUser_lblUsername.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        CreateUser_lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CreateUser_lblUsername.setText("Usuario *");
+
+        usernameUser_field.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        usernameUser_field.setForeground(java.awt.Color.gray);
+        usernameUser_field.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        usernameUser_field.setMinimumSize(new java.awt.Dimension(68, 26));
+        usernameUser_field.setPreferredSize(new java.awt.Dimension(68, 26));
+
+        CreateUser_lblPassword.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        CreateUser_lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CreateUser_lblPassword.setText("Contraseña *");
+
+        passwordUser_psfield.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        passwordUser_psfield.setForeground(java.awt.Color.gray);
+
+        CreateUser_lblRol.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        CreateUser_lblRol.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CreateUser_lblRol.setText("Rol *");
+
+        cboxRoleUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CreateUser_textPhoneActionPerformed(evt);
+                cboxRoleUserActionPerformed(evt);
             }
         });
 
-        CreateUser_lbl_ID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        CreateUser_lbl_ID.setText("Documento");
+        CreateUser_lblStatus.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        CreateUser_lblStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CreateUser_lblStatus.setText("Estado *");
 
-        CreateUser_textID.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        CreateUser_textID.setForeground(java.awt.Color.gray);
-        CreateUser_textID.setText("Ingrese su Numero de Identificacion");
-        CreateUser_textID.setMinimumSize(new java.awt.Dimension(68, 26));
-        CreateUser_textID.setPreferredSize(new java.awt.Dimension(68, 26));
-        CreateUser_textID.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                CreateUser_textIDMousePressed(evt);
-            }
-        });
-        CreateUser_textID.addActionListener(new java.awt.event.ActionListener() {
+        btnCreateUser.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnCreateUser.setForeground(new java.awt.Color(0, 102, 102));
+        btnCreateUser.setText("Crear");
+        btnCreateUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CreateUser_textIDActionPerformed(evt);
+                btnCreateUserActionPerformed(evt);
             }
         });
 
-        CreateUser_lblEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        CreateUser_lblEmail.setText("Correo electronico");
-
-        CreateUser_textEmail.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        CreateUser_textEmail.setForeground(java.awt.Color.gray);
-        CreateUser_textEmail.setText("Ingrese su Direccion de Correo Electronico");
-        CreateUser_textEmail.setMinimumSize(new java.awt.Dimension(68, 26));
-        CreateUser_textEmail.setPreferredSize(new java.awt.Dimension(68, 26));
-        CreateUser_textEmail.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                CreateUser_textEmailMousePressed(evt);
-            }
-        });
-        CreateUser_textEmail.addActionListener(new java.awt.event.ActionListener() {
+        btnExit.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnExit.setForeground(new java.awt.Color(0, 102, 102));
+        btnExit.setText("Salir");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CreateUser_textEmailActionPerformed(evt);
+                btnExitActionPerformed(evt);
             }
         });
-
-        CreateUser_lblUsername.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        CreateUser_lblUsername.setText("Usuario");
-
-        CreateUser_textUsername.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        CreateUser_textUsername.setForeground(java.awt.Color.gray);
-        CreateUser_textUsername.setText("Nombre de Usuario");
-        CreateUser_textUsername.setMinimumSize(new java.awt.Dimension(68, 26));
-        CreateUser_textUsername.setPreferredSize(new java.awt.Dimension(68, 26));
-        CreateUser_textUsername.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                CreateUser_textUsernameMousePressed(evt);
-            }
-        });
-        CreateUser_textUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CreateUser_textUsernameActionPerformed(evt);
-            }
-        });
-
-        CreateUser_lblPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        CreateUser_lblPassword.setText("Contraseña");
-
-        CreateUser_textPassword.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        CreateUser_textPassword.setForeground(java.awt.Color.gray);
-        CreateUser_textPassword.setText("**********");
-        CreateUser_textPassword.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                CreateUser_textPasswordMousePressed(evt);
-            }
-        });
-
-        CreateUser_lblRol.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        CreateUser_lblRol.setText("Rol");
-
-        CreateUser_comboBoxRol.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CreateUser_comboBoxRolActionPerformed(evt);
-            }
-        });
-
-        CreateUser_lblStatus.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        CreateUser_lblStatus.setText("Estado");
-
-        CreateUser_comboBoxStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CreateUser_comboBoxStatusActionPerformed(evt);
-            }
-        });
-
-        CreateUser_BttnBack.setBackground(new java.awt.Color(0, 153, 153));
-        CreateUser_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        CreateUser_lblBttnBack.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
-        CreateUser_lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
-        CreateUser_lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        CreateUser_lblBttnBack.setText("Regresar");
-        CreateUser_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CreateUser_lblBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CreateUser_lblBttnBackMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                CreateUser_lblBttnBackMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                CreateUser_lblBttnBackMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout CreateUser_BttnBackLayout = new javax.swing.GroupLayout(CreateUser_BttnBack);
-        CreateUser_BttnBack.setLayout(CreateUser_BttnBackLayout);
-        CreateUser_BttnBackLayout.setHorizontalGroup(
-            CreateUser_BttnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(CreateUser_lblBttnBack, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
-        );
-        CreateUser_BttnBackLayout.setVerticalGroup(
-            CreateUser_BttnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CreateUser_BttnBackLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(CreateUser_lblBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        CreateUser_BttnAdd.setBackground(new java.awt.Color(0, 153, 153));
-        CreateUser_BttnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        CreateUser_lblBttnAdd.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
-        CreateUser_lblBttnAdd.setForeground(new java.awt.Color(255, 255, 255));
-        CreateUser_lblBttnAdd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        CreateUser_lblBttnAdd.setText("Crear");
-        CreateUser_lblBttnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CreateUser_lblBttnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CreateUser_lblBttnAddMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                CreateUser_lblBttnAddMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                CreateUser_lblBttnAddMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout CreateUser_BttnAddLayout = new javax.swing.GroupLayout(CreateUser_BttnAdd);
-        CreateUser_BttnAdd.setLayout(CreateUser_BttnAddLayout);
-        CreateUser_BttnAddLayout.setHorizontalGroup(
-            CreateUser_BttnAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(CreateUser_lblBttnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-        );
-        CreateUser_BttnAddLayout.setVerticalGroup(
-            CreateUser_BttnAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CreateUser_BttnAddLayout.createSequentialGroup()
-                .addComponent(CreateUser_lblBttnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
 
         javax.swing.GroupLayout DownLayout = new javax.swing.GroupLayout(Down);
         Down.setLayout(DownLayout);
         DownLayout.setHorizontalGroup(
             DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DownLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(CreateUser_textName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CreateUser_textLastName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CreateUser_textPhone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CreateUser_textID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CreateUser_textEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(DownLayout.createSequentialGroup()
-                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CreateUser_lblPhone)
-                            .addComponent(CreateUser_lbl_ID)
-                            .addComponent(CreateUser_lblName)
-                            .addComponent(CreateUser_LastName)
-                            .addComponent(CreateUser_lblEmail))
-                        .addGap(565, 565, 565)))
-                .addGap(41, 41, 41)
-                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CreateUser_lblUsername)
-                    .addComponent(CreateUser_lblPassword)
-                    .addComponent(CreateUser_lblStatus)
-                    .addComponent(CreateUser_lblRol)
-                    .addComponent(CreateUser_textUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CreateUser_textPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CreateUser_comboBoxRol, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CreateUser_comboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44))
             .addComponent(CreateUser_lblSubTittle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(DownLayout.createSequentialGroup()
-                .addGap(167, 167, 167)
-                .addComponent(CreateUser_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(95, 95, 95)
-                .addComponent(CreateUser_BttnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DownLayout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(CreateUser_LastName)
+                            .addComponent(CreateUser_lblPhone)
+                            .addComponent(CreateUser_lbl_ID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(CreateUser_lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(35, 35, 35))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DownLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(CreateUser_lblEmail)
+                        .addGap(13, 13, 13)))
+                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DownLayout.createSequentialGroup()
+                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lastNameUser_field, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nameUser_field, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(phoneUser_field, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(documentUser_field, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emailUser_field, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)
+                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CreateUser_lblPassword)
+                            .addComponent(CreateUser_lblUsername)
+                            .addComponent(CreateUser_lblStatus)
+                            .addComponent(CreateUser_lblRol))
+                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(DownLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(cboxStatusUser, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cboxRoleUser, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(passwordUser_psfield, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DownLayout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(usernameUser_field, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(DownLayout.createSequentialGroup()
+                        .addComponent(btnCreateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(216, Short.MAX_VALUE))
         );
         DownLayout.setVerticalGroup(
             DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DownLayout.createSequentialGroup()
                 .addComponent(CreateUser_lblSubTittle, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
-                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(DownLayout.createSequentialGroup()
+                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CreateUser_lblName)
+                            .addComponent(nameUser_field, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CreateUser_LastName)
+                            .addComponent(lastNameUser_field, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(phoneUser_field, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CreateUser_lblPhone)))
                     .addGroup(DownLayout.createSequentialGroup()
                         .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(DownLayout.createSequentialGroup()
-                                .addGap(94, 94, 94)
-                                .addComponent(CreateUser_textPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(DownLayout.createSequentialGroup()
-                                .addComponent(CreateUser_lblUsername)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CreateUser_textUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CreateUser_lblPassword)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CreateUser_lblStatus)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CreateUser_comboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CreateUser_lblRol)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CreateUser_comboBoxRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DownLayout.createSequentialGroup()
-                        .addComponent(CreateUser_lblName)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CreateUser_textName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CreateUser_LastName)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CreateUser_textLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CreateUser_lblPhone)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CreateUser_textPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CreateUser_lbl_ID)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CreateUser_textID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CreateUser_lblEmail)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CreateUser_textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(115, 115, 115)
-                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CreateUser_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CreateUser_BttnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(100, Short.MAX_VALUE))
+                            .addComponent(CreateUser_lblUsername)
+                            .addComponent(usernameUser_field, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(11, 11, 11)
+                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CreateUser_lblPassword)
+                            .addComponent(passwordUser_psfield, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CreateUser_lblStatus, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cboxStatusUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(12, 12, 12)
+                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(documentUser_field, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CreateUser_lbl_ID)
+                    .addComponent(CreateUser_lblRol)
+                    .addComponent(cboxRoleUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(emailUser_field, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CreateUser_lblEmail))
+                .addGap(108, 108, 108)
+                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCreateUser)
+                    .addComponent(btnExit))
+                .addGap(229, 229, 229))
         );
 
         CreateUser_lblName.getAccessibleContext().setAccessibleDescription("lblName");
 
-        CreateUserPanel.add(Down, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1000, 700));
+        CreateUserPanel.add(Down, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 800, 510));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -458,92 +358,43 @@ public class CreateUser extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(CreateUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(CreateUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CreateUser_textEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateUser_textEmailActionPerformed
+    private void cboxRoleUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxRoleUserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CreateUser_textEmailActionPerformed
-
-    private void CreateUser_textIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateUser_textIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CreateUser_textIDActionPerformed
-
-    private void CreateUser_textPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateUser_textPhoneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CreateUser_textPhoneActionPerformed
-
-    private void CreateUser_textLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateUser_textLastNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CreateUser_textLastNameActionPerformed
-
-    private void CreateUser_textNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateUser_textNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CreateUser_textNameActionPerformed
-
-    private void CreateUser_textUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateUser_textUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CreateUser_textUsernameActionPerformed
-
-    private void CreateUser_comboBoxRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateUser_comboBoxRolActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CreateUser_comboBoxRolActionPerformed
-
-    private void CreateUser_comboBoxStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateUser_comboBoxStatusActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CreateUser_comboBoxStatusActionPerformed
-
-    private void CreateUser_lblBttnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_lblBttnBackMouseEntered
-        CreateUser_BttnBack.setBackground(Color.LIGHT_GRAY);
-    }//GEN-LAST:event_CreateUser_lblBttnBackMouseEntered
-
-    private void CreateUser_lblBttnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_lblBttnBackMouseExited
-        CreateUser_BttnBack.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_CreateUser_lblBttnBackMouseExited
-
-    private void CreateUser_lblBttnAddMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_lblBttnAddMouseEntered
-        CreateUser_BttnAdd.setBackground(Color.LIGHT_GRAY);
-    }//GEN-LAST:event_CreateUser_lblBttnAddMouseEntered
-
-    private void CreateUser_lblBttnAddMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_lblBttnAddMouseExited
-        CreateUser_BttnAdd.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_CreateUser_lblBttnAddMouseExited
-
-    private void CreateUser_lblBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_lblBttnBackMouseClicked
-        //siempre que se llame al MenuManager, hacerlo con el constructor con parametro de logUser
-        UsersMenu MenuManagerFrame = new UsersMenu(logUser);  
-        MenuManagerFrame.setVisible(true);
-        MenuManagerFrame.pack();
-        MenuManagerFrame.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_CreateUser_lblBttnBackMouseClicked
-
-    private void CreateUser_lblBttnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_lblBttnAddMouseClicked
-        String name_user = CreateUser_textName.getText();
-        String last_name = CreateUser_textLastName.getText();
-        String phone = CreateUser_textPhone.getText();
-        String document = CreateUser_textID.getText();
-        String email = CreateUser_textEmail.getText();
-        String username = CreateUser_textUsername.getText();
-        String password = CreateUser_textPassword.getText();
+    }//GEN-LAST:event_cboxRoleUserActionPerformed
+    
+    
+    ///btn crear usuario
+    private void btnCreateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateUserActionPerformed
+        String name_user = nameUser_field.getText();
+        String last_name = lastNameUser_field.getText();
+        String phone = phoneUser_field.getText();
+        String document = documentUser_field.getText();
+        String email = emailUser_field.getText();
+        String username = usernameUser_field.getText();
+        String password = passwordUser_psfield.getText();
         
-        Role r = (Role) CreateUser_comboBoxRol.getSelectedItem();
-        if(r == null){JOptionPane.showMessageDialog(this, "Debe seleccionar un rol");return;}
-                     
-        Status s = (Status) CreateUser_comboBoxStatus.getSelectedItem();
-        if(s == null){JOptionPane.showMessageDialog(this, "Debe seleccionar un estado");return;}
+        Role r = (Role) cboxRoleUser.getSelectedItem();
+        Status s = (Status) cboxStatusUser.getSelectedItem();
         
-        // Validaciones simples
-        if (name_user.isEmpty() || last_name.isEmpty() || document.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty()) 
+        // Validaciones de campos obligatorios
+        if (name_user.isEmpty() || document.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty() ||
+            cboxRoleUser.getSelectedIndex()== -1 || cboxStatusUser.getSelectedIndex() == -1) 
         {
-            JOptionPane.showMessageDialog(this, "Por favor completa todos los campos obligatorios");
+            JOptionPane.showMessageDialog(this, "Completa los campos obligatorios *","ATENCIÓN",JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
+        if(passwordUser_psfield.getText().length() < 6)
+        {
+            JOptionPane.showMessageDialog(this, "La contraseña debe tener al menos 6 caracteres","ATENCIÓN",JOptionPane.WARNING_MESSAGE);
+            return;
+        }  
         User user = new User();
         user.setName_user(name_user);
         user.setLast_name(last_name);
@@ -554,240 +405,45 @@ public class CreateUser extends javax.swing.JFrame {
         user.setPassword(password);
         user.setId_role(r.getId());   ///se actualizan los roles con el id y el nombre en el combobox
         user.setName_role(r.getName());
-        user.setId_status(s.getId());
+            user.setId_status(s.getId());
         user.setName_status(s.getName());
         user.setId_clinic(logUser.getId_clinic());
         
-       
-        // Llamar al DAO
         project.vetsys.dao.UserDAO userDAO = new project.vetsys.dao.UserDAO();
         boolean success = userDAO.Create(user);
 
         if (success) {
             javax.swing.JOptionPane.showMessageDialog(this, "Usuario creado correctamente");
-            CreateUser_textUsername.setText("");
-            CreateUser_textPassword.setText("");
+            emptyFields();
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "Error al crear el usuario. Revisa los datos o la conexión.");
         }
-    }//GEN-LAST:event_CreateUser_lblBttnAddMouseClicked
+    }//GEN-LAST:event_btnCreateUserActionPerformed
 
-    private void CreateUser_textUsernameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_textUsernameMousePressed
-        if (CreateUser_textUsername.getText().equals("Nombre de Usuario")){
-            CreateUser_textUsername.setText("");
-            CreateUser_textUsername.setForeground(Color.black);
-        }
-        if (CreateUser_textName.getText().isEmpty()){
-            CreateUser_textName.setText("Ingrese su Nombre");
-            CreateUser_textName.setForeground(Color.gray);
-        }
-        if (CreateUser_textLastName.getText().isEmpty()){
-            CreateUser_textLastName.setText("Ingrese su Apellido");
-            CreateUser_textLastName.setForeground(Color.gray);
-        }
-        if (CreateUser_textPhone.getText().isEmpty()){
-            CreateUser_textPhone.setText("Ingrese su Numero de Telefono");
-            CreateUser_textPhone.setForeground(Color.gray);
-        }
-        if (CreateUser_textID.getText().isEmpty()){
-            CreateUser_textID.setText("Ingrese su Numero de Identificacion");
-            CreateUser_textID.setForeground(Color.gray);
-        }
-        if (CreateUser_textEmail.getText().isEmpty()){
-            CreateUser_textEmail.setText("Ingrese su Direccion de Correo Electronico");
-            CreateUser_textEmail.setForeground(Color.gray);
-        }
-        if (String.valueOf(CreateUser_textPassword.getPassword()).isEmpty()){
-            CreateUser_textPassword.setText("**********");
-            CreateUser_textPassword.setForeground(Color.gray);
-        }
-    }//GEN-LAST:event_CreateUser_textUsernameMousePressed
-
-    private void CreateUser_textEmailMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_textEmailMousePressed
-        if (CreateUser_textEmail.getText().equals("Ingrese su Direccion de Correo Electronico")){
-            CreateUser_textEmail.setText("");
-            CreateUser_textEmail.setForeground(Color.black);
-        }
-        if (CreateUser_textName.getText().isEmpty()){
-            CreateUser_textName.setText("Ingrese su Nombre");
-            CreateUser_textName.setForeground(Color.gray);
-        }
-        if (CreateUser_textLastName.getText().isEmpty()){
-            CreateUser_textLastName.setText("Ingrese su Apellido");
-            CreateUser_textLastName.setForeground(Color.gray);
-        }
-        if (CreateUser_textPhone.getText().isEmpty()){
-            CreateUser_textPhone.setText("Ingrese su Numero de Telefono");
-            CreateUser_textPhone.setForeground(Color.gray);
-        }
-        if (CreateUser_textID.getText().isEmpty()){
-            CreateUser_textID.setText("Ingrese su Numero de Identificacion");
-            CreateUser_textID.setForeground(Color.gray);
-        }
-        if (CreateUser_textUsername.getText().isEmpty()){
-            CreateUser_textUsername.setText("Nombre de Usuario");
-            CreateUser_textUsername.setForeground(Color.gray);
-        }
-        if (String.valueOf(CreateUser_textPassword.getPassword()).isEmpty()){
-            CreateUser_textPassword.setText("**********");
-            CreateUser_textPassword.setForeground(Color.gray);
-        }
-    }//GEN-LAST:event_CreateUser_textEmailMousePressed
-
-    private void CreateUser_textIDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_textIDMousePressed
-        if (CreateUser_textID.getText().equals("Ingrese su Numero de Identificacion")){
-            CreateUser_textID.setText("");
-            CreateUser_textID.setForeground(Color.black);
-        }
-        if (CreateUser_textName.getText().isEmpty()){
-            CreateUser_textName.setText("Ingrese su Nombre");
-            CreateUser_textName.setForeground(Color.gray);
-        }
-        if (CreateUser_textLastName.getText().isEmpty()){
-            CreateUser_textLastName.setText("Ingrese su Apellido");
-            CreateUser_textLastName.setForeground(Color.gray);
-        }
-        if (CreateUser_textPhone.getText().isEmpty()){
-            CreateUser_textPhone.setText("Ingrese su Numero de Telefono");
-            CreateUser_textPhone.setForeground(Color.gray);
-        }
-        if (CreateUser_textEmail.getText().isEmpty()){
-            CreateUser_textEmail.setText("Ingrese su Direccion de Correo Electronico");
-            CreateUser_textEmail.setForeground(Color.gray);
-        }
-        if (CreateUser_textUsername.getText().isEmpty()){
-            CreateUser_textUsername.setText("Nombre de Usuario");
-            CreateUser_textUsername.setForeground(Color.gray);
-        }
-        if (String.valueOf(CreateUser_textPassword.getPassword()).isEmpty()){
-            CreateUser_textPassword.setText("**********");
-            CreateUser_textPassword.setForeground(Color.gray);
-        }
-    }//GEN-LAST:event_CreateUser_textIDMousePressed
-
-    private void CreateUser_textPhoneMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_textPhoneMousePressed
-        if (CreateUser_textPhone.getText().equals("Ingrese su Numero de Telefono")){
-            CreateUser_textPhone.setText("");
-            CreateUser_textPhone.setForeground(Color.black);
-        }
-        if (CreateUser_textName.getText().isEmpty()){
-            CreateUser_textName.setText("Ingrese su Nombre");
-            CreateUser_textName.setForeground(Color.gray);
-        }
-        if (CreateUser_textLastName.getText().isEmpty()){
-            CreateUser_textLastName.setText("Ingrese su Apellido");
-            CreateUser_textLastName.setForeground(Color.gray);
-        }
-        if (CreateUser_textID.getText().isEmpty()){
-            CreateUser_textID.setText("Ingrese su Numero de Identificacion");
-            CreateUser_textID.setForeground(Color.gray);
-        }
-        if (CreateUser_textEmail.getText().isEmpty()){
-            CreateUser_textEmail.setText("Ingrese su Direccion de Correo Electronico");
-            CreateUser_textEmail.setForeground(Color.gray);
-        }
-        if (CreateUser_textUsername.getText().isEmpty()){
-            CreateUser_textUsername.setText("Nombre de Usuario");
-            CreateUser_textUsername.setForeground(Color.gray);
-        }
-        if (String.valueOf(CreateUser_textPassword.getPassword()).isEmpty()){
-            CreateUser_textPassword.setText("**********");
-            CreateUser_textPassword.setForeground(Color.gray);
-        }
-    }//GEN-LAST:event_CreateUser_textPhoneMousePressed
-
-    private void CreateUser_textLastNameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_textLastNameMousePressed
-        if (CreateUser_textLastName.getText().equals("Ingrese su Apellido")){
-            CreateUser_textLastName.setText("");
-            CreateUser_textLastName.setForeground(Color.black);
-        }
-        if (CreateUser_textName.getText().isEmpty()){
-            CreateUser_textName.setText("Ingrese su Nombre");
-            CreateUser_textName.setForeground(Color.gray);
-        }
-        if (CreateUser_textPhone.getText().isEmpty()){
-            CreateUser_textPhone.setText("Ingrese su Numero de Telefono");
-            CreateUser_textPhone.setForeground(Color.gray);
-        }
-        if (CreateUser_textID.getText().isEmpty()){
-            CreateUser_textID.setText("Ingrese su Numero de Identificacion");
-            CreateUser_textID.setForeground(Color.gray);
-        }
-        if (CreateUser_textEmail.getText().isEmpty()){
-            CreateUser_textEmail.setText("Ingrese su Direccion de Correo Electronico");
-            CreateUser_textEmail.setForeground(Color.gray);
-        }
-        if (CreateUser_textUsername.getText().isEmpty()){
-            CreateUser_textUsername.setText("Nombre de Usuario");
-            CreateUser_textUsername.setForeground(Color.gray);
-        }
-        if (String.valueOf(CreateUser_textPassword.getPassword()).isEmpty()){
-            CreateUser_textPassword.setText("**********");
-            CreateUser_textPassword.setForeground(Color.gray);
-        }
-    }//GEN-LAST:event_CreateUser_textLastNameMousePressed
-
-    private void CreateUser_textNameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_textNameMousePressed
-        if (CreateUser_textName.getText().equals("Ingrese su Nombre")){
-            CreateUser_textName.setText("");
-            CreateUser_textName.setForeground(Color.black);
-        }
-        if (CreateUser_textLastName.getText().isEmpty()){
-            CreateUser_textLastName.setText("Ingrese su Apellido");
-            CreateUser_textLastName.setForeground(Color.gray);
-        }
-        if (CreateUser_textPhone.getText().isEmpty()){
-            CreateUser_textPhone.setText("Ingrese su Numero de Telefono");
-            CreateUser_textPhone.setForeground(Color.gray);
-        }
-        if (CreateUser_textID.getText().isEmpty()){
-            CreateUser_textID.setText("Ingrese su Numero de Identificacion");
-            CreateUser_textID.setForeground(Color.gray);
-        }
-        if (CreateUser_textEmail.getText().isEmpty()){
-            CreateUser_textEmail.setText("Ingrese su Direccion de Correo Electronico");
-            CreateUser_textEmail.setForeground(Color.gray);
-        }
-        if (CreateUser_textUsername.getText().isEmpty()){
-            CreateUser_textUsername.setText("Nombre de Usuario");
-            CreateUser_textUsername.setForeground(Color.gray);
-        }
-        if (String.valueOf(CreateUser_textPassword.getPassword()).isEmpty()){
-            CreateUser_textPassword.setText("**********");
-            CreateUser_textPassword.setForeground(Color.gray);
-        }
-    }//GEN-LAST:event_CreateUser_textNameMousePressed
-
-    private void CreateUser_textPasswordMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_textPasswordMousePressed
-        if (String.valueOf(CreateUser_textPassword.getPassword()).equals("**********")){
-            CreateUser_textPassword.setText("");
-            CreateUser_textPassword.setForeground(Color.black);
-        }
-        if (CreateUser_textName.getText().isEmpty()){
-            CreateUser_textName.setText("Ingrese su Nombre");
-            CreateUser_textName.setForeground(Color.gray);
-        }
-        if (CreateUser_textLastName.getText().isEmpty()){
-            CreateUser_textLastName.setText("Ingrese su Apellido");
-            CreateUser_textLastName.setForeground(Color.gray);
-        }
-        if (CreateUser_textPhone.getText().isEmpty()){
-            CreateUser_textPhone.setText("Ingrese su Numero de Telefono");
-            CreateUser_textPhone.setForeground(Color.gray);
-        }
-        if (CreateUser_textID.getText().isEmpty()){
-            CreateUser_textID.setText("Ingrese su Numero de Identificacion");
-            CreateUser_textID.setForeground(Color.gray);
-        }
-        if (CreateUser_textEmail.getText().isEmpty()){
-            CreateUser_textEmail.setText("Ingrese su Direccion de Correo Electronico");
-            CreateUser_textEmail.setForeground(Color.gray);
-        }
-        if (CreateUser_textUsername.getText().isEmpty()){
-            CreateUser_textUsername.setText("Nombre de Usuario");
-            CreateUser_textUsername.setForeground(Color.gray);
-        }
-    }//GEN-LAST:event_CreateUser_textPasswordMousePressed
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        ///validar si hay campos con información antes de salir
+        if(!nameUser_field.getText().isEmpty() || !lastNameUser_field.getText().isEmpty()|| !documentUser_field.getText().isEmpty() ||
+            !emailUser_field.getText().isEmpty() || !usernameUser_field.getText().isEmpty() || !passwordUser_psfield.getText().isEmpty()){
+            String messageConfirm = "¿Desea cancelar la creación del usuario?";
+            String title = "CONFIRMACIÓN";
+            int confirm = utils.validation(messageConfirm, title);
+            if(confirm ==1){
+                //siempre que se llame al MenuManager, hacerlo con el constructor con parametro de logUser
+                UsersMenu MenuManagerFrame = new UsersMenu(logUser);  
+                MenuManagerFrame.setVisible(true);
+                MenuManagerFrame.pack();
+                MenuManagerFrame.setLocationRelativeTo(null);
+                this.dispose();
+            }   
+        }else
+        {
+            UsersMenu MenuManagerFrame = new UsersMenu(logUser);  
+            MenuManagerFrame.setVisible(true);
+            MenuManagerFrame.pack();
+            MenuManagerFrame.setLocationRelativeTo(null);
+            this.dispose();
+        }   
+    }//GEN-LAST:event_btnExitActionPerformed
 
     
     public static void main(String args[]) {
@@ -796,13 +452,7 @@ public class CreateUser extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CreateUserPanel;
-    private javax.swing.JPanel CreateUser_BttnAdd;
-    private javax.swing.JPanel CreateUser_BttnBack;
     private javax.swing.JLabel CreateUser_LastName;
-    private javax.swing.JComboBox<Role> CreateUser_comboBoxRol;
-    private javax.swing.JComboBox<Status> CreateUser_comboBoxStatus;
-    private javax.swing.JLabel CreateUser_lblBttnAdd;
-    private javax.swing.JLabel CreateUser_lblBttnBack;
     private javax.swing.JLabel CreateUser_lblEmail;
     private javax.swing.JLabel CreateUser_lblName;
     private javax.swing.JLabel CreateUser_lblPassword;
@@ -813,15 +463,18 @@ public class CreateUser extends javax.swing.JFrame {
     private javax.swing.JLabel CreateUser_lblTittle;
     private javax.swing.JLabel CreateUser_lblUsername;
     private javax.swing.JLabel CreateUser_lbl_ID;
-    private javax.swing.JTextField CreateUser_textEmail;
-    private javax.swing.JTextField CreateUser_textID;
-    private javax.swing.JTextField CreateUser_textLastName;
-    private javax.swing.JTextField CreateUser_textName;
-    private javax.swing.JPasswordField CreateUser_textPassword;
-    private javax.swing.JTextField CreateUser_textPhone;
-    private javax.swing.JTextField CreateUser_textUsername;
     private javax.swing.JPanel Down;
     private javax.swing.JPanel Up;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton btnCreateUser;
+    private javax.swing.JButton btnExit;
+    private javax.swing.JComboBox<Role> cboxRoleUser;
+    private javax.swing.JComboBox<Status> cboxStatusUser;
+    private javax.swing.JTextField documentUser_field;
+    private javax.swing.JTextField emailUser_field;
+    private javax.swing.JTextField lastNameUser_field;
+    private javax.swing.JTextField nameUser_field;
+    private javax.swing.JPasswordField passwordUser_psfield;
+    private javax.swing.JTextField phoneUser_field;
+    private javax.swing.JTextField usernameUser_field;
     // End of variables declaration//GEN-END:variables
 }
