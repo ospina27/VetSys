@@ -64,6 +64,8 @@ replay_pid*
 # 🗃️ BASES DE DATOS Y RESPALDOS
 # ============================================
 *.sql
+!src/database/
+!src/database/*.sql
 *.db
 *.dump
 *.backup
