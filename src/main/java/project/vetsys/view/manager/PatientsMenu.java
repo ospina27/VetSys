@@ -16,6 +16,7 @@ public class PatientsMenu extends javax.swing.JFrame {
         {
             MenuUsers_BttnAddUsers.setVisible(false);
         }
+        setTitle(logUser.getClinic().getName_clinic());
     }
 
     public PatientsMenu() {
@@ -42,11 +43,14 @@ public class PatientsMenu extends javax.swing.JFrame {
         MenuUsers_lblBttnSearchPet = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1000, 800));
+        setMaximumSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        setResizable(false);
 
-        MenuUsersPanel.setMaximumSize(new java.awt.Dimension(1000, 800));
-        MenuUsersPanel.setMinimumSize(new java.awt.Dimension(1000, 800));
-        MenuUsersPanel.setPreferredSize(new java.awt.Dimension(1000, 800));
+        MenuUsersPanel.setMaximumSize(new java.awt.Dimension(800, 600));
+        MenuUsersPanel.setMinimumSize(new java.awt.Dimension(800, 600));
+        MenuUsersPanel.setPreferredSize(new java.awt.Dimension(800, 600));
         MenuUsersPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Left.setBackground(new java.awt.Color(0, 153, 153));
@@ -62,7 +66,9 @@ public class PatientsMenu extends javax.swing.JFrame {
         Left.setLayout(LeftLayout);
         LeftLayout.setHorizontalGroup(
             LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MenuUsers_lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addGroup(LeftLayout.createSequentialGroup()
+                .addComponent(MenuUsers_lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         LeftLayout.setVerticalGroup(
             LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -74,11 +80,12 @@ public class PatientsMenu extends javax.swing.JFrame {
         MenuUsersPanel.add(Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         Right.setBackground(new java.awt.Color(255, 255, 255));
-        Right.setMaximumSize(new java.awt.Dimension(500, 800));
-        Right.setMinimumSize(new java.awt.Dimension(500, 800));
+        Right.setMaximumSize(new java.awt.Dimension(500, 600));
+        Right.setMinimumSize(new java.awt.Dimension(500, 600));
+        Right.setPreferredSize(new java.awt.Dimension(500, 600));
 
         MenuUsers_BttnAddUsers.setBackground(new java.awt.Color(0, 153, 153));
-        MenuUsers_BttnAddUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuUsers_BttnAddUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuUsers_BttnAddUsers.setMaximumSize(new java.awt.Dimension(140, 40));
         MenuUsers_BttnAddUsers.setMinimumSize(new java.awt.Dimension(140, 40));
         MenuUsers_BttnAddUsers.setPreferredSize(new java.awt.Dimension(140, 40));
@@ -87,7 +94,7 @@ public class PatientsMenu extends javax.swing.JFrame {
         MenuUsers_lblBttnAddUsers.setForeground(new java.awt.Color(255, 255, 255));
         MenuUsers_lblBttnAddUsers.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuUsers_lblBttnAddUsers.setText("Registrar Cliente");
-        MenuUsers_lblBttnAddUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuUsers_lblBttnAddUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuUsers_lblBttnAddUsers.setMaximumSize(new java.awt.Dimension(140, 40));
         MenuUsers_lblBttnAddUsers.setMinimumSize(new java.awt.Dimension(140, 40));
         MenuUsers_lblBttnAddUsers.setPreferredSize(new java.awt.Dimension(140, 40));
@@ -115,7 +122,7 @@ public class PatientsMenu extends javax.swing.JFrame {
         );
 
         MenuUsers_BttnSearchUsers.setBackground(new java.awt.Color(0, 153, 153));
-        MenuUsers_BttnSearchUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuUsers_BttnSearchUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuUsers_BttnSearchUsers.setMaximumSize(new java.awt.Dimension(140, 40));
         MenuUsers_BttnSearchUsers.setMinimumSize(new java.awt.Dimension(140, 40));
         MenuUsers_BttnSearchUsers.setPreferredSize(new java.awt.Dimension(140, 40));
@@ -124,7 +131,7 @@ public class PatientsMenu extends javax.swing.JFrame {
         MenuUsers_lblBttnSearchUsers.setForeground(new java.awt.Color(255, 255, 255));
         MenuUsers_lblBttnSearchUsers.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuUsers_lblBttnSearchUsers.setText("Consultar Cliente");
-        MenuUsers_lblBttnSearchUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuUsers_lblBttnSearchUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuUsers_lblBttnSearchUsers.setMaximumSize(new java.awt.Dimension(140, 40));
         MenuUsers_lblBttnSearchUsers.setMinimumSize(new java.awt.Dimension(140, 40));
         MenuUsers_lblBttnSearchUsers.setPreferredSize(new java.awt.Dimension(140, 40));
@@ -154,14 +161,19 @@ public class PatientsMenu extends javax.swing.JFrame {
         );
 
         MenuUsers_BttnBack.setBackground(new java.awt.Color(0, 153, 153));
-        MenuUsers_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MenuUsers_BttnBack.setPreferredSize(new java.awt.Dimension(126, 35));
+        MenuUsers_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuUsers_BttnBack.setMaximumSize(new java.awt.Dimension(140, 40));
+        MenuUsers_BttnBack.setMinimumSize(new java.awt.Dimension(140, 40));
+        MenuUsers_BttnBack.setPreferredSize(new java.awt.Dimension(140, 40));
 
         MenuUsers_lblBttnBack.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         MenuUsers_lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
         MenuUsers_lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuUsers_lblBttnBack.setText("Regresar");
-        MenuUsers_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuUsers_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuUsers_lblBttnBack.setMaximumSize(new java.awt.Dimension(140, 40));
+        MenuUsers_lblBttnBack.setMinimumSize(new java.awt.Dimension(140, 40));
+        MenuUsers_lblBttnBack.setPreferredSize(new java.awt.Dimension(140, 40));
         MenuUsers_lblBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuUsers_lblBttnBackMouseClicked(evt);
@@ -178,7 +190,9 @@ public class PatientsMenu extends javax.swing.JFrame {
         MenuUsers_BttnBack.setLayout(MenuUsers_BttnBackLayout);
         MenuUsers_BttnBackLayout.setHorizontalGroup(
             MenuUsers_BttnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MenuUsers_lblBttnBack, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+            .addGroup(MenuUsers_BttnBackLayout.createSequentialGroup()
+                .addComponent(MenuUsers_lblBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 3, Short.MAX_VALUE))
         );
         MenuUsers_BttnBackLayout.setVerticalGroup(
             MenuUsers_BttnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,14 +200,14 @@ public class PatientsMenu extends javax.swing.JFrame {
         );
 
         MenuUsers_BttnRegisterPet.setBackground(new java.awt.Color(0, 153, 153));
-        MenuUsers_BttnRegisterPet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuUsers_BttnRegisterPet.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuUsers_BttnRegisterPet.setPreferredSize(new java.awt.Dimension(126, 35));
 
         MenuUsers_lblBttnRegisterPet.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         MenuUsers_lblBttnRegisterPet.setForeground(new java.awt.Color(255, 255, 255));
         MenuUsers_lblBttnRegisterPet.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuUsers_lblBttnRegisterPet.setText("Registrar Mascota");
-        MenuUsers_lblBttnRegisterPet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuUsers_lblBttnRegisterPet.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuUsers_lblBttnRegisterPet.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuUsers_lblBttnRegisterPetMouseClicked(evt);
@@ -218,14 +232,16 @@ public class PatientsMenu extends javax.swing.JFrame {
         );
 
         MenuUsers_BttnSearchPet.setBackground(new java.awt.Color(0, 153, 153));
-        MenuUsers_BttnSearchPet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MenuUsers_BttnSearchPet.setPreferredSize(new java.awt.Dimension(126, 35));
+        MenuUsers_BttnSearchPet.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuUsers_BttnSearchPet.setMaximumSize(new java.awt.Dimension(140, 40));
+        MenuUsers_BttnSearchPet.setMinimumSize(new java.awt.Dimension(140, 40));
+        MenuUsers_BttnSearchPet.setPreferredSize(new java.awt.Dimension(140, 40));
 
         MenuUsers_lblBttnSearchPet.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         MenuUsers_lblBttnSearchPet.setForeground(new java.awt.Color(255, 255, 255));
         MenuUsers_lblBttnSearchPet.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuUsers_lblBttnSearchPet.setText("Consultar Mascota");
-        MenuUsers_lblBttnSearchPet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuUsers_lblBttnSearchPet.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuUsers_lblBttnSearchPet.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuUsers_lblBttnSearchPetMouseClicked(evt);
@@ -256,34 +272,34 @@ public class PatientsMenu extends javax.swing.JFrame {
             .addGroup(RightLayout.createSequentialGroup()
                 .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(RightLayout.createSequentialGroup()
-                        .addGap(131, 131, 131)
+                        .addGap(63, 63, 63)
                         .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(MenuUsers_BttnAddUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(MenuUsers_BttnSearchUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
                             .addComponent(MenuUsers_BttnRegisterPet, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
                             .addComponent(MenuUsers_BttnSearchPet, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)))
                     .addGroup(RightLayout.createSequentialGroup()
-                        .addGap(203, 203, 203)
-                        .addComponent(MenuUsers_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(283, Short.MAX_VALUE))
+                        .addGap(64, 64, 64)
+                        .addComponent(MenuUsers_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(280, 280, 280))
         );
         RightLayout.setVerticalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RightLayout.createSequentialGroup()
-                .addContainerGap(127, Short.MAX_VALUE)
+                .addGap(60, 60, 60)
                 .addComponent(MenuUsers_BttnAddUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87)
+                .addGap(45, 45, 45)
                 .addComponent(MenuUsers_BttnSearchUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87)
+                .addGap(45, 45, 45)
                 .addComponent(MenuUsers_BttnRegisterPet, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addGap(45, 45, 45)
                 .addComponent(MenuUsers_BttnSearchPet, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93)
+                .addGap(45, 45, 45)
                 .addComponent(MenuUsers_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(126, 126, 126))
+                .addGap(120, 120, 120))
         );
 
-        MenuUsersPanel.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, -1, -1));
+        MenuUsersPanel.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(411, 0, 390, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

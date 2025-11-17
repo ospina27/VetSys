@@ -107,8 +107,11 @@ public class CreateUser extends javax.swing.JFrame {
         cboxStatusUser = new javax.swing.JComboBox<>();
         btnCreateUser = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+        bttonEmptyFields_pet = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(800, 600));
+        setResizable(false);
 
         CreateUserPanel.setMaximumSize(new java.awt.Dimension(800, 600));
         CreateUserPanel.setMinimumSize(new java.awt.Dimension(800, 600));
@@ -139,12 +142,12 @@ public class CreateUser extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        CreateUserPanel.add(Up, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 60));
+        CreateUserPanel.add(Up, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
 
         Down.setBackground(new java.awt.Color(255, 255, 255));
-        Down.setMaximumSize(new java.awt.Dimension(1000, 700));
-        Down.setMinimumSize(new java.awt.Dimension(1000, 700));
-        Down.setPreferredSize(new java.awt.Dimension(1000, 700));
+        Down.setMaximumSize(new java.awt.Dimension(800, 600));
+        Down.setMinimumSize(new java.awt.Dimension(800, 600));
+        Down.setPreferredSize(new java.awt.Dimension(800, 600));
 
         CreateUser_lblSubTittle.setBackground(new java.awt.Color(255, 255, 255));
         CreateUser_lblSubTittle.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
@@ -246,6 +249,15 @@ public class CreateUser extends javax.swing.JFrame {
             }
         });
 
+        bttonEmptyFields_pet.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        bttonEmptyFields_pet.setForeground(new java.awt.Color(0, 102, 102));
+        bttonEmptyFields_pet.setText("Limpiar");
+        bttonEmptyFields_pet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttonEmptyFields_petActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout DownLayout = new javax.swing.GroupLayout(Down);
         Down.setLayout(DownLayout);
         DownLayout.setHorizontalGroup(
@@ -289,12 +301,15 @@ public class CreateUser extends javax.swing.JFrame {
                                     .addComponent(passwordUser_psfield, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DownLayout.createSequentialGroup()
                                 .addGap(11, 11, 11)
-                                .addComponent(usernameUser_field, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(usernameUser_field, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(16, Short.MAX_VALUE))
                     .addGroup(DownLayout.createSequentialGroup()
                         .addComponent(btnCreateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(216, Short.MAX_VALUE))
+                        .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bttonEmptyFields_pet, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(109, 109, 109))))
         );
         DownLayout.setVerticalGroup(
             DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,13 +354,14 @@ public class CreateUser extends javax.swing.JFrame {
                 .addGap(108, 108, 108)
                 .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreateUser)
-                    .addComponent(btnExit))
+                    .addComponent(btnExit)
+                    .addComponent(bttonEmptyFields_pet))
                 .addGap(229, 229, 229))
         );
 
         CreateUser_lblName.getAccessibleContext().setAccessibleDescription("lblName");
 
-        CreateUserPanel.add(Down, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 800, 510));
+        CreateUserPanel.add(Down, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 800, 540));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -359,7 +375,7 @@ public class CreateUser extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(CreateUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -445,6 +461,10 @@ public class CreateUser extends javax.swing.JFrame {
         }   
     }//GEN-LAST:event_btnExitActionPerformed
 
+    private void bttonEmptyFields_petActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttonEmptyFields_petActionPerformed
+        emptyFields();
+    }//GEN-LAST:event_bttonEmptyFields_petActionPerformed
+
     
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new CreateUser().setVisible(true));
@@ -467,6 +487,7 @@ public class CreateUser extends javax.swing.JFrame {
     private javax.swing.JPanel Up;
     private javax.swing.JButton btnCreateUser;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton bttonEmptyFields_pet;
     private javax.swing.JComboBox<Role> cboxRoleUser;
     private javax.swing.JComboBox<Status> cboxStatusUser;
     private javax.swing.JTextField documentUser_field;

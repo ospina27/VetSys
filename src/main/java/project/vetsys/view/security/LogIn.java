@@ -14,11 +14,12 @@ public class LogIn extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LogIn.class.getName());
 
     public LogIn() {
-        initComponents();
         Nimbus.LookandFeel();
+        initComponents();
         Nimbus.styleAllTextFields(this);
         Nimbus.styleLabel(LogInPanel_lblUsername);
         Nimbus.styleLabel(LogInPanel_lblPassword);
+        setTitle("VET SYS");
         //Nimbus.styleAllLabelsExcept(this, LogInPanel_lblTittle);
        
     }

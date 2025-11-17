@@ -101,13 +101,35 @@ public class Nimbus {
     
     ///estilo para los text field
     public static void styleTextField(JTextField textField) {
-        textField.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-        textField.setBackground(Color.WHITE);
-        textField.setForeground(new Color(50, 50, 50));
-        textField.setCaretColor(new Color(57, 105, 172)); // color del cursor
-        textField.setBorder(BorderFactory.createCompoundBorder(
+        textField.setFont(new Font("Arial", Font.PLAIN, 12)); //fuente
+        textField.setPreferredSize(new Dimension(160, 30)); 
+        textField.setBackground(new Color(250, 250, 250)); ///fondo suave 
+        textField.setForeground(new Color(32, 32, 32)); ///color del texto 
+        textField.setCaretColor(new Color(0, 120, 215)); // color del cursor
+        textField.setBorder(BorderFactory.createCompoundBorder(  ///bordes 
         BorderFactory.createLineBorder(new Color(210, 210, 210), 1, true),
-        BorderFactory.createEmptyBorder(5, 8, 5, 8)));
+        BorderFactory.createEmptyBorder(6, 10, 6, 10)));
+        ///color de seleccion
+        textField.setSelectionColor(new Color(0, 120, 215, 60));
+        textField.setSelectedTextColor(new Color(20, 20, 20));
+        ///efecto windows 11
+        textField.addFocusListener(new java.awt.event.FocusAdapter() {
+        @Override
+        public void focusGained(java.awt.event.FocusEvent e) {
+            textField.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(0, 120, 215), 2, true), ///azul windows
+                BorderFactory.createEmptyBorder(5, 9, 5, 9)
+            ));
+        }
+
+        @Override
+        public void focusLost(java.awt.event.FocusEvent e) {
+            textField.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(210, 210, 210), 1, true),
+                BorderFactory.createEmptyBorder(6, 10, 6, 10)
+            ));
+        }
+    });
     }
     
 

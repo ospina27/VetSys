@@ -19,7 +19,7 @@ public class MenuAssistant extends javax.swing.JFrame {
         initComponents();
         this.logUser = logUser;
         System.out.println("Usuario logueado en MenuAssistant: " + logUser.getUsername());
-        if(!"Recepcionista".equalsIgnoreCase(logUser.getName_role()))
+        if(!"Asistente".equalsIgnoreCase(logUser.getName_role()))
         {
            //btnCreate.setVisible(false);
         }
@@ -42,12 +42,14 @@ public class MenuAssistant extends javax.swing.JFrame {
         MenuAssistant_lblBttnLogOut = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1000, 800));
-        setMinimumSize(new java.awt.Dimension(1000, 800));
+        setMaximumSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        setResizable(false);
 
-        MenuAssistantPanel.setMaximumSize(new java.awt.Dimension(1000, 800));
-        MenuAssistantPanel.setMinimumSize(new java.awt.Dimension(1000, 800));
-        MenuAssistantPanel.setPreferredSize(new java.awt.Dimension(1000, 800));
+        MenuAssistantPanel.setMaximumSize(new java.awt.Dimension(800, 600));
+        MenuAssistantPanel.setMinimumSize(new java.awt.Dimension(800, 600));
+        MenuAssistantPanel.setPreferredSize(new java.awt.Dimension(800, 600));
         MenuAssistantPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Left.setBackground(new java.awt.Color(0, 153, 153));
@@ -86,7 +88,7 @@ public class MenuAssistant extends javax.swing.JFrame {
         MenuAssistant_lblBttnAppointments.setForeground(new java.awt.Color(255, 255, 255));
         MenuAssistant_lblBttnAppointments.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuAssistant_lblBttnAppointments.setText("Citas");
-        MenuAssistant_lblBttnAppointments.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuAssistant_lblBttnAppointments.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuAssistant_lblBttnAppointments.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuAssistant_lblBttnAppointmentsMouseClicked(evt);
@@ -119,7 +121,7 @@ public class MenuAssistant extends javax.swing.JFrame {
         MenuAssistant_lblBttnPatient.setForeground(new java.awt.Color(255, 255, 255));
         MenuAssistant_lblBttnPatient.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuAssistant_lblBttnPatient.setText("Pacientes");
-        MenuAssistant_lblBttnPatient.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuAssistant_lblBttnPatient.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuAssistant_lblBttnPatient.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuAssistant_lblBttnPatientMouseClicked(evt);
@@ -152,7 +154,7 @@ public class MenuAssistant extends javax.swing.JFrame {
         MenuAssistant_lblBttnLogOut.setForeground(new java.awt.Color(255, 255, 255));
         MenuAssistant_lblBttnLogOut.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuAssistant_lblBttnLogOut.setText("Cerrar Sesion");
-        MenuAssistant_lblBttnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuAssistant_lblBttnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuAssistant_lblBttnLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuAssistant_lblBttnLogOutMouseClicked(evt);
@@ -181,17 +183,17 @@ public class MenuAssistant extends javax.swing.JFrame {
         RightLayout.setHorizontalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RightLayout.createSequentialGroup()
-                .addGap(114, 114, 114)
+                .addGap(24, 24, 24)
                 .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(MenuAssistant_BttnPatient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MenuAssistant_BttnAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MenuAssistant_BttnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap(225, Short.MAX_VALUE))
         );
         RightLayout.setVerticalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
-                .addGap(155, 155, 155)
+                .addGap(53, 53, 53)
                 .addComponent(MenuAssistant_BttnAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(140, 140, 140)
                 .addComponent(MenuAssistant_BttnPatient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
