@@ -16,6 +16,7 @@ public class UsersMenu extends javax.swing.JFrame {
         {
             MenuUsers_BttnAddUsers.setVisible(false);
         }
+        setTitle(logUser.getClinic().getName_clinic());
     }
 
     public UsersMenu() {
@@ -38,11 +39,15 @@ public class UsersMenu extends javax.swing.JFrame {
         MenuUsers_lblBttnBack = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1000, 800));
+        setMaximumSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        setResizable(false);
+        setSize(new java.awt.Dimension(0, 0));
 
-        MenuUsersPanel.setMaximumSize(new java.awt.Dimension(1000, 800));
-        MenuUsersPanel.setMinimumSize(new java.awt.Dimension(1000, 800));
-        MenuUsersPanel.setPreferredSize(new java.awt.Dimension(1000, 800));
+        MenuUsersPanel.setMaximumSize(new java.awt.Dimension(800, 600));
+        MenuUsersPanel.setMinimumSize(new java.awt.Dimension(800, 600));
+        MenuUsersPanel.setPreferredSize(new java.awt.Dimension(800, 600));
         MenuUsersPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Left.setBackground(new java.awt.Color(0, 153, 153));
@@ -58,13 +63,13 @@ public class UsersMenu extends javax.swing.JFrame {
         Left.setLayout(LeftLayout);
         LeftLayout.setHorizontalGroup(
             LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MenuUsers_lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(MenuUsers_lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
         );
         LeftLayout.setVerticalGroup(
             LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LeftLayout.createSequentialGroup()
-                .addComponent(MenuUsers_lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 111, Short.MAX_VALUE))
+                .addComponent(MenuUsers_lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         MenuUsersPanel.add(Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 690));
@@ -79,7 +84,7 @@ public class UsersMenu extends javax.swing.JFrame {
         MenuUsers_BttnAddUsers.setMinimumSize(new java.awt.Dimension(140, 40));
         MenuUsers_BttnAddUsers.setPreferredSize(new java.awt.Dimension(140, 40));
 
-        MenuUsers_lblBttnAddUsers.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        MenuUsers_lblBttnAddUsers.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         MenuUsers_lblBttnAddUsers.setForeground(new java.awt.Color(255, 255, 255));
         MenuUsers_lblBttnAddUsers.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuUsers_lblBttnAddUsers.setText("Crear Usuario");
@@ -115,7 +120,7 @@ public class UsersMenu extends javax.swing.JFrame {
         MenuUsers_BttnSearchUsers.setMinimumSize(new java.awt.Dimension(140, 40));
         MenuUsers_BttnSearchUsers.setPreferredSize(new java.awt.Dimension(140, 40));
 
-        MenuUsers_lblBttnSearchUsers.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        MenuUsers_lblBttnSearchUsers.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         MenuUsers_lblBttnSearchUsers.setForeground(new java.awt.Color(255, 255, 255));
         MenuUsers_lblBttnSearchUsers.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuUsers_lblBttnSearchUsers.setText("Buscar Usuario");
@@ -150,7 +155,7 @@ public class UsersMenu extends javax.swing.JFrame {
         MenuUsers_BttnBack.setBackground(new java.awt.Color(0, 153, 153));
         MenuUsers_BttnBack.setPreferredSize(new java.awt.Dimension(126, 35));
 
-        MenuUsers_lblBttnBack.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        MenuUsers_lblBttnBack.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         MenuUsers_lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
         MenuUsers_lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuUsers_lblBttnBack.setText("Regresar");
@@ -185,27 +190,27 @@ public class UsersMenu extends javax.swing.JFrame {
         RightLayout.setHorizontalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RightLayout.createSequentialGroup()
-                .addGap(131, 131, 131)
+                .addGap(65, 65, 65)
                 .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(MenuUsers_BttnAddUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(MenuUsers_BttnSearchUsers, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                         .addComponent(MenuUsers_BttnBack, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
         RightLayout.setVerticalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RightLayout.createSequentialGroup()
-                .addContainerGap(152, Short.MAX_VALUE)
+                .addGap(113, 113, 113)
                 .addComponent(MenuUsers_BttnAddUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(92, 92, 92)
                 .addComponent(MenuUsers_BttnSearchUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(108, 108, 108)
                 .addComponent(MenuUsers_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(188, 188, 188))
+                .addGap(197, 197, 197))
         );
 
-        MenuUsersPanel.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 480, 690));
+        MenuUsersPanel.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 380, 690));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
