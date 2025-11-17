@@ -5,6 +5,7 @@ import project.vetsys.view.manager.CreateUser;
 import java.util.ArrayList;
 import project.vetsys.view.manager.MenuManager;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.UIManager;
@@ -32,6 +33,7 @@ public class SearchUser extends javax.swing.JFrame {
     public SearchUser(User logUser) {
         Nimbus.LookandFeel(); ///implementación de nimbus para la visualización
         initComponents();
+        //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         Nimbus.styleAllTextFields(this); ///estilo para todos los textfield
         Nimbus.styleTable(userTable); ///estilo de la tabla
         modelTable();
@@ -39,7 +41,7 @@ public class SearchUser extends javax.swing.JFrame {
         this.utils = new Utils();
         this.logUser = logUser;
         setTitle("Gestion de Usuarios");
-        jLabelTitleClinic_users.setText("Usuarios "+ "\n"+logUser.getClinic().getName_clinic());  ///mostrar nombre de la clinica
+        jLabelTitleClinic_users.setText(logUser.getClinic().getName_clinic());  ///mostrar nombre de la clinica
         Nimbus.styleAllLabelsExcept(this,jLabelTitleClinic_users);  ///implementar estilos para lbl
         
         emptyFields();
@@ -66,8 +68,7 @@ public class SearchUser extends javax.swing.JFrame {
         modelTable();
     }
    
-   
-    
+      
     private void modelTable(){
         DefaultTableModel modelTable = new DefaultTableModel(new Object[]{"ID","Nombres","Apellidos","Documento", 
             "Rol","Estado"},0);
@@ -250,13 +251,13 @@ public class SearchUser extends javax.swing.JFrame {
                 //Asignar los datos a los campos de texto
                 hideField(true); ///no mostrar texfield ni combobox en los datos antes de cliclekar en la tabla
                 idUserField.setText(String.valueOf(user.getId_user()));
+                DocumentField.setText(user.getDocument());
                 name_userField.setText(user.getName_user());
                 LastNameField.setText(user.getLast_name());
-                usernameField.setText(user.getUsername());
-                LastNameField.setText(user.getLast_name());
-                DocumentField.setText(user.getDocument());
                 PhoneField.setText(user.getPhone());
                 EmailField.setText(user.getEmail());
+                usernameField.setText(user.getUsername());                               
+                
                 ///se muestra en el cbox el rol del usuario clickeado
                 for(int i= 0;i < cboxRoleEdit.getItemCount(); i++)
                 {
@@ -288,6 +289,9 @@ public class SearchUser extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2_Info = new javax.swing.JPanel();
+        jPanel_titleClinic = new javax.swing.JPanel();
+        jLabelTitleClinic_users = new javax.swing.JLabel();
+        cboxStatusEdit = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         LastNameField = new javax.swing.JTextField();
         name_userField = new javax.swing.JTextField();
@@ -305,7 +309,6 @@ public class SearchUser extends javax.swing.JFrame {
         cboxRoleEdit = new javax.swing.JComboBox<>();
         idUserField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        cboxStatusEdit = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         cboxRole = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
@@ -317,20 +320,47 @@ public class SearchUser extends javax.swing.JFrame {
         searchDocument_field = new javax.swing.JTextField();
         btnSearchDocument = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jPanel_titleClinic = new javax.swing.JPanel();
-        jLabelTitleClinic_users = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 102, 102));
-        getContentPane().setLayout(new java.awt.CardLayout());
+        setResizable(false);
 
-        jPanel1.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        jPanel1.setMaximumSize(new java.awt.Dimension(800, 600));
         jPanel1.setMinimumSize(new java.awt.Dimension(800, 600));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
-        jPanel1.setLayout(null);
+        jPanel1.setLayout(new java.awt.BorderLayout());
 
         jPanel2_Info.setBackground(new java.awt.Color(0, 102, 102));
-        jPanel2_Info.setMinimumSize(new java.awt.Dimension(400, 600));
+        jPanel2_Info.setMinimumSize(new java.awt.Dimension(300, 600));
+        jPanel2_Info.setPreferredSize(new java.awt.Dimension(288, 470));
+
+        jPanel_titleClinic.setBackground(new java.awt.Color(0, 102, 102));
+
+        jLabelTitleClinic_users.setFont(new java.awt.Font("Bookman Old Style", 3, 24)); // NOI18N
+        jLabelTitleClinic_users.setForeground(java.awt.SystemColor.activeCaption);
+        jLabelTitleClinic_users.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTitleClinic_users.setToolTipText("");
+
+        javax.swing.GroupLayout jPanel_titleClinicLayout = new javax.swing.GroupLayout(jPanel_titleClinic);
+        jPanel_titleClinic.setLayout(jPanel_titleClinicLayout);
+        jPanel_titleClinicLayout.setHorizontalGroup(
+            jPanel_titleClinicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 229, Short.MAX_VALUE)
+            .addGroup(jPanel_titleClinicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel_titleClinicLayout.createSequentialGroup()
+                    .addGap(3, 3, 3)
+                    .addComponent(jLabelTitleClinic_users, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        jPanel_titleClinicLayout.setVerticalGroup(
+            jPanel_titleClinicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 67, Short.MAX_VALUE)
+            .addGroup(jPanel_titleClinicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel_titleClinicLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabelTitleClinic_users, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
@@ -391,108 +421,6 @@ public class SearchUser extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("ID");
-
-        javax.swing.GroupLayout jPanel2_InfoLayout = new javax.swing.GroupLayout(jPanel2_Info);
-        jPanel2_Info.setLayout(jPanel2_InfoLayout);
-        jPanel2_InfoLayout.setHorizontalGroup(
-            jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2_InfoLayout.createSequentialGroup()
-                .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2_InfoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(LastNameField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(name_userField)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)))
-                    .addGroup(jPanel2_InfoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(PhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2_InfoLayout.createSequentialGroup()
-                                .addComponent(EmailField)
-                                .addGap(1, 1, 1))))
-                    .addGroup(jPanel2_InfoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2_InfoLayout.createSequentialGroup()
-                        .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2_InfoLayout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(jLabel5))
-                            .addGroup(jPanel2_InfoLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel4)))
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cboxStatusEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboxRoleEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2_InfoLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(idUserField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2_InfoLayout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel7)))
-                        .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2_InfoLayout.createSequentialGroup()
-                                .addGap(65, 65, 65)
-                                .addComponent(jLabel10))
-                            .addGroup(jPanel2_InfoLayout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(DocumentField, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(176, Short.MAX_VALUE))
-        );
-        jPanel2_InfoLayout.setVerticalGroup(
-            jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2_InfoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel7))
-                .addGap(1, 1, 1)
-                .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idUserField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DocumentField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(5, 5, 5)
-                .addComponent(name_userField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
-                .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(PhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(EmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(cboxRoleEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboxStatusEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addContainerGap(196, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jPanel2_Info);
-        jPanel2_Info.setBounds(0, 120, 230, 480);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setAutoscrolls(true);
@@ -585,8 +513,8 @@ public class SearchUser extends javax.swing.JFrame {
                         .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -601,161 +529,128 @@ public class SearchUser extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(cboxRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnSearchDocument)))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
+                .addGap(52, 52, 52)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnActualizar)
                     .addComponent(btnSalir)
                     .addComponent(btnDelete))
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addContainerGap(227, Short.MAX_VALUE))
         );
 
         cboxRole.getAccessibleContext().setAccessibleDescription("");
 
-        jPanel1.add(jPanel3);
-        jPanel3.setBounds(230, 0, 570, 800);
-
-        jPanel_titleClinic.setBackground(new java.awt.Color(0, 102, 102));
-
-        jLabelTitleClinic_users.setFont(new java.awt.Font("Bookman Old Style", 3, 24)); // NOI18N
-        jLabelTitleClinic_users.setForeground(java.awt.SystemColor.activeCaption);
-        jLabelTitleClinic_users.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTitleClinic_users.setToolTipText("");
-
-        javax.swing.GroupLayout jPanel_titleClinicLayout = new javax.swing.GroupLayout(jPanel_titleClinic);
-        jPanel_titleClinic.setLayout(jPanel_titleClinicLayout);
-        jPanel_titleClinicLayout.setHorizontalGroup(
-            jPanel_titleClinicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 230, Short.MAX_VALUE)
-            .addGroup(jPanel_titleClinicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel_titleClinicLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabelTitleClinic_users, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                    .addContainerGap()))
+        javax.swing.GroupLayout jPanel2_InfoLayout = new javax.swing.GroupLayout(jPanel2_Info);
+        jPanel2_Info.setLayout(jPanel2_InfoLayout);
+        jPanel2_InfoLayout.setHorizontalGroup(
+            jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2_InfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2_InfoLayout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(idUserField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2_InfoLayout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel7)))
+                        .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2_InfoLayout.createSequentialGroup()
+                                .addGap(65, 65, 65)
+                                .addComponent(jLabel10))
+                            .addGroup(jPanel2_InfoLayout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(DocumentField, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(LastNameField, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(name_userField)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2_InfoLayout.createSequentialGroup()
+                        .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel13))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(PhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(EmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2_InfoLayout.createSequentialGroup()
+                        .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2_InfoLayout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(jLabel5))
+                            .addComponent(jLabel4))
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cboxStatusEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboxRoleEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2_InfoLayout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(12, 12, 12)
+                        .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel_titleClinic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel_titleClinicLayout.setVerticalGroup(
-            jPanel_titleClinicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 180, Short.MAX_VALUE)
-            .addGroup(jPanel_titleClinicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel_titleClinicLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabelTitleClinic_users, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(58, Short.MAX_VALUE)))
+        jPanel2_InfoLayout.setVerticalGroup(
+            jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2_InfoLayout.createSequentialGroup()
+                .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2_InfoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel_titleClinic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel7))
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(idUserField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DocumentField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addGap(5, 5, 5)
+                        .addComponent(name_userField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(PhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(EmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(cboxRoleEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cboxStatusEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 806, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
-        jPanel1.add(jPanel_titleClinic);
-        jPanel_titleClinic.setBounds(0, 0, 230, 180);
+        jPanel1.add(jPanel2_Info, java.awt.BorderLayout.CENTER);
 
-        getContentPane().add(jPanel1, "card2");
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-
-        try {
-            int idUser = Integer.parseInt(idUserField.getText().trim());
-            Role r = (Role) cboxRoleEdit.getSelectedItem();
-            Status s = (Status) cboxStatusEdit.getSelectedItem();
-           
-            User user = new User();
-            user.setId_user(idUser);
-            user.setUsername(usernameField.getText()); 
-            user.setId_role(r.getId());   ///se actualizan los roles con el id 
-            user.setName_role(r.getName()); ///y el nombre en el combobox
-            user.setId_status(s.getId());
-            user.setName_status(s.getName());
-            user.setName_user(name_userField.getText());
-            user.setLast_name(LastNameField.getText());
-            user.setDocument(DocumentField.getText());
-            user.setEmail(EmailField.getText());
-            user.setPhone(PhoneField.getText());
-            user.setId_clinic(logUser.getId_clinic()); ///mismo id de clínica
-            
-            UserDAO userDAO = new UserDAO();
-            
-            ///validar campos obligatorios
-            if(name_userField.getText().isEmpty()|| LastNameField.getText().isEmpty()||
-               usernameField.getText().isEmpty()|| DocumentField.getText().isEmpty())
-            {
-                JOptionPane.showMessageDialog(this, "Complete los campos obligatorios *", "ATENCIÓN", JOptionPane.WARNING_MESSAGE);
-            }else
-            {   
-                String message = "¿Desea confirmar la actualización?";
-                String title = "Confirmación";
-                int confirm = utils.validation(message, title);
-                if(confirm==1){
-                    boolean updated = userDAO.Update(user, logUser);
-                    if (updated) 
-                    {
-                        JOptionPane.showMessageDialog(this, "El usuario se ha actualizado correctamente","MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE);
-                        cboxRole.getSelectedItem();
-                        Nimbus.styleTable(userTable);
-                        loadUsersByClinicandRole(logUser); // refrescar tabla
-                        hideField(false);
-                        //emptyFields();                
-                    } else 
-                    {
-                        JOptionPane.showMessageDialog(this, "No se pudo actualizar el usuario. Verifica permisos o datos.", "ATENCIÓN", JOptionPane.WARNING_MESSAGE);
-                    }
-                }  
-            }        
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Seleccione un usuario","ERORR",JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al actualizar", "ERROR", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_btnActualizarActionPerformed
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        UsersMenu MenuManagerFrame = new UsersMenu(logUser);
-        MenuManagerFrame.setVisible(true);
-        MenuManagerFrame.pack();
-        MenuManagerFrame.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_btnSalirActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        try {
-            int idUser = Integer.parseInt(idUserField.getText().trim());
-            
-            User user = new User();
-            user.setId_user(idUser);
-
-            UserDAO userDAO = new UserDAO();
-            String message = "¿Seguro que desea eliminar el usuario?";
-            String title = "Confirmar eliminación";
-            int confirm = utils.validation(message, title);
-            if(confirm == 1)
-            {
-                boolean delete = userDAO.Delete(user, logUser);
-                if(delete)  
-                {
-                    JOptionPane.showMessageDialog(this, "Usuario eliminado correctamente.","CAMBIOS EXITOSOS",JOptionPane.INFORMATION_MESSAGE);
-                    loadUsersByClinicandRole(logUser);
-                    loadRolesStatus();
-                    hideField(false);
-                    //emptyFields();
-                }else
-                {
-                    JOptionPane.showMessageDialog(this,"No fue posible eliminar el usuario.\n" +
-                    "Puede que no pertenezca a su clínica o no exista", "ATENCIÓN", JOptionPane.WARNING_MESSAGE);
-                }
-            } 
-        }catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Seleccione un usuario","ERORR",JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) 
-        {
-            JOptionPane.showMessageDialog(this,"Error al eliminar","ERROR ",JOptionPane.ERROR_MESSAGE);
-            System.out.print(e.getMessage());
-        }
-    }//GEN-LAST:event_btnDeleteActionPerformed
-
     private void btnSearchDocumentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchDocumentActionPerformed
-        
-        ///buscar el usuario por documento 
+
+        ///buscar el usuario por documento
         String documentUser = searchDocument_field.getText().trim();
         if(!documentUser.isEmpty())
         {
@@ -776,6 +671,107 @@ public class SearchUser extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Ingrese el documento", "CAMPOS VACÍOS", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnSearchDocumentActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        try {
+            int idUser = Integer.parseInt(idUserField.getText().trim());
+
+            User user = new User();
+            user.setId_user(idUser);
+
+            UserDAO userDAO = new UserDAO();
+            String message = "¿Seguro que desea eliminar el usuario?";
+            String title = "Confirmar eliminación";
+            int confirm = utils.validation(message, title);
+            if(confirm == 1)
+            {
+                boolean delete = userDAO.Delete(user, logUser);
+                if(delete)
+                {
+                    JOptionPane.showMessageDialog(this, "Usuario eliminado correctamente.","CAMBIOS EXITOSOS",JOptionPane.INFORMATION_MESSAGE);
+                    loadUsersByClinicandRole(logUser);
+                    loadRolesStatus();
+                    hideField(false);
+                    //emptyFields();
+                }else
+                {
+                    JOptionPane.showMessageDialog(this,"No fue posible eliminar el usuario.\n" +
+                        "Puede que no pertenezca a su clínica o no exista", "ATENCIÓN", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        }catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Seleccione un usuario","ERORR",JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e)
+        {
+            JOptionPane.showMessageDialog(this,"Error al eliminar","ERROR ",JOptionPane.ERROR_MESSAGE);
+            System.out.print(e.getMessage());
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        UsersMenu MenuManagerFrame = new UsersMenu(logUser);
+        MenuManagerFrame.setVisible(true);
+        MenuManagerFrame.pack();
+        MenuManagerFrame.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+
+        try {
+            int idUser = Integer.parseInt(idUserField.getText().trim());
+            Role r = (Role) cboxRoleEdit.getSelectedItem();
+            Status s = (Status) cboxStatusEdit.getSelectedItem();
+
+            User user = new User();
+            user.setId_user(idUser);
+            user.setUsername(usernameField.getText());
+            user.setId_role(r.getId());   ///se actualizan los roles con el id
+            user.setName_role(r.getName()); ///y el nombre en el combobox
+            user.setId_status(s.getId());
+            user.setName_status(s.getName());
+            user.setName_user(name_userField.getText());
+            user.setLast_name(LastNameField.getText());
+            user.setDocument(DocumentField.getText());
+            user.setEmail(EmailField.getText());
+            user.setPhone(PhoneField.getText());
+            user.setId_clinic(logUser.getId_clinic()); ///mismo id de clínica
+
+            UserDAO userDAO = new UserDAO();
+
+            ///validar campos obligatorios
+            if(name_userField.getText().isEmpty()|| LastNameField.getText().isEmpty()||
+                usernameField.getText().isEmpty()|| DocumentField.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(this, "Complete los campos obligatorios *", "ATENCIÓN", JOptionPane.WARNING_MESSAGE);
+            }else
+            {
+                String message = "¿Desea confirmar la actualización?";
+                String title = "Confirmación";
+                int confirm = utils.validation(message, title);
+                if(confirm==1){
+                    boolean updated = userDAO.Update(user, logUser);
+                    if (updated)
+                    {
+                        JOptionPane.showMessageDialog(this, "El usuario se ha actualizado correctamente","MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+                        cboxRole.getSelectedItem();
+                        Nimbus.styleTable(userTable);
+                        loadUsersByClinicandRole(logUser); // refrescar tabla
+                        hideField(false);
+                        //emptyFields();
+                    } else
+                    {
+                        JOptionPane.showMessageDialog(this, "No se pudo actualizar el usuario. Verifica permisos o datos.", "ATENCIÓN", JOptionPane.WARNING_MESSAGE);
+                    }
+                }
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Seleccione un usuario","ERORR",JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al actualizar", "ERROR", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     /**
      * @param args the command line arguments
