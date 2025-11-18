@@ -2,7 +2,7 @@ package project.vetsys.view.assistant;
 
 import java.awt.Color;
 import project.vetsys.model.User;
-import project.vetsys.view.manager.Menu_Appointment;
+import project.vetsys.view.manager.Appointment_Menu;
 import project.vetsys.view.manager.PatientsMenu;
 import project.vetsys.view.security.LogIn;
 
@@ -239,7 +239,7 @@ public class MenuAssistant extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuAssistant_lblBttnLogOutMouseExited
 
     private void MenuAssistant_lblBttnAppointmentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAssistant_lblBttnAppointmentsMouseClicked
-        Menu_Appointment MenuAppointmentFrame = new Menu_Appointment(logUser);
+        Appointment_Menu MenuAppointmentFrame = new Appointment_Menu(logUser);
         MenuAppointmentFrame.setVisible(true);
         MenuAppointmentFrame.pack();
         MenuAppointmentFrame.setLocationRelativeTo(null);

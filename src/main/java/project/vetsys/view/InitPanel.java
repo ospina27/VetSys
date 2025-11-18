@@ -37,7 +37,6 @@ public class InitPanel extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
 
@@ -99,10 +98,12 @@ public class InitPanel extends javax.swing.JFrame {
 
     private void InitPanel_BttnEnterMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InitPanel_BttnEnterMouseEntered
         InitPanel_BttnEnter.setBackground(Color.LIGHT_GRAY);
+        InitPanel_BttnEnter.setForeground(Color.BLACK);
     }//GEN-LAST:event_InitPanel_BttnEnterMouseEntered
 
     private void InitPanel_BttnEnterMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InitPanel_BttnEnterMouseExited
         InitPanel_BttnEnter.setBackground(new Color(0,153,153));
+        InitPanel_BttnEnter.setForeground(Color.WHITE);
     }//GEN-LAST:event_InitPanel_BttnEnterMouseExited
 
     public static void main(String args[]) {
