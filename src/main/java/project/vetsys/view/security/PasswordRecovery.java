@@ -17,11 +17,12 @@ public class PasswordRecovery extends javax.swing.JFrame {
         initComponents();
         Nimbus.LookandFeel();
         Nimbus.styleAllTextFields(this);
-        Nimbus.styleAllLabelsExcept(this,LogInPanel_lblTittle);
+        Nimbus.styleAllLabelsExcept(this,Left_PassRec_ImgVetSys);
         PassRec_textNewPassword.setVisible(false);
         PassRec_textNewPasswordOK.setVisible(false);
         PassRec_BttnSavePassword.setVisible(false);
         PassRec_lblBttnSavePassword.setVisible(false);
+        Left_PassRec_ImgPassword.setVisible(false);
         
         PassRec_lblNewPassword.setVisible(false);
         PassRec_lblNewPasswordOK.setVisible(false);
@@ -38,7 +39,8 @@ public class PasswordRecovery extends javax.swing.JFrame {
 
         PasswordRecoveryPanel = new javax.swing.JPanel();
         Left_PasswordRecovery = new javax.swing.JPanel();
-        LogInPanel_lblTittle = new javax.swing.JLabel();
+        Left_PassRec_ImgVetSys = new javax.swing.JLabel();
+        Left_PassRec_ImgPassword = new javax.swing.JLabel();
         Right_PasswordRecovery = new javax.swing.JPanel();
         PassRec_lblUser = new javax.swing.JLabel();
         PassRec_lblID = new javax.swing.JLabel();
@@ -76,21 +78,30 @@ public class PasswordRecovery extends javax.swing.JFrame {
         Left_PasswordRecovery.setMinimumSize(new java.awt.Dimension(400, 600));
         Left_PasswordRecovery.setPreferredSize(new java.awt.Dimension(400, 600));
 
-        LogInPanel_lblTittle.setFont(new java.awt.Font("Arial Black", 1, 48)); // NOI18N
-        LogInPanel_lblTittle.setForeground(new java.awt.Color(255, 255, 255));
-        LogInPanel_lblTittle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LogInPanel_lblTittle.setText("VetSys");
-        LogInPanel_lblTittle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Left_PassRec_ImgVetSys.setFont(new java.awt.Font("Arial Black", 1, 48)); // NOI18N
+        Left_PassRec_ImgVetSys.setForeground(new java.awt.Color(255, 255, 255));
+        Left_PassRec_ImgVetSys.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Left_PassRec_ImgVetSys.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vetSysBg.png"))); // NOI18N
+        Left_PassRec_ImgVetSys.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        Left_PassRec_ImgVetSys.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        Left_PassRec_ImgPassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Left_PassRec_ImgPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/password.png"))); // NOI18N
 
         javax.swing.GroupLayout Left_PasswordRecoveryLayout = new javax.swing.GroupLayout(Left_PasswordRecovery);
         Left_PasswordRecovery.setLayout(Left_PasswordRecoveryLayout);
         Left_PasswordRecoveryLayout.setHorizontalGroup(
             Left_PasswordRecoveryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(LogInPanel_lblTittle, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(Left_PassRec_ImgVetSys, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(Left_PassRec_ImgPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         Left_PasswordRecoveryLayout.setVerticalGroup(
             Left_PasswordRecoveryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(LogInPanel_lblTittle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addGroup(Left_PasswordRecoveryLayout.createSequentialGroup()
+                .addComponent(Left_PassRec_ImgVetSys, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Left_PassRec_ImgPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         PasswordRecoveryPanel.add(Left_PasswordRecovery, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -427,6 +438,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
             jSeparator5.setVisible(true);
             PassRec_BttnSavePassword.setVisible(true);
             PassRec_lblBttnSavePassword.setVisible(true);
+            Left_PassRec_ImgPassword.setVisible(true);
 
             PassRec_textNewPassword.setEnabled(true);
             PassRec_textNewPasswordOK.setEnabled(true);
@@ -457,8 +469,9 @@ public class PasswordRecovery extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Left_PassRec_ImgPassword;
+    private javax.swing.JLabel Left_PassRec_ImgVetSys;
     private javax.swing.JPanel Left_PasswordRecovery;
-    private javax.swing.JLabel LogInPanel_lblTittle;
     private javax.swing.JPanel PassRec_BttnBack;
     private javax.swing.JPanel PassRec_BttnCheckCredentials;
     private javax.swing.JPanel PassRec_BttnSavePassword;
