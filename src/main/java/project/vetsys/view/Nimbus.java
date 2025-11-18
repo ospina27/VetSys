@@ -39,7 +39,7 @@ public class Nimbus {
     ///estilo para las tablas
     public static void styleTable(JTable table) {
         table.setRowHeight(25);
-        table.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        table.setFont(new Font("Arial", Font.PLAIN, 12));
         table.setForeground(Color.BLACK);
         table.setBackground(Color.WHITE);
         table.setSelectionBackground(new Color(57, 105, 172));
@@ -50,7 +50,7 @@ public class Nimbus {
         table.setFocusable(false);
 
         JTableHeader header = table.getTableHeader();
-        header.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        header.setFont(new Font("Arial", Font.BOLD, 12));
         header.setBackground(new Color(235, 235, 235));
         header.setForeground(new Color(50, 50, 50));
         header.setReorderingAllowed(false);
@@ -115,21 +115,21 @@ public class Nimbus {
         ///efecto windows 11
         textField.addFocusListener(new java.awt.event.FocusAdapter() {
         @Override
-        public void focusGained(java.awt.event.FocusEvent e) {
-            textField.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(new Color(0, 120, 215), 2, true), ///azul windows
-                BorderFactory.createEmptyBorder(5, 9, 5, 9)
-            ));
-        }
+            public void focusGained(java.awt.event.FocusEvent e) {
+                textField.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(0, 120, 215), 2, true), ///azul windows
+                    BorderFactory.createEmptyBorder(5, 9, 5, 9)
+                ));
+            }
 
-        @Override
-        public void focusLost(java.awt.event.FocusEvent e) {
-            textField.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(new Color(210, 210, 210), 1, true),
-                BorderFactory.createEmptyBorder(6, 10, 6, 10)
-            ));
-        }
-    });
+            @Override
+            public void focusLost(java.awt.event.FocusEvent e) {
+                textField.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(210, 210, 210), 1, true),
+                    BorderFactory.createEmptyBorder(6, 10, 6, 10)
+                ));
+            }
+        });
     }
     
 
@@ -145,9 +145,9 @@ public class Nimbus {
             {
                 TableCellRenderer renderer = table.getCellRenderer(row, column);
                 Component comp = table.prepareRenderer(renderer, row, column);
-                width = Math.max(comp.getPreferredSize().width + 10, width);
+                width = Math.max(comp.getPreferredSize().width + 15, width);
             }
-            if (width > 300) width = 300; // ancho máximo por columna (ajústalo si quieres)
+            if (width > 300) width = 300; // ancho máximo por columna
             columnModel.getColumn(column).setPreferredWidth(width);
         }
     }
@@ -164,8 +164,8 @@ public class Nimbus {
     }
    
    public static void styleTitleLabel(JLabel label) {
-    label.setFont(new Font("Bookman Old Style", Font.BOLD, 24));
-    label.setForeground(new Color(245, 245, 245));
+    label.setFont(new Font("Bookman Old Style", Font.ITALIC, 24));
+    label.setForeground(new Color(0,153,153));
     label.setOpaque(false);
 }
    

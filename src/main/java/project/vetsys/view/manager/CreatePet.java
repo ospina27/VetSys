@@ -4,8 +4,10 @@ import java.awt.Color;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComboBox;
 import project.vetsys.model.User;
 import javax.swing.JOptionPane;
+import javax.swing.plaf.ComboBoxUI;
 import project.vetsys.dao.PetDAO;
 import project.vetsys.model.Pet;
 import project.vetsys.view.Nimbus;
@@ -20,6 +22,7 @@ public class CreatePet extends javax.swing.JFrame {
 
     public CreatePet() {
         initComponents();
+        initListeners();
     }
     
     public CreatePet(User logUser){
@@ -27,19 +30,26 @@ public class CreatePet extends javax.swing.JFrame {
         this.logUser = logUser;
         utils = new Utils();
         initComponents();
+        initListeners();
         Nimbus.styleAllLabelsExcept(this,CreatePet_lblTittle );
         Nimbus.styleAllTextFields(this);
+        Nimbus.styleTitleLabel(CreatePet_lblSubTittle);
         setTitle("Gestion de mascotas");
         emptyFields();
-        loadSpecies();
+        loadSpecies(cboxSpecies_pet,cboxBred_pet);
+       
         CreatePet_lblTittle.setText(logUser.getClinic().getName_clinic());
         buttonGroupSexPet.add(sexMacho_Rbutton); ///añadir los rbutton al group 
         buttonGroupSexPet.add(sexHembra_Rbutton);
     }
+    
+    private void initListeners(){
+        cboxSpecies_pet.addActionListener(evt ->speciesSelected(cboxSpecies_pet, cboxBred_pet));
+    }
 
-    public void emptyFields(){
+    private void emptyFields(){
         CreatePet_tetxNamePet.setText("");
-        CreatePet_textBreed.setText("");
+        cboxBred_pet.setSelectedIndex(-1);
         cboxSpecies_pet.setSelectedIndex(-1);
         CreatePet_textColorPet.setText("");
         CreatePet_textDateBirthdayPet.setText("");
@@ -47,13 +57,71 @@ public class CreatePet extends javax.swing.JFrame {
         buttonGroupSexPet.clearSelection();
     }
     
-    private void loadSpecies (){
-        List<String> listSpecies = new ArrayList<>();
+    public void loadSpecies (JComboBox<String> cboxSpecies,JComboBox<String> cboxBred){
+        ///cargar las especies, este metodo se reutiliza en SearchPet para cargar todo en los cbox
+        List<String> listSpecies = new ArrayList<>(); 
         listSpecies.add("Canino");
         listSpecies.add("Felino");
-        listSpecies.add("Equino");
-        utils.fillComboBox(cboxSpecies_pet, listSpecies,"");
+        utils.fillComboBox(cboxSpecies, listSpecies,"");
+        speciesSelected(cboxSpecies, cboxBred);
     }
+    
+    public void speciesSelected(JComboBox<String> cboxSpecies, JComboBox<String> cboxBred){
+        String selectedSpecies = (String) cboxSpecies.getSelectedItem();
+        if (selectedSpecies != null && !selectedSpecies.isEmpty()) {
+            cboxBred.setEnabled(true); /// Habilitar el ComboBox de razas
+            loadBred(selectedSpecies, cboxBred); ///Cargar las razas según la especie seleccionada
+        } else {
+            cboxBred.setEnabled(false); // Deshabilitar el cbox de razas si no hay especie seleccionada
+        } 
+    }
+    
+    ///cargar razas de Felino
+    public void loadBredFelino(JComboBox<String> cboxBred){
+        List<String> listBred = new ArrayList<>();
+        listBred.add("No especificada");
+        listBred.add("Persa");
+        listBred.add("Siamés");
+        listBred.add("Azul ruso");
+        listBred.add("Angora turco");
+        listBred.add("Siberiano");
+        listBred.add("Maine Coon");
+        listBred.add("Bengalí");
+        utils.fillComboBox(cboxBred, listBred,"");
+    }
+    
+
+    ///cargar razas de Canino
+    public void loadBredCanino(JComboBox<String> cboxBred){
+        List<String> listBred = new ArrayList<>();
+        listBred.add("No especificada");
+        listBred.add("Pitbull");
+        listBred.add("Beagle");
+        listBred.add("Labrador Retriever");
+        listBred.add("Bulldog Francés");
+        listBred.add("Pastor Alemán");
+        listBred.add("Golden Retriever");
+        listBred.add("Pug");
+        listBred.add("Rottweiler");
+        listBred.add("Chihuahua");
+        listBred.add("Cocker Spaniel");
+        utils.fillComboBox(cboxBred, listBred,"");
+    }
+    
+    ///seleccionar que raza cargar dependiendo la especie que se haya seleccionado
+    private void loadBred(String species, JComboBox<String> cboxBred){
+        if(species == null || species.isEmpty()){return;}       
+        
+        if(species.equals("Canino")){
+            loadBredCanino(cboxBred);
+        }else if(species.equals("Felino")){
+            loadBredFelino(cboxBred);
+        }else{
+           cboxBred.removeAllItems();
+        }
+    }
+    
+    
     
     
     @SuppressWarnings("unchecked")
@@ -69,7 +137,6 @@ public class CreatePet extends javax.swing.JFrame {
         CreatePet_lblNamePet = new javax.swing.JLabel();
         CreatePet_tetxNamePet = new javax.swing.JTextField();
         CreatePet_lblBreed = new javax.swing.JLabel();
-        CreatePet_textBreed = new javax.swing.JTextField();
         CreatePet_lblSpecies = new javax.swing.JLabel();
         CreatePet_lblColorPet = new javax.swing.JLabel();
         CreatePet_textColorPet = new javax.swing.JTextField();
@@ -84,10 +151,10 @@ public class CreatePet extends javax.swing.JFrame {
         bttonEmptyFields_pet = new javax.swing.JButton();
         btnExit1 = new javax.swing.JButton();
         cboxSpecies_pet = new javax.swing.JComboBox();
+        cboxBred_pet = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
         CreatePet.setBackground(new java.awt.Color(255, 255, 255));
@@ -143,11 +210,6 @@ public class CreatePet extends javax.swing.JFrame {
         CreatePet_lblBreed.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CreatePet_lblBreed.setText("Raza*");
 
-        CreatePet_textBreed.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        CreatePet_textBreed.setForeground(java.awt.Color.gray);
-        CreatePet_textBreed.setMinimumSize(new java.awt.Dimension(68, 26));
-        CreatePet_textBreed.setPreferredSize(new java.awt.Dimension(68, 26));
-
         CreatePet_lblSpecies.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CreatePet_lblSpecies.setText("Especie*");
 
@@ -163,7 +225,7 @@ public class CreatePet extends javax.swing.JFrame {
         CreatePet_lblSexPet.setText("Sexo*");
 
         CreatePet_lblDateBirthdayPet.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        CreatePet_lblDateBirthdayPet.setText("Fecha de Nacimiento yyyy-mm-dd");
+        CreatePet_lblDateBirthdayPet.setText("Fecha de Nacimiento * yyyy-mm-dd");
 
         CreatePet_textDateBirthdayPet.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         CreatePet_textDateBirthdayPet.setForeground(java.awt.Color.gray);
@@ -171,7 +233,7 @@ public class CreatePet extends javax.swing.JFrame {
         CreatePet_textDateBirthdayPet.setPreferredSize(new java.awt.Dimension(68, 26));
 
         CreatePet_lblOwnerID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        CreatePet_lblOwnerID.setText("Cedula Propietario");
+        CreatePet_lblOwnerID.setText("Cedula Propietario *");
 
         CreatePet_textOwnerDocument.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         CreatePet_textOwnerDocument.setForeground(java.awt.Color.gray);
@@ -220,6 +282,12 @@ public class CreatePet extends javax.swing.JFrame {
             }
         });
 
+        cboxBred_pet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboxBred_petActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout DownLayout = new javax.swing.GroupLayout(Down);
         Down.setLayout(DownLayout);
         DownLayout.setHorizontalGroup(
@@ -240,9 +308,9 @@ public class CreatePet extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnExit1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(CreatePet_tetxNamePet, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                    .addComponent(CreatePet_textBreed, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(CreatePet_textColorPet, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cboxSpecies_pet, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cboxSpecies_pet, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cboxBred_pet, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DownLayout.createSequentialGroup()
                         .addGap(38, 38, 38)
@@ -278,16 +346,17 @@ public class CreatePet extends javax.swing.JFrame {
                 .addComponent(CreatePet_lblOwnerID)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CreatePet_textBreed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CreatePet_textOwnerDocument, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CreatePet_lblBreed))
+                    .addComponent(CreatePet_lblSpecies)
+                    .addComponent(cboxSpecies_pet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47)
                 .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CreatePet_lblSpecies)
                     .addComponent(CreatePet_lblSexPet)
                     .addComponent(sexHembra_Rbutton)
                     .addComponent(sexMacho_Rbutton)
-                    .addComponent(cboxSpecies_pet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(CreatePet_lblBreed)
+                        .addComponent(cboxBred_pet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(47, 47, 47)
                 .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CreatePet_textColorPet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -326,7 +395,7 @@ public class CreatePet extends javax.swing.JFrame {
         
         String namePet = CreatePet_tetxNamePet.getText();
         String speciesPet = (String) cboxSpecies_pet.getSelectedItem();
-        String bredPet = CreatePet_textBreed.getText();
+        String bredPet = (String) cboxBred_pet.getSelectedItem();
         String colorPet = CreatePet_textColorPet.getText();
         
         if(sexMacho_Rbutton.isSelected())
@@ -340,10 +409,11 @@ public class CreatePet extends javax.swing.JFrame {
         String datePet = CreatePet_textDateBirthdayPet.getText();
         String documentOwner = CreatePet_textOwnerDocument.getText();
         
-        if (namePet.isEmpty() || documentOwner.isEmpty() || speciesPet.isEmpty() || bredPet.isEmpty() 
+        if (namePet.isEmpty() || documentOwner.isEmpty() || speciesPet.isEmpty() || bredPet.isEmpty() || bredPet.isEmpty()
                 ||colorPet.isEmpty() ||  buttonGroupSexPet.getSelection() == null || datePet.isEmpty())
         {
-            JOptionPane.showMessageDialog(this, "Por favor completa todos los campos obligatorios *","CAMPOS VACÍOS",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor completa todos los campos obligatorios *",logUser.getClinic().getName_clinic()
+                    ,JOptionPane.WARNING_MESSAGE);
             return;
         }
         
@@ -354,16 +424,31 @@ public class CreatePet extends javax.swing.JFrame {
         pet.setBred(bredPet);
         pet.setColor(colorPet);
         pet.setSex(sexPet);
-        pet.setDate_of_birth(Date.valueOf(datePet));
+        //pet.setDate_of_birth(Date.valueOf(datePet));
+        String dateText = CreatePet_textDateBirthdayPet.getText();
+        try 
+        {
+            Date date = Date.valueOf(dateText);  // convierte si el formato es válido
+            pet.setDate_of_birth(date);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this,
+            "Formato de fecha incorrecto.\n Debe ser YYYY-MM-DD",logUser.getClinic().getName_clinic(),
+             JOptionPane.ERROR_MESSAGE);
+                return;
+            }
         int document = petDao.searchIdOwner(documentOwner); ///pasar el documento para buscar el idCliente
         pet.setId_Client(document);
         pet.setId_Clinic(logUser.getId_clinic());
-        
-        
+                
         boolean success = petDao.Create(pet, documentOwner);
+        if(document == -1){
+            JOptionPane.showMessageDialog(this, "No se encontro cliente con cedula "+documentOwner,logUser.getClinic().getName_clinic(),
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         
         if(success){
-            javax.swing.JOptionPane.showMessageDialog(this, "Mascota creada correctamente","CONFIRMACIÓN",JOptionPane.INFORMATION_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(this, "Mascota creada correctamente",logUser.getClinic().getName_clinic(),JOptionPane.INFORMATION_MESSAGE);
             emptyFields();
         }else {
             javax.swing.JOptionPane.showMessageDialog(this, "Falló la creación de la mascota \n"+"Revise los datos ingresados",logUser.getClinic().getName_clinic(),
@@ -376,12 +461,13 @@ public class CreatePet extends javax.swing.JFrame {
     }//GEN-LAST:event_bttonEmptyFields_petActionPerformed
 
     private void btnExit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExit1ActionPerformed
-        if(!CreatePet_tetxNamePet.getText().isEmpty() || !CreatePet_textBreed.getText().isEmpty()|| cboxSpecies_pet.getSelectedIndex() == -1 ||
+        ///validar que no haya información en los campos antes de salir
+        if(!CreatePet_tetxNamePet.getText().isEmpty() || cboxBred_pet.getSelectedItem() == "" || cboxSpecies_pet.getSelectedItem()== ""||
             !CreatePet_textColorPet.getText().isEmpty() || buttonGroupSexPet.getSelection()!= null || !CreatePet_textDateBirthdayPet.getText().isEmpty()
                || !CreatePet_textOwnerDocument.getText().isEmpty())
         {
             String messageConfirm = "¿Desea cancelar la creación de la mascota?";
-            String title = "CONFIRMACIÓN";
+            String title = logUser.getClinic().getName_clinic();
             if(utils.validation(messageConfirm, title)==1)
             {
                 //siempre que se llame al MenuManager, hacerlo con el constructor con parametro de logUser
@@ -405,6 +491,10 @@ public class CreatePet extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cboxSpecies_petActionPerformed
 
+    private void cboxBred_petActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxBred_petActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboxBred_petActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new CreatePet().setVisible(true));
     }
@@ -421,7 +511,6 @@ public class CreatePet extends javax.swing.JFrame {
     private javax.swing.JLabel CreatePet_lblSubTittle;
     private javax.swing.JLabel CreatePet_lblTittle;
     private javax.swing.JTextField CreatePet_tetxNamePet;
-    private javax.swing.JTextField CreatePet_textBreed;
     private javax.swing.JTextField CreatePet_textColorPet;
     private javax.swing.JTextField CreatePet_textDateBirthdayPet;
     private javax.swing.JTextField CreatePet_textOwnerDocument;
@@ -431,6 +520,7 @@ public class CreatePet extends javax.swing.JFrame {
     private javax.swing.JButton btnExit1;
     private javax.swing.JButton bttonEmptyFields_pet;
     private javax.swing.ButtonGroup buttonGroupSexPet;
+    private javax.swing.JComboBox cboxBred_pet;
     private javax.swing.JComboBox cboxSpecies_pet;
     private javax.swing.JRadioButton sexHembra_Rbutton;
     private javax.swing.JRadioButton sexMacho_Rbutton;

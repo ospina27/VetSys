@@ -378,14 +378,14 @@ public class PasswordRecovery extends javax.swing.JFrame {
 
         ///verificar que ambas contraseñas sean iguales)
         if (!passNew.equals(passConfirm)) {
-            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden.");
+            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden","Vet Sys",JOptionPane.ERROR_MESSAGE);
             PassRec_textNewPassword.setText("");
             PassRec_textNewPasswordOK.setText("");
             return;
         }
 
         if (passNew.length() < 6) {
-            JOptionPane.showMessageDialog(this, "La contraseña debe tener mínimo 6 caracteres.");
+            JOptionPane.showMessageDialog(this, "La contraseña debe tener mínimo 6 caracteres","Vet Sys",JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -393,11 +393,16 @@ public class PasswordRecovery extends javax.swing.JFrame {
         boolean updated = dao.updatePassword(user.getId_user(), passNew);
 
         if (updated) {
-            JOptionPane.showMessageDialog(this, "Contraseña actualizada correctamente.");
+            JOptionPane.showMessageDialog(this, "Contraseña actualizada correctamente","Vet Sys",JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
-            new LogIn().setVisible(true);
+            LogIn logIn = new LogIn();
+            logIn.setVisible(true);
+            logIn.pack();
+            logIn.setLocationRelativeTo(null);
+            this.dispose();
+            
         } else {
-            JOptionPane.showMessageDialog(this, "Error al actualizar contraseña.");
+            JOptionPane.showMessageDialog(this, "Error al actualizar contraseña.","Vet Sys", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_PassRec_BttnSavePasswordMouseClicked
 
@@ -406,10 +411,63 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_BttnCheckCredential.setForeground(Color.BLACK);
     }//GEN-LAST:event_PassRec_BttnSavePasswordMouseEntered
 
-    private void PassRec_BttnSavePasswordMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_BttnSavePasswordMouseExited
-        PassRec_BttnSavePassword.setBackground(new Color(0,153,153));
-        PassRec_BttnCheckCredential.setForeground(Color.WHITE);
-    }//GEN-LAST:event_PassRec_BttnSavePasswordMouseExited
+    private void PassRec_lblBttnCheckCredentialsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_lblBttnCheckCredentialsMouseEntered
+        PassRec_BttnCheckCredentials.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_PassRec_lblBttnCheckCredentialsMouseEntered
+
+    private void PassRec_lblBttnCheckCredentialsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_lblBttnCheckCredentialsMouseClicked
+
+        String name = PassRec_textUser.getText().trim();
+        String document = PassRec_textID.getText().trim();
+
+        if(name.isEmpty() || document.isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Complete todos los campos", "Vet Sys", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        UserDAO userDao = new UserDAO();
+
+        ///validar que el usuario exista
+        boolean userExists = userDao.userExists(name, document);
+        if(!userExists)
+        {
+            JOptionPane.showMessageDialog(this, "Usuario no encontrado","Vet Sys",JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        ///se valida que el usuario este activo
+        user = userDao.searchUserPass(name, document);
+
+        if(user != null){
+            PassRec_lblNewPassword.setVisible(true);
+            PassRec_textNewPassword.setVisible(true);
+            jSeparator4.setVisible(true);
+            PassRec_lblNewPasswordOK.setVisible(true);
+            PassRec_textNewPasswordOK.setVisible(true);
+            jSeparator5.setVisible(true);
+            PassRec_BttnSavePassword.setVisible(true);
+            PassRec_lblBttnSavePassword.setVisible(true);
+            Left_PassRec_ImgPassword.setVisible(true);
+
+            PassRec_textNewPassword.setEnabled(true);
+            PassRec_textNewPasswordOK.setEnabled(true);
+            System.out.println(user.getUsername());
+
+        }else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Usuario Inactivo","Vet Sys",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_PassRec_lblBttnCheckCredentialsMouseClicked
+
+    private void PassRec_textNewPasswordMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_textNewPasswordMousePressed
+        if (String.valueOf(PassRec_textNewPassword.getPassword()).equals("**********")){
+            PassRec_textNewPassword.setText("");
+            PassRec_textNewPassword.setForeground(Color.black);
+        }
+        if (String.valueOf(PassRec_textNewPasswordOK.getPassword()).isEmpty()){
+            PassRec_textNewPasswordOK.setText("**********");
+            PassRec_textNewPasswordOK.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_PassRec_textNewPasswordMousePressed
 
     
    
