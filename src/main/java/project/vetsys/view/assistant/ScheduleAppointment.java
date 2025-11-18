@@ -1,6 +1,16 @@
 package project.vetsys.view.assistant;
 
 import java.awt.Color;
+import java.util.List;
+import java.sql.Date;
+import javax.swing.JOptionPane;
+import project.vetsys.dao.CitaDAO;
+import project.vetsys.dao.ClienteDAO;
+import project.vetsys.dao.PetDAO;
+import project.vetsys.dao.UserDAO;
+import project.vetsys.model.Cita;
+import project.vetsys.model.ClienteModel;
+import project.vetsys.model.Pet;
 import project.vetsys.model.User;
 import project.vetsys.view.manager.Menu_Appointment;
 
@@ -8,10 +18,120 @@ public class ScheduleAppointment extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ScheduleAppointment.class.getName());
     private User logUser;
+
     
     public ScheduleAppointment() {
         initComponents();
     }
+    
+    public ScheduleAppointment(User logUser) {
+        this.logUser = logUser;
+        initComponents();
+        cargarVeterinarios();
+        cargarHoras();
+    }
+    
+    /**
+     * Creates new form SearchUser
+     * @param logUser
+     */
+    
+    
+    private void cargarVeterinarios() {
+        try {
+            UserDAO userDAO = new UserDAO();
+            
+            List<User> veterinarios = userDAO.ReadByClinicAndRole(logUser.getId_clinic(), 2);
+            cmbVeterinarios.removeAllItems();
+            
+            User placeholder = new User();
+            placeholder.setId_user(0);
+            placeholder.setName_user("Seleccione un veterinario");
+            placeholder.setLast_name("");
+            cmbVeterinarios.addItem(placeholder);
+
+            for (User vet : veterinarios) {
+                cmbVeterinarios.addItem(vet);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error cargando veterinarios: " + e.getMessage());
+        }
+    }
+    
+    private void cargarHoras() {
+        cmbHora.removeAllItems();
+        cmbHora.addItem("08:00");
+        cmbHora.addItem("09:00");
+        cmbHora.addItem("10:00");
+        cmbHora.addItem("11:00");
+        cmbHora.addItem("14:00");
+        cmbHora.addItem("15:00");
+        cmbHora.addItem("16:00");
+    }
+    
+    private void cargarMascotas(int idCliente) {
+        try {
+            PetDAO petDAO = new PetDAO();
+            List<Pet> mascotas = petDAO.ReadForClient(idCliente, logUser);
+
+            cmbMascotas.removeAllItems();
+            cmbMascotas.addItem("Seleccione una mascota");
+
+            for (Pet mascota : mascotas) {
+                cmbMascotas.addItem(mascota.getId_pet() + " - " + mascota.getName_Pet());
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error cargando mascotas: " + e.getMessage());
+        }
+    }
+    
+    private boolean validarCampos() {
+
+        if (txtIdCliente.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe buscar y seleccionar un cliente.");
+            return false;
+        }
+
+        if (cmbMascotas.getSelectedIndex() <= 0) {
+            JOptionPane.showMessageDialog(this, "Seleccione una mascota.");
+            return false;
+        }
+
+        User veterinario = (User) cmbVeterinarios.getSelectedItem();
+        if (veterinario == null || veterinario.getId_user() == 0) {
+            JOptionPane.showMessageDialog(this, "Seleccione un veterinario.");
+            return false;
+        }
+
+
+        if (jDateChooserFecha.getDate() == null) {
+        JOptionPane.showMessageDialog(this, "Seleccione la fecha de la cita.");
+        return false;
+        }
+
+        if (cmbHora.getSelectedIndex() <= 0) {
+            JOptionPane.showMessageDialog(this, "Seleccione la hora de la cita.");
+            return false;
+        }
+
+        return true;
+    }
+    
+    private void limpiarCampos() {
+        txtDocumentoCliente.setText("");
+        txtIdCliente.setText("");
+        txtNombresCliente.setText("");
+        txtApellidosCliente.setText("");
+
+        cmbMascotas.removeAllItems();
+        cmbVeterinarios.setSelectedIndex(0);
+        cmbHora.setSelectedIndex(0);
+        jDateChooserFecha.setDate(null);
+    }
+
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -22,27 +142,31 @@ public class ScheduleAppointment extends javax.swing.JFrame {
         ScheduleAppointment_lblTittle = new javax.swing.JLabel();
         Down = new javax.swing.JPanel();
         ScheduleAppointment_lblSubTittle = new javax.swing.JLabel();
-        ScheduleAppointment_lblClientID = new javax.swing.JLabel();
-        ScheduleAppointment_textIDClient = new javax.swing.JTextField();
+        ScheduleAppointment_lblClientDocument = new javax.swing.JLabel();
+        txtDocumentoCliente = new javax.swing.JTextField();
         ScheduleAppointment_lblPet = new javax.swing.JLabel();
-        ScheduleAppointment_ComboBoxPet = new javax.swing.JComboBox<>();
+        cmbMascotas = new javax.swing.JComboBox<>();
         ScheduleAppointment_lblVet = new javax.swing.JLabel();
-        ScheduleAppointment_ComboBoxVet = new javax.swing.JComboBox<>();
-        ScheduleAppointment_lblDayMonth = new javax.swing.JLabel();
-        ScheduleAppointment_ComboBoxDayMonth = new javax.swing.JComboBox<>();
+        cmbVeterinarios = new javax.swing.JComboBox<>();
         ScheduleAppointment_lblDayMonth1 = new javax.swing.JLabel();
-        ScheduleAppointment_ComboBoxDayMonth1 = new javax.swing.JComboBox<>();
         ScheduleAppointment_lblDayMonth2 = new javax.swing.JLabel();
-        ScheduleAppointment_ComboBoxDayMonth2 = new javax.swing.JComboBox<>();
+        cmbHora = new javax.swing.JComboBox<>();
         ScheduleAppointment_BttnBack = new javax.swing.JPanel();
         ScheduleAppointment_lblBttnBack = new javax.swing.JLabel();
         ScheduleAppointment_BttnSchedule = new javax.swing.JPanel();
         ScheduleAppointment_lblBttnSchedule = new javax.swing.JLabel();
+        btnBuscarCliente = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txtIdCliente = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txtNombresCliente = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtApellidosCliente = new javax.swing.JTextField();
+        jDateChooserFecha = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1000, 800));
         setMinimumSize(new java.awt.Dimension(1000, 800));
-        setPreferredSize(new java.awt.Dimension(1000, 800));
         setSize(new java.awt.Dimension(1000, 800));
 
         ScheduleAppointmentPanel.setMaximumSize(new java.awt.Dimension(1000, 800));
@@ -84,33 +208,24 @@ public class ScheduleAppointment extends javax.swing.JFrame {
         ScheduleAppointment_lblSubTittle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ScheduleAppointment_lblSubTittle.setText("Agendar Cita");
 
-        ScheduleAppointment_lblClientID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        ScheduleAppointment_lblClientID.setText("Documento de Identidad");
+        ScheduleAppointment_lblClientDocument.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        ScheduleAppointment_lblClientDocument.setText("Documento cliente");
 
         ScheduleAppointment_lblPet.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         ScheduleAppointment_lblPet.setText("Mascota");
 
-        ScheduleAppointment_ComboBoxPet.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbMascotas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         ScheduleAppointment_lblVet.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         ScheduleAppointment_lblVet.setText("Veterinario");
 
-        ScheduleAppointment_ComboBoxVet.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        ScheduleAppointment_lblDayMonth.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        ScheduleAppointment_lblDayMonth.setText("Mes-Año");
-
-        ScheduleAppointment_ComboBoxDayMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         ScheduleAppointment_lblDayMonth1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        ScheduleAppointment_lblDayMonth1.setText("Dia");
-
-        ScheduleAppointment_ComboBoxDayMonth1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ScheduleAppointment_lblDayMonth1.setText("Fecha de la cita");
 
         ScheduleAppointment_lblDayMonth2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         ScheduleAppointment_lblDayMonth2.setText("Hora");
 
-        ScheduleAppointment_ComboBoxDayMonth2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         ScheduleAppointment_BttnBack.setBackground(new java.awt.Color(0, 153, 153));
         ScheduleAppointment_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -179,74 +294,129 @@ public class ScheduleAppointment extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        btnBuscarCliente.setBackground(new java.awt.Color(0, 153, 153));
+        btnBuscarCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnBuscarCliente.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarCliente.setText("Buscar Cliente");
+        btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarClienteActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setText("Id");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("Nombres");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setText("Apellidos");
+
         javax.swing.GroupLayout DownLayout = new javax.swing.GroupLayout(Down);
         Down.setLayout(DownLayout);
         DownLayout.setHorizontalGroup(
             DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DownLayout.createSequentialGroup()
-                .addContainerGap(104, Short.MAX_VALUE)
-                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DownLayout.createSequentialGroup()
-                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ScheduleAppointment_lblClientID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ScheduleAppointment_ComboBoxVet, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ScheduleAppointment_textIDClient)
-                            .addComponent(ScheduleAppointment_ComboBoxDayMonth1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ScheduleAppointment_lblVet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ScheduleAppointment_lblDayMonth1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(156, 156, 156)
-                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ScheduleAppointment_ComboBoxPet, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ScheduleAppointment_ComboBoxDayMonth, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ScheduleAppointment_ComboBoxDayMonth2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ScheduleAppointment_lblDayMonth2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ScheduleAppointment_lblDayMonth, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ScheduleAppointment_lblPet, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DownLayout.createSequentialGroup()
-                        .addComponent(ScheduleAppointment_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(172, 172, 172)
-                        .addComponent(ScheduleAppointment_BttnSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(134, 134, 134))))
             .addComponent(ScheduleAppointment_lblSubTittle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DownLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ScheduleAppointment_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(172, 172, 172)
+                .addComponent(ScheduleAppointment_BttnSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(134, 134, 134))
+            .addGroup(DownLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DownLayout.createSequentialGroup()
+                        .addComponent(cmbMascotas, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(DownLayout.createSequentialGroup()
+                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(DownLayout.createSequentialGroup()
+                                .addComponent(ScheduleAppointment_lblClientDocument, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DownLayout.createSequentialGroup()
+                                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(DownLayout.createSequentialGroup()
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtApellidosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(DownLayout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtNombresCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnBuscarCliente))
+                                .addGap(176, 176, 176))
+                            .addGroup(DownLayout.createSequentialGroup()
+                                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtDocumentoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(DownLayout.createSequentialGroup()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(ScheduleAppointment_lblPet, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ScheduleAppointment_lblVet, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbVeterinarios, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ScheduleAppointment_lblDayMonth2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ScheduleAppointment_lblDayMonth1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbHora, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40))))
         );
         DownLayout.setVerticalGroup(
             DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DownLayout.createSequentialGroup()
-                .addComponent(ScheduleAppointment_lblSubTittle, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DownLayout.createSequentialGroup()
-                        .addComponent(ScheduleAppointment_lblClientID)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ScheduleAppointment_textIDClient, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DownLayout.createSequentialGroup()
-                        .addComponent(ScheduleAppointment_lblPet)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ScheduleAppointment_ComboBoxPet, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(53, 53, 53)
-                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ScheduleAppointment_lblVet)
-                    .addComponent(ScheduleAppointment_lblDayMonth))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ScheduleAppointment_ComboBoxVet, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ScheduleAppointment_ComboBoxDayMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61)
+                .addContainerGap()
+                .addComponent(ScheduleAppointment_lblSubTittle, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
                 .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(DownLayout.createSequentialGroup()
-                        .addComponent(ScheduleAppointment_lblDayMonth1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ScheduleAppointment_ComboBoxDayMonth1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ScheduleAppointment_lblClientDocument)
+                            .addComponent(ScheduleAppointment_lblVet))
+                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(DownLayout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtDocumentoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(DownLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(cmbVeterinarios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(27, 27, 27))
+                    .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(txtIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(DownLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(ScheduleAppointment_lblDayMonth1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(ScheduleAppointment_lblDayMonth2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ScheduleAppointment_ComboBoxDayMonth2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(82, 82, 82)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmbHora, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ScheduleAppointment_lblPet)))
+                    .addGroup(DownLayout.createSequentialGroup()
+                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtNombresCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtApellidosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(73, 73, 73)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cmbMascotas, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(156, 156, 156)
                 .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ScheduleAppointment_BttnSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ScheduleAppointment_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         ScheduleAppointmentPanel.add(Down, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1000, 740));
@@ -278,7 +448,62 @@ public class ScheduleAppointment extends javax.swing.JFrame {
     }//GEN-LAST:event_ScheduleAppointment_lblBttnScheduleMouseEntered
 
     private void ScheduleAppointment_lblBttnScheduleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ScheduleAppointment_lblBttnScheduleMouseClicked
-        // Consulta SQL para agendar cita
+        try {
+
+            // VALIDACIONES
+            if (!validarCampos()) {
+                return;
+            }
+            Cita cita = new Cita();
+            CitaDAO citaDAO = new CitaDAO();
+            
+            cita.setIdClinica(logUser.getId_clinic());
+            cita.setIdCliente(Integer.parseInt(txtIdCliente.getText()));
+
+            String itemMascota = (String) cmbMascotas.getSelectedItem();
+            cita.setIdMascota(Integer.parseInt(itemMascota.split(" - ")[0]));
+
+            User vet = (User) cmbVeterinarios.getSelectedItem();
+            int idVeterinario = vet.getId_user();
+            cita.setIdVeterinario(idVeterinario);
+
+
+            java.util.Date utilFecha = jDateChooserFecha.getDate();
+            if (utilFecha == null) {
+                JOptionPane.showMessageDialog(this, "Seleccione la fecha.");
+                return;
+            }
+
+            // Hora desde ComboBox HH:mm
+            String horaSeleccionada = (String) cmbHora.getSelectedItem();
+            if (horaSeleccionada == null) {
+                JOptionPane.showMessageDialog(this, "Seleccione la hora.");
+                return;
+            }
+
+            // Convertir a DATETIME (Timestamp)
+            String fechaStr = new java.text.SimpleDateFormat("yyyy-MM-dd").format(utilFecha);
+            String fechaHoraStr = fechaStr + " " + horaSeleccionada + ":00";
+
+            java.sql.Timestamp timestamp = java.sql.Timestamp.valueOf(fechaHoraStr);
+            cita.setFecha(timestamp);
+
+
+            cita.setEstado("programada");
+
+            // Llamar al DAO
+            boolean ok = citaDAO.registrarCita(cita);
+
+            if (ok) {
+                JOptionPane.showMessageDialog(this, "Cita programada correctamente.");
+                limpiarCampos();
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo programar la cita.");
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Error programando cita: " + ex.getMessage());
+        }
     }//GEN-LAST:event_ScheduleAppointment_lblBttnScheduleMouseClicked
 
     private void ScheduleAppointment_lblBttnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ScheduleAppointment_lblBttnBackMouseExited
@@ -297,6 +522,35 @@ public class ScheduleAppointment extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_ScheduleAppointment_lblBttnBackMouseClicked
 
+    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
+        String documento = txtDocumentoCliente.getText().trim();
+
+        if (documento.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese un documento.");
+            return;
+        }
+        ClienteDAO clienteDAO = new ClienteDAO();
+        
+        ClienteModel cliente = clienteDAO.buscarClientesPorDocumento(documento, logUser.getId_clinic());
+
+        if (cliente == null) {
+            JOptionPane.showMessageDialog(this, "Cliente no encontrado.");
+            txtDocumentoCliente.setText("");
+            txtIdCliente.setText("");
+            txtNombresCliente.setText("");
+            txtApellidosCliente.setText("");
+            return;
+        }
+        
+        // Cargar datos del cliente
+        txtIdCliente.setText(String.valueOf(cliente.getIdCliente()));
+        txtNombresCliente.setText(cliente.getNombres());
+        txtApellidosCliente.setText(cliente.getApellidos());
+
+        // Cargar mascotas
+        cargarMascotas(cliente.getIdCliente());
+    }//GEN-LAST:event_btnBuscarClienteActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new ScheduleAppointment().setVisible(true));
     }
@@ -306,22 +560,27 @@ public class ScheduleAppointment extends javax.swing.JFrame {
     private javax.swing.JPanel ScheduleAppointmentPanel;
     private javax.swing.JPanel ScheduleAppointment_BttnBack;
     private javax.swing.JPanel ScheduleAppointment_BttnSchedule;
-    private javax.swing.JComboBox<String> ScheduleAppointment_ComboBoxDayMonth;
-    private javax.swing.JComboBox<String> ScheduleAppointment_ComboBoxDayMonth1;
-    private javax.swing.JComboBox<String> ScheduleAppointment_ComboBoxDayMonth2;
-    private javax.swing.JComboBox<String> ScheduleAppointment_ComboBoxPet;
-    private javax.swing.JComboBox<String> ScheduleAppointment_ComboBoxVet;
     private javax.swing.JLabel ScheduleAppointment_lblBttnBack;
     private javax.swing.JLabel ScheduleAppointment_lblBttnSchedule;
-    private javax.swing.JLabel ScheduleAppointment_lblClientID;
-    private javax.swing.JLabel ScheduleAppointment_lblDayMonth;
+    private javax.swing.JLabel ScheduleAppointment_lblClientDocument;
     private javax.swing.JLabel ScheduleAppointment_lblDayMonth1;
     private javax.swing.JLabel ScheduleAppointment_lblDayMonth2;
     private javax.swing.JLabel ScheduleAppointment_lblPet;
     private javax.swing.JLabel ScheduleAppointment_lblSubTittle;
     private javax.swing.JLabel ScheduleAppointment_lblTittle;
     private javax.swing.JLabel ScheduleAppointment_lblVet;
-    private javax.swing.JTextField ScheduleAppointment_textIDClient;
     private javax.swing.JPanel Up;
+    private javax.swing.JButton btnBuscarCliente;
+    private javax.swing.JComboBox<String> cmbHora;
+    private javax.swing.JComboBox<String> cmbMascotas;
+    private javax.swing.JComboBox<User> cmbVeterinarios;
+    private com.toedter.calendar.JDateChooser jDateChooserFecha;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JTextField txtApellidosCliente;
+    private javax.swing.JTextField txtDocumentoCliente;
+    private javax.swing.JTextField txtIdCliente;
+    private javax.swing.JTextField txtNombresCliente;
     // End of variables declaration//GEN-END:variables
 }
