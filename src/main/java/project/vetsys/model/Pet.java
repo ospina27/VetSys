@@ -1,21 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package project.vetsys.model;
 
 import java.sql.Date;
 
-/**
- *
- * @author User
- */
 public class Pet {
     
     private int id_pet;
     private int id_Client;
     private int id_Clinic;
     private Clinic clinic;
+    private ClienteModel client;
     private String name_Pet;
     private String species;
     private String bred; ///raza
@@ -23,11 +16,10 @@ public class Pet {
     private String sex;
     private Date date_of_birth;
 
-    public Pet(int id_pet, int id_Client, int id_Clinic, Clinic clinic, String name_Pet, 
+    public Pet(int id_pet, ClienteModel client, Clinic clinic, String name_Pet, 
             String species, String bred, String color, String sex, Date date_of_birth) {
         this.id_pet = id_pet;
-        this.id_Client = id_Client;
-        this.id_Clinic = id_Clinic;
+        this.client = client;
         this.clinic = clinic;
         this.name_Pet = name_Pet;
         this.species = species;
@@ -35,11 +27,22 @@ public class Pet {
         this.color = color;
         this.sex = sex;
         this.date_of_birth = date_of_birth;
+        
     }
     
     public Pet(){
         
     }
+
+    public ClienteModel getClient() {
+        return client;
+    }
+
+    public void setClient(ClienteModel client) {
+        this.client = client;
+    }
+    
+    
 
     public int getId_Clinic() {
         return id_Clinic;
@@ -124,7 +127,6 @@ public class Pet {
          
      @Override
     public String toString() {
-        return "Usuario: " + name_Pet;
-                
+        return "Mascota: " + name_Pet;           
     }
 }

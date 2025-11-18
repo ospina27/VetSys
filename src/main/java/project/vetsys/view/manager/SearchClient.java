@@ -301,10 +301,8 @@ public class SearchClient extends javax.swing.JFrame {
 
         jFormattedTxtFechaFinMembresia.setBorder(null);
 
-        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setText("yyyy/mm/dd");
 
-        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
         jLabel5.setText("yyyy/mm/dd");
 
         jLabel17.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -327,7 +325,7 @@ public class SearchClient extends javax.swing.JFrame {
         txtIdCliente.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtIdCliente.setForeground(new java.awt.Color(255, 255, 255));
         txtIdCliente.setBorder(null);
-        txtIdCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtIdCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         txtClinica.setEditable(false);
         txtClinica.setBackground(new java.awt.Color(0, 102, 102));
@@ -447,7 +445,7 @@ public class SearchClient extends javax.swing.JFrame {
         btnActualizar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnActualizar.setForeground(new java.awt.Color(0, 102, 102));
         btnActualizar.setText("Actualizar");
-        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
@@ -458,7 +456,7 @@ public class SearchClient extends javax.swing.JFrame {
         btnSalir.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnSalir.setForeground(new java.awt.Color(255, 255, 255));
         btnSalir.setText("Atrás");
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -468,7 +466,7 @@ public class SearchClient extends javax.swing.JFrame {
         btnEliminar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(0, 102, 102));
         btnEliminar.setText("Eliminar");
-        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -490,7 +488,7 @@ public class SearchClient extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tablaClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tablaClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaClientesMouseClicked(evt);
@@ -502,7 +500,7 @@ public class SearchClient extends javax.swing.JFrame {
         btnConsultaCliente.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnConsultaCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnConsultaCliente.setText("Buscar");
-        btnConsultaCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnConsultaCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnConsultaCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultaClienteActionPerformed(evt);

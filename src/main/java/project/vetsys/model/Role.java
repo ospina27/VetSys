@@ -14,7 +14,7 @@ public class Role {
     private String name;
     private String description; 
 
-    public Role(int id, String name, String description) {
+    public Role(int id, String name) {
         this.id = id;
         this.name = name;
         this.description = description;

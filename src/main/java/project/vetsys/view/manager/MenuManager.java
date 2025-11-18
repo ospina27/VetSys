@@ -125,10 +125,11 @@ public class MenuManager extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 102, 102));
         setMinimumSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 600));
 
-        MenuManagerPanel.setMaximumSize(new java.awt.Dimension(1000, 800));
-        MenuManagerPanel.setMinimumSize(new java.awt.Dimension(1000, 800));
-        MenuManagerPanel.setPreferredSize(new java.awt.Dimension(1000, 800));
+        MenuManagerPanel.setMaximumSize(new java.awt.Dimension(800, 600));
+        MenuManagerPanel.setMinimumSize(new java.awt.Dimension(800, 600));
+        MenuManagerPanel.setPreferredSize(new java.awt.Dimension(800, 600));
         MenuManagerPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Left.setBackground(new java.awt.Color(0, 153, 153));
@@ -145,14 +146,18 @@ public class MenuManager extends javax.swing.JFrame {
         Left.setLayout(LeftLayout);
         LeftLayout.setHorizontalGroup(
             LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MenuManager_lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addGroup(LeftLayout.createSequentialGroup()
+                .addComponent(MenuManager_lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
         LeftLayout.setVerticalGroup(
             LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MenuManager_lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addGroup(LeftLayout.createSequentialGroup()
+                .addComponent(MenuManager_lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 273, Short.MAX_VALUE))
         );
 
-        MenuManagerPanel.add(Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        MenuManagerPanel.add(Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 600));
 
         Right.setBackground(new java.awt.Color(255, 255, 255));
         Right.setMaximumSize(new java.awt.Dimension(500, 800));
@@ -169,6 +174,7 @@ public class MenuManager extends javax.swing.JFrame {
         MenuManager_lblBttnUsers.setForeground(new java.awt.Color(255, 255, 255));
         MenuManager_lblBttnUsers.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuManager_lblBttnUsers.setText("Usuarios");
+        MenuManager_lblBttnUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuManager_lblBttnUsers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuManager_lblBttnUsersMouseClicked(evt);
@@ -202,6 +208,7 @@ public class MenuManager extends javax.swing.JFrame {
         MenuManager_lblBttnAppointments.setForeground(new java.awt.Color(255, 255, 255));
         MenuManager_lblBttnAppointments.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuManager_lblBttnAppointments.setText("Citas");
+        MenuManager_lblBttnAppointments.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuManager_lblBttnAppointments.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuManager_lblBttnAppointmentsMouseClicked(evt);
@@ -235,6 +242,7 @@ public class MenuManager extends javax.swing.JFrame {
         MenuManager_lblBttnPatient.setForeground(new java.awt.Color(255, 255, 255));
         MenuManager_lblBttnPatient.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuManager_lblBttnPatient.setText("Pacientes");
+        MenuManager_lblBttnPatient.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuManager_lblBttnPatient.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuManager_lblBttnPatientMouseClicked(evt);
@@ -267,6 +275,7 @@ public class MenuManager extends javax.swing.JFrame {
         MenuManager_lblBttnLogOut.setForeground(new java.awt.Color(255, 255, 255));
         MenuManager_lblBttnLogOut.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuManager_lblBttnLogOut.setText("Cerrar Sesion");
+        MenuManager_lblBttnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuManager_lblBttnLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuManager_lblBttnLogOutMouseClicked(evt);
@@ -295,29 +304,29 @@ public class MenuManager extends javax.swing.JFrame {
         RightLayout.setHorizontalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RightLayout.createSequentialGroup()
-                .addGap(145, 145, 145)
+                .addGap(46, 46, 46)
                 .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(MenuManager_BttnUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MenuManager_BttnAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MenuManager_BttnPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MenuManager_BttnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(203, Short.MAX_VALUE))
         );
         RightLayout.setVerticalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RightLayout.createSequentialGroup()
-                .addGap(109, 109, 109)
+                .addGap(52, 52, 52)
                 .addComponent(MenuManager_BttnUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(88, 88, 88)
                 .addComponent(MenuManager_BttnAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(98, 98, 98)
                 .addComponent(MenuManager_BttnPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120)
+                .addGap(87, 87, 87)
                 .addComponent(MenuManager_BttnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addGap(470, 470, 470))
         );
 
-        MenuManagerPanel.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, -1, -1));
+        MenuManagerPanel.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, 330, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -378,13 +387,11 @@ public class MenuManager extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuManager_lblBttnLogOutMouseClicked
 
     private void MenuManager_lblBttnPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuManager_lblBttnPatientMouseClicked
-
         PatientsMenu patientFrame = new PatientsMenu(logUser);
         patientFrame.setVisible(true);
         patientFrame.pack();
         patientFrame.setLocationRelativeTo(null);
-        this.dispose();
-                   
+        this.dispose();        
     }//GEN-LAST:event_MenuManager_lblBttnPatientMouseClicked
 
     private void MenuManager_lblBttnAppointmentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuManager_lblBttnAppointmentsMouseClicked

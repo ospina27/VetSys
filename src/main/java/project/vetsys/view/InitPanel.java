@@ -20,7 +20,7 @@ public class InitPanel extends javax.swing.JFrame {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
             // Simula el clic en el botón "Empezar"
-                InitPanel_lblBttnEnterMouseClicked(null);
+                InitPanel_BttnEnterMouseEntered(null);
             }
         });
     }
@@ -30,74 +30,58 @@ public class InitPanel extends javax.swing.JFrame {
     private void initComponents() {
 
         background = new javax.swing.JPanel();
-        InitPanel_lblTittle = new javax.swing.JLabel();
-        InitPanel_BttnEnter = new javax.swing.JPanel();
-        InitPanel_lblBttnEnter = new javax.swing.JLabel();
+        InitPanel_ImgVetSys = new javax.swing.JLabel();
+        InitPanel_BttnEnter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
 
-        background.setBackground(new java.awt.Color(204, 204, 255));
+        background.setBackground(new java.awt.Color(255, 255, 255));
         background.setMaximumSize(new java.awt.Dimension(800, 600));
         background.setMinimumSize(new java.awt.Dimension(800, 600));
         background.setPreferredSize(new java.awt.Dimension(800, 600));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        InitPanel_lblTittle.setBackground(new java.awt.Color(0, 255, 255));
-        InitPanel_lblTittle.setFont(new java.awt.Font("Arial Black", 1, 72)); // NOI18N
-        InitPanel_lblTittle.setForeground(new java.awt.Color(0, 153, 153));
-        InitPanel_lblTittle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        InitPanel_lblTittle.setText("VetSys");
-        background.add(InitPanel_lblTittle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 800, 140));
+        InitPanel_ImgVetSys.setBackground(new java.awt.Color(255, 255, 255));
+        InitPanel_ImgVetSys.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        InitPanel_ImgVetSys.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vetSysBg.png"))); // NOI18N
+        background.add(InitPanel_ImgVetSys, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 460));
 
         InitPanel_BttnEnter.setBackground(new java.awt.Color(0, 153, 153));
-
-        InitPanel_lblBttnEnter.setFont(new java.awt.Font("Arial Black", 1, 48)); // NOI18N
-        InitPanel_lblBttnEnter.setForeground(new java.awt.Color(255, 255, 255));
-        InitPanel_lblBttnEnter.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        InitPanel_lblBttnEnter.setText("Empezar");
-        InitPanel_lblBttnEnter.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        InitPanel_lblBttnEnter.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        InitPanel_lblBttnEnter.addMouseListener(new java.awt.event.MouseAdapter() {
+        InitPanel_BttnEnter.setFont(new java.awt.Font("Arial Black", 1, 48)); // NOI18N
+        InitPanel_BttnEnter.setForeground(new java.awt.Color(255, 255, 255));
+        InitPanel_BttnEnter.setText("Empezar");
+        InitPanel_BttnEnter.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        InitPanel_BttnEnter.setFocusPainted(false);
+        InitPanel_BttnEnter.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                InitPanel_lblBttnEnterMouseClicked(evt);
+                InitPanel_BttnEnterMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                InitPanel_lblBttnEnterMouseEntered(evt);
+                InitPanel_BttnEnterMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                InitPanel_lblBttnEnterMouseExited(evt);
+                InitPanel_BttnEnterMouseExited(evt);
             }
         });
-
-        javax.swing.GroupLayout InitPanel_BttnEnterLayout = new javax.swing.GroupLayout(InitPanel_BttnEnter);
-        InitPanel_BttnEnter.setLayout(InitPanel_BttnEnterLayout);
-        InitPanel_BttnEnterLayout.setHorizontalGroup(
-            InitPanel_BttnEnterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(InitPanel_lblBttnEnter, javax.swing.GroupLayout.PREFERRED_SIZE, 194, Short.MAX_VALUE)
-        );
-        InitPanel_BttnEnterLayout.setVerticalGroup(
-            InitPanel_BttnEnterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(InitPanel_lblBttnEnter, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 64, Short.MAX_VALUE)
-        );
-
-        background.add(InitPanel_BttnEnter, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 290, 70));
+        background.add(InitPanel_BttnEnter, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+            .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         background.getAccessibleContext().setAccessibleName("");
@@ -105,22 +89,21 @@ public class InitPanel extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void InitPanel_lblBttnEnterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InitPanel_lblBttnEnterMouseClicked
+    private void InitPanel_BttnEnterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InitPanel_BttnEnterMouseClicked
         LogIn LogInFrame = new LogIn();
         LogInFrame.setVisible(true);
         LogInFrame.pack();
         LogInFrame.setLocationRelativeTo(null);
         this.dispose();
-    }//GEN-LAST:event_InitPanel_lblBttnEnterMouseClicked
+    }//GEN-LAST:event_InitPanel_BttnEnterMouseClicked
 
-    private void InitPanel_lblBttnEnterMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InitPanel_lblBttnEnterMouseEntered
+    private void InitPanel_BttnEnterMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InitPanel_BttnEnterMouseEntered
         InitPanel_BttnEnter.setBackground(Color.LIGHT_GRAY);
-        
-    }//GEN-LAST:event_InitPanel_lblBttnEnterMouseEntered
+    }//GEN-LAST:event_InitPanel_BttnEnterMouseEntered
 
-    private void InitPanel_lblBttnEnterMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InitPanel_lblBttnEnterMouseExited
+    private void InitPanel_BttnEnterMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InitPanel_BttnEnterMouseExited
         InitPanel_BttnEnter.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_InitPanel_lblBttnEnterMouseExited
+    }//GEN-LAST:event_InitPanel_BttnEnterMouseExited
 
     public static void main(String args[]) {
         
@@ -129,9 +112,8 @@ public class InitPanel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel InitPanel_BttnEnter;
-    private javax.swing.JLabel InitPanel_lblBttnEnter;
-    private javax.swing.JLabel InitPanel_lblTittle;
+    private javax.swing.JButton InitPanel_BttnEnter;
+    private javax.swing.JLabel InitPanel_ImgVetSys;
     private javax.swing.JPanel background;
     // End of variables declaration//GEN-END:variables
 }

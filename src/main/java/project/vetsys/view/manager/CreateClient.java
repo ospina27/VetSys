@@ -32,21 +32,15 @@ public class CreateClient extends javax.swing.JFrame {
     
     public CreateClient() {
         initComponents();
-        initListeners();
     }
     
     public CreateClient(User logUser) {
         this.logUser = logUser;
         initComponents();
-        initListeners();
         cargarMembresias();
        
     }
     
-    private void initListeners() {
-        //cboxRoleCreate.addActionListener(e -> loadRolesStatus());
-        //cboxStatusCreate.addActionListener(e-> loadRolesStatus());
-    }
     
     private void limpiarCampos() {
         txtNombreCliente.setText("");
@@ -86,7 +80,6 @@ public class CreateClient extends javax.swing.JFrame {
                 JOptionPane.ERROR_MESSAGE);
         }
     }
-    
    
 
     /**
@@ -673,10 +666,7 @@ public class CreateClient extends javax.swing.JFrame {
             }
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, 
-                "Error obteniendo datos de membresía: " + e.getMessage(), 
-                "Error", 
-                JOptionPane.ERROR_MESSAGE);
+            System.out.println("Error obteniendo datos de membresía: " + e.getMessage());
         }
     }
     

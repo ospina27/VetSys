@@ -79,17 +79,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="LogInPanel_lblTittle" alignment="0" pref="400" max="32767" attributes="0"/>
+                  <Component id="LogInPanel_ImgVetSys" alignment="0" pref="400" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="LogInPanel_lblTittle" alignment="0" pref="600" max="32767" attributes="0"/>
+                  <Component id="LogInPanel_ImgVetSys" alignment="0" pref="600" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="LogInPanel_lblTittle">
+            <Component class="javax.swing.JLabel" name="LogInPanel_ImgVetSys">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Black" size="48" style="1"/>
@@ -98,7 +98,9 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="VetSys"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/vetSysBg.png"/>
+                </Property>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
             </Component>
@@ -132,32 +134,30 @@
                       <Component id="LogInPanel_lblLogin" min="-2" pref="400" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jSeparator1" alignment="1" min="-2" pref="240" max="-2" attributes="0"/>
-                          <Component id="LogInPanel_lblPassword" alignment="1" min="-2" pref="240" max="-2" attributes="0"/>
-                          <Component id="LogInPanel_txtPassword" alignment="1" min="-2" pref="240" max="-2" attributes="0"/>
-                          <Component id="jSeparator2" alignment="1" min="-2" pref="240" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="LogInPanel_lblPassword" alignment="1" min="-2" pref="240" max="-2" attributes="0"/>
+                              <Component id="LogInPanel_txtPassword" alignment="1" min="-2" pref="240" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="LogInPanel_txtUsername" pref="240" max="32767" attributes="0"/>
+                                      <Component id="LogInPanel_lblUsername" alignment="0" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="LogInPanel_lblResetPassword" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="LogInPanel_BttnResetPassword" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="LogInPanel_txtUsername" pref="240" max="32767" attributes="0"/>
-                                      <Component id="LogInPanel_lblUsername" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
-                                  <Component id="LogInPanel_BttnLogin" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
+                              <Component id="LogInPanel_BttnLogin" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="495" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -170,17 +170,13 @@
                       <Component id="LogInPanel_lblUsername" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="LogInPanel_txtUsername" min="-2" pref="36" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jSeparator2" min="-2" pref="3" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       <Component id="LogInPanel_lblPassword" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="LogInPanel_txtPassword" min="-2" pref="36" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jSeparator1" min="-2" pref="3" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                       <Component id="LogInPanel_BttnLogin" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="37" max="32767" attributes="0"/>
+                      <EmptySpace pref="39" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="LogInPanel_lblResetPassword" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
                           <Component id="LogInPanel_BttnResetPassword" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -262,7 +258,7 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Click Aqu&#xed;"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Cursor Por defecto"/>
+                  <Color id="Hand Cursor"/>
                 </Property>
               </Properties>
               <Events>
@@ -285,74 +281,30 @@
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LogInPanel_txtPasswordMousePressed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JSeparator" name="jSeparator1">
-              <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSeparator" name="jSeparator2">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Container class="javax.swing.JPanel" name="LogInPanel_BttnLogin">
+            <Component class="javax.swing.JButton" name="LogInPanel_BttnLogin">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="99" red="0" type="rgb"/>
                 </Property>
-                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Cursor Por defecto"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial Black" size="24" style="1"/>
                 </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Ingresar"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
+                <Property name="focusPainted" type="boolean" value="false"/>
               </Properties>
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="133" max="32767" attributes="0"/>
-                      <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                          <Component id="LogInPanel_lblBttnLogin" alignment="1" pref="133" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="40" max="32767" attributes="0"/>
-                      <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                          <Component id="LogInPanel_lblBttnLogin" alignment="0" pref="40" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-              <SubComponents>
-                <Component class="javax.swing.JLabel" name="LogInPanel_lblBttnLogin">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Arial Black" size="24" style="1"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Ingresar"/>
-                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                      <Color id="Cursor Por defecto"/>
-                    </Property>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LogInPanel_lblBttnLoginMouseClicked"/>
-                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LogInPanel_lblBttnLoginMouseEntered"/>
-                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LogInPanel_lblBttnLoginMouseExited"/>
-                  </Events>
-                </Component>
-              </SubComponents>
-            </Container>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LogInPanel_BttnLoginMouseClicked"/>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LogInPanel_BttnLoginMouseEntered"/>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LogInPanel_BttnLoginMouseExited"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LogInPanel_BttnLoginActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>
