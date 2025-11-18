@@ -4,6 +4,7 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import project.vetsys.dao.UserDAO;
 import project.vetsys.model.User;
+import java.awt.event.KeyEvent;
 import project.vetsys.view.manager.MenuManager;
 
 
@@ -17,6 +18,39 @@ public class LogIn extends javax.swing.JFrame {
      */
     public LogIn() {
         initComponents();
+            // ==== Accesibilidad añadida ====
+                // ==== Accesibilidad añadida ====
+            // Tooltips (en label y en panel contenedor por seguridad)
+                LogInPanel_lblBttnLogin.setToolTipText("Iniciar sesión (Alt+I)");
+                LogInPanel_BttnLogin.setToolTipText("Iniciar sesión (Alt+I)");
+                LogInPanel_BttnResetPassword.setToolTipText("Restablecer contraseña (Alt+R)");
+                LogInPanel_lblResetPassword.setToolTipText("Restablecer contraseña (Alt+R)");
+
+                // Hacer focusable (opcional, no necesario para InputMap/ActionMap pero útil)
+                LogInPanel_lblBttnLogin.setFocusable(true);
+                LogInPanel_BttnResetPassword.setFocusable(true);
+
+                // Registrar atajos globales en la ventana (funcionan aunque el foco esté en cualquier componente)
+                javax.swing.InputMap im = this.getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
+                im.put(javax.swing.KeyStroke.getKeyStroke(KeyEvent.VK_I, java.awt.event.InputEvent.ALT_DOWN_MASK), "accionLogin");
+                im.put(javax.swing.KeyStroke.getKeyStroke(KeyEvent.VK_R, java.awt.event.InputEvent.ALT_DOWN_MASK), "accionReset");
+
+                this.getRootPane().getActionMap().put("accionLogin", new javax.swing.AbstractAction() {
+                    @Override
+                    public void actionPerformed(java.awt.event.ActionEvent e) {
+                        // llama a tu handler existente para reusar la lógica
+                        LogInPanel_lblBttnLoginMouseClicked(null);
+                    }
+                });
+                this.getRootPane().getActionMap().put("accionReset", new javax.swing.AbstractAction() {
+                    @Override
+                    public void actionPerformed(java.awt.event.ActionEvent e) {
+                        LogInPanel_BttnResetPasswordMouseClicked(null);
+                    }
+                });
+
+
+
     }
 
     @SuppressWarnings("unchecked")
@@ -361,4 +395,41 @@ public class LogIn extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
+// === MÉTODOS DE ACCESIBILIDAD ===
+private void initAccessibility() {
+    try {
+        this.getAccessibleContext().setAccessibleName("Ventana de inicio de sesión");
+        this.getAccessibleContext().setAccessibleDescription("Formulario para ingresar con usuario y contraseña");
+        traverseAccessibility(this.getContentPane());
+    } catch (Exception e) {
+        System.err.println("Error en accesibilidad: " + e.getMessage());
+    }
+}
+
+private void traverseAccessibility(java.awt.Container container) {
+    for (java.awt.Component comp : container.getComponents()) {
+        if (comp instanceof java.awt.Container) traverseAccessibility((java.awt.Container) comp);
+        try {
+            if (comp instanceof javax.swing.AbstractButton) {
+                javax.swing.AbstractButton ab = (javax.swing.AbstractButton) comp;
+                if (ab.getToolTipText() == null || ab.getToolTipText().isEmpty()) {
+                    ab.setToolTipText(ab.getText());
+                }
+            } else if (comp instanceof javax.swing.JLabel) {
+                javax.swing.JLabel label = (javax.swing.JLabel) comp;
+                if (label.getAccessibleContext().getAccessibleName() == null) {
+                    label.getAccessibleContext().setAccessibleName(label.getText());
+                }
+            } else if (comp instanceof javax.swing.JTextField || comp instanceof javax.swing.JPasswordField) {
+                javax.swing.JComponent jc = (javax.swing.JComponent) comp;
+                if (jc.getAccessibleContext().getAccessibleName() == null) {
+                    jc.getAccessibleContext().setAccessibleName("Campo de texto " + jc.getClass().getSimpleName());
+                }
+            }
+        } catch (Exception e) {
+            // evitar errores silenciosos
+        }
+    }
+}
+
 }

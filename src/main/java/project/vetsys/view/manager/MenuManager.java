@@ -1,7 +1,9 @@
 package project.vetsys.view.manager;
 
 import java.awt.Color;
-import javax.swing.JOptionPane;
+import java.awt.event.ActionEvent;
+import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 import project.vetsys.view.security.LogIn;
 
 import project.vetsys.model.User;
@@ -21,7 +23,83 @@ public class MenuManager extends javax.swing.JFrame {
         {
            //btnCreate.setVisible(false);
         }
-    }
+        // === ACCESIBILIDAD ===
+
+    // Etiqueta título
+    MenuManager_lblTitle.getAccessibleContext().setAccessibleName("Título VetSys");
+    MenuManager_lblTitle.getAccessibleContext().setAccessibleDescription("Título de la aplicación VetSys");
+
+    // Botón Usuarios
+    MenuManager_lblBttnUsers.setToolTipText("Gestionar usuarios (Alt+U)");
+    MenuManager_lblBttnUsers.setDisplayedMnemonic('U');
+    MenuManager_lblBttnUsers.getAccessibleContext().setAccessibleName("Botón Usuarios");
+    MenuManager_lblBttnUsers.getAccessibleContext().setAccessibleDescription("Abrir el panel de usuarios");
+
+    // Botón Citas
+    MenuManager_lblBttnAppointments.setToolTipText("Gestionar citas (Alt+C)");
+    MenuManager_lblBttnAppointments.setDisplayedMnemonic('C');
+    MenuManager_lblBttnAppointments.getAccessibleContext().setAccessibleName("Botón Citas");
+    MenuManager_lblBttnAppointments.getAccessibleContext().setAccessibleDescription("Abrir el panel de citas");
+
+    // Botón Pacientes
+    MenuManager_lblBttnPatient.setToolTipText("Gestionar pacientes (Alt+P)");
+    MenuManager_lblBttnPatient.setDisplayedMnemonic('P');
+    MenuManager_lblBttnPatient.getAccessibleContext().setAccessibleName("Botón Pacientes");
+    MenuManager_lblBttnPatient.getAccessibleContext().setAccessibleDescription("Abrir el panel de pacientes");
+
+    // Botón Cerrar Sesión
+    MenuManager_lblBttnLogOut.setToolTipText("Cerrar sesión (Alt+S)");
+    MenuManager_lblBttnLogOut.setDisplayedMnemonic('S');
+    MenuManager_lblBttnLogOut.getAccessibleContext().setAccessibleName("Botón Cerrar Sesión");
+    MenuManager_lblBttnLogOut.getAccessibleContext().setAccessibleDescription("Cerrar sesión y volver a la pantalla de inicio");
+
+    // === ATAJOS DE TECLADO ===
+
+    // ALT+U → Usuarios
+    Right.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW)
+        .put(KeyStroke.getKeyStroke("alt U"), "users");
+    Right.getActionMap()
+        .put("users", new javax.swing.AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MenuManager_lblBttnUsersMouseClicked(null);
+            }
+        });
+
+    // ALT+C → Citas
+    Right.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW)
+        .put(KeyStroke.getKeyStroke("alt C"), "appointments");
+    Right.getActionMap()
+        .put("appointments", new javax.swing.AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MenuManager_lblBttnAppointmentsMouseClicked(null);
+            }
+        });
+
+    // ALT+P → Pacientes
+    Right.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW)
+        .put(KeyStroke.getKeyStroke("alt P"), "patients");
+    Right.getActionMap()
+        .put("patients", new javax.swing.AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MenuManager_lblBttnPatientMouseClicked(null);
+            }
+        });
+
+    // ALT+S → Cerrar sesión
+    Right.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW)
+        .put(KeyStroke.getKeyStroke("alt S"), "logout");
+    Right.getActionMap()
+        .put("logout", new javax.swing.AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MenuManager_lblBttnLogOutMouseClicked(null);
+            }
+        });
+}
+    
     
     public MenuManager() {
         initComponents();
