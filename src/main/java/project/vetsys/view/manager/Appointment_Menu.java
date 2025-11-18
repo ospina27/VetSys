@@ -3,6 +3,7 @@ package project.vetsys.view.manager;
 import java.awt.Color;
 import project.vetsys.model.User;
 import project.vetsys.view.assistant.DeleteAppointment;
+import project.vetsys.view.assistant.ScheduleAppointment;
 import project.vetsys.view.assistant.SearchAppointment;
 
 
@@ -194,10 +195,10 @@ public class Appointment_Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MenuAppointment_BttnScheduleAppointmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAppointment_BttnScheduleAppointmentMouseClicked
-        UsersMenu MenuUserFrame = new UsersMenu(logUser);
-        MenuUserFrame.setVisible(true);
-        MenuUserFrame.pack();
-        MenuUserFrame.setLocationRelativeTo(null);
+        ScheduleAppointment ScheduleAppointmentFrame = new ScheduleAppointment(logUser);
+        ScheduleAppointmentFrame.setVisible(true);
+        ScheduleAppointmentFrame.pack();
+        ScheduleAppointmentFrame.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_MenuAppointment_BttnScheduleAppointmentMouseClicked
 
