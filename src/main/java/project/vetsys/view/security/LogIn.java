@@ -20,7 +20,6 @@ public class LogIn extends javax.swing.JFrame {
         Nimbus.styleLabel(LogInPanel_lblUsername);
         Nimbus.styleLabel(LogInPanel_lblPassword);
         setTitle("VET SYS");
-        //Nimbus.styleAllLabelsExcept(this, LogInPanel_lblTittle);
        
     }
 
@@ -280,7 +279,7 @@ public class LogIn extends javax.swing.JFrame {
 
         // Validar que no estén vacíos
         if (username.isEmpty() || password.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor ingrese usuario y contraseña.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor ingrese usuario y contraseña.", "Vet Sys", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -289,15 +288,16 @@ public class LogIn extends javax.swing.JFrame {
         try {
             user = userDAO.login(username, password);
         } catch (ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(this, "Error de conexión con la base de datos: " + ex.getMessage(), 
-                                          "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error de conexión" + ex.getMessage(), 
+                                          "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (user != null) {
             
             // Credenciales correctas
-            JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso. Bienvenido " + user.getUsername(),user.getClinic().getName_clinic(),JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso. Bienvenido " + user.getUsername(),
+                    user.getClinic().getName_clinic(),JOptionPane.INFORMATION_MESSAGE);
             
             MenuManager MenuManagerFrame = new MenuManager(user);
             MenuManagerFrame.setVisible(true);

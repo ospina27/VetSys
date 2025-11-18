@@ -373,14 +373,14 @@ public class PasswordRecovery extends javax.swing.JFrame {
 
         ///verificar que ambas contraseñas sean iguales)
         if (!passNew.equals(passConfirm)) {
-            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden.");
+            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden","Vet Sys",JOptionPane.ERROR_MESSAGE);
             PassRec_textNewPassword.setText("");
             PassRec_textNewPasswordOK.setText("");
             return;
         }
 
         if (passNew.length() < 6) {
-            JOptionPane.showMessageDialog(this, "La contraseña debe tener mínimo 6 caracteres.");
+            JOptionPane.showMessageDialog(this, "La contraseña debe tener mínimo 6 caracteres","Vet Sys",JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -388,11 +388,16 @@ public class PasswordRecovery extends javax.swing.JFrame {
         boolean updated = dao.updatePassword(user.getId_user(), passNew);
 
         if (updated) {
-            JOptionPane.showMessageDialog(this, "Contraseña actualizada correctamente.");
+            JOptionPane.showMessageDialog(this, "Contraseña actualizada correctamente","Vet Sys",JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
-            new LogIn().setVisible(true);
+            LogIn logIn = new LogIn();
+            logIn.setVisible(true);
+            logIn.pack();
+            logIn.setLocationRelativeTo(null);
+            this.dispose();
+            
         } else {
-            JOptionPane.showMessageDialog(this, "Error al actualizar contraseña.");
+            JOptionPane.showMessageDialog(this, "Error al actualizar contraseña.","Vet Sys", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_PassRec_lblBttnSavePasswordMouseClicked
 
@@ -405,15 +410,13 @@ public class PasswordRecovery extends javax.swing.JFrame {
     }//GEN-LAST:event_PassRec_lblBttnCheckCredentialsMouseEntered
 
     private void PassRec_lblBttnCheckCredentialsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassRec_lblBttnCheckCredentialsMouseClicked
-        // TODO add your handling code here:
 
         String name = PassRec_textUser.getText().trim();
         String document = PassRec_textID.getText().trim();
 
         if(name.isEmpty() || document.isEmpty())
         {
-            JOptionPane.showMessageDialog(this, "Complete todos los campos", "CAMPOS OBLIGATORIOS", HEIGHT);
-            System.out.println("Complete todos los campos");
+            JOptionPane.showMessageDialog(this, "Complete todos los campos", "Vet Sys", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -423,7 +426,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         boolean userExists = userDao.userExists(name, document);
         if(!userExists)
         {
-            JOptionPane.showMessageDialog(this, "Usuario no encontrado");
+            JOptionPane.showMessageDialog(this, "Usuario no encontrado","Vet Sys",JOptionPane.WARNING_MESSAGE);
             return;
         }
         ///se valida que el usuario este activo
@@ -445,7 +448,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
             System.out.println(user.getUsername());
 
         }else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Usuario Inactivo.");
+            javax.swing.JOptionPane.showMessageDialog(this, "Usuario Inactivo","Vet Sys",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_PassRec_lblBttnCheckCredentialsMouseClicked
 

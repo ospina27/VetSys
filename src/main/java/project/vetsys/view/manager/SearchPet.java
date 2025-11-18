@@ -18,6 +18,7 @@ public class SearchPet extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SearchPet.class.getName());
     private User logUser;
     private Utils utils;
+    private CreatePet searchPet;  ///objeto de la vista create, para traer metodos que se reutilizan
 
     public SearchPet() {
             initComponents();
@@ -28,15 +29,16 @@ public class SearchPet extends javax.swing.JFrame {
         Nimbus.LookandFeel();
         initComponents();
         initListeners();
-        setTitle("Gestion de mascotas");
+        setTitle("Gestión de mascotas");
         Nimbus.styleAllTextFields(this);
         Nimbus.styleTable(petTable);
         modelTable();
         noEditableFields();
         this.logUser = logUser;
         this.utils = new  Utils();
+        this.searchPet = new CreatePet(logUser);
         loadAllPets(logUser);
-        loadSpecies();
+        searchPet.loadSpecies(cboxSpecies_pet, cboxBred_pet);
         emptyFiels();
         hideField(false);
         jLabelTitleClinic_pets.setText(logUser.getClinic().getName_clinic());
@@ -51,6 +53,8 @@ public class SearchPet extends javax.swing.JFrame {
                 petTableMouseClicked(evt);
                 }
         });
+        
+        cboxSpecies_pet.addActionListener(evt -> searchPet.speciesSelected(cboxSpecies_pet,cboxBred_pet));
     }
     
     private void modelTable(){
@@ -64,7 +68,7 @@ public class SearchPet extends javax.swing.JFrame {
     private void emptyFiels(){
         idPet_Field.setText("");
         namePet_Field.setText("");
-        bredPet_Field.setText("");
+        cboxBred_pet.setSelectedIndex(-1);
         colorPet_Field.setText("");
         sexPet_Field.setText("");
         nameOwner_field.setText("");
@@ -91,7 +95,7 @@ public class SearchPet extends javax.swing.JFrame {
         idPet_Field.setVisible(active);
         namePet_Field.setVisible(active);
         cboxSpecies_pet.setVisible(active);
-        bredPet_Field.setVisible(active);
+        cboxBred_pet.setVisible(active);
         colorPet_Field.setVisible(active);
         sexPet_Field.setVisible(active);
         dateOfBirthPet_field.setVisible(active);
@@ -158,9 +162,7 @@ public class SearchPet extends javax.swing.JFrame {
         model.setValueAt(pet.getName_Pet(), selectedRow, 1);
         // Mantener la fila seleccionada
         petTable.setRowSelectionInterval(selectedRow, selectedRow);
-    }
-
-    
+    }   
     
     
     ///cargar especies al cbox para filtrar
@@ -172,6 +174,8 @@ public class SearchPet extends javax.swing.JFrame {
         utils.fillComboBox(cboxSpecies_pet, listSpecies,"");
     }
     
+ 
+    
     private void petTableMouseClicked(java.awt.event.MouseEvent evt){
         
         int selectedRow = petTable.getSelectedRow();
@@ -180,7 +184,7 @@ public class SearchPet extends javax.swing.JFrame {
             
             PetDAO petDao = new PetDAO();
             Pet pet = petDao.ReadId(idPet);            
-                    
+            ///mostrar toda la información de la amscota seleccionada
             if(pet != null){
                 hideField(true);
                 idPet_Field.setText(String.valueOf(pet.getId_pet()));
@@ -192,17 +196,23 @@ public class SearchPet extends javax.swing.JFrame {
                         break;
                     }
                 }
-                bredPet_Field.setText(pet.getBred());
+                searchPet.speciesSelected(cboxSpecies_pet,cboxBred_pet);
+                for(int i= 0;i < cboxBred_pet.getItemCount(); i++){
+                    String s = (String)cboxBred_pet.getItemAt(i);
+                    if(s.equalsIgnoreCase(pet.getBred())){
+                        cboxBred_pet.setSelectedIndex(i);
+                        break;
+                    }
+                }
                 colorPet_Field.setText(pet.getColor());
                 sexPet_Field.setText(pet.getSex());
                 dateOfBirthPet_field.setText(String.valueOf(pet.getDate_of_birth()));
-      
+                ///mostrar la información del propietario
                 documentOwner_field.setText(pet.getClient().getDocumento());
                 nameOwner_field.setText(pet.getClient().getNombres() + pet.getClient().getApellidos());
                 emailOwner_field.setText(pet.getClient().getCorreo());
                 phoneOwner_field.setText(pet.getClient().getTelefono());
-            }
-               
+            }    
         }    
         
     }   
@@ -222,7 +232,6 @@ public class SearchPet extends javax.swing.JFrame {
         colorPet_Field = new javax.swing.JTextField();
         sexPet_lbl = new javax.swing.JLabel();
         dateBirthPet_lbl = new javax.swing.JLabel();
-        bredPet_Field = new javax.swing.JTextField();
         colorPet_lbl = new javax.swing.JLabel();
         idPet_Field = new javax.swing.JTextField();
         idPet_lbl = new javax.swing.JLabel();
@@ -235,6 +244,7 @@ public class SearchPet extends javax.swing.JFrame {
         emailOwner_field = new javax.swing.JTextField();
         emailOwner_lbl = new javax.swing.JLabel();
         cboxSpecies_pet = new javax.swing.JComboBox();
+        cboxBred_pet = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         petTable = new javax.swing.JTable();
@@ -244,7 +254,7 @@ public class SearchPet extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         searchDocumentClient_field = new javax.swing.JTextField();
         btnSearchDocumet_client = new javax.swing.JButton();
-        btnSearchDocumet_client1 = new javax.swing.JButton();
+        btnRefreshTable_pet = new javax.swing.JButton();
         jPanel_titleClinic = new javax.swing.JPanel();
         jLabelTitleClinic_pets = new javax.swing.JLabel();
 
@@ -286,8 +296,6 @@ public class SearchPet extends javax.swing.JFrame {
         dateBirthPet_lbl.setForeground(new java.awt.Color(255, 255, 255));
         dateBirthPet_lbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dateBirthPet_lbl.setText(" Fecha de nacimiento yyyy-mm-dd");
-
-        bredPet_Field.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
 
         colorPet_lbl.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         colorPet_lbl.setForeground(new java.awt.Color(255, 255, 255));
@@ -339,7 +347,7 @@ public class SearchPet extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(dateOfBirthPet_field, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nameOwner_lbl)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -350,42 +358,30 @@ public class SearchPet extends javax.swing.JFrame {
                                 .addComponent(documentOwner_lbl, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(documentOwner_field, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(nameOwner_field, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(emailOwner_field, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(namePet_lbl)
-                                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                                    .addGap(21, 21, 21)
-                                                    .addComponent(idPet_lbl)))
-                                            .addGap(48, 48, 48))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(bredPet_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(speciesPet_lbl)
-                                                .addComponent(colorPet_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGap(35, 35, 35)))
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(idPet_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(bredPet_Field, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                                        .addComponent(colorPet_Field, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(sexPet_Field, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(cboxSpecies_pet, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addGap(6, 6, 6)
-                                            .addComponent(namePet_Field)))))
+                                .addComponent(emailOwner_field, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(emailOwner_lbl))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(3, 3, 3)
-                            .addComponent(sexPet_lbl))
-                        .addComponent(dateBirthPet_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(dateBirthPet_lbl))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(speciesPet_lbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(colorPet_lbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bredPet_lbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sexPet_lbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(idPet_lbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(namePet_lbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(colorPet_Field, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(sexPet_Field, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cboxSpecies_pet, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(idPet_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(namePet_Field, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboxBred_pet, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idPet_lbl)
                     .addComponent(idPet_Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -397,10 +393,11 @@ public class SearchPet extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(speciesPet_lbl)
                     .addComponent(cboxSpecies_pet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bredPet_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bredPet_lbl))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bredPet_lbl)
+                    .addComponent(cboxBred_pet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(colorPet_lbl)
                     .addComponent(colorPet_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -408,7 +405,7 @@ public class SearchPet extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sexPet_lbl)
                     .addComponent(sexPet_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                .addGap(17, 17, 17)
                 .addComponent(dateBirthPet_lbl)
                 .addGap(2, 2, 2)
                 .addComponent(dateOfBirthPet_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -493,12 +490,12 @@ public class SearchPet extends javax.swing.JFrame {
             }
         });
 
-        btnSearchDocumet_client1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnSearchDocumet_client1.setForeground(new java.awt.Color(0, 102, 102));
-        btnSearchDocumet_client1.setText("Refrescar");
-        btnSearchDocumet_client1.addActionListener(new java.awt.event.ActionListener() {
+        btnRefreshTable_pet.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnRefreshTable_pet.setForeground(new java.awt.Color(0, 102, 102));
+        btnRefreshTable_pet.setText("Refrescar");
+        btnRefreshTable_pet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchDocumet_client1ActionPerformed(evt);
+                btnRefreshTable_petActionPerformed(evt);
             }
         });
 
@@ -521,7 +518,7 @@ public class SearchPet extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(btnSearchDocumet_client1)
+                                .addComponent(btnRefreshTable_pet)
                                 .addGap(41, 41, 41)
                                 .addComponent(jLabel13)
                                 .addGap(18, 18, 18)
@@ -539,7 +536,7 @@ public class SearchPet extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel13)
                         .addComponent(searchDocumentClient_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnSearchDocumet_client1))
+                        .addComponent(btnRefreshTable_pet))
                     .addComponent(btnSearchDocumet_client))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -601,12 +598,13 @@ public class SearchPet extends javax.swing.JFrame {
             int idPet = Integer.parseInt(idPet_Field.getText().trim());
             Pet pet = new Pet();
             String species = (String) cboxSpecies_pet.getSelectedItem(); ///asignar el texto del cbox de especie
+            String bred = (String) cboxBred_pet.getSelectedItem();
             pet.setId_Client(pet.getId_Client());
             pet.setId_Clinic(logUser.getId_clinic());
             pet.setId_pet(idPet);
             pet.setName_Pet(namePet_Field.getText());
             pet.setSpecies(species);
-            pet.setBred(bredPet_Field.getText());
+            pet.setBred(bred);
             pet.setColor(colorPet_Field.getText());
             pet.setSex(sexPet_Field.getText());
             String dateText = dateOfBirthPet_field.getText();
@@ -622,12 +620,12 @@ public class SearchPet extends javax.swing.JFrame {
             }
             
             PetDAO petDAO = new PetDAO();
-            if(namePet_Field.getText().isEmpty() || bredPet_Field.getText().isEmpty()|| species.isEmpty()
+            if(namePet_Field.getText().isEmpty() || bred.isEmpty()|| species.isEmpty()
                     || colorPet_Field.getText().isEmpty()|| sexPet_Field.getText().isEmpty()){
                 JOptionPane.showMessageDialog(this, "Complete los campos obligatorios *",logUser.getClinic().getName_clinic(), JOptionPane.WARNING_MESSAGE);
             }else {                
                 String message = "¿Desea confirmar la actualización?";
-                String title = "CONFIRMACIÓN";
+                String title = logUser.getClinic().getName_clinic();
                 if(utils.validation(message, title)==1){
                     boolean updatePet = petDAO.Update(pet, logUser);
                     if(updatePet){
@@ -705,7 +703,7 @@ public class SearchPet extends javax.swing.JFrame {
         String documentClient = searchDocumentClient_field.getText();
         if(documentClient.isEmpty()){
             JOptionPane.showMessageDialog(this,"Por favor ingrese el documento del cliente"
-                    + "", "CAMPOS VACÍOS", JOptionPane.WARNING_MESSAGE);
+                    + "", logUser.getClinic().getName_clinic(), JOptionPane.WARNING_MESSAGE);
             loadAllPets(logUser);
             hideField(false);
             emptyFiels();
@@ -726,10 +724,10 @@ public class SearchPet extends javax.swing.JFrame {
         loadPetTable(petTable, pets);
     }//GEN-LAST:event_btnSearchDocumet_clientActionPerformed
 
-    private void btnSearchDocumet_client1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchDocumet_client1ActionPerformed
+    private void btnRefreshTable_petActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshTable_petActionPerformed
         loadAllPets(logUser);
         hideField(false);
-    }//GEN-LAST:event_btnSearchDocumet_client1ActionPerformed
+    }//GEN-LAST:event_btnRefreshTable_petActionPerformed
 
     /**
      * @param args the command line arguments
@@ -757,13 +755,13 @@ public class SearchPet extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField bredPet_Field;
     private javax.swing.JLabel bredPet_lbl;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnRefreshTable_pet;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnSearchDocumet_client;
-    private javax.swing.JButton btnSearchDocumet_client1;
+    private javax.swing.JComboBox cboxBred_pet;
     private javax.swing.JComboBox cboxSpecies_pet;
     private javax.swing.JTextField colorPet_Field;
     private javax.swing.JLabel colorPet_lbl;

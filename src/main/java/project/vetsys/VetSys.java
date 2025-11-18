@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import project.vetsys.dao.ClinicDAO;
 import project.vetsys.dao.PetDAO;
 import project.vetsys.dao.UserDAO;
@@ -22,6 +24,7 @@ public class VetSys {
     
     public static void main(String[] args) throws ClassNotFoundException {
         
+       
         Connection connection = DBConnection.getConnection();
         Scanner sc = new Scanner(System.in);
         
@@ -159,11 +162,10 @@ public class VetSys {
         deletePet.setId_pet(5);
         boolean resultDelete = daoPet.Delete(deletePet, logUser);
         System.out.println("Resultado delete "+ resultDelete);*/
+        
+      
+    }
        
       
  
-
-           
-    
-    }
 }
