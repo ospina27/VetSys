@@ -425,7 +425,8 @@ public class SearchPet extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(phoneOwner_lbl)
                     .addComponent(phoneOwner_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap()));
+                .addContainerGap())
+        );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setAutoscrolls(true);
@@ -525,7 +526,8 @@ public class SearchPet extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnSearchDocumet_client)
                                 .addGap(24, 24, 24)))))
-                .addGap(14, 14, 14)));
+                .addGap(14, 14, 14))
+        );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -758,12 +760,9 @@ public class SearchPet extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnRefreshTable_pet;
     private javax.swing.JButton btnSalir;
-<<<<<<< HEAD
     private javax.swing.JButton btnSearchDocumet_client;
     private javax.swing.JComboBox cboxBred_pet;
     private javax.swing.JComboBox cboxSpecies_pet;
-=======
->>>>>>> 54772cad1d1befae7b54a728b47e2c2b4c89176b
     private javax.swing.JTextField colorPet_Field;
     private javax.swing.JLabel colorPet_lbl;
     private javax.swing.JLabel dateBirthPet_lbl;
@@ -773,19 +772,9 @@ public class SearchPet extends javax.swing.JFrame {
     private javax.swing.JTextField emailOwner_field;
     private javax.swing.JLabel emailOwner_lbl;
     private javax.swing.JTextField idPet_Field;
-<<<<<<< HEAD
     private javax.swing.JLabel idPet_lbl;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabelTitleClinic_pets;
-=======
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
->>>>>>> 54772cad1d1befae7b54a728b47e2c2b4c89176b
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel_titleClinic;
