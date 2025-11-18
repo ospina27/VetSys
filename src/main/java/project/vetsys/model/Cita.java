@@ -17,13 +17,28 @@ public class Cita {
     private Integer idCita;
     private Integer idClinica;
     private Integer idCliente;
+    private String NombreCliente;
     private Integer idMascota;
+    private String NombreMascota;
     private Integer idVeterinario;
+    private String NombreVeterinario;
     private Timestamp fecha;
     private String estado; // programada, atendida, cancelada
 
     public Cita() {}
+    
+    
+    // yyyy-mm-dd
+    public String getFechaSeparada() {
+        if (fecha == null) return "";
+        return new java.text.SimpleDateFormat("yyyy-MM-dd").format(fecha);
+    }
 
+    //HH:mm
+    public String getHoraSeparada() {
+        if (fecha == null) return "";
+        return new java.text.SimpleDateFormat("HH:mm").format(fecha);
+    }
 
 
     public Integer getIdCita() {
@@ -82,6 +97,32 @@ public class Cita {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    public String getNombreCliente() {
+        return NombreCliente;
+    }
+
+    public void setNombreCliente(String NombreCliente) {
+        this.NombreCliente = NombreCliente;
+    }
+
+    public String getNombreMascota() {
+        return NombreMascota;
+    }
+
+    public void setNombreMascota(String NombreMascota) {
+        this.NombreMascota = NombreMascota;
+    }
+
+    public String getNombreVeterinario() {
+        return NombreVeterinario;
+    }
+
+    public void setNombreVeterinario(String NombreVeterinario) {
+        this.NombreVeterinario = NombreVeterinario;
+    }
+    
+    
 
     
     

@@ -61,6 +61,7 @@ public class ScheduleAppointment extends javax.swing.JFrame {
     
     private void cargarHoras() {
         cmbHora.removeAllItems();
+        cmbHora.addItem("Seleccione una hora");
         cmbHora.addItem("08:00");
         cmbHora.addItem("09:00");
         cmbHora.addItem("10:00");
@@ -449,7 +450,6 @@ public class ScheduleAppointment extends javax.swing.JFrame {
 
     private void ScheduleAppointment_lblBttnScheduleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ScheduleAppointment_lblBttnScheduleMouseClicked
         try {
-
             // VALIDACIONES
             if (!validarCampos()) {
                 return;
@@ -466,28 +466,23 @@ public class ScheduleAppointment extends javax.swing.JFrame {
             User vet = (User) cmbVeterinarios.getSelectedItem();
             int idVeterinario = vet.getId_user();
             cita.setIdVeterinario(idVeterinario);
-
-
+            // fecha desde jDateChooser
             java.util.Date utilFecha = jDateChooserFecha.getDate();
             if (utilFecha == null) {
                 JOptionPane.showMessageDialog(this, "Seleccione la fecha.");
                 return;
             }
-
             // Hora desde ComboBox HH:mm
             String horaSeleccionada = (String) cmbHora.getSelectedItem();
             if (horaSeleccionada == null) {
                 JOptionPane.showMessageDialog(this, "Seleccione la hora.");
                 return;
             }
-
-            // Convertir a DATETIME (Timestamp)
+            // Convertir a DATETIME fecha y hora (Timestamp)
             String fechaStr = new java.text.SimpleDateFormat("yyyy-MM-dd").format(utilFecha);
             String fechaHoraStr = fechaStr + " " + horaSeleccionada + ":00";
-
             java.sql.Timestamp timestamp = java.sql.Timestamp.valueOf(fechaHoraStr);
             cita.setFecha(timestamp);
-
 
             cita.setEstado("programada");
 
