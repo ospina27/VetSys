@@ -2,6 +2,7 @@ package project.vetsys.view.assistant;
 
 import java.awt.Color;
 import project.vetsys.model.User;
+import project.vetsys.utils.ValidationInput;
 import project.vetsys.view.manager.Appointment_Menu;
 
 public class DeleteAppointment extends javax.swing.JFrame {
@@ -14,8 +15,11 @@ public class DeleteAppointment extends javax.swing.JFrame {
     }
     
     public DeleteAppointment(User logUser){
-            initComponents();
-            this.logUser = logUser;
+        initComponents();
+        this.logUser = logUser;
+            
+        ValidationInput.numbers(DeleteAppointment_textIDClient);
+            
        }
 
     @SuppressWarnings("unchecked")

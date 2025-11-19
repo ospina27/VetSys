@@ -10,6 +10,7 @@ import project.vetsys.dao.PetDAO;
 import project.vetsys.dao.UserDAO;
 import project.vetsys.model.Pet;
 import project.vetsys.model.User;
+import project.vetsys.utils.ValidationInput;
 import project.vetsys.view.Nimbus;
 import project.vetsys.view.Utils;
 
@@ -43,6 +44,10 @@ public class SearchPet extends javax.swing.JFrame {
         hideField(false);
         jLabelTitleClinic_pets.setText(logUser.getClinic().getName_clinic());
         Nimbus.styleAllLabelsExcept(this,jLabelTitleClinic_pets); 
+        
+        ValidationInput.numbers(searchDocumentClient_field);
+        ValidationInput.numbers(documentOwner_field);
+
     }
     
     private void initListeners(){

@@ -12,6 +12,7 @@ import java.util.HashSet;
 import javax.swing.JOptionPane;
 import project.vetsys.dao.UserDAO;
 import project.vetsys.model.User;
+import project.vetsys.utils.ValidationInput;
 
 /**
  *
@@ -26,6 +27,9 @@ public class CreateClinic extends javax.swing.JFrame {
      */
     public CreateClinic() {
         initComponents();
+        
+        ValidationInput.numbers(nitClinicField);
+
     }
 
     /**

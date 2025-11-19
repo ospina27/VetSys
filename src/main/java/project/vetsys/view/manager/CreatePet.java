@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.plaf.ComboBoxUI;
 import project.vetsys.dao.PetDAO;
 import project.vetsys.model.Pet;
+import project.vetsys.utils.ValidationInput;
 import project.vetsys.view.Nimbus;
 import project.vetsys.view.Utils;
 
@@ -41,6 +42,9 @@ public class CreatePet extends javax.swing.JFrame {
         CreatePet_lblTittle.setText(logUser.getClinic().getName_clinic());
         buttonGroupSexPet.add(sexMacho_Rbutton); ///añadir los rbutton al group 
         buttonGroupSexPet.add(sexHembra_Rbutton);
+        
+        ValidationInput.numbers(CreatePet_textOwnerDocument);
+
     }
     
     private void initListeners(){
@@ -350,13 +354,14 @@ public class CreatePet extends javax.swing.JFrame {
                     .addComponent(CreatePet_lblSpecies)
                     .addComponent(cboxSpecies_pet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47)
-                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CreatePet_lblSexPet)
-                    .addComponent(sexHembra_Rbutton)
-                    .addComponent(sexMacho_Rbutton)
+                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(CreatePet_lblBreed)
-                        .addComponent(cboxBred_pet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cboxBred_pet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(CreatePet_lblSexPet)
+                        .addComponent(sexHembra_Rbutton)
+                        .addComponent(sexMacho_Rbutton)))
                 .addGap(47, 47, 47)
                 .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CreatePet_textColorPet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

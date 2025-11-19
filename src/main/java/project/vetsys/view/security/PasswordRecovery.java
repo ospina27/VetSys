@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import project.vetsys.dao.UserDAO;
 import project.vetsys.model.User;
 import project.vetsys.security.PasswordUtil;
+import project.vetsys.utils.ValidationInput;
 import project.vetsys.view.Nimbus;
 
 public class PasswordRecovery extends javax.swing.JFrame {
@@ -30,6 +31,8 @@ public class PasswordRecovery extends javax.swing.JFrame {
         
         PassRec_textNewPassword.setEnabled(false);
         PassRec_textNewPasswordOK.setEnabled(false);
+        
+        ValidationInput.numbers(PassRec_textID);
     }
 
     @SuppressWarnings("unchecked")

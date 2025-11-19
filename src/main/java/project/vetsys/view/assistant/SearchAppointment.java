@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import project.vetsys.dao.CitaDAO;
 import project.vetsys.model.Cita;
 import project.vetsys.model.User;
+import project.vetsys.utils.ValidationInput;
 import project.vetsys.view.manager.Appointment_Menu;
 
 /**
@@ -31,6 +32,9 @@ public class SearchAppointment extends javax.swing.JFrame {
         this.logUser = logUser;
         cargarColumnasTabla();
         cargarTodasLasCitas();
+        
+        ValidationInput.numbers(txtDocumentoCliente);
+
         
     }
     

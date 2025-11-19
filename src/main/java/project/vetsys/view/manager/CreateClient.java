@@ -14,6 +14,7 @@ import project.vetsys.model.User;
 import project.vetsys.dao.ClienteDAO;
 import project.vetsys.database.DBConnection;
 import project.vetsys.model.ClienteModel;
+import project.vetsys.utils.ValidationInput;
 
 /**
  *
@@ -38,7 +39,9 @@ public class CreateClient extends javax.swing.JFrame {
         this.logUser = logUser;
         initComponents();
         cargarMembresias();
-       
+        
+        ValidationInput.numbers(txtDocumento);
+        
     }
     
     

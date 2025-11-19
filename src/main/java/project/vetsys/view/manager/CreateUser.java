@@ -9,6 +9,7 @@ import project.vetsys.dao.StatusDAO;
 import project.vetsys.model.Role;
 import project.vetsys.model.Status;
 import project.vetsys.model.User;
+import project.vetsys.utils.ValidationInput;
 import project.vetsys.view.Nimbus;
 import project.vetsys.view.Utils;
 import project.vetsys.view.manager.MenuManager;
@@ -36,6 +37,8 @@ public class CreateUser extends javax.swing.JFrame {
         Nimbus.styleTitleLabel(CreateUser_lblSubTittle);
         loadRolesStatus();
        
+        ValidationInput.numbers(documentUser_field);
+
     }
       
     private void emptyFields(){

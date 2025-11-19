@@ -18,6 +18,7 @@ import project.vetsys.model.Clinic;
 import project.vetsys.model.Role;
 import project.vetsys.model.Status;
 import project.vetsys.model.User;
+import project.vetsys.utils.ValidationInput;
 import project.vetsys.view.Nimbus;
 import project.vetsys.view.Utils;
 
@@ -57,6 +58,9 @@ public class SearchUser extends javax.swing.JFrame {
         
         System.out.println("Usuario logueado recibido: " + logUser.getUsername()); //prueba en consola
         initListeners(); 
+        
+        ValidationInput.numbers(searchDocument_field);
+        ValidationInput.numbers(DocumentField);
     }
     
     // Constructor sin parámetros 
