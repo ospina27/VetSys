@@ -152,7 +152,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_BttnCheckCredential.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         PassRec_BttnCheckCredential.setForeground(new java.awt.Color(255, 255, 255));
         PassRec_BttnCheckCredential.setText("Verificar");
-        PassRec_BttnCheckCredential.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PassRec_BttnCheckCredential.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PassRec_BttnCheckCredential.setFocusPainted(false);
         PassRec_BttnCheckCredential.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -170,7 +170,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_BttnBack.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         PassRec_BttnBack.setForeground(new java.awt.Color(255, 255, 255));
         PassRec_BttnBack.setText("Cancelar");
-        PassRec_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PassRec_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PassRec_BttnBack.setFocusPainted(false);
         PassRec_BttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -188,7 +188,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_BttnSavePassword.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         PassRec_BttnSavePassword.setForeground(new java.awt.Color(255, 255, 255));
         PassRec_BttnSavePassword.setText("Guardar");
-        PassRec_BttnSavePassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PassRec_BttnSavePassword.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PassRec_BttnSavePassword.setFocusPainted(false);
         PassRec_BttnSavePassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -199,6 +199,11 @@ public class PasswordRecovery extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 PassRec_BttnSavePasswordMouseExited(evt);
+            }
+        });
+        PassRec_BttnSavePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PassRec_BttnSavePasswordActionPerformed(evt);
             }
         });
 
@@ -413,6 +418,10 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_BttnSavePassword.setBackground(new Color(0,153,153));
         PassRec_BttnCheckCredential.setForeground(Color.WHITE);
     }//GEN-LAST:event_PassRec_BttnSavePasswordMouseExited
+
+    private void PassRec_BttnSavePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PassRec_BttnSavePasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PassRec_BttnSavePasswordActionPerformed
 
     
    

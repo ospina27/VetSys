@@ -56,7 +56,7 @@ public class CreatePet extends javax.swing.JFrame {
         cboxBred_pet.setSelectedIndex(-1);
         cboxSpecies_pet.setSelectedIndex(-1);
         CreatePet_textColorPet.setText("");
-        CreatePet_textDateBirthdayPet.setText("");
+        jDateChooserDateBirth.setDate(null);
         CreatePet_textOwnerDocument.setText("");
         buttonGroupSexPet.clearSelection();
     }
@@ -146,7 +146,6 @@ public class CreatePet extends javax.swing.JFrame {
         CreatePet_textColorPet = new javax.swing.JTextField();
         CreatePet_lblSexPet = new javax.swing.JLabel();
         CreatePet_lblDateBirthdayPet = new javax.swing.JLabel();
-        CreatePet_textDateBirthdayPet = new javax.swing.JTextField();
         CreatePet_lblOwnerID = new javax.swing.JLabel();
         CreatePet_textOwnerDocument = new javax.swing.JTextField();
         sexHembra_Rbutton = new javax.swing.JRadioButton();
@@ -156,6 +155,7 @@ public class CreatePet extends javax.swing.JFrame {
         btnExit1 = new javax.swing.JButton();
         cboxSpecies_pet = new javax.swing.JComboBox();
         cboxBred_pet = new javax.swing.JComboBox();
+        jDateChooserDateBirth = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
@@ -230,11 +230,6 @@ public class CreatePet extends javax.swing.JFrame {
 
         CreatePet_lblDateBirthdayPet.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CreatePet_lblDateBirthdayPet.setText("Fecha de Nacimiento * yyyy-mm-dd");
-
-        CreatePet_textDateBirthdayPet.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        CreatePet_textDateBirthdayPet.setForeground(java.awt.Color.gray);
-        CreatePet_textDateBirthdayPet.setMinimumSize(new java.awt.Dimension(68, 26));
-        CreatePet_textDateBirthdayPet.setPreferredSize(new java.awt.Dimension(68, 26));
 
         CreatePet_lblOwnerID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CreatePet_lblOwnerID.setText("Cedula Propietario *");
@@ -318,13 +313,12 @@ public class CreatePet extends javax.swing.JFrame {
                 .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DownLayout.createSequentialGroup()
                         .addGap(38, 38, 38)
-                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(CreatePet_lblOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(CreatePet_textDateBirthdayPet, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(CreatePet_lblDateBirthdayPet, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(CreatePet_textOwnerDocument, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(CreatePet_lblSexPet, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(CreatePet_lblOwnerID, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+                            .addComponent(CreatePet_lblDateBirthdayPet, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+                            .addComponent(CreatePet_lblSexPet, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDateChooserDateBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CreatePet_textOwnerDocument, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(DownLayout.createSequentialGroup()
                         .addGap(95, 95, 95)
                         .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -341,11 +335,11 @@ public class CreatePet extends javax.swing.JFrame {
                 .addComponent(CreatePet_lblSubTittle, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CreatePet_lblDateBirthdayPet)
-                .addGap(4, 4, 4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CreatePet_tetxNamePet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CreatePet_textDateBirthdayPet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CreatePet_lblNamePet))
+                    .addComponent(CreatePet_lblNamePet)
+                    .addComponent(jDateChooserDateBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addComponent(CreatePet_lblOwnerID)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -398,67 +392,80 @@ public class CreatePet extends javax.swing.JFrame {
 
     private void btnCreatePetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreatePetActionPerformed
         
-        String namePet = CreatePet_tetxNamePet.getText();
-        String speciesPet = (String) cboxSpecies_pet.getSelectedItem();
-        String bredPet = (String) cboxBred_pet.getSelectedItem();
-        String colorPet = CreatePet_textColorPet.getText();
-        
-        if(sexMacho_Rbutton.isSelected())
-        {
-            sexPet = sexMacho_Rbutton.getText(); 
-            
-        }else if(sexHembra_Rbutton.isSelected())
-        {
-            sexPet = sexHembra_Rbutton.getText();
-        }
-        String datePet = CreatePet_textDateBirthdayPet.getText();
-        String documentOwner = CreatePet_textOwnerDocument.getText();
-        
-        if (namePet.isEmpty() || documentOwner.isEmpty() || speciesPet.isEmpty() || bredPet.isEmpty() || bredPet.isEmpty()
-                ||colorPet.isEmpty() ||  buttonGroupSexPet.getSelection() == null || datePet.isEmpty())
-        {
-            JOptionPane.showMessageDialog(this, "Por favor completa todos los campos obligatorios *",logUser.getClinic().getName_clinic()
-                    ,JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        
-        Pet pet = new Pet();
-        PetDAO petDao = new PetDAO();
-        pet.setName_Pet(namePet);
-        pet.setSpecies(speciesPet);
-        pet.setBred(bredPet);
-        pet.setColor(colorPet);
-        pet.setSex(sexPet);
-        //pet.setDate_of_birth(Date.valueOf(datePet));
-        String dateText = CreatePet_textDateBirthdayPet.getText();
-        try 
-        {
-            Date date = Date.valueOf(dateText);  // convierte si el formato es válido
-            pet.setDate_of_birth(date);
-        } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(this,
-            "Formato de fecha incorrecto.\n Debe ser YYYY-MM-DD",logUser.getClinic().getName_clinic(),
-             JOptionPane.ERROR_MESSAGE);
+        try {
+            String namePet = CreatePet_tetxNamePet.getText();
+            String speciesPet = (String) cboxSpecies_pet.getSelectedItem();
+            String bredPet = (String) cboxBred_pet.getSelectedItem();
+            String colorPet = CreatePet_textColorPet.getText();
+
+            if(sexMacho_Rbutton.isSelected())
+            {
+                sexPet = sexMacho_Rbutton.getText(); 
+
+            }else if(sexHembra_Rbutton.isSelected())
+            {
+                sexPet = sexHembra_Rbutton.getText();
+            }
+                
+            java.util.Date date = jDateChooserDateBirth.getDate();
+            if (date == null) {
+                JOptionPane.showMessageDialog(this, "Seleccione la fecha", logUser.getClinic().getName_clinic()
+                        ,JOptionPane.WARNING_MESSAGE);
                 return;
             }
-        int document = petDao.searchIdOwner(documentOwner); ///pasar el documento para buscar el idCliente
-        pet.setId_Client(document);
-        pet.setId_Clinic(logUser.getId_clinic());
-                
-        boolean success = petDao.Create(pet, documentOwner);
-        if(document == -1){
-            JOptionPane.showMessageDialog(this, "No se encontro cliente con cedula "+documentOwner,logUser.getClinic().getName_clinic(),
-                    JOptionPane.ERROR_MESSAGE);
-            return;
+            String dateText = new java.text.SimpleDateFormat("yyyy-MM-dd").format(date);
+            String documentOwner = CreatePet_textOwnerDocument.getText();
+
+            if (namePet.isEmpty() || documentOwner.isEmpty() || speciesPet.isEmpty() || bredPet.isEmpty() || bredPet.isEmpty()
+                    ||colorPet.isEmpty() ||  buttonGroupSexPet.getSelection() == null )
+            {
+                JOptionPane.showMessageDialog(this, "Por favor completa todos los campos obligatorios *",logUser.getClinic().getName_clinic()
+                        ,JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            Pet pet = new Pet();
+            PetDAO petDao = new PetDAO();
+            pet.setName_Pet(namePet);
+            pet.setSpecies(speciesPet);
+            pet.setBred(bredPet);
+            pet.setColor(colorPet);
+            pet.setSex(sexPet);
+            pet.setDate_of_birth(Date.valueOf(dateText));
+
+            //pet.setDate_of_birth(date);
+            /*try 
+            {
+                Date date = Date.valueOf(dateText);  // convierte si el formato es válido
+                pet.setDate_of_birth(date);
+            } catch (IllegalArgumentException e) {
+                JOptionPane.showMessageDialog(this,
+                "Formato de fecha incorrecto.\n Debe ser YYYY-MM-DD",logUser.getClinic().getName_clinic(),
+                 JOptionPane.ERROR_MESSAGE);
+                    return;
+                }*/
+            int document = petDao.searchIdOwner(documentOwner); ///pasar el documento para buscar el idCliente
+            pet.setId_Client(document);
+            pet.setId_Clinic(logUser.getId_clinic());
+
+            boolean success = petDao.Create(pet, documentOwner);
+            if(document == -1){
+                JOptionPane.showMessageDialog(this, "No se encontro cliente con cedula "+documentOwner,logUser.getClinic().getName_clinic(),
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if(success){
+                javax.swing.JOptionPane.showMessageDialog(this, "Mascota creada correctamente",logUser.getClinic().getName_clinic(),JOptionPane.INFORMATION_MESSAGE);
+                emptyFields();
+            }else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Falló la creación de la mascota \n"+"Revise los datos ingresados",logUser.getClinic().getName_clinic(),
+                        JOptionPane.ERROR_MESSAGE);
+            }            
+        } catch (Exception e) {
+            System.out.println("Error creando mascota " + e.getMessage());
         }
         
-        if(success){
-            javax.swing.JOptionPane.showMessageDialog(this, "Mascota creada correctamente",logUser.getClinic().getName_clinic(),JOptionPane.INFORMATION_MESSAGE);
-            emptyFields();
-        }else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Falló la creación de la mascota \n"+"Revise los datos ingresados",logUser.getClinic().getName_clinic(),
-                    JOptionPane.ERROR_MESSAGE);
-        }
     }//GEN-LAST:event_btnCreatePetActionPerformed
 
     private void bttonEmptyFields_petActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttonEmptyFields_petActionPerformed
@@ -466,30 +473,39 @@ public class CreatePet extends javax.swing.JFrame {
     }//GEN-LAST:event_bttonEmptyFields_petActionPerformed
 
     private void btnExit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExit1ActionPerformed
-        ///validar que no haya información en los campos antes de salir
-        if(!CreatePet_tetxNamePet.getText().isEmpty() || cboxBred_pet.getSelectedItem() == "" || cboxSpecies_pet.getSelectedItem()== ""||
-            !CreatePet_textColorPet.getText().isEmpty() || buttonGroupSexPet.getSelection()!= null || !CreatePet_textDateBirthdayPet.getText().isEmpty()
-               || !CreatePet_textOwnerDocument.getText().isEmpty())
-        {
+        boolean nameFilled = !CreatePet_tetxNamePet.getText().trim().isEmpty();
+        boolean speciesFilled = cboxSpecies_pet.getSelectedIndex() > 0;
+        boolean breedFilled = cboxBred_pet.getSelectedIndex() > 0;
+        boolean colorFilled = !CreatePet_textColorPet.getText().trim().isEmpty();
+        boolean sexFilled = buttonGroupSexPet.getSelection() != null;
+
+        java.util.Date date = jDateChooserDateBirth.getDate();
+        boolean dateFilled = date != null;
+
+        boolean ownerFilled = !CreatePet_textOwnerDocument.getText().trim().isEmpty();
+
+        // Si alguno tiene datos
+        if (nameFilled || speciesFilled || breedFilled || colorFilled || sexFilled || dateFilled || ownerFilled) {
+
             String messageConfirm = "¿Desea cancelar la creación de la mascota?";
             String title = logUser.getClinic().getName_clinic();
-            if(utils.validation(messageConfirm, title)==1)
-            {
-                //siempre que se llame al MenuManager, hacerlo con el constructor con parametro de logUser
-                PatientsMenu MenuManagerFrame = new PatientsMenu(logUser);  
+
+            if (utils.validation(messageConfirm, title) == 1) {
+                PatientsMenu MenuManagerFrame = new PatientsMenu(logUser);
                 MenuManagerFrame.setVisible(true);
                 MenuManagerFrame.pack();
                 MenuManagerFrame.setLocationRelativeTo(null);
                 this.dispose();
-            }   
-        }else
-            {
-                PatientsMenu MenuManagerFrame = new PatientsMenu(logUser);  
-                MenuManagerFrame.setVisible(true);
-                MenuManagerFrame.pack();
-                MenuManagerFrame.setLocationRelativeTo(null);
-                this.dispose();
-            } 
+            }
+
+        } else {
+            // Todo vacío → salir sin preguntar
+            PatientsMenu MenuManagerFrame = new PatientsMenu(logUser);
+            MenuManagerFrame.setVisible(true);
+            MenuManagerFrame.pack();
+            MenuManagerFrame.setLocationRelativeTo(null);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnExit1ActionPerformed
 
     private void cboxSpecies_petActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxSpecies_petActionPerformed
@@ -517,7 +533,6 @@ public class CreatePet extends javax.swing.JFrame {
     private javax.swing.JLabel CreatePet_lblTittle;
     private javax.swing.JTextField CreatePet_tetxNamePet;
     private javax.swing.JTextField CreatePet_textColorPet;
-    private javax.swing.JTextField CreatePet_textDateBirthdayPet;
     private javax.swing.JTextField CreatePet_textOwnerDocument;
     private javax.swing.JPanel Down;
     private javax.swing.JPanel Up;
@@ -527,6 +542,7 @@ public class CreatePet extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroupSexPet;
     private javax.swing.JComboBox cboxBred_pet;
     private javax.swing.JComboBox cboxSpecies_pet;
+    private com.toedter.calendar.JDateChooser jDateChooserDateBirth;
     private javax.swing.JRadioButton sexHembra_Rbutton;
     private javax.swing.JRadioButton sexMacho_Rbutton;
     // End of variables declaration//GEN-END:variables
