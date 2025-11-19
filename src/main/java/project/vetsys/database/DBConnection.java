@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package project.vetsys.database;
 
 import java.awt.HeadlessException;
@@ -14,6 +10,10 @@ public class DBConnection {
     private static final String user = "root";
     private static final String password = "12345";
  
+    //private static final String password = "alejo2705";
+    //private static final String password = "root";
+    //private static final String password = "mysql";
+
 
     private static boolean mensaje = false;
     

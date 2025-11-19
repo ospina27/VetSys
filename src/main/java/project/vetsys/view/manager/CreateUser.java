@@ -9,6 +9,7 @@ import project.vetsys.dao.StatusDAO;
 import project.vetsys.model.Role;
 import project.vetsys.model.Status;
 import project.vetsys.model.User;
+import project.vetsys.utils.ValidationInput;
 import project.vetsys.view.Nimbus;
 import project.vetsys.view.Utils;
 import project.vetsys.view.manager.MenuManager;
@@ -29,12 +30,15 @@ public class CreateUser extends javax.swing.JFrame {
         this.utils = new Utils();
         initComponents();
         Nimbus.styleAllTextFields(this);
-        setTitle("Gestion de usuarios");
+        setTitle("Gestión de usuarios");
         CreateUser_lblTittle.setText("Usuarios "+ logUser.getClinic().getName_clinic());
         Nimbus.styleTitleLabel(CreateUser_lblTittle);
         Nimbus.styleAllLabelsExcept(this,CreateUser_lblTittle);
+        Nimbus.styleTitleLabel(CreateUser_lblSubTittle);
         loadRolesStatus();
        
+        ValidationInput.numbers(documentUser_field);
+
     }
       
     private void emptyFields(){
@@ -403,12 +407,14 @@ public class CreateUser extends javax.swing.JFrame {
         if (name_user.isEmpty() || document.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty() ||
             cboxRoleUser.getSelectedIndex()== -1 || cboxStatusUser.getSelectedIndex() == -1) 
         {
-            JOptionPane.showMessageDialog(this, "Completa los campos obligatorios *","ATENCIÓN",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Completa los campos obligatorios *",logUser.getClinic().getName_clinic()
+                    ,JOptionPane.WARNING_MESSAGE);
             return;
         }
         if(passwordUser_psfield.getText().length() < 6)
         {
-            JOptionPane.showMessageDialog(this, "La contraseña debe tener al menos 6 caracteres","ATENCIÓN",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "La contraseña debe tener al menos 6 caracteres",logUser.getClinic().getName_clinic()
+                    ,JOptionPane.WARNING_MESSAGE);
             return;
         }  
         User user = new User();
@@ -429,10 +435,12 @@ public class CreateUser extends javax.swing.JFrame {
         boolean success = userDAO.Create(user);
 
         if (success) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Usuario creado correctamente");
+            javax.swing.JOptionPane.showMessageDialog(this, "Usuario creado correctamente",
+                    logUser.getClinic().getName_clinic(),JOptionPane.INFORMATION_MESSAGE);
             emptyFields();
         } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Error al crear el usuario. Revisa los datos o la conexión.");
+            javax.swing.JOptionPane.showMessageDialog(this, "Error al crear el usuario. \nRevisa los datos"
+            ,logUser.getClinic().getName_clinic(),JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnCreateUserActionPerformed
 

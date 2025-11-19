@@ -2,7 +2,8 @@ package project.vetsys.view.assistant;
 
 import java.awt.Color;
 import project.vetsys.model.User;
-import project.vetsys.view.manager.Menu_Appointment;
+import project.vetsys.utils.ValidationInput;
+import project.vetsys.view.manager.Appointment_Menu;
 
 public class DeleteAppointment extends javax.swing.JFrame {
     
@@ -14,8 +15,11 @@ public class DeleteAppointment extends javax.swing.JFrame {
     }
     
     public DeleteAppointment(User logUser){
-            initComponents();
-            this.logUser = logUser;
+        initComponents();
+        this.logUser = logUser;
+            
+        ValidationInput.numbers(DeleteAppointment_textIDClient);
+            
        }
 
     @SuppressWarnings("unchecked")
@@ -46,7 +50,6 @@ public class DeleteAppointment extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1000, 800));
         setMinimumSize(new java.awt.Dimension(1000, 800));
-        setPreferredSize(new java.awt.Dimension(1000, 800));
         setSize(new java.awt.Dimension(1000, 800));
 
         DeleteAppointmentPanel.setMaximumSize(new java.awt.Dimension(1000, 800));
@@ -276,7 +279,7 @@ public class DeleteAppointment extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void DeleteAppointment_lblBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteAppointment_lblBttnBackMouseClicked
-        Menu_Appointment MenuAppointmentFrame = new Menu_Appointment(logUser);
+        Appointment_Menu MenuAppointmentFrame = new Appointment_Menu(logUser);
         MenuAppointmentFrame.setVisible(true);
         MenuAppointmentFrame.pack();
         MenuAppointmentFrame.setLocationRelativeTo(null);

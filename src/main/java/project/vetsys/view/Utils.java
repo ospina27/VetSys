@@ -23,7 +23,6 @@ public class Utils {
             }
         }
     }
-   
     
     /// cuadro de validación, con opcion "si o no"
     public int validation(String message, String title){
@@ -35,5 +34,8 @@ public class Utils {
             return 0;
         }   
     }
+    
+    
+    
     
 }

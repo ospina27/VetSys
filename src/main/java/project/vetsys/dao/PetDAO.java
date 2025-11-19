@@ -96,7 +96,7 @@ public class PetDAO {
                     System.out.println("Error, cerrando la conexión: " + ex.getMessage());
                 }
             }
-}
+    }
        
         
        

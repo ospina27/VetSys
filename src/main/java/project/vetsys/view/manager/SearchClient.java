@@ -16,6 +16,7 @@ import project.vetsys.dao.ClienteDAO;
 import project.vetsys.database.DBConnection;
 import project.vetsys.model.ClienteModel;
 import project.vetsys.model.User;
+import project.vetsys.utils.ValidationInput;
 
 /**
  *
@@ -49,8 +50,13 @@ public class SearchClient extends javax.swing.JFrame {
             btnEliminar.setVisible(false);
         }
         txtClinica.setEditable(false); ///no editar la clinica
-        
+                
         System.out.println("Usuario logueado recibido: " + logUser.getUsername()); //prueba en consola
+        
+        ValidationInput.numbers(txtDocumentoIngresado);
+        ValidationInput.numbers(txtDocumento);
+
+
         
     }
 

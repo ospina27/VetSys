@@ -18,7 +18,7 @@ public class PatientsMenu extends javax.swing.JFrame {
         System.out.println("Usuario logueado en MenuManager: " + logUser.getUsername());
         if(!"Administrador".equalsIgnoreCase(logUser.getName_role()))
         {
-            MenuUsers_BttnAddUsers.setVisible(false);
+            MenuPatients_BttnCreatePatient.setVisible(false);
         }
         setTitle(logUser.getClinic().getName_clinic());
     }
@@ -32,20 +32,15 @@ public class PatientsMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        MenuUsersPanel = new javax.swing.JPanel();
+        MenuPatientsPanel = new javax.swing.JPanel();
         Left = new javax.swing.JPanel();
-        MenuUsers_lblTitle = new javax.swing.JLabel();
+        MenuPatients_ImgVetSys = new javax.swing.JLabel();
         Right = new javax.swing.JPanel();
-        MenuUsers_BttnAddUsers = new javax.swing.JPanel();
-        MenuUsers_lblBttnAddUsers = new javax.swing.JLabel();
-        MenuUsers_BttnSearchUsers = new javax.swing.JPanel();
-        MenuUsers_lblBttnSearchUsers = new javax.swing.JLabel();
-        MenuUsers_BttnBack = new javax.swing.JPanel();
-        MenuUsers_lblBttnBack = new javax.swing.JLabel();
-        MenuUsers_BttnRegisterPet = new javax.swing.JPanel();
-        MenuUsers_lblBttnRegisterPet = new javax.swing.JLabel();
-        MenuUsers_BttnSearchPet = new javax.swing.JPanel();
-        MenuUsers_lblBttnSearchPet = new javax.swing.JLabel();
+        MenuPatients_BttnCreatePatient = new javax.swing.JButton();
+        MenuPatients_BttnSearchPatient = new javax.swing.JButton();
+        MenuPatients_BttnCreatePet = new javax.swing.JButton();
+        MenuPatients_BttnSearchPet = new javax.swing.JButton();
+        MenuPatients_BttnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(800, 600));
@@ -53,322 +48,180 @@ public class PatientsMenu extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
-        MenuUsersPanel.setMaximumSize(new java.awt.Dimension(800, 600));
-        MenuUsersPanel.setMinimumSize(new java.awt.Dimension(800, 600));
-        MenuUsersPanel.setPreferredSize(new java.awt.Dimension(800, 600));
-        MenuUsersPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        MenuPatientsPanel.setMaximumSize(new java.awt.Dimension(800, 600));
+        MenuPatientsPanel.setMinimumSize(new java.awt.Dimension(800, 600));
+        MenuPatientsPanel.setPreferredSize(new java.awt.Dimension(800, 600));
+        MenuPatientsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Left.setBackground(new java.awt.Color(0, 153, 153));
-        Left.setMaximumSize(new java.awt.Dimension(500, 800));
-        Left.setMinimumSize(new java.awt.Dimension(500, 800));
+        Left.setMaximumSize(new java.awt.Dimension(400, 600));
+        Left.setMinimumSize(new java.awt.Dimension(400, 600));
+        Left.setPreferredSize(new java.awt.Dimension(400, 600));
 
-        MenuUsers_lblTitle.setFont(new java.awt.Font("Arial Black", 1, 48)); // NOI18N
-        MenuUsers_lblTitle.setForeground(new java.awt.Color(255, 255, 255));
-        MenuUsers_lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MenuUsers_lblTitle.setText("VetSys");
+        MenuPatients_ImgVetSys.setFont(new java.awt.Font("Arial Black", 1, 48)); // NOI18N
+        MenuPatients_ImgVetSys.setForeground(new java.awt.Color(255, 255, 255));
+        MenuPatients_ImgVetSys.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        MenuPatients_ImgVetSys.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vetSysBg.png"))); // NOI18N
 
         javax.swing.GroupLayout LeftLayout = new javax.swing.GroupLayout(Left);
         Left.setLayout(LeftLayout);
         LeftLayout.setHorizontalGroup(
             LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LeftLayout.createSequentialGroup()
-                .addComponent(MenuUsers_lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(MenuPatients_ImgVetSys, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         LeftLayout.setVerticalGroup(
             LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LeftLayout.createSequentialGroup()
-                .addComponent(MenuUsers_lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 52, Short.MAX_VALUE))
+            .addComponent(MenuPatients_ImgVetSys, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
 
-        MenuUsersPanel.add(Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        MenuPatientsPanel.add(Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         Right.setBackground(new java.awt.Color(255, 255, 255));
-        Right.setMaximumSize(new java.awt.Dimension(500, 600));
-        Right.setMinimumSize(new java.awt.Dimension(500, 600));
+        Right.setMaximumSize(new java.awt.Dimension(400, 600));
+        Right.setMinimumSize(new java.awt.Dimension(400, 600));
         Right.setPreferredSize(new java.awt.Dimension(500, 600));
 
-        MenuUsers_BttnAddUsers.setBackground(new java.awt.Color(0, 153, 153));
-        MenuUsers_BttnAddUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        MenuUsers_BttnAddUsers.setMaximumSize(new java.awt.Dimension(140, 40));
-        MenuUsers_BttnAddUsers.setMinimumSize(new java.awt.Dimension(140, 40));
-        MenuUsers_BttnAddUsers.setPreferredSize(new java.awt.Dimension(140, 40));
-
-        MenuUsers_lblBttnAddUsers.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        MenuUsers_lblBttnAddUsers.setForeground(new java.awt.Color(255, 255, 255));
-        MenuUsers_lblBttnAddUsers.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MenuUsers_lblBttnAddUsers.setText("Registrar Cliente");
-        MenuUsers_lblBttnAddUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        MenuUsers_lblBttnAddUsers.setMaximumSize(new java.awt.Dimension(140, 40));
-        MenuUsers_lblBttnAddUsers.setMinimumSize(new java.awt.Dimension(140, 40));
-        MenuUsers_lblBttnAddUsers.setPreferredSize(new java.awt.Dimension(140, 40));
-        MenuUsers_lblBttnAddUsers.addMouseListener(new java.awt.event.MouseAdapter() {
+        MenuPatients_BttnCreatePatient.setBackground(new java.awt.Color(0, 153, 153));
+        MenuPatients_BttnCreatePatient.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        MenuPatients_BttnCreatePatient.setForeground(new java.awt.Color(255, 255, 255));
+        MenuPatients_BttnCreatePatient.setText("Registrar Cliente");
+        MenuPatients_BttnCreatePatient.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuPatients_BttnCreatePatient.setFocusPainted(false);
+        MenuPatients_BttnCreatePatient.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MenuUsers_lblBttnAddUsersMouseClicked(evt);
+                MenuPatients_BttnCreatePatientMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                MenuUsers_lblBttnAddUsersMouseEntered(evt);
+                MenuPatients_BttnCreatePatientMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                MenuUsers_lblBttnAddUsersMouseExited(evt);
+                MenuPatients_BttnCreatePatientMouseExited(evt);
             }
         });
 
-        javax.swing.GroupLayout MenuUsers_BttnAddUsersLayout = new javax.swing.GroupLayout(MenuUsers_BttnAddUsers);
-        MenuUsers_BttnAddUsers.setLayout(MenuUsers_BttnAddUsersLayout);
-        MenuUsers_BttnAddUsersLayout.setHorizontalGroup(
-            MenuUsers_BttnAddUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MenuUsers_lblBttnAddUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-        );
-        MenuUsers_BttnAddUsersLayout.setVerticalGroup(
-            MenuUsers_BttnAddUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MenuUsers_lblBttnAddUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-        );
-
-        MenuUsers_BttnSearchUsers.setBackground(new java.awt.Color(0, 153, 153));
-        MenuUsers_BttnSearchUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        MenuUsers_BttnSearchUsers.setMaximumSize(new java.awt.Dimension(140, 40));
-        MenuUsers_BttnSearchUsers.setMinimumSize(new java.awt.Dimension(140, 40));
-        MenuUsers_BttnSearchUsers.setPreferredSize(new java.awt.Dimension(140, 40));
-
-        MenuUsers_lblBttnSearchUsers.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        MenuUsers_lblBttnSearchUsers.setForeground(new java.awt.Color(255, 255, 255));
-        MenuUsers_lblBttnSearchUsers.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MenuUsers_lblBttnSearchUsers.setText("Consultar Cliente");
-        MenuUsers_lblBttnSearchUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        MenuUsers_lblBttnSearchUsers.setMaximumSize(new java.awt.Dimension(140, 40));
-        MenuUsers_lblBttnSearchUsers.setMinimumSize(new java.awt.Dimension(140, 40));
-        MenuUsers_lblBttnSearchUsers.setPreferredSize(new java.awt.Dimension(140, 40));
-        MenuUsers_lblBttnSearchUsers.addMouseListener(new java.awt.event.MouseAdapter() {
+        MenuPatients_BttnSearchPatient.setBackground(new java.awt.Color(0, 153, 153));
+        MenuPatients_BttnSearchPatient.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        MenuPatients_BttnSearchPatient.setForeground(new java.awt.Color(255, 255, 255));
+        MenuPatients_BttnSearchPatient.setText("Consultar Cliente");
+        MenuPatients_BttnSearchPatient.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuPatients_BttnSearchPatient.setFocusPainted(false);
+        MenuPatients_BttnSearchPatient.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MenuUsers_lblBttnSearchUsersMouseClicked(evt);
+                MenuPatients_BttnSearchPatientMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                MenuUsers_lblBttnSearchUsersMouseEntered(evt);
+                MenuPatients_BttnSearchPatientMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                MenuUsers_lblBttnSearchUsersMouseExited(evt);
+                MenuPatients_BttnSearchPatientMouseExited(evt);
             }
         });
 
-        javax.swing.GroupLayout MenuUsers_BttnSearchUsersLayout = new javax.swing.GroupLayout(MenuUsers_BttnSearchUsers);
-        MenuUsers_BttnSearchUsers.setLayout(MenuUsers_BttnSearchUsersLayout);
-        MenuUsers_BttnSearchUsersLayout.setHorizontalGroup(
-            MenuUsers_BttnSearchUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuUsers_BttnSearchUsersLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(MenuUsers_lblBttnSearchUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        MenuUsers_BttnSearchUsersLayout.setVerticalGroup(
-            MenuUsers_BttnSearchUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MenuUsers_lblBttnSearchUsers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-        );
-
-        MenuUsers_BttnBack.setBackground(new java.awt.Color(0, 153, 153));
-        MenuUsers_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        MenuUsers_BttnBack.setMaximumSize(new java.awt.Dimension(140, 40));
-        MenuUsers_BttnBack.setMinimumSize(new java.awt.Dimension(140, 40));
-        MenuUsers_BttnBack.setPreferredSize(new java.awt.Dimension(140, 40));
-
-        MenuUsers_lblBttnBack.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        MenuUsers_lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
-        MenuUsers_lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MenuUsers_lblBttnBack.setText("Regresar");
-        MenuUsers_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        MenuUsers_lblBttnBack.setMaximumSize(new java.awt.Dimension(140, 40));
-        MenuUsers_lblBttnBack.setMinimumSize(new java.awt.Dimension(140, 40));
-        MenuUsers_lblBttnBack.setPreferredSize(new java.awt.Dimension(140, 40));
-        MenuUsers_lblBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+        MenuPatients_BttnCreatePet.setBackground(new java.awt.Color(0, 153, 153));
+        MenuPatients_BttnCreatePet.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        MenuPatients_BttnCreatePet.setForeground(new java.awt.Color(255, 255, 255));
+        MenuPatients_BttnCreatePet.setText("Registrar Mascota");
+        MenuPatients_BttnCreatePet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuPatients_BttnCreatePet.setFocusPainted(false);
+        MenuPatients_BttnCreatePet.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MenuUsers_lblBttnBackMouseClicked(evt);
+                MenuPatients_BttnCreatePetMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                MenuUsers_lblBttnBackMouseEntered(evt);
+                MenuPatients_BttnCreatePetMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                MenuUsers_lblBttnBackMouseExited(evt);
+                MenuPatients_BttnCreatePetMouseExited(evt);
             }
         });
 
-        javax.swing.GroupLayout MenuUsers_BttnBackLayout = new javax.swing.GroupLayout(MenuUsers_BttnBack);
-        MenuUsers_BttnBack.setLayout(MenuUsers_BttnBackLayout);
-        MenuUsers_BttnBackLayout.setHorizontalGroup(
-            MenuUsers_BttnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MenuUsers_BttnBackLayout.createSequentialGroup()
-                .addComponent(MenuUsers_lblBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 3, Short.MAX_VALUE))
-        );
-        MenuUsers_BttnBackLayout.setVerticalGroup(
-            MenuUsers_BttnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MenuUsers_lblBttnBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-        );
-
-        MenuUsers_BttnRegisterPet.setBackground(new java.awt.Color(0, 153, 153));
-        MenuUsers_BttnRegisterPet.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        MenuUsers_BttnRegisterPet.setPreferredSize(new java.awt.Dimension(126, 35));
-
-        MenuUsers_lblBttnRegisterPet.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        MenuUsers_lblBttnRegisterPet.setForeground(new java.awt.Color(255, 255, 255));
-        MenuUsers_lblBttnRegisterPet.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MenuUsers_lblBttnRegisterPet.setText("Registrar Mascota");
-        MenuUsers_lblBttnRegisterPet.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        MenuUsers_lblBttnRegisterPet.addMouseListener(new java.awt.event.MouseAdapter() {
+        MenuPatients_BttnSearchPet.setBackground(new java.awt.Color(0, 153, 153));
+        MenuPatients_BttnSearchPet.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        MenuPatients_BttnSearchPet.setForeground(new java.awt.Color(255, 255, 255));
+        MenuPatients_BttnSearchPet.setText("Consultar Mascota");
+        MenuPatients_BttnSearchPet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuPatients_BttnSearchPet.setFocusPainted(false);
+        MenuPatients_BttnSearchPet.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MenuUsers_lblBttnRegisterPetMouseClicked(evt);
+                MenuPatients_BttnSearchPetMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                MenuUsers_lblBttnRegisterPetMouseEntered(evt);
+                MenuPatients_BttnSearchPetMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                MenuUsers_lblBttnRegisterPetMouseExited(evt);
+                MenuPatients_BttnSearchPetMouseExited(evt);
             }
         });
 
-        javax.swing.GroupLayout MenuUsers_BttnRegisterPetLayout = new javax.swing.GroupLayout(MenuUsers_BttnRegisterPet);
-        MenuUsers_BttnRegisterPet.setLayout(MenuUsers_BttnRegisterPetLayout);
-        MenuUsers_BttnRegisterPetLayout.setHorizontalGroup(
-            MenuUsers_BttnRegisterPetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MenuUsers_lblBttnRegisterPet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        MenuUsers_BttnRegisterPetLayout.setVerticalGroup(
-            MenuUsers_BttnRegisterPetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MenuUsers_lblBttnRegisterPet, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-        );
-
-        MenuUsers_BttnSearchPet.setBackground(new java.awt.Color(0, 153, 153));
-        MenuUsers_BttnSearchPet.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        MenuUsers_BttnSearchPet.setMaximumSize(new java.awt.Dimension(140, 40));
-        MenuUsers_BttnSearchPet.setMinimumSize(new java.awt.Dimension(140, 40));
-        MenuUsers_BttnSearchPet.setPreferredSize(new java.awt.Dimension(140, 40));
-
-        MenuUsers_lblBttnSearchPet.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        MenuUsers_lblBttnSearchPet.setForeground(new java.awt.Color(255, 255, 255));
-        MenuUsers_lblBttnSearchPet.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MenuUsers_lblBttnSearchPet.setText("Consultar Mascota");
-        MenuUsers_lblBttnSearchPet.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        MenuUsers_lblBttnSearchPet.addMouseListener(new java.awt.event.MouseAdapter() {
+        MenuPatients_BttnBack.setBackground(new java.awt.Color(0, 153, 153));
+        MenuPatients_BttnBack.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        MenuPatients_BttnBack.setForeground(new java.awt.Color(255, 255, 255));
+        MenuPatients_BttnBack.setText("Regresar");
+        MenuPatients_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuPatients_BttnBack.setFocusPainted(false);
+        MenuPatients_BttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MenuUsers_lblBttnSearchPetMouseClicked(evt);
+                MenuPatients_BttnBackMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                MenuUsers_lblBttnSearchPetMouseEntered(evt);
+                MenuPatients_BttnBackMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                MenuUsers_lblBttnSearchPetMouseExited(evt);
+                MenuPatients_BttnBackMouseExited(evt);
             }
         });
-
-        javax.swing.GroupLayout MenuUsers_BttnSearchPetLayout = new javax.swing.GroupLayout(MenuUsers_BttnSearchPet);
-        MenuUsers_BttnSearchPet.setLayout(MenuUsers_BttnSearchPetLayout);
-        MenuUsers_BttnSearchPetLayout.setHorizontalGroup(
-            MenuUsers_BttnSearchPetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MenuUsers_lblBttnSearchPet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        MenuUsers_BttnSearchPetLayout.setVerticalGroup(
-            MenuUsers_BttnSearchPetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MenuUsers_lblBttnSearchPet, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-        );
 
         javax.swing.GroupLayout RightLayout = new javax.swing.GroupLayout(Right);
         Right.setLayout(RightLayout);
         RightLayout.setHorizontalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RightLayout.createSequentialGroup()
+                .addGap(63, 63, 63)
                 .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(RightLayout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(MenuUsers_BttnAddUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(MenuUsers_BttnSearchUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                            .addComponent(MenuUsers_BttnRegisterPet, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                            .addComponent(MenuUsers_BttnSearchPet, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)))
-                    .addGroup(RightLayout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(MenuUsers_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(280, 280, 280))
+                    .addComponent(MenuPatients_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MenuPatients_BttnSearchPet, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MenuPatients_BttnCreatePet, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MenuPatients_BttnCreatePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MenuPatients_BttnSearchPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
         RightLayout.setVerticalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RightLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(MenuUsers_BttnAddUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(MenuUsers_BttnSearchUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(MenuUsers_BttnRegisterPet, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(MenuUsers_BttnSearchPet, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(MenuUsers_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120))
+                .addContainerGap(90, Short.MAX_VALUE)
+                .addComponent(MenuPatients_BttnCreatePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addComponent(MenuPatients_BttnSearchPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(MenuPatients_BttnCreatePet, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(MenuPatients_BttnSearchPet, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(MenuPatients_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89))
         );
 
-        MenuUsersPanel.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(411, 0, 390, -1));
+        MenuPatientsPanel.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(MenuUsersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(MenuPatientsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(MenuUsersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(MenuPatientsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void MenuUsers_lblBttnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnBackMouseExited
-        MenuUsers_BttnBack.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_MenuUsers_lblBttnBackMouseExited
-
-    private void MenuUsers_lblBttnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnBackMouseEntered
-        MenuUsers_BttnBack.setBackground(Color.LIGHT_GRAY);
-    }//GEN-LAST:event_MenuUsers_lblBttnBackMouseEntered
-
-    private void MenuUsers_lblBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnBackMouseClicked
-        MenuManager managerFrame = new MenuManager(logUser);
-        managerFrame.setVisible(true);
-        managerFrame.pack();
-        managerFrame.setLocationRelativeTo(null);
-        this.dispose();
-
-    }//GEN-LAST:event_MenuUsers_lblBttnBackMouseClicked
-
-    private void MenuUsers_lblBttnSearchUsersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnSearchUsersMouseExited
-        MenuUsers_BttnSearchUsers.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_MenuUsers_lblBttnSearchUsersMouseExited
-
-    private void MenuUsers_lblBttnSearchUsersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnSearchUsersMouseEntered
-        MenuUsers_BttnSearchUsers.setBackground(Color.LIGHT_GRAY);
-    }//GEN-LAST:event_MenuUsers_lblBttnSearchUsersMouseEntered
-
-    private void MenuUsers_lblBttnSearchUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnSearchUsersMouseClicked
-        //Boton buscar cliente
-        System.out.println("MenuManager -> logUser: " +
-            (logUser != null ? logUser.getUsername() + " id_clinic=" + logUser.getId_clinic() + " role=" + logUser.getName_role() : "logUser es null"));
-        SearchClient SearchClientFrame = new SearchClient(logUser);
-        SearchClientFrame.setVisible(true);
-        SearchClientFrame.pack();
-        SearchClientFrame.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_MenuUsers_lblBttnSearchUsersMouseClicked
-
-    private void MenuUsers_lblBttnAddUsersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnAddUsersMouseExited
-        MenuUsers_BttnAddUsers.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_MenuUsers_lblBttnAddUsersMouseExited
-
-    private void MenuUsers_lblBttnAddUsersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnAddUsersMouseEntered
-        MenuUsers_BttnAddUsers.setBackground(Color.LIGHT_GRAY);
-    }//GEN-LAST:event_MenuUsers_lblBttnAddUsersMouseEntered
-
-    private void MenuUsers_lblBttnAddUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnAddUsersMouseClicked
+    private void MenuPatients_BttnCreatePatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuPatients_BttnCreatePatientMouseClicked
         // boton registrar cliente
         System.out.println("MenuManager -> logUser: " +
             (logUser != null ? logUser.getUsername() + " id_clinic=" + logUser.getId_clinic() + " role=" + logUser.getName_role() : "logUser es null"));
@@ -377,39 +230,92 @@ public class PatientsMenu extends javax.swing.JFrame {
         CreateClientFrame.pack();
         CreateClientFrame.setLocationRelativeTo(null);
         this.dispose();
-    }//GEN-LAST:event_MenuUsers_lblBttnAddUsersMouseClicked
+    }//GEN-LAST:event_MenuPatients_BttnCreatePatientMouseClicked
 
-    private void MenuUsers_lblBttnRegisterPetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnRegisterPetMouseClicked
+    private void MenuPatients_BttnCreatePatientMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuPatients_BttnCreatePatientMouseEntered
+        MenuPatients_BttnCreatePatient.setBackground(Color.LIGHT_GRAY);
+        MenuPatients_BttnCreatePatient.setForeground(Color.BLACK);
+    }//GEN-LAST:event_MenuPatients_BttnCreatePatientMouseEntered
+
+    private void MenuPatients_BttnCreatePatientMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuPatients_BttnCreatePatientMouseExited
+        MenuPatients_BttnCreatePatient.setBackground(new Color(0,153,153));
+        MenuPatients_BttnCreatePatient.setForeground(Color.WHITE);
+    }//GEN-LAST:event_MenuPatients_BttnCreatePatientMouseExited
+
+    private void MenuPatients_BttnSearchPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuPatients_BttnSearchPatientMouseClicked
+        //Boton buscar cliente
+        System.out.println("MenuManager -> logUser: " +
+            (logUser != null ? logUser.getUsername() + " id_clinic=" + logUser.getId_clinic() + " role=" + logUser.getName_role() : "logUser es null"));
+        SearchClient SearchClientFrame = new SearchClient(logUser);
+        SearchClientFrame.setVisible(true);
+        SearchClientFrame.pack();
+        SearchClientFrame.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_MenuPatients_BttnSearchPatientMouseClicked
+
+    private void MenuPatients_BttnSearchPatientMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuPatients_BttnSearchPatientMouseEntered
+        MenuPatients_BttnSearchPatient.setBackground(Color.LIGHT_GRAY);
+        MenuPatients_BttnSearchPatient.setForeground(Color.BLACK);
+    }//GEN-LAST:event_MenuPatients_BttnSearchPatientMouseEntered
+
+    private void MenuPatients_BttnSearchPatientMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuPatients_BttnSearchPatientMouseExited
+        MenuPatients_BttnSearchPatient.setBackground(new Color(0,153,153));
+        MenuPatients_BttnSearchPatient.setForeground(Color.WHITE);
+    }//GEN-LAST:event_MenuPatients_BttnSearchPatientMouseExited
+
+    private void MenuPatients_BttnCreatePetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuPatients_BttnCreatePetMouseClicked
         CreatePet createPetFrame = new CreatePet(logUser);
         createPetFrame.setVisible(true);
         createPetFrame.pack();
         createPetFrame.setLocationRelativeTo(null);
         this.dispose();
-    }//GEN-LAST:event_MenuUsers_lblBttnRegisterPetMouseClicked
+    }//GEN-LAST:event_MenuPatients_BttnCreatePetMouseClicked
 
-    private void MenuUsers_lblBttnRegisterPetMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnRegisterPetMouseEntered
-        MenuUsers_BttnRegisterPet.setBackground(Color.LIGHT_GRAY);
-    }//GEN-LAST:event_MenuUsers_lblBttnRegisterPetMouseEntered
+    private void MenuPatients_BttnCreatePetMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuPatients_BttnCreatePetMouseEntered
+        MenuPatients_BttnCreatePet.setBackground(Color.LIGHT_GRAY);
+        MenuPatients_BttnCreatePet.setForeground(Color.BLACK);
+    }//GEN-LAST:event_MenuPatients_BttnCreatePetMouseEntered
 
-    private void MenuUsers_lblBttnRegisterPetMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnRegisterPetMouseExited
-        MenuUsers_BttnRegisterPet.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_MenuUsers_lblBttnRegisterPetMouseExited
+    private void MenuPatients_BttnCreatePetMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuPatients_BttnCreatePetMouseExited
+        MenuPatients_BttnCreatePet.setBackground(new Color(0,153,153));
+        MenuPatients_BttnCreatePet.setForeground(Color.WHITE);
+    }//GEN-LAST:event_MenuPatients_BttnCreatePetMouseExited
 
-    private void MenuUsers_lblBttnSearchPetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnSearchPetMouseClicked
+    private void MenuPatients_BttnSearchPetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuPatients_BttnSearchPetMouseClicked
         SearchPet searchPetFrame = new SearchPet(logUser);
         searchPetFrame.setVisible(true);
         searchPetFrame.pack();
         searchPetFrame.setLocationRelativeTo(null);
         this.dispose();
-    }//GEN-LAST:event_MenuUsers_lblBttnSearchPetMouseClicked
+    }//GEN-LAST:event_MenuPatients_BttnSearchPetMouseClicked
 
-    private void MenuUsers_lblBttnSearchPetMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnSearchPetMouseEntered
-        MenuUsers_BttnSearchPet.setBackground(Color.LIGHT_GRAY);
-    }//GEN-LAST:event_MenuUsers_lblBttnSearchPetMouseEntered
+    private void MenuPatients_BttnSearchPetMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuPatients_BttnSearchPetMouseEntered
+        MenuPatients_BttnSearchPet.setBackground(Color.LIGHT_GRAY);
+        MenuPatients_BttnSearchPet.setForeground(Color.BLACK);
+    }//GEN-LAST:event_MenuPatients_BttnSearchPetMouseEntered
 
-    private void MenuUsers_lblBttnSearchPetMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_lblBttnSearchPetMouseExited
-        MenuUsers_BttnSearchPet.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_MenuUsers_lblBttnSearchPetMouseExited
+    private void MenuPatients_BttnSearchPetMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuPatients_BttnSearchPetMouseExited
+        MenuPatients_BttnSearchPet.setBackground(new Color(0,153,153));
+        MenuPatients_BttnSearchPet.setForeground(Color.WHITE);
+    }//GEN-LAST:event_MenuPatients_BttnSearchPetMouseExited
+
+    private void MenuPatients_BttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuPatients_BttnBackMouseClicked
+        MenuManager managerFrame = new MenuManager(logUser);
+        managerFrame.setVisible(true);
+        managerFrame.pack();
+        managerFrame.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_MenuPatients_BttnBackMouseClicked
+
+    private void MenuPatients_BttnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuPatients_BttnBackMouseEntered
+        MenuPatients_BttnBack.setBackground(Color.LIGHT_GRAY);
+        MenuPatients_BttnBack.setForeground(Color.BLACK);
+    }//GEN-LAST:event_MenuPatients_BttnBackMouseEntered
+
+    private void MenuPatients_BttnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuPatients_BttnBackMouseExited
+        MenuPatients_BttnBack.setBackground(new Color(0,153,153));
+        MenuPatients_BttnBack.setForeground(Color.WHITE);
+    }//GEN-LAST:event_MenuPatients_BttnBackMouseExited
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new PatientsMenu().setVisible(true));
@@ -417,114 +323,120 @@ public class PatientsMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Left;
-    private javax.swing.JPanel MenuUsersPanel;
-    private javax.swing.JPanel MenuUsers_BttnAddUsers;
-    private javax.swing.JPanel MenuUsers_BttnBack;
-    private javax.swing.JPanel MenuUsers_BttnRegisterPet;
-    private javax.swing.JPanel MenuUsers_BttnSearchPet;
-    private javax.swing.JPanel MenuUsers_BttnSearchUsers;
-    private javax.swing.JLabel MenuUsers_lblBttnAddUsers;
-    private javax.swing.JLabel MenuUsers_lblBttnBack;
-    private javax.swing.JLabel MenuUsers_lblBttnRegisterPet;
-    private javax.swing.JLabel MenuUsers_lblBttnSearchPet;
-    private javax.swing.JLabel MenuUsers_lblBttnSearchUsers;
-    private javax.swing.JLabel MenuUsers_lblTitle;
+    private javax.swing.JPanel MenuPatientsPanel;
+    private javax.swing.JButton MenuPatients_BttnBack;
+    private javax.swing.JButton MenuPatients_BttnCreatePatient;
+    private javax.swing.JButton MenuPatients_BttnCreatePet;
+    private javax.swing.JButton MenuPatients_BttnSearchPatient;
+    private javax.swing.JButton MenuPatients_BttnSearchPet;
+    private javax.swing.JLabel MenuPatients_ImgVetSys;
     private javax.swing.JPanel Right;
     // End of variables declaration//GEN-END:variables
 
-    private void aplicarAccesibilidad() {
-    // ------------------ ACCESIBILIDAD ------------------
+        private void aplicarAccesibilidad() {
 
-    // --- LABEL PRINCIPAL ---
-    MenuUsers_lblTitle.getAccessibleContext().setAccessibleName("Título VetSys");
-    MenuUsers_lblTitle.getAccessibleContext().setAccessibleDescription("Título principal del menú de pacientes");
+        // ---------------------------------------------------
+        // ------------------ ACCESIBILIDAD ------------------
+        // ---------------------------------------------------
 
-    // --- BOTONES / PANEL CON ETIQUETAS ---
-    MenuUsers_lblBttnAddUsers.setLabelFor(MenuUsers_BttnAddUsers);
-    MenuUsers_lblBttnAddUsers.setDisplayedMnemonic('R'); // Alt+R para Registrar Cliente
-    MenuUsers_lblBttnAddUsers.getAccessibleContext().setAccessibleName("Registrar Cliente");
-    MenuUsers_lblBttnAddUsers.getAccessibleContext().setAccessibleDescription("Abrir formulario para registrar un nuevo cliente");
-    MenuUsers_lblBttnAddUsers.setToolTipText("Registrar Cliente (Alt+R)");
-    MenuUsers_BttnAddUsers.setFocusable(true);
+        // ===================== PANEL =======================
+        MenuPatientsPanel.setFocusable(true);
+        Left.setFocusable(true);
+        Right.setFocusable(true);
 
-    MenuUsers_lblBttnSearchUsers.setLabelFor(MenuUsers_BttnSearchUsers);
-    MenuUsers_lblBttnSearchUsers.setDisplayedMnemonic('C'); // Alt+C para Consultar Cliente
-    MenuUsers_lblBttnSearchUsers.getAccessibleContext().setAccessibleName("Consultar Cliente");
-    MenuUsers_lblBttnSearchUsers.getAccessibleContext().setAccessibleDescription("Abrir formulario para buscar clientes existentes");
-    MenuUsers_lblBttnSearchUsers.setToolTipText("Consultar Cliente (Alt+C)");
-    MenuUsers_BttnSearchUsers.setFocusable(true);
+        // ===================== BOTONES =====================
 
-    MenuUsers_lblBttnRegisterPet.setLabelFor(MenuUsers_BttnRegisterPet);
-    MenuUsers_lblBttnRegisterPet.setDisplayedMnemonic('M'); // Alt+M para Registrar Mascota
-    MenuUsers_lblBttnRegisterPet.getAccessibleContext().setAccessibleName("Registrar Mascota");
-    MenuUsers_lblBttnRegisterPet.getAccessibleContext().setAccessibleDescription("Abrir formulario para registrar una nueva mascota");
-    MenuUsers_lblBttnRegisterPet.setToolTipText("Registrar Mascota (Alt+M)");
-    MenuUsers_BttnRegisterPet.setFocusable(true);
+        // --- Registrar Cliente ---
+        MenuPatients_BttnCreatePatient.getAccessibleContext().setAccessibleName("Registrar Cliente");
+        MenuPatients_BttnCreatePatient.getAccessibleContext().setAccessibleDescription("Abre el formulario para registrar un cliente");
+        MenuPatients_BttnCreatePatient.setMnemonic('R'); // Alt + R
+        MenuPatients_BttnCreatePatient.setToolTipText("Registrar Cliente (Alt+R)");
+        MenuPatients_BttnCreatePatient.setFocusable(true);
 
-    MenuUsers_lblBttnSearchPet.setLabelFor(MenuUsers_BttnSearchPet);
-    MenuUsers_lblBttnSearchPet.setDisplayedMnemonic('S'); // Alt+S para Consultar Mascota
-    MenuUsers_lblBttnSearchPet.getAccessibleContext().setAccessibleName("Consultar Mascota");
-    MenuUsers_lblBttnSearchPet.getAccessibleContext().setAccessibleDescription("Abrir formulario para buscar mascotas existentes");
-    MenuUsers_lblBttnSearchPet.setToolTipText("Consultar Mascota (Alt+S)");
-    MenuUsers_BttnSearchPet.setFocusable(true);
+        // --- Consultar Cliente ---
+        MenuPatients_BttnSearchPatient.getAccessibleContext().setAccessibleName("Consultar Cliente");
+        MenuPatients_BttnSearchPatient.getAccessibleContext().setAccessibleDescription("Abre el formulario para consultar clientes");
+        MenuPatients_BttnSearchPatient.setMnemonic('C'); // Alt + C
+        MenuPatients_BttnSearchPatient.setToolTipText("Consultar Cliente (Alt+C)");
+        MenuPatients_BttnSearchPatient.setFocusable(true);
 
-    MenuUsers_lblBttnBack.setLabelFor(MenuUsers_BttnBack);
-    MenuUsers_lblBttnBack.setDisplayedMnemonic('V'); // Alt+V para Volver / Regresar
-    MenuUsers_lblBttnBack.getAccessibleContext().setAccessibleName("Regresar");
-    MenuUsers_lblBttnBack.getAccessibleContext().setAccessibleDescription("Regresa al menú anterior");
-    MenuUsers_lblBttnBack.setToolTipText("Regresar (Alt+V)");
-    MenuUsers_BttnBack.setFocusable(true);
+        // --- Registrar Mascota ---
+        MenuPatients_BttnCreatePet.getAccessibleContext().setAccessibleName("Registrar Mascota");
+        MenuPatients_BttnCreatePet.getAccessibleContext().setAccessibleDescription("Abre el formulario para registrar mascotas");
+        MenuPatients_BttnCreatePet.setMnemonic('M'); // Alt + M
+        MenuPatients_BttnCreatePet.setToolTipText("Registrar Mascota (Alt+M)");
+        MenuPatients_BttnCreatePet.setFocusable(true);
 
-    // --- PANEL PRINCIPAL ---
-    MenuUsersPanel.setFocusable(true);
-    Right.setFocusable(true);
-    Left.setFocusable(true);
+        // --- Consultar Mascota ---
+        MenuPatients_BttnSearchPet.getAccessibleContext().setAccessibleName("Consultar Mascota");
+        MenuPatients_BttnSearchPet.getAccessibleContext().setAccessibleDescription("Abre el formulario para consultar mascotas");
+        MenuPatients_BttnSearchPet.setMnemonic('S'); // Alt + S
+        MenuPatients_BttnSearchPet.setToolTipText("Consultar Mascota (Alt+S)");
+        MenuPatients_BttnSearchPet.setFocusable(true);
 
-    // --- ATAJOS GLOBALES ALT ---
-    getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW)
-        .put(KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.ALT_DOWN_MASK), "accion_registrar_cliente");
-    getRootPane().getActionMap().put("accion_registrar_cliente", new AbstractAction() {
-        @Override
-        public void actionPerformed(java.awt.event.ActionEvent e) {
-            MenuUsers_lblBttnAddUsersMouseClicked(null);
-        }
-    });
+        // --- Regresar ---
+        MenuPatients_BttnBack.getAccessibleContext().setAccessibleName("Regresar");
+        MenuPatients_BttnBack.getAccessibleContext().setAccessibleDescription("Regresa al menú anterior");
+        MenuPatients_BttnBack.setMnemonic('V'); // Alt + V
+        MenuPatients_BttnBack.setToolTipText("Regresar (Alt+V)");
+        MenuPatients_BttnBack.setFocusable(true);
 
-    getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW)
-        .put(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.ALT_DOWN_MASK), "accion_consultar_cliente");
-    getRootPane().getActionMap().put("accion_consultar_cliente", new AbstractAction() {
-        @Override
-        public void actionPerformed(java.awt.event.ActionEvent e) {
-            MenuUsers_lblBttnSearchUsersMouseClicked(null);
-        }
-    });
+        // ================= TAB ORDER ======================
+        MenuPatients_BttnCreatePatient.setNextFocusableComponent(MenuPatients_BttnSearchPatient);
+        MenuPatients_BttnSearchPatient.setNextFocusableComponent(MenuPatients_BttnCreatePet);
+        MenuPatients_BttnCreatePet.setNextFocusableComponent(MenuPatients_BttnSearchPet);
+        MenuPatients_BttnSearchPet.setNextFocusableComponent(MenuPatients_BttnBack);
+        MenuPatients_BttnBack.setNextFocusableComponent(MenuPatients_BttnCreatePatient);
 
-    getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW)
-        .put(KeyStroke.getKeyStroke(KeyEvent.VK_M, KeyEvent.ALT_DOWN_MASK), "accion_registrar_mascota");
-    getRootPane().getActionMap().put("accion_registrar_mascota", new AbstractAction() {
-        @Override
-        public void actionPerformed(java.awt.event.ActionEvent e) {
-            MenuUsers_lblBttnRegisterPetMouseClicked(null);
-        }
-    });
+        // ================ ATAJOS GLOBALES ALT ==============
+        javax.swing.InputMap inputMap = getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
+        javax.swing.ActionMap actionMap = getRootPane().getActionMap();
 
-    getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW)
-        .put(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.ALT_DOWN_MASK), "accion_consultar_mascota");
-    getRootPane().getActionMap().put("accion_consultar_mascota", new AbstractAction() {
-        @Override
-        public void actionPerformed(java.awt.event.ActionEvent e) {
-            MenuUsers_lblBttnSearchPetMouseClicked(null);
-        }
-    });
+        // --- Registrar Cliente (ALT + R) ---
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.ALT_DOWN_MASK), "registrar_cliente");
+        actionMap.put("registrar_cliente", new AbstractAction() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                MenuPatients_BttnCreatePatient.doClick();
+            }
+        });
 
-    getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW)
-        .put(KeyStroke.getKeyStroke(KeyEvent.VK_V, KeyEvent.ALT_DOWN_MASK), "accion_regresar");
-    getRootPane().getActionMap().put("accion_regresar", new AbstractAction() {
-        @Override
-        public void actionPerformed(java.awt.event.ActionEvent e) {
-            MenuUsers_lblBttnBackMouseClicked(null);
-        }
-    });
-}
+        // --- Consultar Cliente (ALT + C) ---
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.ALT_DOWN_MASK), "consultar_cliente");
+        actionMap.put("consultar_cliente", new AbstractAction() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                MenuPatients_BttnSearchPatient.doClick();
+            }
+        });
+
+        // --- Registrar Mascota (ALT + M) ---
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_M, KeyEvent.ALT_DOWN_MASK), "registrar_mascota");
+        actionMap.put("registrar_mascota", new AbstractAction() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                MenuPatients_BttnCreatePet.doClick();
+            }
+        });
+
+        // --- Consultar Mascota (ALT + S) ---
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.ALT_DOWN_MASK), "consultar_mascota");
+        actionMap.put("consultar_mascota", new AbstractAction() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                MenuPatients_BttnSearchPet.doClick();
+            }
+        });
+
+        // --- Regresar (ALT + V) ---
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, KeyEvent.ALT_DOWN_MASK), "regresar");
+        actionMap.put("regresar", new AbstractAction() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                MenuPatients_BttnBack.doClick();
+            }
+        });
+    }
+
 
 }

@@ -8,10 +8,10 @@ import project.vetsys.view.security.LogIn;
 import project.vetsys.dao.ClinicDAO;
 import project.vetsys.model.Clinic;
 import java.time.LocalDate;
-import java.util.HashSet;
 import javax.swing.JOptionPane;
 import project.vetsys.dao.UserDAO;
 import project.vetsys.model.User;
+import project.vetsys.utils.ValidationInput;
 
 /**
  *
@@ -26,7 +26,9 @@ public class CreateClinic extends javax.swing.JFrame {
      */
     public CreateClinic() {
         initComponents();
-        aplicarAccesibilidad();
+        aplicarAccesibilidad();  
+        ValidationInput.numbers(nitClinicField);
+
     }
 
     /**

@@ -165,9 +165,7 @@ public class User {
 
      @Override
     public String toString() {
-        return "Usuario: " + username + ", Clinica: " 
-                + (clinic != null ? clinic.getName_clinic():"Sin asignar") 
-                + ", Rol: " + name_role + ", Estado: " + name_status;
+        return name_user + " " + last_name;
     }
 
 }
