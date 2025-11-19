@@ -22,7 +22,7 @@ public class LogIn extends javax.swing.JFrame {
         Nimbus.styleLabel(LogInPanel_lblPassword);
         setTitle("VET SYS");
         //Nimbus.styleAllLabelsExcept(this, LogInPanel_lblTittle);
-        ValidationInput.numbers(LogInPanel_txtPassword);
+        //ValidationInput.numbers(LogInPanel_txtPassword);
     }
 
     @SuppressWarnings("unchecked")

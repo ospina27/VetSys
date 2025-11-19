@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import project.vetsys.database.DBConnection;
 import project.vetsys.model.ClienteModel;
 
@@ -18,6 +19,22 @@ import project.vetsys.model.ClienteModel;
  * @author Asus
  */
 public class ClienteDAO {
+    
+    public boolean clienteTieneCitas(int idCliente) {
+        String sql = "SELECT COUNT(*) FROM cita WHERE id_cliente = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, idCliente);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) return rs.getInt(1) > 0;
+
+        } catch (SQLException e) {
+            System.out.println("Error verificando citas: " + e.getMessage());
+        }
+        return false;
+    }
+
     
     public boolean insertarCliente(ClienteModel client) {
         String sql = "INSERT INTO cliente (id_clinica, nombres, apellidos, documento, telefono, correo, direccion, id_membresia, fecha_inicio, fecha_vigencia, id_estado_membresia) "
@@ -122,6 +139,13 @@ public class ClienteDAO {
     }
 
     public boolean eliminarCliente(int idCliente) {
+        if (clienteTieneCitas(idCliente)) {
+            JOptionPane.showMessageDialog(null,
+                    "No se puede eliminar el cliente porque tiene citas registradas.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
         String sql = "DELETE FROM cliente WHERE id_cliente=?";
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {

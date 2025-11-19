@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import project.vetsys.view.manager.CreateUser;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -91,7 +93,7 @@ public class SearchClient extends javax.swing.JFrame {
     
     private void cargarMembresias() {
         cmboxMembresias.removeAllItems();
-        cmboxMembresias.addItem("Membresía");
+        cmboxMembresias.addItem("Sin membresía");
         
         String sql = "SELECT id_membresia, nombre FROM membresia WHERE id_clinica = ?";
         try (Connection conn = DBConnection.getConnection();
@@ -126,7 +128,6 @@ public class SearchClient extends javax.swing.JFrame {
                 cliente.getFechaInicio(),
                 cliente.getFechaVigencia()}
             );
-            
         }
     }
     
@@ -163,8 +164,8 @@ public class SearchClient extends javax.swing.JFrame {
         txtCorreo.setText("");
         txtDireccion.setText("");
         cmboxMembresias.setSelectedIndex(0);
-        jFormattedTxtFechaInicioMembresia.setText("");
-        jFormattedTxtFechaFinMembresia.setText("");
+        jDateChooserFechaInicio.setDate(null);
+        jDateChooserFechaFin.setDate(null);
     }
    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -186,15 +187,13 @@ public class SearchClient extends javax.swing.JFrame {
         cmboxMembresias = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jFormattedTxtFechaInicioMembresia = new javax.swing.JFormattedTextField();
-        jFormattedTxtFechaFinMembresia = new javax.swing.JFormattedTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtIdCliente = new javax.swing.JTextField();
         txtClinica = new javax.swing.JTextField();
+        jDateChooserFechaInicio = new com.toedter.calendar.JDateChooser();
+        jDateChooserFechaFin = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
         btnActualizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
@@ -221,6 +220,7 @@ public class SearchClient extends javax.swing.JFrame {
         jLabel2.setText("Nombres");
 
         txtApellidos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtApellidos.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtApellidos.setBorder(null);
         txtApellidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -242,6 +242,7 @@ public class SearchClient extends javax.swing.JFrame {
 
         txtDocumento.setEditable(false);
         txtDocumento.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtDocumento.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtDocumento.setBorder(null);
         txtDocumento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -250,6 +251,7 @@ public class SearchClient extends javax.swing.JFrame {
         });
 
         txtTelefono.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtTelefono.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtTelefono.setBorder(null);
         txtTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -270,6 +272,7 @@ public class SearchClient extends javax.swing.JFrame {
         jLabel13.setText("Dirección");
 
         txtCorreo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtCorreo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtCorreo.setBorder(null);
         txtCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -297,19 +300,12 @@ public class SearchClient extends javax.swing.JFrame {
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Fecha fin");
 
-        jFormattedTxtFechaInicioMembresia.setBorder(null);
-
-        jFormattedTxtFechaFinMembresia.setBorder(null);
-
-        jLabel4.setText("yyyy/mm/dd");
-
-        jLabel5.setText("yyyy/mm/dd");
-
         jLabel17.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Correo");
 
         txtDireccion.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtDireccion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtDireccion.setBorder(null);
         txtDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -356,22 +352,14 @@ public class SearchClient extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                             .addComponent(jLabel2)
                             .addGap(198, 198, 198))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel16)
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel5))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel15)
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel4))
+                        .addComponent(jLabel16)
+                        .addComponent(jLabel15)
                         .addComponent(jLabel14)
                         .addComponent(jLabel13)
                         .addComponent(jLabel12)
                         .addComponent(jLabel10)
                         .addComponent(jLabel3)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jFormattedTxtFechaFinMembresia, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jFormattedTxtFechaInicioMembresia, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cmboxMembresias, javax.swing.GroupLayout.Alignment.LEADING, 0, 187, Short.MAX_VALUE)
                             .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombres, javax.swing.GroupLayout.Alignment.LEADING)
@@ -379,7 +367,10 @@ public class SearchClient extends javax.swing.JFrame {
                             .addComponent(txtDocumento, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING)))
-                    .addComponent(txtClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jDateChooserFechaFin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                        .addComponent(jDateChooserFechaInicio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(118, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -420,18 +411,14 @@ public class SearchClient extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmboxMembresias, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel4))
+                .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTxtFechaInicioMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jDateChooserFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel5))
+                .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTxtFechaFinMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addComponent(jDateChooserFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2);
@@ -581,12 +568,39 @@ public class SearchClient extends javax.swing.JFrame {
             cliente.setDireccion(txtDireccion.getText());
 
             String item = (String) cmboxMembresias.getSelectedItem();
+            Integer idMembresia = null;
+            
             if (item != null && item.contains(" - ")) {
-                cliente.setIdMembresia(Integer.valueOf(item.split(" - ")[0]));
-            } else {
-                cliente.setIdMembresia(null);
-            }
+                int idSel = Integer.parseInt(item.split(" - ")[0]);
+                if (idSel != 0) { 
+                    idMembresia = idSel;
+                }
+            } 
+            cliente.setIdMembresia(idMembresia);
+            
+            if (idMembresia != null) {
 
+                Date fechaInicio = jDateChooserFechaInicio.getDate();
+                Date fechaFin = jDateChooserFechaFin.getDate();
+                if (fechaInicio == null || fechaFin == null) {
+                    JOptionPane.showMessageDialog(this,
+                        "Debe seleccionar fecha de inicio y fin de la membresía.",
+                        "Fechas requeridas",
+                        JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                String inicioStr = new SimpleDateFormat("yyyy-MM-dd").format(fechaInicio);
+                String finStr = new SimpleDateFormat("yyyy-MM-dd").format(fechaFin);
+
+                cliente.setFechaInicio(inicioStr);
+                cliente.setFechaVigencia(finStr);
+                cliente.setEstadoMembresia(1);
+            } else {
+                cliente.setFechaInicio(null);
+                cliente.setFechaVigencia(null);
+                cliente.setEstadoMembresia(0);
+            }
+            
             boolean actualizado = clienteDAO.actualizarCliente(cliente);
             if (actualizado) {
                 JOptionPane.showMessageDialog(this, "Cliente actualizado correctamente.");
@@ -652,7 +666,6 @@ public class SearchClient extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ingrese un número de documento.");
             return;
         }
-
         buscarPorDocumento(documento);
     }//GEN-LAST:event_btnConsultaClienteActionPerformed
 
@@ -699,15 +712,25 @@ public class SearchClient extends javax.swing.JFrame {
                 Object fechaInicioObj = modeloTabla.getValueAt(fila, 8);
                 Object fechaFinObj = modeloTabla.getValueAt(fila, 9);
 
-                jFormattedTxtFechaInicioMembresia.setText(fechaInicioObj != null ? fechaInicioObj.toString() : "");
-                jFormattedTxtFechaFinMembresia.setText(fechaFinObj != null ? fechaFinObj.toString() : "");
+                if (fechaInicioObj != null && !fechaInicioObj.toString().isEmpty()) {
+                    Date fechaInicio = java.sql.Date.valueOf(fechaInicioObj.toString());
+                    jDateChooserFechaInicio.setDate(fechaInicio);
+                } else {
+                    jDateChooserFechaInicio.setDate(null);
+                }
+
+                if (fechaFinObj != null && !fechaFinObj.toString().isEmpty()) {
+                    Date fechaFin = java.sql.Date.valueOf(fechaFinObj.toString());
+                    jDateChooserFechaFin.setDate(fechaFin);
+                } else {
+                    jDateChooserFechaFin.setDate(null);
+                }
 
             } catch (Exception e) {
                 System.out.println("Error al seleccionar cliente: " + e.getMessage());
             }
                 
-        }
-            
+        } 
     }//GEN-LAST:event_tablaClientesMouseClicked
 
     /**
@@ -741,8 +764,8 @@ public class SearchClient extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cmboxMembresias;
-    private javax.swing.JFormattedTextField jFormattedTxtFechaFinMembresia;
-    private javax.swing.JFormattedTextField jFormattedTxtFechaInicioMembresia;
+    private com.toedter.calendar.JDateChooser jDateChooserFechaFin;
+    private com.toedter.calendar.JDateChooser jDateChooserFechaInicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -753,8 +776,6 @@ public class SearchClient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

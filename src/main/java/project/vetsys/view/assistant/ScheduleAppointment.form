@@ -257,14 +257,13 @@
                               <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="cmbMascotas" min="-2" pref="35" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="ScheduleAppointment_BttnSchedule" min="-2" max="-2" attributes="0"/>
                           <Component id="ScheduleAppointment_BttnBack" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="88" max="32767" attributes="0"/>
+                      <EmptySpace pref="101" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -327,6 +326,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="cmbVeterinarios">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbVeterinariosActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;User&gt;"/>
               </AuxValues>
@@ -509,6 +511,9 @@
             <Component class="javax.swing.JTextField" name="txtApellidosCliente">
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserFecha">
+              <Events>
+                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jDateChooserFechaPropertyChange"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
