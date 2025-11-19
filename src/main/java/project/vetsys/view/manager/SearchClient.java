@@ -781,7 +781,6 @@ public class SearchClient extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void aplicarAccesibilidad() {
-    // ------------------ ACCESIBILIDAD ------------------
 
     // --- PANEL PRINCIPAL ---
     jPanel1.setFocusable(true);

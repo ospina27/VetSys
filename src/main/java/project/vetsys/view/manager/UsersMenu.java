@@ -16,6 +16,7 @@ public class UsersMenu extends javax.swing.JFrame {
     public UsersMenu(User logUser) {
         initComponents();
         aplicarAccesibilidad();
+        conectarAccionesBotones();
         this.logUser = logUser;
         System.out.println("Usuario logueado en MenuManager: " + logUser.getUsername());
         if(!"Administrador".equalsIgnoreCase(logUser.getName_role()))
@@ -28,6 +29,7 @@ public class UsersMenu extends javax.swing.JFrame {
     public UsersMenu() {
         initComponents();
         aplicarAccesibilidad();
+        conectarAccionesBotones();
     }
 
     @SuppressWarnings("unchecked")
@@ -252,89 +254,109 @@ public class UsersMenu extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void aplicarAccesibilidad() {
-
-    // ===========================
-    //   ACCESIBILIDAD GENERAL
-    // ===========================
+    // ============================================================
+    //  ACCESIBILIDAD – TITULO / CONTENEDORES
+    // ============================================================
     this.getAccessibleContext().setAccessibleName("Menú de Usuarios");
-    this.getAccessibleContext().setAccessibleDescription("Ventana principal para crear, buscar o regresar en el módulo de usuarios");
+    this.getAccessibleContext().setAccessibleDescription("Pantalla principal para gestionar usuarios del sistema.");
 
-    // Paneles
+    MenuUsersPanel.setFocusable(true);
     Left.setFocusable(true);
-    Left.getAccessibleContext().setAccessibleName("Panel izquierdo");
-    Left.getAccessibleContext().setAccessibleDescription("Panel con imagen decorativa del sistema");
-
     Right.setFocusable(true);
-    Right.getAccessibleContext().setAccessibleName("Panel derecho");
-    Right.getAccessibleContext().setAccessibleDescription("Panel con botones del menú de usuarios");
 
+    // ============================================================
+    //  ACCESIBILIDAD – BOTONES (Nombres, descripciones, tooltips)
+    // ============================================================
 
-    // ======================================
-    //   BOTÓN: CREAR USUARIO  (Alt + C)
-    // ======================================
-    MenuUsers_BttnCreateUser.setMnemonic('C');
-    MenuUsers_BttnCreateUser.setToolTipText("Crear un nuevo usuario (Alt+C)");
-    MenuUsers_BttnCreateUser.getAccessibleContext().setAccessibleName("Botón crear usuario");
-    MenuUsers_BttnCreateUser.getAccessibleContext().setAccessibleDescription("Abre el formulario para registrar un nuevo usuario");
+    // --- Crear Usuario ---
+    MenuUsers_BttnCreateUser.getAccessibleContext().setAccessibleName("Crear usuario");
+    MenuUsers_BttnCreateUser.getAccessibleContext().setAccessibleDescription("Abre el formulario para crear un nuevo usuario.");
+    MenuUsers_BttnCreateUser.setToolTipText("Crear usuario (Alt+C)");
+    MenuUsers_BttnCreateUser.setMnemonic('C');   // Evitar duplicados
 
-
-    // ======================================
-    //   BOTÓN: BUSCAR USUARIO (Alt + B)
-    // ======================================
+    // --- Buscar Usuario ---
+    MenuUsers_BttnSearchUser.getAccessibleContext().setAccessibleName("Buscar usuario");
+    MenuUsers_BttnSearchUser.getAccessibleContext().setAccessibleDescription("Abre el formulario para buscar un usuario.");
+    MenuUsers_BttnSearchUser.setToolTipText("Buscar usuario (Alt+B)");
     MenuUsers_BttnSearchUser.setMnemonic('B');
-    MenuUsers_BttnSearchUser.setToolTipText("Buscar un usuario existente (Alt+B)");
-    MenuUsers_BttnSearchUser.getAccessibleContext().setAccessibleName("Botón buscar usuario");
-    MenuUsers_BttnSearchUser.getAccessibleContext().setAccessibleDescription("Abre el formulario para buscar un usuario existente");
 
-
-    // ======================================
-    //   BOTÓN: REGRESAR (Alt + R)
-    // ======================================
+    // --- Regresar ---
+    MenuUsers_BttnBack.getAccessibleContext().setAccessibleName("Regresar al menú anterior");
+    MenuUsers_BttnBack.getAccessibleContext().setAccessibleDescription("Regresa al menú principal.");
+    MenuUsers_BttnBack.setToolTipText("Regresar (Alt+R)");
     MenuUsers_BttnBack.setMnemonic('R');
-    MenuUsers_BttnBack.setToolTipText("Regresar al menú anterior (Alt+R)");
-    MenuUsers_BttnBack.getAccessibleContext().setAccessibleName("Botón regresar");
-    MenuUsers_BttnBack.getAccessibleContext().setAccessibleDescription("Regresa al menú principal del sistema");
 
-
-    // ===========================
-    //   TAB-ORDER
-    // ===========================
+    // ============================================================
+    //  TAB ORDER – ORDEN DE NAVEGACIÓN CON TAB
+    // ============================================================
     MenuUsers_BttnCreateUser.setNextFocusableComponent(MenuUsers_BttnSearchUser);
     MenuUsers_BttnSearchUser.setNextFocusableComponent(MenuUsers_BttnBack);
     MenuUsers_BttnBack.setNextFocusableComponent(MenuUsers_BttnCreateUser);
 
+    // ============================================================
+    //  ATAJOS GLOBALS – ALT+C / ALT+B / ALT+R
+    // ============================================================
+    InputMap inputMap = getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
+    ActionMap actionMap = getRootPane().getActionMap();
 
-    // ===========================
-    //   ATAJOS GLOBALes ALT
-    // ===========================
-    InputMap im = this.getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
-    ActionMap am = this.getRootPane().getActionMap();
-
-    // Alt + C → Crear usuario
-    im.put(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.ALT_DOWN_MASK), "accion_crear");
-    am.put("accion_crear", new AbstractAction() {
+    // --- ALT+C Crear usuario ---
+    inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.ALT_DOWN_MASK), "accion_crear_usuario");
+    actionMap.put("accion_crear_usuario", new AbstractAction() {
         @Override
         public void actionPerformed(java.awt.event.ActionEvent e) {
             MenuUsers_BttnCreateUser.doClick();
         }
     });
 
-    // Alt + B → Buscar usuario
-    im.put(KeyStroke.getKeyStroke(KeyEvent.VK_B, KeyEvent.ALT_DOWN_MASK), "accion_buscar");
-    am.put("accion_buscar", new AbstractAction() {
+    // --- ALT+B Buscar usuario ---
+    inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_B, KeyEvent.ALT_DOWN_MASK), "accion_buscar_usuario");
+    actionMap.put("accion_buscar_usuario", new AbstractAction() {
         @Override
         public void actionPerformed(java.awt.event.ActionEvent e) {
             MenuUsers_BttnSearchUser.doClick();
         }
     });
 
-    // Alt + R → Regresar
-    im.put(KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.ALT_DOWN_MASK), "accion_regresar");
-    am.put("accion_regresar", new AbstractAction() {
+    // --- ALT+R Regresar ---
+    inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.ALT_DOWN_MASK), "accion_regresar");
+    actionMap.put("accion_regresar", new AbstractAction() {
         @Override
         public void actionPerformed(java.awt.event.ActionEvent e) {
             MenuUsers_BttnBack.doClick();
         }
+    });
+}
+private void conectarAccionesBotones() {
+
+    // --- Acción REAL del botón Crear Usuario ---
+    MenuUsers_BttnCreateUser.addActionListener(e -> {
+        System.out.println("MenuManager -> logUser: " +
+        (logUser != null ? logUser.getUsername() + " id_clinic=" + logUser.getId_clinic() + " role=" + logUser.getName_role() : "logUser es null"));
+        CreateUser CreateUserFrame = new CreateUser(logUser);
+        CreateUserFrame.setVisible(true);
+        CreateUserFrame.pack();
+        CreateUserFrame.setLocationRelativeTo(null);
+        this.dispose();
+    });
+
+    // --- Acción REAL del botón Buscar Usuario ---
+    MenuUsers_BttnSearchUser.addActionListener(e -> {
+        System.out.println("MenuManager -> logUser: " +
+        (logUser != null ? logUser.getUsername() + " id_clinic=" + logUser.getId_clinic() + " role=" + logUser.getName_role() : "logUser es null"));
+        SearchUser SearchUserFrame = new SearchUser(logUser);
+        SearchUserFrame.setVisible(true);
+        SearchUserFrame.pack();
+        SearchUserFrame.setLocationRelativeTo(null);
+        this.dispose();
+    });
+
+    // --- Acción REAL del botón Regresar ---
+    MenuUsers_BttnBack.addActionListener(e -> {
+        MenuManager menuManager = new MenuManager(logUser);
+        menuManager.setVisible(true);
+        menuManager.pack();
+        menuManager.setLocationRelativeTo(null);
+        this.dispose();
     });
 }
 

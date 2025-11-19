@@ -20,6 +20,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
     public PasswordRecovery() {
         initComponents();
         aplicarAccesibilidad();
+        conectarAccionesBotones();
         Nimbus.LookandFeel();
         Nimbus.styleAllTextFields(this);
         Nimbus.styleAllLabelsExcept(this,Left_PassRec_ImgVetSys);
@@ -567,5 +568,47 @@ public class PasswordRecovery extends javax.swing.JFrame {
         }
     });
 }
+
+        private void conectarAccionesBotones() {
+
+        // --- Verificar credenciales ---
+        PassRec_BttnCheckCredential.addActionListener(e -> {
+            PassRec_BttnCheckCredentialMouseClicked(null);
+        });
+        PassRec_BttnCheckCredential.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent e) {
+                if (e.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER || e.getKeyCode() == java.awt.event.KeyEvent.VK_SPACE) {
+                    PassRec_BttnCheckCredential.doClick();
+                }
+            }
+        });
+
+        // --- Cancelar / Volver atrás ---
+        PassRec_BttnBack.addActionListener(e -> {
+            PassRec_BttnBackMouseClicked(null);
+        });
+        PassRec_BttnBack.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent e) {
+                if (e.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER || e.getKeyCode() == java.awt.event.KeyEvent.VK_SPACE) {
+                    PassRec_BttnBack.doClick();
+                }
+            }
+        });
+
+        // --- Guardar nueva contraseña ---
+        PassRec_BttnSavePassword.addActionListener(e -> {
+            PassRec_BttnSavePasswordMouseClicked(null);
+        });
+        PassRec_BttnSavePassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent e) {
+                if (e.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER || e.getKeyCode() == java.awt.event.KeyEvent.VK_SPACE) {
+                    PassRec_BttnSavePassword.doClick();
+                }
+            }
+        });
+    }
 
 }

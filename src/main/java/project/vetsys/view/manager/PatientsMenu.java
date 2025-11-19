@@ -14,6 +14,7 @@ public class PatientsMenu extends javax.swing.JFrame {
     public PatientsMenu(User logUser) {
         initComponents();
         aplicarAccesibilidad();
+        conectarAccionesBotones();
         this.logUser = logUser;
         System.out.println("Usuario logueado en MenuManager: " + logUser.getUsername());
         if(!"Administrador".equalsIgnoreCase(logUser.getName_role()))
@@ -26,6 +27,7 @@ public class PatientsMenu extends javax.swing.JFrame {
     public PatientsMenu() {
         initComponents();
         aplicarAccesibilidad();
+        conectarAccionesBotones();
     }
 
     @SuppressWarnings("unchecked")
@@ -335,10 +337,6 @@ public class PatientsMenu extends javax.swing.JFrame {
 
         private void aplicarAccesibilidad() {
 
-        // ---------------------------------------------------
-        // ------------------ ACCESIBILIDAD ------------------
-        // ---------------------------------------------------
-
         // ===================== PANEL =======================
         MenuPatientsPanel.setFocusable(true);
         Left.setFocusable(true);
@@ -438,5 +436,56 @@ public class PatientsMenu extends javax.swing.JFrame {
         });
     }
 
+    private void conectarAccionesBotones() {
+
+    // --- Registrar Cliente ---
+    MenuPatients_BttnCreatePatient.addActionListener(e -> {
+        System.out.println("MenuManager -> logUser: " +
+            (logUser != null ? logUser.getUsername() + " id_clinic=" + logUser.getId_clinic() + " role=" + logUser.getName_role() : "logUser es null"));
+        CreateClient CreateClientFrame = new CreateClient(logUser);
+        CreateClientFrame.setVisible(true);
+        CreateClientFrame.pack();
+        CreateClientFrame.setLocationRelativeTo(null);
+        this.dispose();
+    });
+
+    // --- Consultar Cliente ---
+    MenuPatients_BttnSearchPatient.addActionListener(e -> {
+        System.out.println("MenuManager -> logUser: " +
+            (logUser != null ? logUser.getUsername() + " id_clinic=" + logUser.getId_clinic() + " role=" + logUser.getName_role() : "logUser es null"));
+        SearchClient SearchClientFrame = new SearchClient(logUser);
+        SearchClientFrame.setVisible(true);
+        SearchClientFrame.pack();
+        SearchClientFrame.setLocationRelativeTo(null);
+        this.dispose();
+    });
+
+    // --- Registrar Mascota ---
+    MenuPatients_BttnCreatePet.addActionListener(e -> {
+        CreatePet createPetFrame = new CreatePet(logUser);
+        createPetFrame.setVisible(true);
+        createPetFrame.pack();
+        createPetFrame.setLocationRelativeTo(null);
+        this.dispose();
+    });
+
+    // --- Consultar Mascota ---
+    MenuPatients_BttnSearchPet.addActionListener(e -> {
+        SearchPet searchPetFrame = new SearchPet(logUser);
+        searchPetFrame.setVisible(true);
+        searchPetFrame.pack();
+        searchPetFrame.setLocationRelativeTo(null);
+        this.dispose();
+    });
+
+    // --- Regresar ---
+    MenuPatients_BttnBack.addActionListener(e -> {
+        MenuManager managerFrame = new MenuManager(logUser);
+        managerFrame.setVisible(true);
+        managerFrame.pack();
+        managerFrame.setLocationRelativeTo(null);
+        this.dispose();
+    });
+}
 
 }
