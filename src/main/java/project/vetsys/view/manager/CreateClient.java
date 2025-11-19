@@ -5,6 +5,7 @@
 package project.vetsys.view.manager;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,14 +33,52 @@ public class CreateClient extends javax.swing.JFrame {
     
     public CreateClient() {
         initComponents();
+        aplicarAccesibilidad();
+        resaltarFoco();
     }
-    
-    public CreateClient(User logUser) {
+ 
+    public CreateClient(User logUser){
         this.logUser = logUser;
         initComponents();
+        aplicarAccesibilidad();
+        resaltarFoco();
         cargarMembresias();
-       
+        // Accesibilidad para el botón "Regresar"
+        CreateUser_lblBttnBack.setFocusable(true);
+        CreateUser_lblBttnBack.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    CreateUser_lblBttnBackMouseClicked(null);
+            }
+        }
+    });
+
     }
+    private void resaltarFoco() {
+    java.awt.Color focusColor = new java.awt.Color(0, 153, 153);
+    java.awt.Color normalColor = Color.GRAY;
+
+    javax.swing.JTextField[] campos = {
+        txtNombreCliente, txtApellidos, txtDocumento, txtTelefono,
+        txtCorreo, txtDireccion, txtDescripcionMembresia, txtPrecioMembresia
+    };
+
+    for (javax.swing.JTextField campo : campos) {
+        campo.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent e) {
+                campo.setBorder(javax.swing.BorderFactory.createLineBorder(focusColor, 2));
+            }
+
+            @Override
+            public void focusLost(java.awt.event.FocusEvent e) {
+                campo.setBorder(javax.swing.BorderFactory.createLineBorder(normalColor, 1));
+            }
+        });
+    }
+    }
+
     
     
     private void limpiarCampos() {
@@ -726,4 +765,145 @@ public class CreateClient extends javax.swing.JFrame {
     private javax.swing.JTextField txtPrecioMembresia;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
+    private void aplicarAccesibilidad() {
+    // ===== TÍTULO =====
+    CreateUser_lblTittle.getAccessibleContext().setAccessibleName("Título VetSys");
+    CreateUser_lblTittle.getAccessibleContext().setAccessibleDescription("Título principal de la aplicación VetSys");
+    CreateUser_lblTittle.setToolTipText("VetSys - sistema de gestión");
+
+    // ===== LABELS -> setLabelFor + mnemonics + tooltips =====
+    CreateUser_lblName.setLabelFor(txtNombreCliente);
+    CreateUser_lblName.setDisplayedMnemonic('N');
+    CreateUser_lblName.setToolTipText("Nombres (Alt+N)");
+    CreateUser_lblName.getAccessibleContext().setAccessibleDescription("Etiqueta para el campo nombres");
+
+    CreateUser_LastName.setLabelFor(txtApellidos);
+    CreateUser_LastName.setDisplayedMnemonic('A');
+    CreateUser_LastName.setToolTipText("Apellidos (Alt+A)");
+    CreateUser_LastName.getAccessibleContext().setAccessibleDescription("Etiqueta para el campo apellidos");
+
+    CreateUser_lbl_ID.setLabelFor(txtDocumento);
+    CreateUser_lbl_ID.setDisplayedMnemonic('D');
+    CreateUser_lbl_ID.setToolTipText("Documento (Alt+D)");
+    CreateUser_lbl_ID.getAccessibleContext().setAccessibleDescription("Etiqueta para el campo documento");
+
+    CreateUser_lblPhone.setLabelFor(txtTelefono);
+    CreateUser_lblPhone.setDisplayedMnemonic('T'); // T de Teléfono
+    CreateUser_lblPhone.setToolTipText("Teléfono (Alt+T)");
+    CreateUser_lblPhone.getAccessibleContext().setAccessibleDescription("Etiqueta para el campo teléfono");
+
+    CreateUser_lblEmail.setLabelFor(txtCorreo);
+    CreateUser_lblEmail.setDisplayedMnemonic('C'); // C de Correo
+    CreateUser_lblEmail.setToolTipText("Correo electrónico (Alt+C)");
+    CreateUser_lblEmail.getAccessibleContext().setAccessibleDescription("Etiqueta para el campo correo");
+
+    CreateUser_lblDireccion.setLabelFor(txtDireccion);
+    CreateUser_lblDireccion.setDisplayedMnemonic('I'); // elegí I (direccIón) para evitar duplicados
+    CreateUser_lblDireccion.setToolTipText("Dirección (Alt+I)");
+    CreateUser_lblDireccion.getAccessibleContext().setAccessibleDescription("Etiqueta para el campo dirección");
+
+    CreateUser_lblMembresia.setLabelFor(jComboBoxMembresia);
+    CreateUser_lblMembresia.setDisplayedMnemonic('M');
+    CreateUser_lblMembresia.setToolTipText("Membresía (Alt+M)");
+    CreateUser_lblMembresia.getAccessibleContext().setAccessibleDescription("Etiqueta para selección de membresía");
+
+    CreateUser_lblFechaIni.setLabelFor(jFormattedTextFechaInicioMembresia);
+    CreateUser_lblFechaIni.setDisplayedMnemonic('F');
+    CreateUser_lblFechaIni.setToolTipText("Fecha inicio (Alt+F)");
+    CreateUser_lblFechaIni.getAccessibleContext().setAccessibleDescription("Etiqueta para fecha de inicio");
+
+    CreateUser_lblFechaFin.setLabelFor(jFormattedTextFechaFinMembresia);
+    CreateUser_lblFechaFin.setToolTipText("Fecha fin de vigencia");
+    CreateUser_lblFechaFin.getAccessibleContext().setAccessibleDescription("Etiqueta para fecha de fin");
+
+    CreateUser_lblMembresia2.setLabelFor(txtDescripcionMembresia);
+    CreateUser_lblMembresia1.setLabelFor(txtPrecioMembresia);
+
+    // ===== CAMPOS DE TEXTO: accessible name/description + tooltips =====
+    txtNombreCliente.getAccessibleContext().setAccessibleName("Nombre del cliente");
+    txtNombreCliente.getAccessibleContext().setAccessibleDescription("Ingrese los nombres del cliente");
+    txtNombreCliente.setToolTipText("Ingrese nombres");
+
+    txtApellidos.getAccessibleContext().setAccessibleName("Apellidos del cliente");
+    txtApellidos.getAccessibleContext().setAccessibleDescription("Ingrese los apellidos del cliente");
+    txtApellidos.setToolTipText("Ingrese apellidos");
+
+    txtDocumento.getAccessibleContext().setAccessibleName("Número de documento");
+    txtDocumento.getAccessibleContext().setAccessibleDescription("Ingrese el número de documento sin puntos");
+    txtDocumento.setToolTipText("Ejemplo: 1002457896");
+
+    txtTelefono.getAccessibleContext().setAccessibleName("Número de teléfono");
+    txtTelefono.getAccessibleContext().setAccessibleDescription("Ingrese el teléfono, sólo números");
+    txtTelefono.setToolTipText("Ingrese solo números");
+
+    txtCorreo.getAccessibleContext().setAccessibleName("Correo electrónico");
+    txtCorreo.getAccessibleContext().setAccessibleDescription("Ingrese correo tipo correo@ejemplo.com");
+    txtCorreo.setToolTipText("Formato: correo@ejemplo.com");
+
+    txtDireccion.getAccessibleContext().setAccessibleName("Dirección");
+    txtDireccion.getAccessibleContext().setAccessibleDescription("Ingrese la dirección del cliente");
+    txtDireccion.setToolTipText("Calle, número, ciudad...");
+
+    txtDescripcionMembresia.getAccessibleContext().setAccessibleName("Descripción de la membresía");
+    txtPrecioMembresia.getAccessibleContext().setAccessibleName("Precio de la membresía");
+
+    jFormattedTextFechaInicioMembresia.getAccessibleContext().setAccessibleName("Fecha de inicio de la membresía");
+    jFormattedTextFechaInicioMembresia.getAccessibleContext().setAccessibleDescription("Formato yyyy/mm/dd");
+    jFormattedTextFechaInicioMembresia.setToolTipText("Formato: yyyy/mm/dd");
+
+    jFormattedTextFechaFinMembresia.getAccessibleContext().setAccessibleName("Fecha de fin de la membresía");
+    jFormattedTextFechaFinMembresia.getAccessibleContext().setAccessibleDescription("Formato yyyy/mm/dd");
+    jFormattedTextFechaFinMembresia.setToolTipText("Formato: yyyy/mm/dd");
+
+    jComboBoxMembresia.getAccessibleContext().setAccessibleName("Selección de membresía");
+    jComboBoxMembresia.getAccessibleContext().setAccessibleDescription("Seleccione una membresía o Ninguna");
+
+    // ===== BOTONES / PANELES =====
+    btnRegistrar.getAccessibleContext().setAccessibleName("Botón registrar cliente");
+    btnRegistrar.getAccessibleContext().setAccessibleDescription("Activa el registro del cliente");
+    btnRegistrar.setToolTipText("Registrar cliente (Alt+G)");
+    // botón como elemento nativo: setMnemonic agrega Alt+G automáticamente
+    btnRegistrar.setMnemonic(java.awt.event.KeyEvent.VK_G);
+
+    CreateUser_lblBttnBack.getAccessibleContext().setAccessibleName("Botón regresar");
+    CreateUser_lblBttnBack.getAccessibleContext().setAccessibleDescription("Regresa al menú anterior");
+    CreateUser_lblBttnBack.setToolTipText("Regresar (Alt+R)");
+    // permitir foco en el label (ya lo tienes en algunos sitios)
+    CreateUser_lblBttnBack.setFocusable(true);
+
+    // ===== TAB ORDER (opcional, refuerza) =====
+    txtNombreCliente.setNextFocusableComponent(txtApellidos);
+    txtApellidos.setNextFocusableComponent(txtDocumento);
+    txtDocumento.setNextFocusableComponent(txtTelefono);
+    txtTelefono.setNextFocusableComponent(txtCorreo);
+    txtCorreo.setNextFocusableComponent(txtDireccion);
+    txtDireccion.setNextFocusableComponent(jComboBoxMembresia);
+
+    // ===== ATAJOS GLOBALES ALT + TECLA (InputMap + ActionMap) =====
+    javax.swing.InputMap im = this.getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
+    javax.swing.ActionMap am = this.getRootPane().getActionMap();
+
+    // Alt + R -> Regresar (label)
+    im.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_regresar");
+    am.put("accion_regresar", new javax.swing.AbstractAction() {
+        @Override public void actionPerformed(java.awt.event.ActionEvent e) {
+            // reutiliza tu handler de mouse click para mantener lógica intacta
+            CreateUser_lblBttnBackMouseClicked(null);
+        }
+    });
+
+    // Alt + G -> Registrar (botón)
+    im.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_registrar");
+    am.put("accion_registrar", new javax.swing.AbstractAction() {
+        @Override public void actionPerformed(java.awt.event.ActionEvent e) {
+            // usamos doClick para que se ejecute exactamente igual que pulsar el botón
+            btnRegistrar.doClick();
+        }
+    });
+
+    // Información general accesible de la ventana
+    this.getAccessibleContext().setAccessibleDescription("Formulario de registro de cliente en VetSys");
 }
+
+}
+

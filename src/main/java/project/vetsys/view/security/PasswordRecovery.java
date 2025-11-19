@@ -18,7 +18,6 @@ public class PasswordRecovery extends javax.swing.JFrame {
     
     public PasswordRecovery() {
         initComponents();
-<<<<<<< HEAD
         //ACCESIBILIDAD Y ATAJOS DE TECLADO 
 
         // Campo nombre
@@ -112,11 +111,11 @@ public class PasswordRecovery extends javax.swing.JFrame {
 
 
        
-=======
+
         Nimbus.LookandFeel();
         Nimbus.styleAllTextFields(this);
         Nimbus.styleAllLabelsExcept(this,Left_PassRec_ImgVetSys);
->>>>>>> origin/vet
+
         PassRec_textNewPassword.setVisible(false);
         PassRec_textNewPasswordOK.setVisible(false);
         PassRec_BttnSavePassword.setVisible(false);

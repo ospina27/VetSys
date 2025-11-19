@@ -20,39 +20,41 @@ public class LogIn extends javax.swing.JFrame {
         Nimbus.LookandFeel();
         initComponents();
 
-            // ==== Accesibilidad añadida ====
-                // ==== Accesibilidad añadida ====
-            // Tooltips (en label y en panel contenedor por seguridad)
-                LogInPanel_lblBttnLogin.setToolTipText("Iniciar sesión (Alt+I)");
-                LogInPanel_BttnLogin.setToolTipText("Iniciar sesión (Alt+I)");
-                LogInPanel_BttnResetPassword.setToolTipText("Restablecer contraseña (Alt+R)");
-                LogInPanel_lblResetPassword.setToolTipText("Restablecer contraseña (Alt+R)");
+                // ==== Accesibilidad y atajos de teclado ====
+         //
+         // Tooltips
+         //
+         LogInPanel_BttnLogin.setToolTipText("Iniciar sesión (Alt+I)");
+         LogInPanel_BttnResetPassword.setToolTipText("Restablecer contraseña (Alt+R)");
+         LogInPanel_lblResetPassword.setToolTipText("Restablecer contraseña (Alt+R)");
 
-                // Hacer focusable (opcional, no necesario para InputMap/ActionMap pero útil)
-                LogInPanel_lblBttnLogin.setFocusable(true);
-                LogInPanel_BttnResetPassword.setFocusable(true);
+         //
+         // Focus (opcional)
+         //
+         LogInPanel_BttnLogin.setFocusable(true);
+         LogInPanel_BttnResetPassword.setFocusable(true);
 
-                // Registrar atajos globales en la ventana (funcionan aunque el foco esté en cualquier componente)
-                javax.swing.InputMap im = this.getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
-                im.put(javax.swing.KeyStroke.getKeyStroke(KeyEvent.VK_I, java.awt.event.InputEvent.ALT_DOWN_MASK), "accionLogin");
-                im.put(javax.swing.KeyStroke.getKeyStroke(KeyEvent.VK_R, java.awt.event.InputEvent.ALT_DOWN_MASK), "accionReset");
+         //
+         // Atajos globales ALT+I y ALT+R
+         //
+         javax.swing.InputMap im = this.getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
+         im.put(javax.swing.KeyStroke.getKeyStroke(KeyEvent.VK_I, java.awt.event.InputEvent.ALT_DOWN_MASK), "accionLogin");
+         im.put(javax.swing.KeyStroke.getKeyStroke(KeyEvent.VK_R, java.awt.event.InputEvent.ALT_DOWN_MASK), "accionReset");
 
-                this.getRootPane().getActionMap().put("accionLogin", new javax.swing.AbstractAction() {
-                    @Override
-                    public void actionPerformed(java.awt.event.ActionEvent e) {
-                        // llama a tu handler existente para reusar la lógica
-                        LogInPanel_lblBttnLoginMouseClicked(null);
-                    }
-                });
-                this.getRootPane().getActionMap().put("accionReset", new javax.swing.AbstractAction() {
-                    @Override
-                    public void actionPerformed(java.awt.event.ActionEvent e) {
-                        LogInPanel_BttnResetPasswordMouseClicked(null);
-                    }
-                });
+         this.getRootPane().getActionMap().put("accionLogin", new javax.swing.AbstractAction() {
+             @Override
+             public void actionPerformed(java.awt.event.ActionEvent e) {
+                 // Llama al mismo handler del clic del botón
+                 LogInPanel_BttnLoginMouseClicked(null);
+             }
+         });
 
-
-
+         this.getRootPane().getActionMap().put("accionReset", new javax.swing.AbstractAction() {
+             @Override
+             public void actionPerformed(java.awt.event.ActionEvent e) {
+                 LogInPanel_BttnResetPasswordMouseClicked(null);
+             }
+         });
 
         Nimbus.styleAllTextFields(this);
         Nimbus.styleLabel(LogInPanel_lblUsername);
@@ -409,6 +411,7 @@ public class LogIn extends javax.swing.JFrame {
             // evitar errores silenciosos
         }
     }
+    
 }
 
 }

@@ -26,6 +26,7 @@ public class CreateClinic extends javax.swing.JFrame {
      */
     public CreateClinic() {
         initComponents();
+        aplicarAccesibilidad();
     }
 
     /**
@@ -422,4 +423,60 @@ public class CreateClinic extends javax.swing.JFrame {
     private javax.swing.JTextField phoneClinicField;
     private javax.swing.JTextField usernameClinicField;
     // End of variables declaration//GEN-END:variables
+   
+    
+    private void aplicarAccesibilidad() {
+    // Asociar labels con campos
+    jLabel2.setLabelFor(nameClinicField);
+    jLabel4.setLabelFor(nitClinicField);
+    jLabel7.setLabelFor(addressClinicField);
+    jLabel3.setLabelFor(phoneClinicField);
+    jLabel10.setLabelFor(usernameClinicField);
+    jLabel9.setLabelFor(passwordClinicField);
+
+    // Configurar nombres accesibles y descripciones
+    nameClinicField.getAccessibleContext().setAccessibleName("Campo Nombre de la Clínica");
+    nameClinicField.getAccessibleContext().setAccessibleDescription("Ingrese el nombre o razón social de la clínica");
+
+    nitClinicField.getAccessibleContext().setAccessibleName("Campo NIT de la Clínica");
+    nitClinicField.getAccessibleContext().setAccessibleDescription("Ingrese el NIT de la clínica");
+
+    addressClinicField.getAccessibleContext().setAccessibleName("Campo Dirección de la Clínica");
+    addressClinicField.getAccessibleContext().setAccessibleDescription("Ingrese la dirección de la clínica");
+
+    phoneClinicField.getAccessibleContext().setAccessibleName("Campo Teléfono de la Clínica");
+    phoneClinicField.getAccessibleContext().setAccessibleDescription("Ingrese el teléfono de la clínica");
+
+    usernameClinicField.getAccessibleContext().setAccessibleName("Campo Usuario Administrador");
+    usernameClinicField.getAccessibleContext().setAccessibleDescription("Ingrese el nombre de usuario del administrador de la clínica");
+
+    passwordClinicField.getAccessibleContext().setAccessibleName("Campo Contraseña Administrador");
+    passwordClinicField.getAccessibleContext().setAccessibleDescription("Ingrese la contraseña del administrador de la clínica");
+
+    jButton1.getAccessibleContext().setAccessibleName("Botón Volver al LogIn");
+    jButton1.getAccessibleContext().setAccessibleDescription("Vuelve a la ventana de inicio de sesión");
+
+    jButton2.getAccessibleContext().setAccessibleName("Botón Crear Clínica");
+    jButton2.getAccessibleContext().setAccessibleDescription("Crea la clínica y el usuario administrador");
+
+    // Configurar mnemonics (Alt + tecla)
+    jButton1.setMnemonic('V'); // Volver
+    jButton2.setMnemonic('C'); // Crear
+    jLabel2.setDisplayedMnemonic('N'); // Nombre
+    jLabel4.setDisplayedMnemonic('I'); // NIT
+    jLabel3.setDisplayedMnemonic('T'); // Teléfono
+    jLabel7.setDisplayedMnemonic('D'); // Dirección
+    jLabel10.setDisplayedMnemonic('U'); // Usuario
+    jLabel9.setDisplayedMnemonic('S'); // Contraseña
+
+    // Establecer orden de tabulación
+    nameClinicField.setNextFocusableComponent(nitClinicField);
+    nitClinicField.setNextFocusableComponent(addressClinicField);
+    addressClinicField.setNextFocusableComponent(phoneClinicField);
+    phoneClinicField.setNextFocusableComponent(usernameClinicField);
+    usernameClinicField.setNextFocusableComponent(passwordClinicField);
+    passwordClinicField.setNextFocusableComponent(jButton2);
 }
+
+}
+

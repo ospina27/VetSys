@@ -1,6 +1,9 @@
 package project.vetsys.view.manager;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import javax.swing.AbstractAction;
+import javax.swing.KeyStroke;
 import project.vetsys.model.User;
 
 public class PatientsMenu extends javax.swing.JFrame {
@@ -10,6 +13,7 @@ public class PatientsMenu extends javax.swing.JFrame {
     
     public PatientsMenu(User logUser) {
         initComponents();
+        aplicarAccesibilidad();
         this.logUser = logUser;
         System.out.println("Usuario logueado en MenuManager: " + logUser.getUsername());
         if(!"Administrador".equalsIgnoreCase(logUser.getName_role()))
@@ -21,6 +25,7 @@ public class PatientsMenu extends javax.swing.JFrame {
 
     public PatientsMenu() {
         initComponents();
+        aplicarAccesibilidad();
     }
 
     @SuppressWarnings("unchecked")
@@ -426,4 +431,100 @@ public class PatientsMenu extends javax.swing.JFrame {
     private javax.swing.JLabel MenuUsers_lblTitle;
     private javax.swing.JPanel Right;
     // End of variables declaration//GEN-END:variables
+
+    private void aplicarAccesibilidad() {
+    // ------------------ ACCESIBILIDAD ------------------
+
+    // --- LABEL PRINCIPAL ---
+    MenuUsers_lblTitle.getAccessibleContext().setAccessibleName("Título VetSys");
+    MenuUsers_lblTitle.getAccessibleContext().setAccessibleDescription("Título principal del menú de pacientes");
+
+    // --- BOTONES / PANEL CON ETIQUETAS ---
+    MenuUsers_lblBttnAddUsers.setLabelFor(MenuUsers_BttnAddUsers);
+    MenuUsers_lblBttnAddUsers.setDisplayedMnemonic('R'); // Alt+R para Registrar Cliente
+    MenuUsers_lblBttnAddUsers.getAccessibleContext().setAccessibleName("Registrar Cliente");
+    MenuUsers_lblBttnAddUsers.getAccessibleContext().setAccessibleDescription("Abrir formulario para registrar un nuevo cliente");
+    MenuUsers_lblBttnAddUsers.setToolTipText("Registrar Cliente (Alt+R)");
+    MenuUsers_BttnAddUsers.setFocusable(true);
+
+    MenuUsers_lblBttnSearchUsers.setLabelFor(MenuUsers_BttnSearchUsers);
+    MenuUsers_lblBttnSearchUsers.setDisplayedMnemonic('C'); // Alt+C para Consultar Cliente
+    MenuUsers_lblBttnSearchUsers.getAccessibleContext().setAccessibleName("Consultar Cliente");
+    MenuUsers_lblBttnSearchUsers.getAccessibleContext().setAccessibleDescription("Abrir formulario para buscar clientes existentes");
+    MenuUsers_lblBttnSearchUsers.setToolTipText("Consultar Cliente (Alt+C)");
+    MenuUsers_BttnSearchUsers.setFocusable(true);
+
+    MenuUsers_lblBttnRegisterPet.setLabelFor(MenuUsers_BttnRegisterPet);
+    MenuUsers_lblBttnRegisterPet.setDisplayedMnemonic('M'); // Alt+M para Registrar Mascota
+    MenuUsers_lblBttnRegisterPet.getAccessibleContext().setAccessibleName("Registrar Mascota");
+    MenuUsers_lblBttnRegisterPet.getAccessibleContext().setAccessibleDescription("Abrir formulario para registrar una nueva mascota");
+    MenuUsers_lblBttnRegisterPet.setToolTipText("Registrar Mascota (Alt+M)");
+    MenuUsers_BttnRegisterPet.setFocusable(true);
+
+    MenuUsers_lblBttnSearchPet.setLabelFor(MenuUsers_BttnSearchPet);
+    MenuUsers_lblBttnSearchPet.setDisplayedMnemonic('S'); // Alt+S para Consultar Mascota
+    MenuUsers_lblBttnSearchPet.getAccessibleContext().setAccessibleName("Consultar Mascota");
+    MenuUsers_lblBttnSearchPet.getAccessibleContext().setAccessibleDescription("Abrir formulario para buscar mascotas existentes");
+    MenuUsers_lblBttnSearchPet.setToolTipText("Consultar Mascota (Alt+S)");
+    MenuUsers_BttnSearchPet.setFocusable(true);
+
+    MenuUsers_lblBttnBack.setLabelFor(MenuUsers_BttnBack);
+    MenuUsers_lblBttnBack.setDisplayedMnemonic('V'); // Alt+V para Volver / Regresar
+    MenuUsers_lblBttnBack.getAccessibleContext().setAccessibleName("Regresar");
+    MenuUsers_lblBttnBack.getAccessibleContext().setAccessibleDescription("Regresa al menú anterior");
+    MenuUsers_lblBttnBack.setToolTipText("Regresar (Alt+V)");
+    MenuUsers_BttnBack.setFocusable(true);
+
+    // --- PANEL PRINCIPAL ---
+    MenuUsersPanel.setFocusable(true);
+    Right.setFocusable(true);
+    Left.setFocusable(true);
+
+    // --- ATAJOS GLOBALES ALT ---
+    getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW)
+        .put(KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.ALT_DOWN_MASK), "accion_registrar_cliente");
+    getRootPane().getActionMap().put("accion_registrar_cliente", new AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            MenuUsers_lblBttnAddUsersMouseClicked(null);
+        }
+    });
+
+    getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW)
+        .put(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.ALT_DOWN_MASK), "accion_consultar_cliente");
+    getRootPane().getActionMap().put("accion_consultar_cliente", new AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            MenuUsers_lblBttnSearchUsersMouseClicked(null);
+        }
+    });
+
+    getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW)
+        .put(KeyStroke.getKeyStroke(KeyEvent.VK_M, KeyEvent.ALT_DOWN_MASK), "accion_registrar_mascota");
+    getRootPane().getActionMap().put("accion_registrar_mascota", new AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            MenuUsers_lblBttnRegisterPetMouseClicked(null);
+        }
+    });
+
+    getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW)
+        .put(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.ALT_DOWN_MASK), "accion_consultar_mascota");
+    getRootPane().getActionMap().put("accion_consultar_mascota", new AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            MenuUsers_lblBttnSearchPetMouseClicked(null);
+        }
+    });
+
+    getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW)
+        .put(KeyStroke.getKeyStroke(KeyEvent.VK_V, KeyEvent.ALT_DOWN_MASK), "accion_regresar");
+    getRootPane().getActionMap().put("accion_regresar", new AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            MenuUsers_lblBttnBackMouseClicked(null);
+        }
+    });
+}
+
 }

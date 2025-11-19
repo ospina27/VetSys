@@ -1,20 +1,14 @@
 package project.vetsys.view.manager;
 
 
-import project.vetsys.view.manager.CreateUser;
 import java.util.ArrayList;
-import project.vetsys.view.manager.MenuManager;
 import java.util.List;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
-import project.vetsys.dao.ClinicDAO;
 import project.vetsys.dao.RoleDAO;
 import project.vetsys.dao.StatusDAO;
 import project.vetsys.dao.UserDAO;
-import project.vetsys.model.Clinic;
 import project.vetsys.model.Role;
 import project.vetsys.model.Status;
 import project.vetsys.model.User;
@@ -33,6 +27,7 @@ public class SearchUser extends javax.swing.JFrame {
     public SearchUser(User logUser) {
         Nimbus.LookandFeel(); ///implementación de nimbus para la visualización
         initComponents();
+        aplicarAccesibilidad();
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         Nimbus.styleAllTextFields(this); ///estilo para todos los textfield
         Nimbus.styleTable(userTable); ///estilo de la tabla
@@ -63,6 +58,7 @@ public class SearchUser extends javax.swing.JFrame {
     public SearchUser() {
         Nimbus.LookandFeel();
         initComponents();
+        aplicarAccesibilidad();
         setTitle(logUser.getName_clinic());
         initListeners();
         modelTable();
@@ -833,4 +829,123 @@ public class SearchUser extends javax.swing.JFrame {
     private javax.swing.JTable userTable;
     private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
+
+  private void aplicarAccesibilidad() {
+    // ================== TÍTULO ==================
+    jLabelTitleClinic_users.getAccessibleContext().setAccessibleName("Nombre de la clínica");
+    jLabelTitleClinic_users.getAccessibleContext().setAccessibleDescription("Muestra la clínica del usuario logueado");
+
+    // ================== LABELS Y CAMPOS ==================
+    jLabel2.setDisplayedMnemonic('N'); // N de Nombres
+    jLabel2.setLabelFor(name_userField);
+    name_userField.setToolTipText("Ingrese los nombres del usuario (Alt+N)");
+
+    jLabel3.setDisplayedMnemonic('A'); // A de Apellidos
+    jLabel3.setLabelFor(LastNameField);
+    LastNameField.setToolTipText("Ingrese los apellidos del usuario (Alt+A)");
+
+    jLabel10.setDisplayedMnemonic('D'); // D de Documento
+    jLabel10.setLabelFor(DocumentField);
+    DocumentField.setToolTipText("Ingrese el documento del usuario (Alt+D)");
+
+    jLabel12.setDisplayedMnemonic('T'); // T de Telefono
+    jLabel12.setLabelFor(PhoneField);
+    PhoneField.setToolTipText("Ingrese el teléfono del usuario (Alt+T)");
+
+    jLabel13.setDisplayedMnemonic('C'); // C de Correo
+    jLabel13.setLabelFor(EmailField);
+    EmailField.setToolTipText("Ingrese el correo del usuario (Alt+C)");
+
+    jLabel9.setDisplayedMnemonic('U'); // U de Usuario
+    jLabel9.setLabelFor(usernameField);
+    usernameField.setToolTipText("Ingrese el nombre de usuario (Alt+U)");
+
+    jLabel5.setDisplayedMnemonic('R'); // R de Rol
+    jLabel5.setLabelFor(cboxRoleEdit);
+    cboxRoleEdit.setToolTipText("Seleccione el rol del usuario (Alt+R)");
+
+    jLabel4.setDisplayedMnemonic('E'); // E de Estado
+    jLabel4.setLabelFor(cboxStatusEdit);
+    cboxStatusEdit.setToolTipText("Seleccione el estado del usuario (Alt+E)");
+
+    jLabel7.setDisplayedMnemonic('I'); // I de ID
+    jLabel7.setLabelFor(idUserField);
+    idUserField.setToolTipText("ID del usuario (Alt+I)");
+
+    jLabel8.setDisplayedMnemonic('L'); // L de Lista/Rol
+    jLabel8.setLabelFor(cboxRole);
+    cboxRole.setToolTipText("Filtrar por rol (Alt+L)");
+
+    jLabel6.setDisplayedMnemonic('B'); // B de Busqueda
+    jLabel6.setLabelFor(searchDocument_field);
+    searchDocument_field.setToolTipText("Ingrese documento a buscar (Alt+B)");
+
+    // ================== BOTONES ==================
+    // Cambié las letras para que no haya conflicto con labels
+    btnActualizar.setMnemonic('G'); // G de Actualizar
+    btnActualizar.setToolTipText("Actualizar usuario (Alt+G)");
+
+    btnDelete.setMnemonic('Y'); // Y de Eliminar (antes E, conflicto con Estado)
+    btnDelete.setToolTipText("Eliminar usuario (Alt+Y)");
+
+    btnSalir.setMnemonic('S'); // S de Salir
+    btnSalir.setToolTipText("Salir del módulo (Alt+S)");
+
+    btnSearchDocument.setMnemonic('F'); // F de Buscar (antes U, conflicto con Usuario)
+    btnSearchDocument.setToolTipText("Buscar usuario por documento (Alt+F)");
+
+    // ================== TAB ORDER ==================
+    name_userField.setNextFocusableComponent(LastNameField);
+    LastNameField.setNextFocusableComponent(DocumentField);
+    DocumentField.setNextFocusableComponent(PhoneField);
+    PhoneField.setNextFocusableComponent(EmailField);
+    EmailField.setNextFocusableComponent(usernameField);
+    usernameField.setNextFocusableComponent(cboxRoleEdit);
+    cboxRoleEdit.setNextFocusableComponent(cboxStatusEdit);
+    cboxStatusEdit.setNextFocusableComponent(btnActualizar);
+
+    // ================== FOCUS EN PANELES ==================
+    jPanel2_Info.setFocusable(true);
+    jPanel3.setFocusable(true);
+
+    // ================== ATJOS GLOBALES ALT ==================
+    javax.swing.InputMap im = getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
+    javax.swing.ActionMap am = getRootPane().getActionMap();
+
+    im.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_actualizar");
+    am.put("accion_actualizar", new javax.swing.AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            btnActualizar.doClick();
+        }
+    });
+
+    im.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_eliminar");
+    am.put("accion_eliminar", new javax.swing.AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            btnDelete.doClick();
+        }
+    });
+
+    im.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_salir");
+    am.put("accion_salir", new javax.swing.AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            btnSalir.doClick();
+        }
+    });
+
+    im.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_buscar");
+    am.put("accion_buscar", new javax.swing.AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            btnSearchDocument.doClick();
+        }
+    });
 }
+
+
+
+}
+

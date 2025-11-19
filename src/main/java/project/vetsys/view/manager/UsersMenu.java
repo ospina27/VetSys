@@ -10,6 +10,7 @@ public class UsersMenu extends javax.swing.JFrame {
     
     public UsersMenu(User logUser) {
         initComponents();
+        aplicarAccesibilidad();
         this.logUser = logUser;
         System.out.println("Usuario logueado en MenuManager: " + logUser.getUsername());
         if(!"Administrador".equalsIgnoreCase(logUser.getName_role()))
@@ -21,6 +22,7 @@ public class UsersMenu extends javax.swing.JFrame {
 
     public UsersMenu() {
         initComponents();
+        aplicarAccesibilidad();
     }
 
     @SuppressWarnings("unchecked")
@@ -299,4 +301,64 @@ public class UsersMenu extends javax.swing.JFrame {
     private javax.swing.JLabel MenuUsers_lblTitle;
     private javax.swing.JPanel Right;
     // End of variables declaration//GEN-END:variables
+
+    private void aplicarAccesibilidad() {
+    // ================== TÍTULO ==================
+    MenuUsers_lblTitle.getAccessibleContext().setAccessibleName("Nombre de la aplicación VetSys");
+    MenuUsers_lblTitle.getAccessibleContext().setAccessibleDescription("Muestra el nombre de la aplicación");
+
+    // ================== BOTONES PRINCIPALES ==================
+    MenuUsers_BttnAddUsers.setFocusable(true);
+    MenuUsers_lblBttnAddUsers.setDisplayedMnemonic('C'); // C de Crear
+    MenuUsers_lblBttnAddUsers.setLabelFor(MenuUsers_BttnAddUsers);
+    MenuUsers_lblBttnAddUsers.setToolTipText("Crear usuario (Alt+C)");
+
+    MenuUsers_BttnSearchUsers.setFocusable(true);
+    MenuUsers_lblBttnSearchUsers.setDisplayedMnemonic('B'); // B de Buscar
+    MenuUsers_lblBttnSearchUsers.setLabelFor(MenuUsers_BttnSearchUsers);
+    MenuUsers_lblBttnSearchUsers.setToolTipText("Buscar usuario (Alt+B)");
+
+    MenuUsers_BttnBack.setFocusable(true);
+    MenuUsers_lblBttnBack.setDisplayedMnemonic('R'); // R de Regresar
+    MenuUsers_lblBttnBack.setLabelFor(MenuUsers_BttnBack);
+    MenuUsers_lblBttnBack.setToolTipText("Regresar al menú anterior (Alt+R)");
+
+    // ================== TAB ORDER ==================
+    MenuUsers_BttnAddUsers.setNextFocusableComponent(MenuUsers_BttnSearchUsers);
+    MenuUsers_BttnSearchUsers.setNextFocusableComponent(MenuUsers_BttnBack);
+
+    // ================== PANEL FOCUS ==================
+    MenuUsersPanel.setFocusable(true);
+    Left.setFocusable(true);
+    Right.setFocusable(true);
+
+    // ================== ATJOS GLOBALES ALT ==================
+    javax.swing.InputMap im = getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
+    javax.swing.ActionMap am = getRootPane().getActionMap();
+
+    im.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_crear");
+    am.put("accion_crear", new javax.swing.AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            MenuUsers_lblBttnAddUsersMouseClicked(null);
+        }
+    });
+
+    im.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_buscar");
+    am.put("accion_buscar", new javax.swing.AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            MenuUsers_lblBttnSearchUsersMouseClicked(null);
+        }
+    });
+
+    im.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_regresar");
+    am.put("accion_regresar", new javax.swing.AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            MenuUsers_lblBttnBackMouseClicked(null);
+        }
+    });
+}
+
 }
