@@ -2,7 +2,7 @@ package project.vetsys.view.assistant;
 
 import java.awt.Color;
 import java.util.List;
-import java.sql.Date;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import project.vetsys.dao.CitaDAO;
 import project.vetsys.dao.ClienteDAO;
@@ -14,6 +14,7 @@ import project.vetsys.model.Pet;
 import project.vetsys.model.User;
 import project.vetsys.utils.ValidationInput;
 import project.vetsys.view.manager.Appointment_Menu;
+
 
 public class ScheduleAppointment extends javax.swing.JFrame {
     
@@ -29,11 +30,10 @@ public class ScheduleAppointment extends javax.swing.JFrame {
         this.logUser = logUser;
         initComponents();
         cargarVeterinarios();
-        cargarHoras();
-        
+        cargarHorasDisponiblesVeterinario();
         ValidationInput.numbers(txtDocumentoCliente);
         
-        
+   
     }
     
     /**
@@ -41,11 +41,32 @@ public class ScheduleAppointment extends javax.swing.JFrame {
      * @param logUser
      */
     
-    
+    private void cargarHorasDisponiblesVeterinario() {
+        
+        cmbHora.removeAllItems();
+        cmbHora.addItem("Seleccione una hora");
+
+        User vet = (User) cmbVeterinarios.getSelectedItem();
+        if (vet == null || vet.getId_user() == 0) return;
+        if (jDateChooserFecha.getDate() == null) return;
+        int idVet = vet.getId_user();
+        String fecha = new SimpleDateFormat("yyyy-MM-dd").format(jDateChooserFecha.getDate());
+        // horas base
+        String[] horasBase = CitaDAO.horasbase();
+        
+        CitaDAO dao = new CitaDAO();
+        List<String> ocupadas = dao.veterinarioOcupado(idVet, fecha);
+        //cargar solo las horas disponibles
+        for (String hora : horasBase) {
+            if (!ocupadas.contains(hora)) {
+                cmbHora.addItem(hora);
+            }
+        }
+    }
+
     private void cargarVeterinarios() {
         try {
             UserDAO userDAO = new UserDAO();
-            
             List<User> veterinarios = userDAO.ReadByClinicAndRole(logUser.getId_clinic(), 2);
             cmbVeterinarios.removeAllItems();
             
@@ -54,40 +75,23 @@ public class ScheduleAppointment extends javax.swing.JFrame {
             placeholder.setName_user("Seleccione un veterinario");
             placeholder.setLast_name("");
             cmbVeterinarios.addItem(placeholder);
-
             for (User vet : veterinarios) {
                 cmbVeterinarios.addItem(vet);
             }
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error cargando veterinarios: " + e.getMessage());
         }
-    }
-    
-    private void cargarHoras() {
-        cmbHora.removeAllItems();
-        cmbHora.addItem("Seleccione una hora");
-        cmbHora.addItem("08:00");
-        cmbHora.addItem("09:00");
-        cmbHora.addItem("10:00");
-        cmbHora.addItem("11:00");
-        cmbHora.addItem("14:00");
-        cmbHora.addItem("15:00");
-        cmbHora.addItem("16:00");
     }
     
     private void cargarMascotas(int idCliente) {
         try {
             PetDAO petDAO = new PetDAO();
             List<Pet> mascotas = petDAO.ReadForClient(idCliente, logUser);
-
             cmbMascotas.removeAllItems();
             cmbMascotas.addItem("Seleccione una mascota");
-
             for (Pet mascota : mascotas) {
                 cmbMascotas.addItem(mascota.getId_pet() + " - " + mascota.getName_Pet());
             }
-
         } catch (Exception e) {
             System.out.println("Error cargando mascotas: " + e.getMessage());
         }
@@ -99,29 +103,23 @@ public class ScheduleAppointment extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe buscar y seleccionar un cliente.");
             return false;
         }
-
         if (cmbMascotas.getSelectedIndex() <= 0) {
             JOptionPane.showMessageDialog(this, "Seleccione una mascota.");
             return false;
         }
-
         User veterinario = (User) cmbVeterinarios.getSelectedItem();
         if (veterinario == null || veterinario.getId_user() == 0) {
             JOptionPane.showMessageDialog(this, "Seleccione un veterinario.");
             return false;
         }
-
-
         if (jDateChooserFecha.getDate() == null) {
         JOptionPane.showMessageDialog(this, "Seleccione la fecha de la cita.");
         return false;
         }
-
         if (cmbHora.getSelectedIndex() <= 0) {
             JOptionPane.showMessageDialog(this, "Seleccione la hora de la cita.");
             return false;
         }
-
         return true;
     }
     
@@ -130,14 +128,11 @@ public class ScheduleAppointment extends javax.swing.JFrame {
         txtIdCliente.setText("");
         txtNombresCliente.setText("");
         txtApellidosCliente.setText("");
-
         cmbMascotas.removeAllItems();
         cmbVeterinarios.setSelectedIndex(0);
         cmbHora.setSelectedIndex(0);
         jDateChooserFecha.setDate(null);
     }
-
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -224,6 +219,12 @@ public class ScheduleAppointment extends javax.swing.JFrame {
 
         ScheduleAppointment_lblVet.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         ScheduleAppointment_lblVet.setText("Veterinario");
+
+        cmbVeterinarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbVeterinariosActionPerformed(evt);
+            }
+        });
 
         ScheduleAppointment_lblDayMonth1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         ScheduleAppointment_lblDayMonth1.setText("Fecha de la cita");
@@ -318,6 +319,12 @@ public class ScheduleAppointment extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Apellidos");
+
+        jDateChooserFecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jDateChooserFechaPropertyChange(evt);
+            }
+        });
 
         javax.swing.GroupLayout DownLayout = new javax.swing.GroupLayout(Down);
         Down.setLayout(DownLayout);
@@ -454,7 +461,7 @@ public class ScheduleAppointment extends javax.swing.JFrame {
 
     private void ScheduleAppointment_lblBttnScheduleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ScheduleAppointment_lblBttnScheduleMouseClicked
         try {
-            // VALIDACIONES
+            // validaciones
             if (!validarCampos()) {
                 return;
             }
@@ -480,6 +487,14 @@ public class ScheduleAppointment extends javax.swing.JFrame {
             String horaSeleccionada = (String) cmbHora.getSelectedItem();
             if (horaSeleccionada == null) {
                 JOptionPane.showMessageDialog(this, "Seleccione la hora.");
+                return;
+            }
+            // Validar disponibilidad al guardar
+            String fechaSQL = new SimpleDateFormat("yyyy-MM-dd").format(utilFecha);
+            List<String> ocupadas = citaDAO.veterinarioOcupado(idVeterinario, fechaSQL);
+            if (ocupadas.contains(horaSeleccionada)) {
+                JOptionPane.showMessageDialog(this, 
+                    "El veterinario ya tiene una cita en ese horario.");
                 return;
             }
             // Convertir a DATETIME fecha y hora (Timestamp)
@@ -549,6 +564,16 @@ public class ScheduleAppointment extends javax.swing.JFrame {
         // Cargar mascotas
         cargarMascotas(cliente.getIdCliente());
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
+
+    private void cmbVeterinariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVeterinariosActionPerformed
+        cargarHorasDisponiblesVeterinario();
+    }//GEN-LAST:event_cmbVeterinariosActionPerformed
+
+    private void jDateChooserFechaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooserFechaPropertyChange
+        if ("date".equals(evt.getPropertyName())) {
+            cargarHorasDisponiblesVeterinario();
+        }
+    }//GEN-LAST:event_jDateChooserFechaPropertyChange
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new ScheduleAppointment().setVisible(true));

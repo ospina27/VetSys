@@ -32,7 +32,6 @@ public class Appointment_Menu extends javax.swing.JFrame {
         Right = new javax.swing.JPanel();
         MenuAppointment_BttnScheduleAppointment = new javax.swing.JButton();
         MenuAppointment_BttnSearchAppointment = new javax.swing.JButton();
-        MenuAppointment_BttnDeleteAppointment = new javax.swing.JButton();
         MenuAppointment_BttnBacks = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -111,26 +110,8 @@ public class Appointment_Menu extends javax.swing.JFrame {
             }
         });
 
-        MenuAppointment_BttnDeleteAppointment.setBackground(new java.awt.Color(0, 153, 153));
-        MenuAppointment_BttnDeleteAppointment.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        MenuAppointment_BttnDeleteAppointment.setForeground(new java.awt.Color(255, 255, 255));
-        MenuAppointment_BttnDeleteAppointment.setText("Eliminar Cita");
-        MenuAppointment_BttnDeleteAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MenuAppointment_BttnDeleteAppointment.setFocusPainted(false);
-        MenuAppointment_BttnDeleteAppointment.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MenuAppointment_BttnDeleteAppointmentMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                MenuAppointment_BttnDeleteAppointmentMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                MenuAppointment_BttnDeleteAppointmentMouseExited(evt);
-            }
-        });
-
         MenuAppointment_BttnBacks.setBackground(new java.awt.Color(0, 153, 153));
-        MenuAppointment_BttnBacks.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        MenuAppointment_BttnBacks.setFont(new java.awt.Font("Arial Black", 0, 20)); // NOI18N
         MenuAppointment_BttnBacks.setForeground(new java.awt.Color(255, 255, 255));
         MenuAppointment_BttnBacks.setText("Regresar");
         MenuAppointment_BttnBacks.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -152,25 +133,26 @@ public class Appointment_Menu extends javax.swing.JFrame {
         RightLayout.setHorizontalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RightLayout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(MenuAppointment_BttnBacks, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MenuAppointment_BttnDeleteAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MenuAppointment_BttnSearchAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MenuAppointment_BttnScheduleAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addGap(0, 83, Short.MAX_VALUE)
+                .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
+                        .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(MenuAppointment_BttnScheduleAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(MenuAppointment_BttnSearchAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(67, 67, 67))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
+                        .addComponent(MenuAppointment_BttnBacks)
+                        .addGap(129, 129, 129))))
         );
         RightLayout.setVerticalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RightLayout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addGap(102, 102, 102)
                 .addComponent(MenuAppointment_BttnScheduleAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addGap(62, 62, 62)
                 .addComponent(MenuAppointment_BttnSearchAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82)
-                .addComponent(MenuAppointment_BttnDeleteAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87)
-                .addComponent(MenuAppointment_BttnBacks, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
+                .addComponent(MenuAppointment_BttnBacks, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(67, 67, 67))
         );
 
@@ -230,24 +212,6 @@ public class Appointment_Menu extends javax.swing.JFrame {
         MenuAppointment_BttnSearchAppointment.setForeground(Color.WHITE);
     }//GEN-LAST:event_MenuAppointment_BttnSearchAppointmentMouseExited
 
-    private void MenuAppointment_BttnDeleteAppointmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAppointment_BttnDeleteAppointmentMouseClicked
-        DeleteAppointment DeleteAppointment = new DeleteAppointment(logUser);
-        DeleteAppointment.setVisible(true);
-        DeleteAppointment.pack();
-        DeleteAppointment.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_MenuAppointment_BttnDeleteAppointmentMouseClicked
-
-    private void MenuAppointment_BttnDeleteAppointmentMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAppointment_BttnDeleteAppointmentMouseEntered
-        MenuAppointment_BttnDeleteAppointment.setBackground(Color.LIGHT_GRAY);
-        MenuAppointment_BttnDeleteAppointment.setForeground(Color.BLACK);
-    }//GEN-LAST:event_MenuAppointment_BttnDeleteAppointmentMouseEntered
-
-    private void MenuAppointment_BttnDeleteAppointmentMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAppointment_BttnDeleteAppointmentMouseExited
-        MenuAppointment_BttnDeleteAppointment.setBackground(new Color(0,153,153));
-        MenuAppointment_BttnDeleteAppointment.setForeground(Color.WHITE);
-    }//GEN-LAST:event_MenuAppointment_BttnDeleteAppointmentMouseExited
-
     private void MenuAppointment_BttnBacksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAppointment_BttnBacksMouseClicked
         MenuManager menuManager = new MenuManager(logUser);
         menuManager.setVisible(true);
@@ -275,7 +239,6 @@ public class Appointment_Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Left;
     private javax.swing.JButton MenuAppointment_BttnBacks;
-    private javax.swing.JButton MenuAppointment_BttnDeleteAppointment;
     private javax.swing.JButton MenuAppointment_BttnScheduleAppointment;
     private javax.swing.JButton MenuAppointment_BttnSearchAppointment;
     private javax.swing.JLabel MenuAppointment_ImgVetSys;

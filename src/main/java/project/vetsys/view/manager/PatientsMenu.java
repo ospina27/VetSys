@@ -69,14 +69,16 @@ public class PatientsMenu extends javax.swing.JFrame {
         Left.setLayout(LeftLayout);
         LeftLayout.setHorizontalGroup(
             LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MenuPatients_ImgVetSys, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(LeftLayout.createSequentialGroup()
+                .addComponent(MenuPatients_ImgVetSys, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 50, Short.MAX_VALUE))
         );
         LeftLayout.setVerticalGroup(
             LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(MenuPatients_ImgVetSys, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
 
-        MenuPatientsPanel.add(Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        MenuPatientsPanel.add(Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, -1));
 
         Right.setBackground(new java.awt.Color(255, 255, 255));
         Right.setMaximumSize(new java.awt.Dimension(400, 600));
@@ -84,7 +86,7 @@ public class PatientsMenu extends javax.swing.JFrame {
         Right.setPreferredSize(new java.awt.Dimension(500, 600));
 
         MenuPatients_BttnCreatePatient.setBackground(new java.awt.Color(0, 153, 153));
-        MenuPatients_BttnCreatePatient.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        MenuPatients_BttnCreatePatient.setFont(new java.awt.Font("Arial Black", 0, 20)); // NOI18N
         MenuPatients_BttnCreatePatient.setForeground(new java.awt.Color(255, 255, 255));
         MenuPatients_BttnCreatePatient.setText("Registrar Cliente");
         MenuPatients_BttnCreatePatient.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -102,7 +104,7 @@ public class PatientsMenu extends javax.swing.JFrame {
         });
 
         MenuPatients_BttnSearchPatient.setBackground(new java.awt.Color(0, 153, 153));
-        MenuPatients_BttnSearchPatient.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        MenuPatients_BttnSearchPatient.setFont(new java.awt.Font("Arial Black", 0, 20)); // NOI18N
         MenuPatients_BttnSearchPatient.setForeground(new java.awt.Color(255, 255, 255));
         MenuPatients_BttnSearchPatient.setText("Consultar Cliente");
         MenuPatients_BttnSearchPatient.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -120,7 +122,7 @@ public class PatientsMenu extends javax.swing.JFrame {
         });
 
         MenuPatients_BttnCreatePet.setBackground(new java.awt.Color(0, 153, 153));
-        MenuPatients_BttnCreatePet.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        MenuPatients_BttnCreatePet.setFont(new java.awt.Font("Arial Black", 0, 20)); // NOI18N
         MenuPatients_BttnCreatePet.setForeground(new java.awt.Color(255, 255, 255));
         MenuPatients_BttnCreatePet.setText("Registrar Mascota");
         MenuPatients_BttnCreatePet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -138,7 +140,7 @@ public class PatientsMenu extends javax.swing.JFrame {
         });
 
         MenuPatients_BttnSearchPet.setBackground(new java.awt.Color(0, 153, 153));
-        MenuPatients_BttnSearchPet.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        MenuPatients_BttnSearchPet.setFont(new java.awt.Font("Arial Black", 0, 20)); // NOI18N
         MenuPatients_BttnSearchPet.setForeground(new java.awt.Color(255, 255, 255));
         MenuPatients_BttnSearchPet.setText("Consultar Mascota");
         MenuPatients_BttnSearchPet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -156,7 +158,7 @@ public class PatientsMenu extends javax.swing.JFrame {
         });
 
         MenuPatients_BttnBack.setBackground(new java.awt.Color(0, 153, 153));
-        MenuPatients_BttnBack.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        MenuPatients_BttnBack.setFont(new java.awt.Font("Arial Black", 0, 20)); // NOI18N
         MenuPatients_BttnBack.setForeground(new java.awt.Color(255, 255, 255));
         MenuPatients_BttnBack.setText("Regresar");
         MenuPatients_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -178,14 +180,18 @@ public class PatientsMenu extends javax.swing.JFrame {
         RightLayout.setHorizontalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RightLayout.createSequentialGroup()
-                .addGap(63, 63, 63)
                 .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(MenuPatients_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MenuPatients_BttnSearchPet, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MenuPatients_BttnCreatePet, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MenuPatients_BttnCreatePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MenuPatients_BttnSearchPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(187, Short.MAX_VALUE))
+                    .addGroup(RightLayout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(MenuPatients_BttnSearchPet, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(MenuPatients_BttnCreatePet, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(MenuPatients_BttnCreatePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(MenuPatients_BttnSearchPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(RightLayout.createSequentialGroup()
+                        .addGap(157, 157, 157)
+                        .addComponent(MenuPatients_BttnBack)))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         RightLayout.setVerticalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,12 +204,12 @@ public class PatientsMenu extends javax.swing.JFrame {
                 .addComponent(MenuPatients_BttnCreatePet, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
                 .addComponent(MenuPatients_BttnSearchPet, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(MenuPatients_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89))
+                .addGap(74, 74, 74)
+                .addComponent(MenuPatients_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
 
-        MenuPatientsPanel.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, -1, -1));
+        MenuPatientsPanel.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 460, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

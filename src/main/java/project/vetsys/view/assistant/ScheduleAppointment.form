@@ -263,7 +263,11 @@
                           <Component id="ScheduleAppointment_BttnSchedule" min="-2" max="-2" attributes="0"/>
                           <Component id="ScheduleAppointment_BttnBack" min="-2" max="-2" attributes="0"/>
                       </Group>
+<<<<<<< HEAD
                       <EmptySpace pref="102" max="32767" attributes="0"/>
+=======
+                      <EmptySpace pref="101" max="32767" attributes="0"/>
+>>>>>>> origin/gestionCitas
                   </Group>
               </Group>
             </DimensionLayout>
@@ -326,6 +330,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="cmbVeterinarios">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbVeterinariosActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;User&gt;"/>
               </AuxValues>
@@ -508,6 +515,9 @@
             <Component class="javax.swing.JTextField" name="txtApellidosCliente">
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserFecha">
+              <Events>
+                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jDateChooserFechaPropertyChange"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
