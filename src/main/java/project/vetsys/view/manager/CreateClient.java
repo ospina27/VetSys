@@ -12,6 +12,7 @@ import project.vetsys.model.User;
 import project.vetsys.dao.ClienteDAO;
 import project.vetsys.database.DBConnection;
 import project.vetsys.model.ClienteModel;
+import project.vetsys.view.Nimbus;
 
 
 public class CreateClient extends javax.swing.JFrame {
@@ -31,9 +32,14 @@ public class CreateClient extends javax.swing.JFrame {
     
     public CreateClient(User logUser) {
         this.logUser = logUser;
+        Nimbus.LookandFeel();
         initComponents();
         cargarMembresias();
-       
+        CreateUser_lblTittle.setText(logUser.getClinic().getName_clinic());
+        Nimbus.styleAllLabelsExcept(this,CreateUser_lblTittle);
+        Nimbus.styleAllTextFields(this);
+        Nimbus.styleTitleLabel(CreateUser_lblSubTittle);
+        
     }
     
     private void limpiarCampos() {
@@ -117,8 +123,6 @@ public class CreateClient extends javax.swing.JFrame {
         txtCorreo = new javax.swing.JTextField();
         CreateUser_lblMembresia = new javax.swing.JLabel();
         CreateUser_lblFechaIni = new javax.swing.JLabel();
-        CreateUser_BttnBack = new javax.swing.JPanel();
-        CreateUser_lblBttnBack = new javax.swing.JLabel();
         CreateUser_lblDireccion = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
         CreateUser_lblFechaFin = new javax.swing.JLabel();
@@ -130,6 +134,7 @@ public class CreateClient extends javax.swing.JFrame {
         CreateUser_lblMembresia2 = new javax.swing.JLabel();
         jDateChooserFechaInicio = new com.toedter.calendar.JDateChooser();
         jDateChooserFechaFin = new com.toedter.calendar.JDateChooser();
+        btnSalir = new javax.swing.JButton();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -271,39 +276,6 @@ public class CreateClient extends javax.swing.JFrame {
         CreateUser_lblFechaIni.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CreateUser_lblFechaIni.setText("Fecha de inicio");
 
-        CreateUser_BttnBack.setBackground(new java.awt.Color(0, 153, 153));
-        CreateUser_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        CreateUser_lblBttnBack.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
-        CreateUser_lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
-        CreateUser_lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        CreateUser_lblBttnBack.setText("Regresar");
-        CreateUser_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        CreateUser_lblBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CreateUser_lblBttnBackMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                CreateUser_lblBttnBackMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                CreateUser_lblBttnBackMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout CreateUser_BttnBackLayout = new javax.swing.GroupLayout(CreateUser_BttnBack);
-        CreateUser_BttnBack.setLayout(CreateUser_BttnBackLayout);
-        CreateUser_BttnBackLayout.setHorizontalGroup(
-            CreateUser_BttnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(CreateUser_lblBttnBack, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-        );
-        CreateUser_BttnBackLayout.setVerticalGroup(
-            CreateUser_BttnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CreateUser_BttnBackLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(CreateUser_lblBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
         CreateUser_lblDireccion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CreateUser_lblDireccion.setText("Dirección");
 
@@ -348,6 +320,16 @@ public class CreateClient extends javax.swing.JFrame {
 
         CreateUser_lblMembresia2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CreateUser_lblMembresia2.setText("Descripción");
+
+        btnSalir.setBackground(new java.awt.Color(0, 159, 159));
+        btnSalir.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalir.setText("Regresar");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout DownLayout = new javax.swing.GroupLayout(Down);
         Down.setLayout(DownLayout);
@@ -402,8 +384,8 @@ public class CreateClient extends javax.swing.JFrame {
                     .addGroup(DownLayout.createSequentialGroup()
                         .addGap(304, 304, 304)
                         .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(90, 90, 90)
-                        .addComponent(CreateUser_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(65, 65, 65)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 37, Short.MAX_VALUE))
         );
         DownLayout.setVerticalGroup(
@@ -456,9 +438,9 @@ public class CreateClient extends javax.swing.JFrame {
                     .addComponent(txtDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jDateChooserFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(57, 57, 57)
-                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CreateUser_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(90, 90, 90))
         );
 
@@ -596,23 +578,6 @@ public class CreateClient extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDireccionMousePressed
 
-    private void CreateUser_lblBttnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_lblBttnBackMouseExited
-        CreateUser_BttnBack.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_CreateUser_lblBttnBackMouseExited
-
-    private void CreateUser_lblBttnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_lblBttnBackMouseEntered
-        CreateUser_BttnBack.setBackground(Color.LIGHT_GRAY);
-    }//GEN-LAST:event_CreateUser_lblBttnBackMouseEntered
-
-    private void CreateUser_lblBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_lblBttnBackMouseClicked
-
-        PatientsMenu MenuPatients = new PatientsMenu(logUser);
-        MenuPatients.setVisible(true);
-        MenuPatients.pack();
-        MenuPatients.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_CreateUser_lblBttnBackMouseClicked
-
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoActionPerformed
@@ -652,6 +617,14 @@ public class CreateClient extends javax.swing.JFrame {
     private void txtNombreClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreClienteMousePressed
 
     }//GEN-LAST:event_txtNombreClienteMousePressed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        PatientsMenu MenuManagerFrame = new PatientsMenu(logUser);  
+        MenuManagerFrame.setVisible(true);
+        MenuManagerFrame.pack();
+        MenuManagerFrame.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
         
     
     public static void main(String args[]) {
@@ -660,9 +633,7 @@ public class CreateClient extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CreateUserPanel;
-    private javax.swing.JPanel CreateUser_BttnBack;
     private javax.swing.JLabel CreateUser_LastName;
-    private javax.swing.JLabel CreateUser_lblBttnBack;
     private javax.swing.JLabel CreateUser_lblDireccion;
     private javax.swing.JLabel CreateUser_lblEmail;
     private javax.swing.JLabel CreateUser_lblFechaFin;
@@ -678,6 +649,7 @@ public class CreateClient extends javax.swing.JFrame {
     private javax.swing.JPanel Down;
     private javax.swing.JPanel Up;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBoxMembresia;
     private com.toedter.calendar.JDateChooser jDateChooserFechaFin;

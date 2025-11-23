@@ -102,13 +102,14 @@ public class Nimbus {
     ///estilo para los text field
     public static void styleTextField(JTextField textField) {
         textField.setFont(new Font("Arial", Font.PLAIN, 12)); //fuente
-        textField.setPreferredSize(new Dimension(160, 30)); 
+        textField.setPreferredSize(new Dimension(160, 32)); 
+       // textField.setMaximumSize(new Dimension(160, 32)); 
         textField.setBackground(new Color(250, 250, 250)); ///fondo suave 
         textField.setForeground(new Color(32, 32, 32)); ///color del texto 
         textField.setCaretColor(new Color(0, 120, 215)); // color del cursor
         textField.setBorder(BorderFactory.createCompoundBorder(  ///bordes 
         BorderFactory.createLineBorder(new Color(210, 210, 210), 1, true),
-        BorderFactory.createEmptyBorder(6, 10, 6, 10)));
+        BorderFactory.createEmptyBorder(3, 10, 3, 10)));
         ///color de seleccion
         textField.setSelectionColor(new Color(0, 120, 215, 60));
         textField.setSelectedTextColor(new Color(20, 20, 20));
@@ -117,8 +118,8 @@ public class Nimbus {
         @Override
             public void focusGained(java.awt.event.FocusEvent e) {
                 textField.setBorder(BorderFactory.createCompoundBorder(
-                    BorderFactory.createLineBorder(new Color(0, 120, 215), 2, true), ///azul windows
-                    BorderFactory.createEmptyBorder(5, 9, 5, 9)
+                    BorderFactory.createLineBorder(new Color(0, 120, 215), 1, true), ///azul windows
+                    BorderFactory.createEmptyBorder(3,10,3,10)
                 ));
             }
 
@@ -126,7 +127,7 @@ public class Nimbus {
             public void focusLost(java.awt.event.FocusEvent e) {
                 textField.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(210, 210, 210), 1, true),
-                    BorderFactory.createEmptyBorder(6, 10, 6, 10)
+                    BorderFactory.createEmptyBorder(3, 10, 3, 10)
                 ));
             }
         });
@@ -156,7 +157,7 @@ public class Nimbus {
    
    ///metodos para los labels 
    public static void styleLabel(JLabel label) {
-        label.setFont(new Font("Arial", Font.PLAIN, 12));      /// Fuente
+        label.setFont(new Font("Arial", Font.PLAIN, 14));      /// Fuente
         label.setForeground(new Color(30,30,30));              
         label.setOpaque(false);                                   /// Fondo transparente
         label.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));

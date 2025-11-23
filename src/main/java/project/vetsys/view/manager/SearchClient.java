@@ -18,6 +18,7 @@ import project.vetsys.dao.ClienteDAO;
 import project.vetsys.database.DBConnection;
 import project.vetsys.model.ClienteModel;
 import project.vetsys.model.User;
+import project.vetsys.view.Nimbus;
 
 /**
  *
@@ -37,19 +38,25 @@ public class SearchClient extends javax.swing.JFrame {
     
     // Constructor que recibe el usuario logueado
     public SearchClient(User logUser) {
+        Nimbus.LookandFeel();
         this.logUser = logUser;
         initComponents();
         configurarTabla();
         cargarClientes();
         cargarMembresias();
-        txtClinica.setText(obtenerNombreClinica(logUser.getId_clinic()));
+        Nimbus.styleAllTextFields(this);
+        
+        Nimbus.styleTitleLabel(jLabel4);
+        Nimbus.styleAllLabelsExcept(this, jLabel4);
+        jLabel4.setText(obtenerNombreClinica(logUser.getId_clinic()));
+        Nimbus.styleTable(tablaClientes);
         
         //validacion del rol, para que no pueda modificar usuarios si no es administrador
         if(!"Administrador".equalsIgnoreCase(logUser.getName_role())){
             btnActualizar.setVisible(false);
             btnEliminar.setVisible(false);
         }
-        txtClinica.setEditable(false); ///no editar la clinica
+        //txtClinica.setEditable(false); ///no editar la clinica
         
         System.out.println("Usuario logueado recibido: " + logUser.getUsername()); //prueba en consola
         
@@ -61,7 +68,7 @@ public class SearchClient extends javax.swing.JFrame {
         configurarTabla();
         cargarClientes();
         cargarMembresias();
-        txtClinica.setText(obtenerNombreClinica(logUser.getId_clinic()));
+        //txtClinica.setText(obtenerNombreClinica(logUser.getId_clinic()));
     }
     
     private void configurarTabla() {
@@ -190,10 +197,10 @@ public class SearchClient extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtIdCliente = new javax.swing.JTextField();
-        txtClinica = new javax.swing.JTextField();
         jDateChooserFechaInicio = new com.toedter.calendar.JDateChooser();
         jDateChooserFechaFin = new com.toedter.calendar.JDateChooser();
+        jLabel4 = new javax.swing.JLabel();
+        lbl_IdCliente = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnActualizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
@@ -317,24 +324,8 @@ public class SearchClient extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Id");
 
-        txtIdCliente.setBackground(new java.awt.Color(0, 102, 102));
-        txtIdCliente.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txtIdCliente.setForeground(new java.awt.Color(255, 255, 255));
-        txtIdCliente.setBorder(null);
-        txtIdCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        txtClinica.setEditable(false);
-        txtClinica.setBackground(new java.awt.Color(0, 102, 102));
-        txtClinica.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        txtClinica.setForeground(new java.awt.Color(255, 255, 255));
-        txtClinica.setBorder(null);
-        txtClinica.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtClinica.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        txtClinica.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtClinicaActionPerformed(evt);
-            }
-        });
+        lbl_IdCliente.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lbl_IdCliente.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -343,15 +334,13 @@ public class SearchClient extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lbl_IdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel17)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(198, 198, 198))
                         .addComponent(jLabel16)
                         .addComponent(jLabel15)
                         .addComponent(jLabel14)
@@ -366,26 +355,28 @@ public class SearchClient extends javax.swing.JFrame {
                             .addComponent(txtApellidos, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtDocumento, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING)))
-                    .addComponent(txtClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(198, 198, 198)))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jDateChooserFechaFin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                         .addComponent(jDateChooserFechaInicio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(txtClinica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel6)
-                    .addComponent(txtIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(lbl_IdCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -401,16 +392,16 @@ public class SearchClient extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmboxMembresias, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jDateChooserFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -418,7 +409,7 @@ public class SearchClient extends javax.swing.JFrame {
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jDateChooserFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel1.add(jPanel2);
@@ -559,7 +550,7 @@ public class SearchClient extends javax.swing.JFrame {
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         try {
             ClienteModel cliente = new ClienteModel();
-            cliente.setIdCliente(Integer.parseInt(txtIdCliente.getText()));
+            cliente.setIdCliente(Integer.parseInt(lbl_IdCliente.getText()));
             cliente.setNombres(txtNombres.getText());
             cliente.setApellidos(txtApellidos.getText());
             cliente.setDocumento(txtDocumento.getText());
@@ -630,17 +621,13 @@ public class SearchClient extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefonoActionPerformed
 
-    private void txtClinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClinicaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtClinicaActionPerformed
-
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         try {
-            int id = Integer.parseInt(txtIdCliente.getText());
+            int id = Integer.parseInt(lbl_IdCliente.getText());
             int confirm = JOptionPane.showConfirmDialog(this, "¿Eliminar este cliente?", "Confirmar", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
                 boolean eliminado = clienteDAO.eliminarCliente(id);
@@ -682,8 +669,8 @@ public class SearchClient extends javax.swing.JFrame {
         if (fila >= 0) {
             
             try {
-                txtIdCliente.setText(modeloTabla.getValueAt(fila, 0).toString());
-                txtIdCliente.setEditable(false); 
+                lbl_IdCliente.setText(modeloTabla.getValueAt(fila, 0).toString());
+                //txtIdCliente.setEditable(false); 
                 txtNombres.setText(modeloTabla.getValueAt(fila, 1).toString());
                 txtApellidos.setText(modeloTabla.getValueAt(fila, 2).toString());
                 txtDocumento.setText(modeloTabla.getValueAt(fila, 3).toString());
@@ -776,19 +763,19 @@ public class SearchClient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbl_IdCliente;
     private javax.swing.JTable tablaClientes;
     private javax.swing.JTextField txtApellidos;
-    private javax.swing.JTextField txtClinica;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtDocumento;
     private javax.swing.JTextField txtDocumentoIngresado;
-    private javax.swing.JTextField txtIdCliente;
     private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
