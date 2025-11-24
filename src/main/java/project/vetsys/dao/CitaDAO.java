@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package project.vetsys.dao;
 
 import java.sql.Connection;
@@ -15,10 +12,6 @@ import java.util.List;
 import project.vetsys.database.DBConnection;
 import project.vetsys.model.Cita;
 
-/**
- *
- * @author Asus
- */
 public class CitaDAO {
     
     // Horario base disponible
@@ -369,7 +362,55 @@ public class CitaDAO {
             return false;
         }
     }
+    
+    
+    public List<Cita> listarCitasPorClinicaAndFecha(int idClinica) {
+        List<Cita> lista = new ArrayList<>();
 
+        String sql =
+            "SELECT c.id_cita, c.fecha_cita, c.estado, " +
+            "cli.id_cliente, cli.nombres AS cliente_nombre, cli.apellidos AS cliente_apellido, " +
+            "m.id_mascota, m.nombre AS mascota_nombre, " +
+            "u.id_usuario AS vet_id, u.nombres AS vet_nombre, u.apellidos AS vet_apellido " +
+            "FROM cita c " +
+            "JOIN cliente cli ON c.id_cliente = cli.id_cliente " +
+            "JOIN mascota m ON c.id_mascota = m.id_mascota " +
+            "JOIN usuario u ON c.id_veterinario = u.id_usuario " +
+            "WHERE c.id_clinica = ? " +
+            "AND DATE(c.fecha_cita) = DATE(NOW() + INTERVAL 1 DAY) " +
+            "ORDER BY c.fecha_cita ASC";
+
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, idClinica);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Cita cita = new Cita();
+                cita.setIdCita(rs.getInt("id_cita"));
+                cita.setFecha(rs.getTimestamp("fecha_cita"));
+                cita.setEstado(rs.getString("estado"));
+
+                cita.setIdCliente(rs.getInt("id_cliente"));
+                cita.setNombreCliente(rs.getString("cliente_nombre") + " " + rs.getString("cliente_apellido"));
+
+                cita.setIdMascota(rs.getInt("id_mascota"));
+                cita.setNombreMascota(rs.getString("mascota_nombre"));
+
+                cita.setIdVeterinario(rs.getInt("vet_id"));
+                cita.setNombreVeterinario(rs.getString("vet_nombre") + " " + rs.getString("vet_apellido"));
+
+                lista.add(cita);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error listando citas: " + e.getMessage());
+        }
+
+        return lista;
+    }
+    
     
 }
     

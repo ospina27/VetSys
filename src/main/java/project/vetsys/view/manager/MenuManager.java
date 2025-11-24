@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import project.vetsys.view.security.LogIn;
 
 import project.vetsys.model.User;
+import project.vetsys.view.assistant.NotificationPanel;
 
 
 public class MenuManager extends javax.swing.JFrame {
@@ -38,6 +39,7 @@ public class MenuManager extends javax.swing.JFrame {
         MenuManager_BttnUsers = new javax.swing.JButton();
         MenuManager_BttnAppointments = new javax.swing.JButton();
         MenuManager_BttnPatients = new javax.swing.JButton();
+        MenuManager_BttnNotifications = new javax.swing.JButton();
         MenuManager_BttnLogOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -131,6 +133,25 @@ public class MenuManager extends javax.swing.JFrame {
             }
         });
 
+        MenuManager_BttnNotifications.setBackground(new java.awt.Color(0, 153, 153));
+        MenuManager_BttnNotifications.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        MenuManager_BttnNotifications.setForeground(new java.awt.Color(255, 255, 255));
+        MenuManager_BttnNotifications.setText("Pendientes");
+        MenuManager_BttnNotifications.setToolTipText("");
+        MenuManager_BttnNotifications.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuManager_BttnNotifications.setFocusPainted(false);
+        MenuManager_BttnNotifications.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuManager_BttnNotificationsMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                MenuManager_BttnNotificationsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                MenuManager_BttnNotificationsMouseExited(evt);
+            }
+        });
+
         MenuManager_BttnLogOut.setBackground(new java.awt.Color(0, 153, 153));
         MenuManager_BttnLogOut.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         MenuManager_BttnLogOut.setForeground(new java.awt.Color(255, 255, 255));
@@ -156,6 +177,7 @@ public class MenuManager extends javax.swing.JFrame {
             .addGroup(RightLayout.createSequentialGroup()
                 .addGap(92, 92, 92)
                 .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(MenuManager_BttnNotifications, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MenuManager_BttnUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MenuManager_BttnAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MenuManager_BttnPatients, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -163,20 +185,22 @@ public class MenuManager extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(MenuManager_BttnLogOut)
-                .addGap(113, 113, 113))
+                .addGap(112, 112, 112))
         );
         RightLayout.setVerticalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RightLayout.createSequentialGroup()
-                .addGap(94, 94, 94)
+                .addGap(62, 62, 62)
                 .addComponent(MenuManager_BttnUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74)
                 .addComponent(MenuManager_BttnAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(72, 72, 72)
                 .addComponent(MenuManager_BttnPatients, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addComponent(MenuManager_BttnNotifications, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
                 .addComponent(MenuManager_BttnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+                .addGap(33, 33, 33))
         );
 
         MenuManagerPanel.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, -1, -1));
@@ -269,6 +293,24 @@ public class MenuManager extends javax.swing.JFrame {
         MenuManager_BttnLogOut.setForeground(Color.WHITE);
     }//GEN-LAST:event_MenuManager_BttnLogOutMouseExited
 
+    private void MenuManager_BttnNotificationsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuManager_BttnNotificationsMouseClicked
+        NotificationPanel NotificationFrame = new NotificationPanel(logUser);
+        NotificationFrame.setVisible(true);
+        NotificationFrame.pack();
+        NotificationFrame.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_MenuManager_BttnNotificationsMouseClicked
+
+    private void MenuManager_BttnNotificationsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuManager_BttnNotificationsMouseEntered
+        MenuManager_BttnNotifications.setBackground(Color.LIGHT_GRAY);
+        MenuManager_BttnNotifications.setForeground(Color.BLACK);
+    }//GEN-LAST:event_MenuManager_BttnNotificationsMouseEntered
+
+    private void MenuManager_BttnNotificationsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuManager_BttnNotificationsMouseExited
+        MenuManager_BttnNotifications.setBackground(new Color(0,153,153));
+        MenuManager_BttnNotifications.setForeground(Color.WHITE);
+    }//GEN-LAST:event_MenuManager_BttnNotificationsMouseExited
+
     
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new MenuManager().setVisible(true));
@@ -279,6 +321,7 @@ public class MenuManager extends javax.swing.JFrame {
     private javax.swing.JPanel MenuManagerPanel;
     private javax.swing.JButton MenuManager_BttnAppointments;
     private javax.swing.JButton MenuManager_BttnLogOut;
+    private javax.swing.JButton MenuManager_BttnNotifications;
     private javax.swing.JButton MenuManager_BttnPatients;
     private javax.swing.JButton MenuManager_BttnUsers;
     private javax.swing.JLabel MenuManager_ImgVetSys;
