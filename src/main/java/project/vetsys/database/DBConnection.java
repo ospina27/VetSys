@@ -12,7 +12,6 @@ public class DBConnection {
     //private static final String password = "root";
     //private static final String password = "mysql";
 
-
     private static boolean mensaje = false;
     
     
