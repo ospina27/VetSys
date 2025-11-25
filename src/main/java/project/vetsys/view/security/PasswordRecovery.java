@@ -13,6 +13,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PasswordRecovery.class.getName());
     private User user = null;
     
+    
     public PasswordRecovery() {
         initComponents();
         Nimbus.LookandFeel();
