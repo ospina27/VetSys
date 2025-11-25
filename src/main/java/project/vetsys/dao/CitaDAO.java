@@ -11,7 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import project.vetsys.database.DBConnection;
 import project.vetsys.model.Cita;
 
@@ -369,6 +371,144 @@ public class CitaDAO {
             return false;
         }
     }
+    
+    
+    
+    //consultar el estado de las citas, para los reportes
+    public Map<String, Integer> getGraphStatus(int idClinic){
+        Map<String, Integer> stats = new HashMap<>();
+        String sql = "SELECT estado, COUNT(*) FROM cita WHERE id_clinica = ? GROUP BY estado";
+    
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idClinic);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    // El estado es un ENUM, Java lo lee como String sin problema
+                    stats.put(rs.getString(1), rs.getInt(2));
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en reporte estados: " + e.getMessage());
+        }
+        return stats;
+    }
+    
+    ///buscar horas de las citas, para el reporte de las mas frecuentes
+    public Map<String, Integer> getGraphHour(int idClinic) {
+        Map<String, Integer> stats = new HashMap<>();
+        String sql = "SELECT HOUR(fecha_cita) as hora, COUNT(*) FROM cita WHERE id_clinica = ? GROUP BY hora ORDER BY hora";
+
+        try (Connection con = DBConnection.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idClinic);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    String hourLbl = rs.getInt("hora") + ":00";
+                    stats.put(hourLbl, rs.getInt(2));
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en reporte horas: " + e.getMessage());
+        }
+        return stats;
+    }
+    
+    ///grafico de fidelidad de los clientes, ver si es nuevo o recurrente
+    public Map<String, Integer> getGraphFidelity(int idClinic) {
+        Map<String, Integer> stats = new HashMap<>();
+        //Subconsulta cuenta citas por mascota, consulta externa clasifica
+        String sql = "SELECT " +
+                     "  IF(conteo > 1, 'Recurrente', 'Nuevo') as tipo, " +
+                     "  COUNT(*) as cantidad " +
+                     "FROM (" +
+                     "  SELECT id_mascota, COUNT(*) as conteo " +
+                     "  FROM cita " +
+                     "  WHERE id_clinica = ? " +
+                     "  GROUP BY id_mascota" +
+                     ") as subconsulta " +
+                     "GROUP BY tipo";
+
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idClinic);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    stats.put(rs.getString("tipo"), rs.getInt("cantidad"));
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error obteniendo estadísticas de retención: " + e.getMessage());
+        }
+        return stats;
+    }
+    
+    
+    ///Reporte de especies, para ver cuales son las mas atendidas
+    public Map<String, Integer> getStatsSpecies(int idClinic) {
+        Map<String, Integer> stats = new HashMap<>();
+        String sql = "SELECT especie, COUNT(*) FROM mascota WHERE id_clinica = ? GROUP BY especie";
+        try (Connection con = DBConnection.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idClinic);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) stats.put(rs.getString(1), rs.getInt(2));
+            }
+        } catch (SQLException e) { e.printStackTrace(); }
+        return stats;
+    }
+
+    ///Reporte de Membresías, cuantas de cada una
+    public Map<String, Integer> getStatsMembership(int idClinic) {
+        Map<String, Integer> stats = new HashMap<>();
+        String sql = "SELECT m.nombre, COUNT(c.id_cliente) FROM cliente c " +
+                     "JOIN membresia m ON c.id_membresia = m.id_membresia " +
+                     "WHERE c.id_clinica = ? GROUP BY m.nombre";
+        try (Connection con = DBConnection.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idClinic);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) stats.put(rs.getString(1), rs.getInt(2));
+            }
+        } catch (SQLException e) { e.printStackTrace(); }
+        return stats;
+    }
+
+    ///Tendencia mensual 
+    public Map<String, Integer> getStatsTendency(int idClinic) {
+        //LinkedHashMap para orden cronológico
+        Map<String, Integer> stats = new java.util.LinkedHashMap<>();
+        String sql = "SELECT MONTHNAME(fecha_cita), COUNT(*) FROM cita " +
+                     "WHERE id_clinica = ? AND YEAR(fecha_cita) = YEAR(CURDATE()) " +
+                     "GROUP BY MONTH(fecha_cita), MONTHNAME(fecha_cita) ORDER BY MONTH(fecha_cita)";
+        try (Connection con = DBConnection.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idClinic);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) stats.put(rs.getString(1), rs.getInt(2));
+            }
+        } catch (SQLException e) { e.printStackTrace(); }
+        return stats;
+    }
+
+    ///Top 5 Clientes
+    public Map<String, Integer> getStatsTopClients(int idClinic) {
+        
+        ///LinkedHashMap para orden descendente
+        Map<String, Integer> stats = new java.util.LinkedHashMap<>();
+        String sql = "SELECT CONCAT(c.nombres, ' ', c.apellidos), COUNT(ci.id_cita) FROM cita ci " +
+                     "JOIN cliente c ON ci.id_cliente = c.id_cliente " +
+                     "WHERE ci.id_clinica = ? GROUP BY ci.id_cliente " +
+                     "ORDER BY COUNT(ci.id_cita) DESC LIMIT 5";
+        try (Connection con = DBConnection.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idClinic);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) stats.put(rs.getString(1), rs.getInt(2));
+            }
+        } catch (SQLException e) { e.printStackTrace(); }
+        return stats;
+    }
+    
+    
+    
+    
 
     
 }

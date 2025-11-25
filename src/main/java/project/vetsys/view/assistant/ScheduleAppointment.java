@@ -12,6 +12,7 @@ import project.vetsys.model.Cita;
 import project.vetsys.model.ClienteModel;
 import project.vetsys.model.Pet;
 import project.vetsys.model.User;
+import project.vetsys.view.Nimbus;
 import project.vetsys.view.manager.Appointment_Menu;
 
 
@@ -27,8 +28,13 @@ public class ScheduleAppointment extends javax.swing.JFrame {
     
     public ScheduleAppointment(User logUser) {
         this.logUser = logUser;
+        Nimbus.LookandFeel();
         initComponents();
         cargarVeterinarios();
+        setTitle("Gestion de Citas");
+        ScheduleAppointment_lblTittle.setText(logUser.getClinic().getName_clinic());
+        Nimbus.styleTitleLabel(ScheduleAppointment_lblSubTittle);
+        Nimbus.styleAllTextFields(this);
     }
     
     /**

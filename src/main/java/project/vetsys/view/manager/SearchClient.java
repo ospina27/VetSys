@@ -45,18 +45,20 @@ public class SearchClient extends javax.swing.JFrame {
         cargarClientes();
         cargarMembresias();
         Nimbus.styleAllTextFields(this);
-        
+       
         Nimbus.styleTitleLabel(jLabel4);
         Nimbus.styleAllLabelsExcept(this, jLabel4);
         jLabel4.setText(obtenerNombreClinica(logUser.getId_clinic()));
         Nimbus.styleTable(tablaClientes);
         
-        //validacion del rol, para que no pueda modificar usuarios si no es administrador
+        //validacion del rol, para que no pueda modificar clientes si no es administrador
         if(!"Administrador".equalsIgnoreCase(logUser.getName_role())){
             btnActualizar.setVisible(false);
             btnEliminar.setVisible(false);
         }
-        //txtClinica.setEditable(false); ///no editar la clinica
+        
+        setTitle("Gestión de Clientes");
+        
         
         System.out.println("Usuario logueado recibido: " + logUser.getUsername()); //prueba en consola
         

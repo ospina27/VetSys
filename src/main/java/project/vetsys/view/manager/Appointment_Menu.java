@@ -1,8 +1,11 @@
 package project.vetsys.view.manager;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import javax.swing.JOptionPane;
+import org.jfree.chart.ChartPanel;
 import project.vetsys.model.User;
-import project.vetsys.view.assistant.DeleteAppointment;
+import project.vetsys.utils.BarGraph;
 import project.vetsys.view.assistant.ScheduleAppointment;
 import project.vetsys.view.assistant.SearchAppointment;
 
@@ -19,6 +22,10 @@ public class Appointment_Menu extends javax.swing.JFrame {
        public Appointment_Menu(User logUser){
             initComponents();
             this.logUser = logUser;
+            if(!"Administrador".equalsIgnoreCase(logUser.getName_role())){
+                MenuAppointment_Reports.setVisible(false);
+            }
+            setTitle("Gestión de Citas "+logUser.getClinic().getName_clinic());
        }
 
     
@@ -33,10 +40,10 @@ public class Appointment_Menu extends javax.swing.JFrame {
         MenuAppointment_BttnScheduleAppointment = new javax.swing.JButton();
         MenuAppointment_BttnSearchAppointment = new javax.swing.JButton();
         MenuAppointment_BttnBacks = new javax.swing.JButton();
+        MenuAppointment_Reports = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Appointment_Menu");
-        setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
@@ -78,7 +85,7 @@ public class Appointment_Menu extends javax.swing.JFrame {
         MenuAppointment_BttnScheduleAppointment.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         MenuAppointment_BttnScheduleAppointment.setForeground(new java.awt.Color(255, 255, 255));
         MenuAppointment_BttnScheduleAppointment.setText("Agendar Cita");
-        MenuAppointment_BttnScheduleAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuAppointment_BttnScheduleAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuAppointment_BttnScheduleAppointment.setFocusPainted(false);
         MenuAppointment_BttnScheduleAppointment.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -91,12 +98,17 @@ public class Appointment_Menu extends javax.swing.JFrame {
                 MenuAppointment_BttnScheduleAppointmentMouseExited(evt);
             }
         });
+        MenuAppointment_BttnScheduleAppointment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuAppointment_BttnScheduleAppointmentActionPerformed(evt);
+            }
+        });
 
         MenuAppointment_BttnSearchAppointment.setBackground(new java.awt.Color(0, 153, 153));
         MenuAppointment_BttnSearchAppointment.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         MenuAppointment_BttnSearchAppointment.setForeground(new java.awt.Color(255, 255, 255));
         MenuAppointment_BttnSearchAppointment.setText("Consultar Cita");
-        MenuAppointment_BttnSearchAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuAppointment_BttnSearchAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuAppointment_BttnSearchAppointment.setFocusPainted(false);
         MenuAppointment_BttnSearchAppointment.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -114,7 +126,7 @@ public class Appointment_Menu extends javax.swing.JFrame {
         MenuAppointment_BttnBacks.setFont(new java.awt.Font("Arial Black", 0, 20)); // NOI18N
         MenuAppointment_BttnBacks.setForeground(new java.awt.Color(255, 255, 255));
         MenuAppointment_BttnBacks.setText("Regresar");
-        MenuAppointment_BttnBacks.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuAppointment_BttnBacks.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuAppointment_BttnBacks.setFocusPainted(false);
         MenuAppointment_BttnBacks.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -128,6 +140,24 @@ public class Appointment_Menu extends javax.swing.JFrame {
             }
         });
 
+        MenuAppointment_Reports.setBackground(new java.awt.Color(0, 153, 153));
+        MenuAppointment_Reports.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        MenuAppointment_Reports.setForeground(new java.awt.Color(255, 255, 255));
+        MenuAppointment_Reports.setText("Reportes");
+        MenuAppointment_Reports.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuAppointment_Reports.setFocusPainted(false);
+        MenuAppointment_Reports.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuAppointment_ReportsMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                MenuAppointment_ReportsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                MenuAppointment_ReportsMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout RightLayout = new javax.swing.GroupLayout(Right);
         Right.setLayout(RightLayout);
         RightLayout.setHorizontalGroup(
@@ -138,7 +168,8 @@ public class Appointment_Menu extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
                         .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(MenuAppointment_BttnScheduleAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(MenuAppointment_BttnSearchAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(MenuAppointment_BttnSearchAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(MenuAppointment_Reports, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(67, 67, 67))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
                         .addComponent(MenuAppointment_BttnBacks)
@@ -151,7 +182,9 @@ public class Appointment_Menu extends javax.swing.JFrame {
                 .addComponent(MenuAppointment_BttnScheduleAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62)
                 .addComponent(MenuAppointment_BttnSearchAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
+                .addGap(59, 59, 59)
+                .addComponent(MenuAppointment_Reports, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addComponent(MenuAppointment_BttnBacks, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(67, 67, 67))
         );
@@ -230,6 +263,88 @@ public class Appointment_Menu extends javax.swing.JFrame {
         MenuAppointment_BttnBacks.setForeground(Color.WHITE);
     }//GEN-LAST:event_MenuAppointment_BttnBacksMouseExited
 
+    private void MenuAppointment_ReportsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAppointment_ReportsMouseClicked
+        if (logUser != null) {
+                ///Definir las opciones de reportes disponibles
+                String[] options = {
+                    "Citas por Veterinario", 
+                    "Estado de Citas", 
+                    "Horarios más frecuentes", 
+                    "Retención de Clientes",
+                    "Demografía de Pacientes",
+                    "Distribución de Membresías",
+                    "Tendencia en Citas",
+                    "Top de Clientes"
+                };
+
+              ///definir un dialogo para preguntar que grafico desea ver
+            String selection = (String) JOptionPane.showInputDialog(
+                null, 
+                "Seleccione el tipo de reporte que desea visualizar:", 
+                "Generador de Reportes", 
+                javax.swing.JOptionPane.QUESTION_MESSAGE, 
+                null, 
+                options, 
+                options[0]
+            );
+
+            if (selection != null) {
+                org.jfree.chart.ChartPanel chartPanel = null;
+
+                ///Generar el panel según la opción
+                switch (selection) {
+                    case "Citas por Veterinario":
+                        chartPanel = project.vetsys.utils.BarGraph.getChartPanel(logUser.getId_clinic());
+                        break;
+                    case "Estado de Citas":
+                        chartPanel = project.vetsys.utils.BarGraph.createReport(1, logUser.getId_clinic());
+                        break;
+                    case "Horarios más frecuentes":
+                        chartPanel = project.vetsys.utils.BarGraph.createReport(2, logUser.getId_clinic());
+                        break;
+                    case "Retención de Clientes":
+                        chartPanel = project.vetsys.utils.BarGraph.createReport(3, logUser.getId_clinic());
+                        break;
+                    case "Demografía de Pacientes":
+                        chartPanel = project.vetsys.utils.BarGraph.createReport(4, logUser.getId_clinic());
+                        break;
+                    case "Distribución de Membresías":
+                        chartPanel = project.vetsys.utils.BarGraph.createReport(5, logUser.getId_clinic());
+                        break;
+                    case "Tendencia en Citas":
+                        chartPanel = project.vetsys.utils.BarGraph.createReport(6, logUser.getId_clinic());
+                        break;
+                    case "Top de Clientes":
+                        chartPanel = project.vetsys.utils.BarGraph.createReport(7, logUser.getId_clinic());
+                        break;
+                }
+                ///abrir ventana con el grafico
+                if (chartPanel != null) {
+                    javax.swing.JFrame ventanaReporte = new javax.swing.JFrame("Reporte: " + selection);
+                    ventanaReporte.setContentPane(chartPanel);
+                    ventanaReporte.setSize(800, 600);
+                    ventanaReporte.setLocationRelativeTo(null);
+                    ventanaReporte.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+                    ventanaReporte.setVisible(true);
+                }
+            }
+        }
+    }//GEN-LAST:event_MenuAppointment_ReportsMouseClicked
+
+    private void MenuAppointment_ReportsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAppointment_ReportsMouseEntered
+        MenuAppointment_Reports.setBackground(Color.LIGHT_GRAY);
+        MenuAppointment_Reports.setForeground(Color.BLACK);
+    }//GEN-LAST:event_MenuAppointment_ReportsMouseEntered
+
+    private void MenuAppointment_ReportsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAppointment_ReportsMouseExited
+        MenuAppointment_Reports.setBackground(new Color(0,153,153));
+        MenuAppointment_Reports.setForeground(Color.WHITE);
+    }//GEN-LAST:event_MenuAppointment_ReportsMouseExited
+
+    private void MenuAppointment_BttnScheduleAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuAppointment_BttnScheduleAppointmentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuAppointment_BttnScheduleAppointmentActionPerformed
+
     
     public static void main(String args[]) {
         
@@ -242,6 +357,7 @@ public class Appointment_Menu extends javax.swing.JFrame {
     private javax.swing.JButton MenuAppointment_BttnScheduleAppointment;
     private javax.swing.JButton MenuAppointment_BttnSearchAppointment;
     private javax.swing.JLabel MenuAppointment_ImgVetSys;
+    private javax.swing.JButton MenuAppointment_Reports;
     private javax.swing.JPanel Menu_AppointmentPanel;
     private javax.swing.JPanel Right;
     // End of variables declaration//GEN-END:variables

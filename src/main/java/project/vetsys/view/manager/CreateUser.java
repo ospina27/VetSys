@@ -29,9 +29,8 @@ public class CreateUser extends javax.swing.JFrame {
         this.utils = new Utils();
         initComponents();
         Nimbus.styleAllTextFields(this);
-        setTitle("Gestión de usuarios");
-        CreateUser_lblTittle.setText("Usuarios "+ logUser.getClinic().getName_clinic());
-        Nimbus.styleTitleLabel(CreateUser_lblTittle);
+        setTitle("Gestión de Usuarios");
+        CreateUser_lblTittle.setText(logUser.getClinic().getName_clinic());
         Nimbus.styleAllLabelsExcept(this,CreateUser_lblTittle);
         Nimbus.styleTitleLabel(CreateUser_lblSubTittle);
         loadRolesStatus();
@@ -142,6 +141,8 @@ public class CreateUser extends javax.swing.JFrame {
                 .addComponent(CreateUser_lblTittle, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        CreateUser_lblTittle.getAccessibleContext().setAccessibleName("VetSys");
 
         CreateUserPanel.add(Up, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
 

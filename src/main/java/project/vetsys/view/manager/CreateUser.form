@@ -110,6 +110,9 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
+              <AccessibilityProperties>
+                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="VetSys"/>
+              </AccessibilityProperties>
             </Component>
           </SubComponents>
         </Container>

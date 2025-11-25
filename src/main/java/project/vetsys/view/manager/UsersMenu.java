@@ -16,7 +16,7 @@ public class UsersMenu extends javax.swing.JFrame {
         {
             MenuUsers_BttnCreateUser.setVisible(false);
         }
-        setTitle(logUser.getClinic().getName_clinic());
+        setTitle("Gestión de Usuarios "+logUser.getClinic().getName_clinic());
     }
 
     public UsersMenu() {

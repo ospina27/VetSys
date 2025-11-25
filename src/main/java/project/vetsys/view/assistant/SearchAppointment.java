@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import project.vetsys.dao.CitaDAO;
 import project.vetsys.model.Cita;
 import project.vetsys.model.User;
+import project.vetsys.view.Nimbus;
 import project.vetsys.view.manager.Appointment_Menu;
 
 
@@ -22,12 +23,17 @@ public class SearchAppointment extends javax.swing.JFrame {
 
     public SearchAppointment(User logUser){
         initComponents();
+        Nimbus.LookandFeel();
         this.logUser = logUser;
         cargarColumnasTabla();
         cargarEstadosCita();
         cargarTodasLasCitas();
         cmbHora.removeAllItems();
         btnEliminar.setVisible(false);
+        setTitle("Gestión de citas");
+        SearchAppoint_lblNameClinic.setText(logUser.getClinic().getName_clinic());
+        Nimbus.styleAllTextFields(this);
+        Nimbus.styleTable(tableCitas);
     }
     
     
@@ -158,6 +164,7 @@ public class SearchAppointment extends javax.swing.JFrame {
         cmbHora = new javax.swing.JComboBox<>();
         txtIdCliente1 = new javax.swing.JLabel();
         txtIdCita = new javax.swing.JTextField();
+        SearchAppoint_lblNameClinic = new javax.swing.JLabel();
         Right = new javax.swing.JPanel();
         SearchAppointment_BttnBack = new javax.swing.JPanel();
         SearchAppointment_lblBttnBack = new javax.swing.JLabel();
@@ -175,7 +182,6 @@ public class SearchAppointment extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1000, 800));
         setMinimumSize(new java.awt.Dimension(1000, 800));
         setSize(new java.awt.Dimension(1000, 800));
 
@@ -233,8 +239,13 @@ public class SearchAppointment extends javax.swing.JFrame {
         txtIdCita.setEditable(false);
         txtIdCita.setBackground(new java.awt.Color(0, 153, 153));
         txtIdCita.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtIdCita.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtIdCita.setBorder(null);
         txtIdCita.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        SearchAppoint_lblNameClinic.setFont(new java.awt.Font("Bookman Old Style", 3, 18)); // NOI18N
+        SearchAppoint_lblNameClinic.setForeground(java.awt.SystemColor.activeCaption);
+        SearchAppoint_lblNameClinic.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout LeftLayout = new javax.swing.GroupLayout(Left);
         Left.setLayout(LeftLayout);
@@ -249,7 +260,7 @@ public class SearchAppointment extends javax.swing.JFrame {
                             .addGroup(LeftLayout.createSequentialGroup()
                                 .addComponent(txtIdCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtIdCita, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtIdCita, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(cmbHora, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jDateChooserFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
                             .addComponent(txtNombreVet)
@@ -265,15 +276,21 @@ public class SearchAppointment extends javax.swing.JFrame {
                             .addComponent(SearchAppointment_lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(SearchAppointment_lblPet, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(252, 301, Short.MAX_VALUE))))
+            .addGroup(LeftLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(SearchAppoint_lblNameClinic, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         LeftLayout.setVerticalGroup(
             LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LeftLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(10, 10, 10)
+                .addComponent(SearchAppoint_lblNameClinic, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtIdCliente1)
                     .addComponent(txtIdCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 58, Short.MAX_VALUE)
+                .addGap(18, 46, Short.MAX_VALUE)
                 .addComponent(JLabelCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -788,6 +805,7 @@ public class SearchAppointment extends javax.swing.JFrame {
     private javax.swing.JLabel JLabelCliente;
     private javax.swing.JPanel Left;
     private javax.swing.JPanel Right;
+    private javax.swing.JLabel SearchAppoint_lblNameClinic;
     private javax.swing.JPanel SearchAppointmentPanel;
     private javax.swing.JPanel SearchAppointment_BttnBack;
     private javax.swing.JPanel SearchAppointment_BttnSearch;

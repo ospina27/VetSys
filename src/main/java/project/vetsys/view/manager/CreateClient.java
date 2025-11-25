@@ -39,7 +39,7 @@ public class CreateClient extends javax.swing.JFrame {
         Nimbus.styleAllLabelsExcept(this,CreateUser_lblTittle);
         Nimbus.styleAllTextFields(this);
         Nimbus.styleTitleLabel(CreateUser_lblSubTittle);
-        
+        setTitle("Gestión de Clientes");
     }
     
     private void limpiarCampos() {

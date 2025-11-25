@@ -29,7 +29,7 @@ public class SearchPet extends javax.swing.JFrame {
         Nimbus.LookandFeel();
         initComponents();
         initListeners();
-        setTitle("Gestión de mascotas");
+        setTitle(logUser.getClinic().getName_clinic());
         Nimbus.styleAllTextFields(this);
         Nimbus.styleTable(petTable);
         modelTable();
@@ -43,6 +43,7 @@ public class SearchPet extends javax.swing.JFrame {
         hideField(false);
         jLabelTitleClinic_pets.setText(logUser.getClinic().getName_clinic());
         Nimbus.styleAllLabelsExcept(this,jLabelTitleClinic_pets); 
+        setTitle("Gestión de Mascotas");
         
     }
     

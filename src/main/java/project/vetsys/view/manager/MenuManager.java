@@ -17,10 +17,7 @@ public class MenuManager extends javax.swing.JFrame {
         initComponents();
         this.logUser = logUser;
         System.out.println("Usuario logueado en MenuManager: " + logUser.getUsername());
-        if(!"Administrador".equalsIgnoreCase(logUser.getName_role()))
-        {
-           //btnCreate.setVisible(false);
-        }
+        setTitle("Gestión Veterinaria "+logUser.getClinic().getName_clinic());
     }
     
     public MenuManager() {

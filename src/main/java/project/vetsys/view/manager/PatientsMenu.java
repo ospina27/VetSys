@@ -16,7 +16,7 @@ public class PatientsMenu extends javax.swing.JFrame {
         {
             MenuPatients_BttnCreatePatient.setVisible(false);
         }
-        setTitle(logUser.getClinic().getName_clinic());
+        setTitle("Gestión de Clientes "+logUser.getClinic().getName_clinic());
     }
 
     public PatientsMenu() {

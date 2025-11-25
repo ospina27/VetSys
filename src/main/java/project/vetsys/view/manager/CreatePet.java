@@ -35,7 +35,7 @@ public class CreatePet extends javax.swing.JFrame {
         //Nimbus.styleTitleLabel(CreatePet_lblTittle );
         Nimbus.styleAllTextFields(this);
         Nimbus.styleTitleLabel(CreatePet_lblSubTittle);
-        setTitle("Gestion de mascotas");
+        setTitle("Gestión de Mascotas");
         emptyFields();
         loadSpecies(cboxSpecies_pet,cboxBred_pet);
         

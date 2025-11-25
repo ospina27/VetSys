@@ -30,6 +30,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         
         PassRec_textNewPassword.setEnabled(false);
         PassRec_textNewPasswordOK.setEnabled(false);
+        setTitle("Recuperar contraseña");
     }
 
     @SuppressWarnings("unchecked")

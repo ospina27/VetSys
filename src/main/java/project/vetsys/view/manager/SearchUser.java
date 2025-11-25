@@ -33,14 +33,13 @@ public class SearchUser extends javax.swing.JFrame {
     public SearchUser(User logUser) {
         Nimbus.LookandFeel(); ///implementación de nimbus para la visualización
         initComponents();
-        //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         Nimbus.styleAllTextFields(this); ///estilo para todos los textfield
         Nimbus.styleTable(userTable); ///estilo de la tabla
         modelTable();
         loadRolesStatus(); 
         this.utils = new Utils();
         this.logUser = logUser;
-        setTitle("Gestion de Usuarios");
+        setTitle("Gestión de Usuarios");
         jLabelTitleClinic_users.setText(logUser.getClinic().getName_clinic());  ///mostrar nombre de la clinica
         Nimbus.styleAllLabelsExcept(this,jLabelTitleClinic_users);  ///implementar estilos para lbl
         
