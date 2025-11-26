@@ -195,12 +195,33 @@ public class ClienteDAO {
             }
             return cliente;
     }
+    
+    
+    
+    public ClienteModel ReadId(int idCliente) {
+        
+        String sql = "SELECT * FROM cliente WHERE id_cliente = ?";
+        
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            
+            ps.setInt(1, idCliente);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                ClienteModel c = new ClienteModel();
+                c.setIdCliente(rs.getInt("id_cliente"));
+                c.setNombres(rs.getString("nombres"));
+                c.setApellidos(rs.getString("apellidos"));
+                c.setDocumento(rs.getString("documento"));
+                
+                return c;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al leer cliente: " + e.getMessage());
+        }
+        return null;
+    }
 
-
-    
-    
-   
-    
     
     
 }

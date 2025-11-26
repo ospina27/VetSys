@@ -25,6 +25,7 @@ public class Cita {
     private Timestamp fecha;
     private String estado; // programada, atendida, cancelada
 
+    
     public Cita() {}
     
     
