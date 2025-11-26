@@ -7,9 +7,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import project.vetsys.dao.PetDAO;
-import project.vetsys.dao.UserDAO;
 import project.vetsys.model.Pet;
 import project.vetsys.model.User;
+import project.vetsys.utils.ValidationInput;
 import project.vetsys.view.Nimbus;
 import project.vetsys.view.Utils;
 
@@ -22,12 +22,14 @@ public class SearchPet extends javax.swing.JFrame {
 
     public SearchPet() {
             initComponents();
+            aplicarAccesibilidad();
             initListeners();              
        }
     
     public SearchPet(User logUser){
         Nimbus.LookandFeel();
         initComponents();
+        aplicarAccesibilidad();
         initListeners();
         setTitle(logUser.getClinic().getName_clinic());
         Nimbus.styleAllTextFields(this);
@@ -45,6 +47,8 @@ public class SearchPet extends javax.swing.JFrame {
         Nimbus.styleAllLabelsExcept(this,jLabelTitleClinic_pets); 
         setTitle("Gestión de Mascotas");
         
+        ValidationInput.numbers(searchDocumentClient_field);
+        ValidationInput.numbers(documentOwner_field);
     }
     
     private void initListeners(){
@@ -851,4 +855,102 @@ public class SearchPet extends javax.swing.JFrame {
     private javax.swing.JLabel sexPet_lbl;
     private javax.swing.JLabel speciesPet_lbl;
     // End of variables declaration//GEN-END:variables
+
+    private void aplicarAccesibilidad() {
+    // --- Labels y campos ---
+    idPet_lbl.setLabelFor(idPet_Field);
+    idPet_lbl.setDisplayedMnemonic('I');
+    idPet_Field.setToolTipText("ID de la mascota (no editable) (Alt + I)");
+    idPet_Field.getAccessibleContext().setAccessibleName("ID de la mascota");
+    idPet_Field.getAccessibleContext().setAccessibleDescription("Muestra el ID de la mascota, no editable");
+
+    namePet_lbl.setLabelFor(namePet_Field);
+    namePet_lbl.setDisplayedMnemonic('N');
+    namePet_Field.setToolTipText("Nombre de la mascota (Alt + N)");
+    namePet_Field.getAccessibleContext().setAccessibleName("Nombre de la mascota");
+    namePet_Field.getAccessibleContext().setAccessibleDescription("Ingrese el nombre de la mascota");
+
+    speciesPet_lbl.setLabelFor(cboxSpecies_pet);
+    speciesPet_lbl.setDisplayedMnemonic('E');
+    cboxSpecies_pet.setToolTipText("Seleccione la especie de la mascota (Alt + E)");
+    cboxSpecies_pet.getAccessibleContext().setAccessibleName("Especie de la mascota");
+    cboxSpecies_pet.getAccessibleContext().setAccessibleDescription("Seleccione la especie de la mascota");
+
+    bredPet_lbl.setLabelFor(cboxBred_pet);
+    bredPet_lbl.setDisplayedMnemonic('R');
+    cboxBred_pet.setToolTipText("Raza de la mascota (Alt + R)");
+    cboxBred_pet.getAccessibleContext().setAccessibleName("Raza de la mascota");
+    cboxBred_pet.getAccessibleContext().setAccessibleDescription("Ingrese la raza de la mascota");
+
+    colorPet_lbl.setLabelFor(colorPet_Field);
+    colorPet_lbl.setDisplayedMnemonic('C');
+    colorPet_Field.setToolTipText("Color de la mascota (Alt + C)");
+    colorPet_Field.getAccessibleContext().setAccessibleName("Color de la mascota");
+    colorPet_Field.getAccessibleContext().setAccessibleDescription("Ingrese el color de la mascota");
+
+    sexPet_lbl.setLabelFor(sexPet_Field);
+    sexPet_lbl.setDisplayedMnemonic('S');
+    sexPet_Field.setToolTipText("Sexo de la mascota (no editable) (Alt + S)");
+    sexPet_Field.getAccessibleContext().setAccessibleName("Sexo de la mascota");
+    sexPet_Field.getAccessibleContext().setAccessibleDescription("Muestra el sexo de la mascota, no editable");
+
+    dateBirthPet_lbl.setLabelFor(dateBirthPet_lbl);
+    dateBirthPet_lbl.setDisplayedMnemonic('F');
+    dateBirthPet_lbl.setToolTipText("Fecha de nacimiento de la mascota (yyyy-mm-dd) (Alt + F)");
+    dateBirthPet_lbl.getAccessibleContext().setAccessibleName("Fecha de nacimiento");
+    dateBirthPet_lbl.getAccessibleContext().setAccessibleDescription("Ingrese la fecha de nacimiento de la mascota en formato yyyy-mm-dd");
+
+    documentOwner_lbl.setLabelFor(documentOwner_field);
+    documentOwner_lbl.setDisplayedMnemonic('D');
+    documentOwner_field.setToolTipText("Documento del propietario (no editable) (Alt + D)");
+    documentOwner_field.getAccessibleContext().setAccessibleName("Documento del propietario");
+    documentOwner_field.getAccessibleContext().setAccessibleDescription("Muestra el documento del propietario, no editable");
+
+    nameOwner_lbl.setLabelFor(nameOwner_field);
+    nameOwner_lbl.setDisplayedMnemonic('P');
+    nameOwner_field.setToolTipText("Nombre del propietario (no editable) (Alt + P)");
+    nameOwner_field.getAccessibleContext().setAccessibleName("Nombre del propietario");
+    nameOwner_field.getAccessibleContext().setAccessibleDescription("Muestra el nombre completo del propietario, no editable");
+
+    searchDocumentClient_field.setToolTipText("Ingrese el documento del cliente para buscar (Alt + B)");
+    searchDocumentClient_field.getAccessibleContext().setAccessibleName("Buscar cliente por documento");
+    searchDocumentClient_field.getAccessibleContext().setAccessibleDescription("Ingrese el documento del cliente para filtrar las mascotas");
+
+    // --- Botones ---
+    btnActualizar.setMnemonic('A'); // Alt + A
+    btnActualizar.setToolTipText("Actualizar los datos de la mascota seleccionada (Alt + A)");
+    btnActualizar.getAccessibleContext().setAccessibleName("Actualizar mascota");
+    btnActualizar.getAccessibleContext().setAccessibleDescription("Actualizar la información de la mascota seleccionada");
+
+    btnDelete.setMnemonic('E'); // Alt + E
+    btnDelete.setToolTipText("Eliminar la mascota seleccionada (Alt + E)");
+    btnDelete.getAccessibleContext().setAccessibleName("Eliminar mascota");
+    btnDelete.getAccessibleContext().setAccessibleDescription("Eliminar la mascota seleccionada de la base de datos");
+
+    btnSalir.setMnemonic('S'); // Alt + S
+    btnSalir.setToolTipText("Salir del módulo de gestión de mascotas (Alt + S)");
+    btnSalir.getAccessibleContext().setAccessibleName("Salir");
+    btnSalir.getAccessibleContext().setAccessibleDescription("Salir del módulo de gestión de mascotas");
+
+    btnSearchDocumet_client.setMnemonic('B'); // Alt + B
+    btnSearchDocumet_client.setToolTipText("Buscar mascotas por documento del propietario (Alt + B)");
+    btnSearchDocumet_client.getAccessibleContext().setAccessibleName("Buscar mascotas");
+    btnSearchDocumet_client.getAccessibleContext().setAccessibleDescription("Buscar mascotas según el documento del propietario");
+
+    btnRefreshTable_pet.setMnemonic('R'); // Alt + R
+    btnRefreshTable_pet.setToolTipText("Refrescar la lista de mascotas (Alt + R)");
+    btnRefreshTable_pet.getAccessibleContext().setAccessibleName("Refrescar tabla");
+    btnRefreshTable_pet.getAccessibleContext().setAccessibleDescription("Refrescar la tabla de mascotas");
+
+    // --- Tabla ---
+    petTable.setToolTipText("Tabla con la lista de mascotas");
+    petTable.getAccessibleContext().setAccessibleName("Tabla de mascotas");
+    petTable.getAccessibleContext().setAccessibleDescription("Muestra todas las mascotas registradas para la clínica");
+
+    // --- Panel título clínica ---
+    jLabelTitleClinic_pets.setToolTipText("Nombre de la clínica");
+    jLabelTitleClinic_pets.getAccessibleContext().setAccessibleName("Nombre de la clínica");
+    jLabelTitleClinic_pets.getAccessibleContext().setAccessibleDescription("Muestra el nombre de la clínica del usuario logueado");
+}
+
 }

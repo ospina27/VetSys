@@ -1,15 +1,13 @@
 package project.vetsys.view.manager;
 
-import java.awt.Color;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
 import project.vetsys.model.User;
 import javax.swing.JOptionPane;
-import javax.swing.plaf.ComboBoxUI;
 import project.vetsys.dao.PetDAO;
 import project.vetsys.model.Pet;
+import project.vetsys.utils.ValidationInput;
 import project.vetsys.view.Nimbus;
 import project.vetsys.view.Utils;
 
@@ -22,6 +20,7 @@ public class CreatePet extends javax.swing.JFrame {
 
     public CreatePet() {
         initComponents();
+        aplicarAccesibilidad();
         initListeners();
     }
     
@@ -30,6 +29,7 @@ public class CreatePet extends javax.swing.JFrame {
         this.logUser = logUser;
         utils = new Utils();
         initComponents();
+        aplicarAccesibilidad();
         initListeners();
         Nimbus.styleAllLabelsExcept(this,CreatePet_lblTittle );
         //Nimbus.styleTitleLabel(CreatePet_lblTittle );
@@ -43,6 +43,9 @@ public class CreatePet extends javax.swing.JFrame {
         CreatePet_lblTittle.setText(logUser.getClinic().getName_clinic());
         buttonGroupSexPet.add(sexMacho_Rbutton); ///añadir los rbutton al group 
         buttonGroupSexPet.add(sexHembra_Rbutton);
+        
+        ValidationInput.numbers(CreatePet_textOwnerDocument);
+
     }
     
     private void initListeners(){
@@ -130,7 +133,6 @@ public class CreatePet extends javax.swing.JFrame {
 
         buttonGroupSexPet = new javax.swing.ButtonGroup();
         jPanel2 = new javax.swing.JPanel();
-        Down = new javax.swing.JPanel();
         jDesktopPane2 = new javax.swing.JDesktopPane();
         CreatePet_tetxNamePet = new javax.swing.JTextField();
         btnCreatePet = new javax.swing.JButton();
@@ -155,12 +157,7 @@ public class CreatePet extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(java.awt.SystemColor.control);
-        setMaximumSize(getMaximumSize());
         setMinimumSize(new java.awt.Dimension(1000, 600));
-
-        Down.setBackground(java.awt.SystemColor.control);
-        Down.setMinimumSize(new java.awt.Dimension(800, 600));
-        Down.setName(""); // NOI18N
 
         jDesktopPane2.setBackground(java.awt.SystemColor.control);
         jDesktopPane2.setMaximumSize(new java.awt.Dimension(32767, 32767));
@@ -292,47 +289,45 @@ public class CreatePet extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CreatePet_lblSubTittle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane2Layout.createSequentialGroup()
-                        .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane2Layout.createSequentialGroup()
-                                .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cboxSpecies_pet, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CreatePet_lblSpecies, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(CreatePet_lblOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CreatePet_textOwnerDocument, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jDesktopPane2Layout.createSequentialGroup()
-                                .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cboxBred_pet, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CreatePet_textColorPet, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CreatePet_lblColorPet, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(138, 138, 138)
-                                .addComponent(bttonEmptyFields_pet, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(CreatePet_tetxNamePet, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jDesktopPane2Layout.createSequentialGroup()
-                                .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(CreatePet_lblNamePet, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CreatePet_lblBreed, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jDesktopPane2Layout.createSequentialGroup()
-                                        .addGap(33, 33, 33)
-                                        .addComponent(btnCreatePet, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(34, 34, 34)
-                                        .addComponent(btnExit1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jDesktopPane2Layout.createSequentialGroup()
-                                        .addGap(284, 284, 284)
-                                        .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(CreatePet_lblDateBirthdayPet, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jDesktopPane2Layout.createSequentialGroup()
-                                        .addGap(284, 284, 284)
-                                        .addComponent(CreatePet_lblSexPet, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(sexMacho_Rbutton)
-                                            .addComponent(sexHembra_Rbutton))))))
-                        .addGap(334, 334, 334)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane2Layout.createSequentialGroup()
+                            .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(cboxSpecies_pet, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CreatePet_lblSpecies, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(CreatePet_lblOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CreatePet_textOwnerDocument, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jDesktopPane2Layout.createSequentialGroup()
+                            .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(cboxBred_pet, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CreatePet_textColorPet, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CreatePet_lblColorPet, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(138, 138, 138)
+                            .addComponent(bttonEmptyFields_pet, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(CreatePet_tetxNamePet, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jDesktopPane2Layout.createSequentialGroup()
+                            .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(CreatePet_lblNamePet, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CreatePet_lblBreed, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jDesktopPane2Layout.createSequentialGroup()
+                                    .addGap(33, 33, 33)
+                                    .addComponent(btnCreatePet, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(34, 34, 34)
+                                    .addComponent(btnExit1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jDesktopPane2Layout.createSequentialGroup()
+                                    .addGap(284, 284, 284)
+                                    .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(CreatePet_lblDateBirthdayPet, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jDesktopPane2Layout.createSequentialGroup()
+                                    .addGap(284, 284, 284)
+                                    .addComponent(CreatePet_lblSexPet, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(sexMacho_Rbutton)
+                                        .addComponent(sexHembra_Rbutton)))))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -382,45 +377,23 @@ public class CreatePet extends javax.swing.JFrame {
                     .addComponent(btnExit1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bttonEmptyFields_pet, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCreatePet, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(76, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout DownLayout = new javax.swing.GroupLayout(Down);
-        Down.setLayout(DownLayout);
-        DownLayout.setHorizontalGroup(
-            DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DownLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jDesktopPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 32207, Short.MAX_VALUE)
-                .addContainerGap(542, Short.MAX_VALUE))
-        );
-        DownLayout.setVerticalGroup(
-            DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DownLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jDesktopPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, Short.MAX_VALUE, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(Down, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jDesktopPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(Down, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jDesktopPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -429,14 +402,13 @@ public class CreatePet extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -570,7 +542,6 @@ public class CreatePet extends javax.swing.JFrame {
     private javax.swing.JTextField CreatePet_tetxNamePet;
     private javax.swing.JTextField CreatePet_textColorPet;
     private javax.swing.JTextField CreatePet_textOwnerDocument;
-    private javax.swing.JPanel Down;
     private javax.swing.JButton btnCreatePet;
     private javax.swing.JButton btnExit1;
     private javax.swing.JButton bttonEmptyFields_pet;
@@ -583,4 +554,128 @@ public class CreatePet extends javax.swing.JFrame {
     private javax.swing.JRadioButton sexHembra_Rbutton;
     private javax.swing.JRadioButton sexMacho_Rbutton;
     // End of variables declaration//GEN-END:variables
+
+    private void aplicarAccesibilidad() {
+
+    // ---------------------- TÍTULOS ----------------------
+    CreatePet_lblTittle.getAccessibleContext().setAccessibleName("Título de la ventana");
+    CreatePet_lblTittle.getAccessibleContext().setAccessibleDescription("Nombre de la clínica");
+
+    CreatePet_lblSubTittle.getAccessibleContext().setAccessibleName("Subtítulo Crear Mascota");
+    CreatePet_lblSubTittle.getAccessibleContext().setAccessibleDescription("Indica que se está creando una mascota");
+
+    // ---------------------- LABELS ----------------------
+    CreatePet_lblNamePet.setLabelFor(CreatePet_tetxNamePet);
+    CreatePet_lblNamePet.setDisplayedMnemonic('N');
+    CreatePet_lblNamePet.setToolTipText("Nombre de la mascota (Alt+N)");
+    CreatePet_lblNamePet.getAccessibleContext().setAccessibleName("Etiqueta Nombre Mascota");
+    CreatePet_lblNamePet.getAccessibleContext().setAccessibleDescription("Etiqueta que indica el campo nombre de la mascota");
+
+    CreatePet_lblSpecies.setLabelFor(cboxSpecies_pet);
+    CreatePet_lblSpecies.setDisplayedMnemonic('E');
+    CreatePet_lblSpecies.setToolTipText("Seleccionar especie (Alt+E)");
+    CreatePet_lblSpecies.getAccessibleContext().setAccessibleName("Etiqueta Especie Mascota");
+    CreatePet_lblSpecies.getAccessibleContext().setAccessibleDescription("Etiqueta para seleccionar especie");
+
+    CreatePet_lblBreed.setLabelFor(cboxBred_pet);
+    CreatePet_lblBreed.setDisplayedMnemonic('R');
+    CreatePet_lblBreed.setToolTipText("Seleccionar raza (Alt+R)");
+    CreatePet_lblBreed.getAccessibleContext().setAccessibleName("Etiqueta Raza Mascota");
+    CreatePet_lblBreed.getAccessibleContext().setAccessibleDescription("Etiqueta que indica la raza de la mascota");
+
+    CreatePet_lblColorPet.setLabelFor(CreatePet_textColorPet);
+    CreatePet_lblColorPet.setDisplayedMnemonic('C');
+    CreatePet_lblColorPet.setToolTipText("Color de la mascota (Alt+C)");
+    CreatePet_lblColorPet.getAccessibleContext().setAccessibleName("Etiqueta Color Mascota");
+    CreatePet_lblColorPet.getAccessibleContext().setAccessibleDescription("Etiqueta color de la mascota");
+
+    CreatePet_lblSexPet.setDisplayedMnemonic('S');
+    CreatePet_lblSexPet.setLabelFor(sexMacho_Rbutton);
+    CreatePet_lblSexPet.setToolTipText("Seleccionar sexo (Alt+S)");
+    CreatePet_lblSexPet.getAccessibleContext().setAccessibleName("Etiqueta Sexo Mascota");
+    CreatePet_lblSexPet.getAccessibleContext().setAccessibleDescription("Etiqueta sexo de la mascota");
+
+    CreatePet_lblDateBirthdayPet.setLabelFor(CreatePet_lblDateBirthdayPet);
+    CreatePet_lblDateBirthdayPet.setDisplayedMnemonic('F');
+    CreatePet_lblDateBirthdayPet.setToolTipText("Fecha de nacimiento (Alt+F)");
+    CreatePet_lblDateBirthdayPet.getAccessibleContext().setAccessibleName("Etiqueta Fecha de Nacimiento");
+    CreatePet_lblDateBirthdayPet.getAccessibleContext().setAccessibleDescription("Etiqueta fecha de nacimiento de la mascota");
+
+    CreatePet_lblOwnerID.setLabelFor(CreatePet_textOwnerDocument);
+    CreatePet_lblOwnerID.setDisplayedMnemonic('O');
+    CreatePet_lblOwnerID.setToolTipText("Documento del propietario (Alt+O)");
+    CreatePet_lblOwnerID.getAccessibleContext().setAccessibleName("Etiqueta Documento Propietario");
+    CreatePet_lblOwnerID.getAccessibleContext().setAccessibleDescription("Etiqueta documento del propietario");
+
+    // ---------------------- CAMPOS ----------------------
+    CreatePet_tetxNamePet.getAccessibleContext().setAccessibleName("Campo Nombre Mascota");
+    CreatePet_tetxNamePet.getAccessibleContext().setAccessibleDescription("Ingrese el nombre de la mascota");
+
+    cboxSpecies_pet.getAccessibleContext().setAccessibleName("Combo Especie Mascota");
+    cboxSpecies_pet.getAccessibleContext().setAccessibleDescription("Lista desplegable para elegir la especie");
+
+    cboxBred_pet.getAccessibleContext().setAccessibleName("Combo Raza Mascota");
+    cboxBred_pet.getAccessibleContext().setAccessibleDescription("Lista desplegable para elegir la raza");
+
+    CreatePet_textColorPet.getAccessibleContext().setAccessibleName("Campo Color Mascota");
+    CreatePet_textColorPet.getAccessibleContext().setAccessibleDescription("Ingrese el color de la mascota");
+
+    CreatePet_lblDateBirthdayPet.getAccessibleContext().setAccessibleName("Campo Fecha de nacimiento");
+    CreatePet_lblDateBirthdayPet.getAccessibleContext().setAccessibleDescription("Ingrese fecha formateada YYYY-MM-DD");
+
+    CreatePet_textOwnerDocument.getAccessibleContext().setAccessibleName("Campo Documento Propietario");
+    CreatePet_textOwnerDocument.getAccessibleContext().setAccessibleDescription("Ingrese el documento del propietario");
+
+    sexMacho_Rbutton.getAccessibleContext().setAccessibleName("Radio botón Macho");
+    sexHembra_Rbutton.getAccessibleContext().setAccessibleName("Radio botón Hembra");
+
+    // ---------------------- BOTONES ----------------------
+    btnCreatePet.setMnemonic('G'); // Crear (Guardar)
+    btnCreatePet.setToolTipText("Crear mascota (Alt+G)");
+    btnCreatePet.getAccessibleContext().setAccessibleName("Botón Crear Mascota");
+
+    bttonEmptyFields_pet.setMnemonic('L'); // Limpiar
+    bttonEmptyFields_pet.setToolTipText("Limpiar campos (Alt+L)");
+    bttonEmptyFields_pet.getAccessibleContext().setAccessibleName("Botón Limpiar Campos");
+
+    btnExit1.setMnemonic('S'); // Salir
+    btnExit1.setToolTipText("Salir (Alt+S)");
+    btnExit1.getAccessibleContext().setAccessibleName("Botón Salir");
+
+    // ---------------------- TAB ORDER ----------------------
+    CreatePet_tetxNamePet.setNextFocusableComponent(cboxSpecies_pet);
+    cboxSpecies_pet.setNextFocusableComponent(cboxBred_pet);
+    cboxBred_pet.setNextFocusableComponent(CreatePet_textColorPet);
+    CreatePet_textColorPet.setNextFocusableComponent(CreatePet_lblDateBirthdayPet);
+    CreatePet_lblDateBirthdayPet.setNextFocusableComponent(CreatePet_textOwnerDocument);
+    CreatePet_textOwnerDocument.setNextFocusableComponent(sexMacho_Rbutton);
+    sexMacho_Rbutton.setNextFocusableComponent(sexHembra_Rbutton);
+    sexHembra_Rbutton.setNextFocusableComponent(btnCreatePet);
+
+    // ---------------------- FOCUSABLE EN PANELS ----------------------
+    //CreatePet.setFocusable(true);
+    //Down.setFocusable(true);
+    //Up.setFocusable(true);
+
+    // ---------------------- ATAJOS ALT GLOBALES ----------------------
+    javax.swing.InputMap im = getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
+    javax.swing.ActionMap am = getRootPane().getActionMap();
+
+    im.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_crear");
+    am.put("accion_crear", new javax.swing.AbstractAction() {
+        @Override public void actionPerformed(java.awt.event.ActionEvent e) { btnCreatePet.doClick(); }
+    });
+
+    im.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_limpiar");
+    am.put("accion_limpiar", new javax.swing.AbstractAction() {
+        @Override public void actionPerformed(java.awt.event.ActionEvent e) { bttonEmptyFields_pet.doClick(); }
+    });
+
+    im.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_salir");
+    am.put("accion_salir", new javax.swing.AbstractAction() {
+        @Override public void actionPerformed(java.awt.event.ActionEvent e) { btnExit1.doClick(); }
+    });
+}
+
+
 }

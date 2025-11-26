@@ -4,7 +4,7 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import project.vetsys.dao.UserDAO;
 import project.vetsys.model.User;
-import project.vetsys.utils.ValidationInput;
+import java.awt.event.KeyEvent;
 import project.vetsys.view.Nimbus;
 import project.vetsys.view.manager.MenuManager;
 
@@ -17,6 +17,9 @@ public class LogIn extends javax.swing.JFrame {
     public LogIn() {
         Nimbus.LookandFeel();
         initComponents();
+        aplicarAccesibilidad();
+        conectarAccionesBotones();
+
         Nimbus.styleAllTextFields(this);
         Nimbus.styleLabel(LogInPanel_lblUsername);
         Nimbus.styleLabel(LogInPanel_lblPassword);
@@ -287,4 +290,173 @@ public class LogIn extends javax.swing.JFrame {
     private javax.swing.JTextField LogInPanel_txtUsername;
     private javax.swing.JPanel Right;
     // End of variables declaration//GEN-END:variables
+
+    private void aplicarAccesibilidad() {
+    // ============================================================
+    //  TITULO
+    // ============================================================
+    LogInPanel_lblLogin.getAccessibleContext().setAccessibleName("Título Login");
+    LogInPanel_lblLogin.getAccessibleContext().setAccessibleDescription("Pantalla de inicio de sesión del sistema Vet Sys");
+
+    // ============================================================
+    //  LABELS
+    // ============================================================
+    // Usuario
+    LogInPanel_lblUsername.setLabelFor(LogInPanel_txtUsername);
+    LogInPanel_lblUsername.setDisplayedMnemonic('U'); 
+    LogInPanel_lblUsername.setToolTipText("Campo de usuario (Alt+U)");
+    LogInPanel_lblUsername.getAccessibleContext().setAccessibleName("Etiqueta Usuario");
+    LogInPanel_lblUsername.getAccessibleContext().setAccessibleDescription("Etiqueta del campo para ingresar el nombre de usuario");
+
+    // Contraseña
+    LogInPanel_lblPassword.setLabelFor(LogInPanel_txtPassword);
+    LogInPanel_lblPassword.setDisplayedMnemonic('C'); 
+    LogInPanel_lblPassword.setToolTipText("Campo de contraseña (Alt+C)");
+    LogInPanel_lblPassword.getAccessibleContext().setAccessibleName("Etiqueta Contraseña");
+    LogInPanel_lblPassword.getAccessibleContext().setAccessibleDescription("Etiqueta del campo para ingresar la contraseña");
+
+    // Olvidaste contraseña
+    LogInPanel_lblResetPassword.getAccessibleContext().setAccessibleName("Texto recuperar contraseña");
+    LogInPanel_lblResetPassword.getAccessibleContext().setAccessibleDescription("Texto informativo sobre recuperación de contraseña");
+    LogInPanel_BttnResetPassword.getAccessibleContext().setAccessibleName("Botón recuperar contraseña");
+    LogInPanel_BttnResetPassword.getAccessibleContext().setAccessibleDescription("Haz clic para recuperar contraseña");
+    LogInPanel_BttnResetPassword.setToolTipText("Recuperar contraseña (Alt+R)");
+
+    // ============================================================
+    //  CAMPOS
+    // ============================================================
+    LogInPanel_txtUsername.getAccessibleContext().setAccessibleName("Campo Usuario");
+    LogInPanel_txtUsername.getAccessibleContext().setAccessibleDescription("Ingrese aquí su nombre de usuario");
+    LogInPanel_txtUsername.setToolTipText("Ingrese su nombre de usuario (Alt+U)");
+
+    LogInPanel_txtPassword.getAccessibleContext().setAccessibleName("Campo Contraseña");
+    LogInPanel_txtPassword.getAccessibleContext().setAccessibleDescription("Ingrese aquí su contraseña");
+    LogInPanel_txtPassword.setToolTipText("Ingrese su contraseña (Alt+C)");
+
+    // ============================================================
+    //  BOTÓN LOGIN
+    // ============================================================
+    LogInPanel_BttnLogin.setMnemonic('G'); // G de "Ingresar"
+    LogInPanel_BttnLogin.setToolTipText("Ingresar (Alt+G)");
+    LogInPanel_BttnLogin.getAccessibleContext().setAccessibleName("Botón Ingresar");
+    LogInPanel_BttnLogin.getAccessibleContext().setAccessibleDescription("Botón para iniciar sesión en el sistema");
+
+    // ============================================================
+    //  TAB ORDER
+    // ============================================================
+    LogInPanel_txtUsername.setNextFocusableComponent(LogInPanel_txtPassword);
+    LogInPanel_txtPassword.setNextFocusableComponent(LogInPanel_BttnLogin);
+    LogInPanel_BttnLogin.setNextFocusableComponent(LogInPanel_BttnResetPassword);
+
+    // Paneles enfocable si se usan para navegación
+    Left.setFocusable(true);
+    Right.setFocusable(true);
+
+    // ============================================================
+    //  ATAJOS GLOBALS ALT (InputMap / ActionMap)
+    // ============================================================
+    javax.swing.InputMap im = getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
+    javax.swing.ActionMap am = getRootPane().getActionMap();
+
+    // ALT+U → Foco usuario
+    im.put(javax.swing.KeyStroke.getKeyStroke(KeyEvent.VK_U, KeyEvent.ALT_DOWN_MASK), "foco_usuario");
+    am.put("foco_usuario", new javax.swing.AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            LogInPanel_txtUsername.requestFocusInWindow();
+        }
+    });
+
+    // ALT+C → Foco contraseña
+    im.put(javax.swing.KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.ALT_DOWN_MASK), "foco_contra");
+    am.put("foco_contra", new javax.swing.AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            LogInPanel_txtPassword.requestFocusInWindow();
+        }
+    });
+
+    // ALT+G → Ejecutar Ingresar
+    im.put(javax.swing.KeyStroke.getKeyStroke(KeyEvent.VK_G, KeyEvent.ALT_DOWN_MASK), "accion_ingresar");
+    am.put("accion_ingresar", new javax.swing.AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            LogInPanel_BttnLogin.doClick();
+        }
+    });
+
+    // ALT+R → Recuperar contraseña
+    im.put(javax.swing.KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.ALT_DOWN_MASK), "accion_recuperar");
+    am.put("accion_recuperar", new javax.swing.AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            LogInPanel_BttnResetPasswordMouseClicked(null);
+        }
+    });
+
 }
+
+        private void conectarAccionesBotones() {
+
+            LogInPanel_BttnLogin.addActionListener(e -> {
+
+                String username = LogInPanel_txtUsername.getText().trim();
+                String password = new String(LogInPanel_txtPassword.getPassword());
+
+                // Validar vacíos
+                if (username.isEmpty() || password.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Por favor ingrese usuario y contraseña.", 
+                                                  "Vet Sys", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+
+                UserDAO userDAO = new UserDAO();
+                User user = null;
+
+                try {
+                    user = userDAO.login(username, password);
+                } catch (ClassNotFoundException ex) {
+                    JOptionPane.showMessageDialog(this, "Error de conexión" + ex.getMessage(),
+                                                  "ERROR", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                if (user != null) {
+                    JOptionPane.showMessageDialog(this, 
+                            "Inicio de sesión exitoso. Bienvenido " + user.getUsername(),
+                            user.getClinic().getName_clinic(), 
+                            JOptionPane.INFORMATION_MESSAGE);
+
+                    MenuManager MenuManagerFrame = new MenuManager(user);
+                    MenuManagerFrame.setVisible(true);
+                    MenuManagerFrame.pack();
+                    MenuManagerFrame.setLocationRelativeTo(null);
+                    this.dispose();
+
+                } else {
+                    JOptionPane.showMessageDialog(this,
+                            "Usuario o contraseña incorrectos.",
+                            "Error de inicio de sesión",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            });
+
+            LogInPanel_BttnResetPassword.addMouseListener(new java.awt.event.MouseAdapter() {}); 
+            LogInPanel_BttnResetPassword.addPropertyChangeListener(evt -> {
+            });
+
+            // Acción accesible (teclado/lectores pantalla)
+            LogInPanel_BttnResetPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_SPACE) {
+                        LogInPanel_BttnResetPasswordMouseClicked(null);
+                    }
+                }
+            });
+        }
+
+}
+
+
+

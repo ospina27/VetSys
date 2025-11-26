@@ -1,6 +1,9 @@
 package project.vetsys.view.manager;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import javax.swing.AbstractAction;
+import javax.swing.KeyStroke;
 import project.vetsys.model.User;
 
 public class PatientsMenu extends javax.swing.JFrame {
@@ -10,6 +13,8 @@ public class PatientsMenu extends javax.swing.JFrame {
     
     public PatientsMenu(User logUser) {
         initComponents();
+        aplicarAccesibilidad();
+        conectarAccionesBotones();
         this.logUser = logUser;
         System.out.println("Usuario logueado en MenuManager: " + logUser.getUsername());
         if(!"Administrador".equalsIgnoreCase(logUser.getName_role()))
@@ -21,6 +26,8 @@ public class PatientsMenu extends javax.swing.JFrame {
 
     public PatientsMenu() {
         initComponents();
+        aplicarAccesibilidad();
+        conectarAccionesBotones();
     }
 
     @SuppressWarnings("unchecked")
@@ -333,4 +340,158 @@ public class PatientsMenu extends javax.swing.JFrame {
     private javax.swing.JLabel MenuPatients_ImgVetSys;
     private javax.swing.JPanel Right;
     // End of variables declaration//GEN-END:variables
+
+        private void aplicarAccesibilidad() {
+
+        // ===================== PANEL =======================
+        MenuPatientsPanel.setFocusable(true);
+        Left.setFocusable(true);
+        Right.setFocusable(true);
+
+        // ===================== BOTONES =====================
+
+        // --- Registrar Cliente ---
+        MenuPatients_BttnCreatePatient.getAccessibleContext().setAccessibleName("Registrar Cliente");
+        MenuPatients_BttnCreatePatient.getAccessibleContext().setAccessibleDescription("Abre el formulario para registrar un cliente");
+        MenuPatients_BttnCreatePatient.setMnemonic('R'); // Alt + R
+        MenuPatients_BttnCreatePatient.setToolTipText("Registrar Cliente (Alt+R)");
+        MenuPatients_BttnCreatePatient.setFocusable(true);
+
+        // --- Consultar Cliente ---
+        MenuPatients_BttnSearchPatient.getAccessibleContext().setAccessibleName("Consultar Cliente");
+        MenuPatients_BttnSearchPatient.getAccessibleContext().setAccessibleDescription("Abre el formulario para consultar clientes");
+        MenuPatients_BttnSearchPatient.setMnemonic('C'); // Alt + C
+        MenuPatients_BttnSearchPatient.setToolTipText("Consultar Cliente (Alt+C)");
+        MenuPatients_BttnSearchPatient.setFocusable(true);
+
+        // --- Registrar Mascota ---
+        MenuPatients_BttnCreatePet.getAccessibleContext().setAccessibleName("Registrar Mascota");
+        MenuPatients_BttnCreatePet.getAccessibleContext().setAccessibleDescription("Abre el formulario para registrar mascotas");
+        MenuPatients_BttnCreatePet.setMnemonic('M'); // Alt + M
+        MenuPatients_BttnCreatePet.setToolTipText("Registrar Mascota (Alt+M)");
+        MenuPatients_BttnCreatePet.setFocusable(true);
+
+        // --- Consultar Mascota ---
+        MenuPatients_BttnSearchPet.getAccessibleContext().setAccessibleName("Consultar Mascota");
+        MenuPatients_BttnSearchPet.getAccessibleContext().setAccessibleDescription("Abre el formulario para consultar mascotas");
+        MenuPatients_BttnSearchPet.setMnemonic('S'); // Alt + S
+        MenuPatients_BttnSearchPet.setToolTipText("Consultar Mascota (Alt+S)");
+        MenuPatients_BttnSearchPet.setFocusable(true);
+
+        // --- Regresar ---
+        MenuPatients_BttnBack.getAccessibleContext().setAccessibleName("Regresar");
+        MenuPatients_BttnBack.getAccessibleContext().setAccessibleDescription("Regresa al menú anterior");
+        MenuPatients_BttnBack.setMnemonic('V'); // Alt + V
+        MenuPatients_BttnBack.setToolTipText("Regresar (Alt+V)");
+        MenuPatients_BttnBack.setFocusable(true);
+
+        // ================= TAB ORDER ======================
+        MenuPatients_BttnCreatePatient.setNextFocusableComponent(MenuPatients_BttnSearchPatient);
+        MenuPatients_BttnSearchPatient.setNextFocusableComponent(MenuPatients_BttnCreatePet);
+        MenuPatients_BttnCreatePet.setNextFocusableComponent(MenuPatients_BttnSearchPet);
+        MenuPatients_BttnSearchPet.setNextFocusableComponent(MenuPatients_BttnBack);
+        MenuPatients_BttnBack.setNextFocusableComponent(MenuPatients_BttnCreatePatient);
+
+        // ================ ATAJOS GLOBALES ALT ==============
+        javax.swing.InputMap inputMap = getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
+        javax.swing.ActionMap actionMap = getRootPane().getActionMap();
+
+        // --- Registrar Cliente (ALT + R) ---
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.ALT_DOWN_MASK), "registrar_cliente");
+        actionMap.put("registrar_cliente", new AbstractAction() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                MenuPatients_BttnCreatePatient.doClick();
+            }
+        });
+
+        // --- Consultar Cliente (ALT + C) ---
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.ALT_DOWN_MASK), "consultar_cliente");
+        actionMap.put("consultar_cliente", new AbstractAction() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                MenuPatients_BttnSearchPatient.doClick();
+            }
+        });
+
+        // --- Registrar Mascota (ALT + M) ---
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_M, KeyEvent.ALT_DOWN_MASK), "registrar_mascota");
+        actionMap.put("registrar_mascota", new AbstractAction() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                MenuPatients_BttnCreatePet.doClick();
+            }
+        });
+
+        // --- Consultar Mascota (ALT + S) ---
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.ALT_DOWN_MASK), "consultar_mascota");
+        actionMap.put("consultar_mascota", new AbstractAction() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                MenuPatients_BttnSearchPet.doClick();
+            }
+        });
+
+        // --- Regresar (ALT + V) ---
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, KeyEvent.ALT_DOWN_MASK), "regresar");
+        actionMap.put("regresar", new AbstractAction() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                MenuPatients_BttnBack.doClick();
+            }
+        });
+    }
+
+    private void conectarAccionesBotones() {
+
+    // --- Registrar Cliente ---
+    MenuPatients_BttnCreatePatient.addActionListener(e -> {
+        System.out.println("MenuManager -> logUser: " +
+            (logUser != null ? logUser.getUsername() + " id_clinic=" + logUser.getId_clinic() + " role=" + logUser.getName_role() : "logUser es null"));
+        CreateClient CreateClientFrame = new CreateClient(logUser);
+        CreateClientFrame.setVisible(true);
+        CreateClientFrame.pack();
+        CreateClientFrame.setLocationRelativeTo(null);
+        this.dispose();
+    });
+
+    // --- Consultar Cliente ---
+    MenuPatients_BttnSearchPatient.addActionListener(e -> {
+        System.out.println("MenuManager -> logUser: " +
+            (logUser != null ? logUser.getUsername() + " id_clinic=" + logUser.getId_clinic() + " role=" + logUser.getName_role() : "logUser es null"));
+        SearchClient SearchClientFrame = new SearchClient(logUser);
+        SearchClientFrame.setVisible(true);
+        SearchClientFrame.pack();
+        SearchClientFrame.setLocationRelativeTo(null);
+        this.dispose();
+    });
+
+    // --- Registrar Mascota ---
+    MenuPatients_BttnCreatePet.addActionListener(e -> {
+        CreatePet createPetFrame = new CreatePet(logUser);
+        createPetFrame.setVisible(true);
+        createPetFrame.pack();
+        createPetFrame.setLocationRelativeTo(null);
+        this.dispose();
+    });
+
+    // --- Consultar Mascota ---
+    MenuPatients_BttnSearchPet.addActionListener(e -> {
+        SearchPet searchPetFrame = new SearchPet(logUser);
+        searchPetFrame.setVisible(true);
+        searchPetFrame.pack();
+        searchPetFrame.setLocationRelativeTo(null);
+        this.dispose();
+    });
+
+    // --- Regresar ---
+    MenuPatients_BttnBack.addActionListener(e -> {
+        MenuManager managerFrame = new MenuManager(logUser);
+        managerFrame.setVisible(true);
+        managerFrame.pack();
+        managerFrame.setLocationRelativeTo(null);
+        this.dispose();
+    });
+}
+
 }

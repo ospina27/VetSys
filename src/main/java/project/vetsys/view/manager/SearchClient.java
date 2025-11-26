@@ -19,6 +19,7 @@ import project.vetsys.database.DBConnection;
 import project.vetsys.model.ClienteModel;
 import project.vetsys.model.User;
 import project.vetsys.view.Nimbus;
+import project.vetsys.utils.ValidationInput;
 
 /**
  *
@@ -41,6 +42,7 @@ public class SearchClient extends javax.swing.JFrame {
         Nimbus.LookandFeel();
         this.logUser = logUser;
         initComponents();
+        aplicarAccesibilidad();
         configurarTabla();
         cargarClientes();
         cargarMembresias();
@@ -55,18 +57,23 @@ public class SearchClient extends javax.swing.JFrame {
         if(!"Administrador".equalsIgnoreCase(logUser.getName_role())){
             btnActualizar.setVisible(false);
             btnEliminar.setVisible(false);
-        }
-        
+        } 
         setTitle("Gestión de Clientes");
-        
-        
+        //txtClinica.setEditable(false); ///no editar la clinica
+                
         System.out.println("Usuario logueado recibido: " + logUser.getUsername()); //prueba en consola
+        
+        ValidationInput.numbers(txtDocumentoIngresado);
+        ValidationInput.numbers(txtDocumento);
+
+
         
     }
 
     // Constructor sin parámetros 
     public SearchClient() {
         initComponents();
+        aplicarAccesibilidad();
         configurarTabla();
         cargarClientes();
         cargarMembresias();
@@ -781,4 +788,140 @@ public class SearchClient extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
+
+    private void aplicarAccesibilidad() {
+
+    // --- PANEL PRINCIPAL ---
+    jPanel1.setFocusable(true);
+    jPanel2.setFocusable(true);
+    jPanel3.setFocusable(true);
+    // --- CAMPOS DE INFORMACIÓN DEL CLIENTE ---
+    //txtClinica.getAccessibleContext().setAccessibleName("Nombre de la clínica");
+    //txtClinica.getAccessibleContext().setAccessibleDescription("Nombre de la clínica asociada al usuario");
+    //txtClinica.setToolTipText("Nombre de la clínica");
+ 
+    //txtIdCliente.getAccessibleContext().setAccessibleName("ID del cliente");
+    //txtIdCliente.getAccessibleContext().setAccessibleDescription("Identificador único del cliente");
+    //txtIdCliente.setToolTipText("ID del cliente (Alt+I)");
+    //txtIdCliente.setNextFocusableComponent(txtNombres);
+
+    txtNombres.getAccessibleContext().setAccessibleName("Campo Nombres");
+    txtNombres.getAccessibleContext().setAccessibleDescription("Ingrese los nombres del cliente");
+    txtNombres.setToolTipText("Nombres del cliente (Alt+N)");
+    txtNombres.setNextFocusableComponent(txtApellidos);
+
+    txtApellidos.getAccessibleContext().setAccessibleName("Campo Apellidos");
+    txtApellidos.getAccessibleContext().setAccessibleDescription("Ingrese los apellidos del cliente");
+    txtApellidos.setToolTipText("Apellidos del cliente (Alt+A)");
+    txtApellidos.setNextFocusableComponent(txtDocumento);
+
+    txtDocumento.getAccessibleContext().setAccessibleName("Documento del cliente");
+    txtDocumento.getAccessibleContext().setAccessibleDescription("Número de documento del cliente");
+    txtDocumento.setToolTipText("Documento del cliente (Alt+D)");
+    txtDocumento.setNextFocusableComponent(txtTelefono);
+
+    txtTelefono.getAccessibleContext().setAccessibleName("Teléfono del cliente");
+    txtTelefono.getAccessibleContext().setAccessibleDescription("Ingrese el teléfono del cliente");
+    txtTelefono.setToolTipText("Teléfono del cliente (Alt+T)");
+    txtTelefono.setNextFocusableComponent(txtCorreo);
+
+    txtCorreo.getAccessibleContext().setAccessibleName("Correo del cliente");
+    txtCorreo.getAccessibleContext().setAccessibleDescription("Ingrese el correo electrónico del cliente");
+    txtCorreo.setToolTipText("Correo del cliente (Alt+O)");
+    txtCorreo.setNextFocusableComponent(txtDireccion);
+
+    txtDireccion.getAccessibleContext().setAccessibleName("Dirección del cliente");
+    txtDireccion.getAccessibleContext().setAccessibleDescription("Ingrese la dirección del cliente");
+    txtDireccion.setToolTipText("Dirección del cliente (Alt+R)");
+    txtDireccion.setNextFocusableComponent(cmboxMembresias);
+
+    // --- COMBOBOX MEMBRESÍAS ---
+    cmboxMembresias.getAccessibleContext().setAccessibleName("Membresía");
+    cmboxMembresias.getAccessibleContext().setAccessibleDescription("Seleccione la membresía del cliente");
+    cmboxMembresias.setToolTipText("Seleccionar membresía (Alt+M)");
+    cmboxMembresias.setNextFocusableComponent(jDateChooserFechaInicio);
+
+    jDateChooserFechaInicio.getAccessibleContext().setAccessibleName("Fecha inicio membresía");
+    jDateChooserFechaInicio.getAccessibleContext().setAccessibleDescription("Fecha de inicio de la membresía");
+    jDateChooserFechaInicio.setToolTipText("Fecha inicio (yyyy/mm/dd) (Alt+F)");
+    jDateChooserFechaInicio.setNextFocusableComponent(jDateChooserFechaFin);
+
+    jDateChooserFechaFin.getAccessibleContext().setAccessibleName("Fecha fin membresía");
+    jDateChooserFechaFin.getAccessibleContext().setAccessibleDescription("Fecha de finalización de la membresía");
+    jDateChooserFechaFin.setToolTipText("Fecha fin (yyyy/mm/dd) (Alt+G)");
+    jDateChooserFechaFin.setNextFocusableComponent(txtDocumentoIngresado);
+
+    // --- CAMPO BÚSQUEDA ---
+    txtDocumentoIngresado.getAccessibleContext().setAccessibleName("Documento a buscar");
+    txtDocumentoIngresado.getAccessibleContext().setAccessibleDescription("Ingrese el número de documento del cliente a buscar");
+    txtDocumentoIngresado.setToolTipText("Número de documento del cliente (Alt+B)");
+    txtDocumentoIngresado.setNextFocusableComponent(btnConsultaCliente);
+
+    // --- BOTONES ---
+    btnConsultaCliente.getAccessibleContext().setAccessibleName("Buscar cliente");
+    btnConsultaCliente.getAccessibleContext().setAccessibleDescription("Buscar cliente por documento");
+    btnConsultaCliente.setToolTipText("Buscar cliente (Alt+B)");
+    btnConsultaCliente.setMnemonic('B');
+    btnConsultaCliente.setNextFocusableComponent(btnActualizar);
+
+    btnActualizar.getAccessibleContext().setAccessibleName("Actualizar cliente");
+    btnActualizar.getAccessibleContext().setAccessibleDescription("Actualizar los datos del cliente seleccionado");
+    btnActualizar.setToolTipText("Actualizar cliente (Alt+U)");
+    btnActualizar.setMnemonic('U');
+    btnActualizar.setNextFocusableComponent(btnEliminar);
+
+    btnEliminar.getAccessibleContext().setAccessibleName("Eliminar cliente");
+    btnEliminar.getAccessibleContext().setAccessibleDescription("Eliminar el cliente seleccionado");
+    btnEliminar.setToolTipText("Eliminar cliente (Alt+E)");
+    btnEliminar.setMnemonic('E');
+    btnEliminar.setNextFocusableComponent(btnSalir);
+
+    btnSalir.getAccessibleContext().setAccessibleName("Atrás");
+    btnSalir.getAccessibleContext().setAccessibleDescription("Volver al menú anterior");
+    btnSalir.setToolTipText("Atrás (Alt+S)");
+    btnSalir.setMnemonic('S');
+
+    // --- TABLA ---
+    tablaClientes.getAccessibleContext().setAccessibleName("Tabla de clientes");
+    tablaClientes.getAccessibleContext().setAccessibleDescription("Listado de clientes con sus datos");
+
+    // --- ATAJOS GLOBALES ALT ---
+    getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW)
+        .put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_buscar");
+    getRootPane().getActionMap().put("accion_buscar", new javax.swing.AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            btnConsultaCliente.doClick();
+        }
+    });
+
+    getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW)
+        .put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_actualizar");
+    getRootPane().getActionMap().put("accion_actualizar", new javax.swing.AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            btnActualizar.doClick();
+        }
+    });
+
+    getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW)
+        .put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_eliminar");
+    getRootPane().getActionMap().put("accion_eliminar", new javax.swing.AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            btnEliminar.doClick();
+        }
+    });
+
+    getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW)
+        .put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_salir");
+    getRootPane().getActionMap().put("accion_salir", new javax.swing.AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            btnSalir.doClick();
+        }
+    });
+}
+
+
 }

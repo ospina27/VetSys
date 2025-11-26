@@ -9,6 +9,7 @@ import project.vetsys.dao.CitaDAO;
 import project.vetsys.model.Cita;
 import project.vetsys.model.User;
 import project.vetsys.view.Nimbus;
+import project.vetsys.utils.ValidationInput;
 import project.vetsys.view.manager.Appointment_Menu;
 
 
@@ -28,6 +29,8 @@ public class SearchAppointment extends javax.swing.JFrame {
         cargarColumnasTabla();
         cargarEstadosCita();
         cargarTodasLasCitas();
+        ValidationInput.numbers(txtDocumentoCliente);
+
         cmbHora.removeAllItems();
         btnEliminar.setVisible(false);
         setTitle("Gestión de citas");

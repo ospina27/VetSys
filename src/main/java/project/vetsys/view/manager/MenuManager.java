@@ -1,7 +1,9 @@
 package project.vetsys.view.manager;
 
 import java.awt.Color;
-import javax.swing.JOptionPane;
+import java.awt.event.ActionEvent;
+import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 import project.vetsys.view.security.LogIn;
 
 import project.vetsys.model.User;
@@ -16,13 +18,21 @@ public class MenuManager extends javax.swing.JFrame {
     
     public MenuManager(User logUser) {
         initComponents();
+        aplicarAccesibilidad();
+        conectarAccionesBotones();
         this.logUser = logUser;
         System.out.println("Usuario logueado en MenuManager: " + logUser.getUsername());
         setTitle("Gestión Veterinaria "+logUser.getClinic().getName_clinic());
+        if(!"Administrador".equalsIgnoreCase(logUser.getName_role()))
+        {
+           //btnCreate.setVisible(false);
+        }
     }
     
     public MenuManager() {
         initComponents();
+        aplicarAccesibilidad();
+        conectarAccionesBotones();
     }
 
     @SuppressWarnings("unchecked")
@@ -324,4 +334,130 @@ public class MenuManager extends javax.swing.JFrame {
     private javax.swing.JLabel MenuManager_ImgVetSys;
     private javax.swing.JPanel Right;
     // End of variables declaration//GEN-END:variables
+
+        private void aplicarAccesibilidad() {
+
+        // ===================== PANELS ======================
+        MenuManagerPanel.setFocusable(true);
+        Left.setFocusable(true);
+        Right.setFocusable(true);
+
+        // ===================== BOTONES =====================
+
+        // --- Usuarios ---
+        MenuManager_BttnUsers.getAccessibleContext().setAccessibleName("Botón Usuarios");
+        MenuManager_BttnUsers.getAccessibleContext().setAccessibleDescription("Abrir el menú de gestión de usuarios");
+        MenuManager_BttnUsers.setMnemonic('U'); // Alt + U
+        MenuManager_BttnUsers.setToolTipText("Usuarios (Alt+U)");
+        MenuManager_BttnUsers.setFocusable(true);
+
+        // --- Citas ---
+        MenuManager_BttnAppointments.getAccessibleContext().setAccessibleName("Botón Citas");
+        MenuManager_BttnAppointments.getAccessibleContext().setAccessibleDescription("Abrir el menú de gestión de citas");
+        MenuManager_BttnAppointments.setMnemonic('C'); // Alt + C
+        MenuManager_BttnAppointments.setToolTipText("Citas (Alt+C)");
+        MenuManager_BttnAppointments.setFocusable(true);
+
+        // --- Pacientes ---
+        MenuManager_BttnPatients.getAccessibleContext().setAccessibleName("Botón Pacientes");
+        MenuManager_BttnPatients.getAccessibleContext().setAccessibleDescription("Abrir el menú de pacientes");
+        MenuManager_BttnPatients.setMnemonic('P'); // Alt + P
+        MenuManager_BttnPatients.setToolTipText("Pacientes (Alt+P)");
+        MenuManager_BttnPatients.setFocusable(true);
+
+        // --- Cerrar Sesión ---
+        MenuManager_BttnLogOut.getAccessibleContext().setAccessibleName("Botón Cerrar Sesión");
+        MenuManager_BttnLogOut.getAccessibleContext().setAccessibleDescription("Cerrar sesión y volver al inicio");
+        MenuManager_BttnLogOut.setMnemonic('S'); // Alt + S
+        MenuManager_BttnLogOut.setToolTipText("Cerrar sesión (Alt+S)");
+        MenuManager_BttnLogOut.setFocusable(true);
+
+        // ================= TAB ORDER ======================
+        MenuManager_BttnUsers.setNextFocusableComponent(MenuManager_BttnAppointments);
+        MenuManager_BttnAppointments.setNextFocusableComponent(MenuManager_BttnPatients);
+        MenuManager_BttnPatients.setNextFocusableComponent(MenuManager_BttnLogOut);
+        MenuManager_BttnLogOut.setNextFocusableComponent(MenuManager_BttnUsers);
+
+        // ================ ATAJOS GLOBALES ALT ==============
+
+        javax.swing.InputMap inputMap = getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
+        javax.swing.ActionMap actionMap = getRootPane().getActionMap();
+
+        // --- ALT + U → Usuarios ---
+        inputMap.put(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_DOWN_MASK), "open_users");
+        actionMap.put("open_users", new javax.swing.AbstractAction() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                MenuManager_BttnUsers.doClick();
+            }
+        });
+
+        // --- ALT + C → Citas ---
+        inputMap.put(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_DOWN_MASK), "open_appointments");
+        actionMap.put("open_appointments", new javax.swing.AbstractAction() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                MenuManager_BttnAppointments.doClick();
+            }
+        });
+
+        // --- ALT + P → Pacientes ---
+        inputMap.put(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_DOWN_MASK), "open_patients");
+        actionMap.put("open_patients", new javax.swing.AbstractAction() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                MenuManager_BttnPatients.doClick();
+            }
+        });
+
+        // --- ALT + S → Cerrar sesión ---
+        inputMap.put(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK), "logout");
+        actionMap.put("logout", new javax.swing.AbstractAction() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                MenuManager_BttnLogOut.doClick();
+            }
+        });
+
+    }
+        private void conectarAccionesBotones() {
+
+        // --- Usuarios ---
+        MenuManager_BttnUsers.addActionListener(e -> {
+            UsersMenu MenuUserFrame = new UsersMenu(logUser);
+            MenuUserFrame.setVisible(true);
+            MenuUserFrame.pack();
+            MenuUserFrame.setLocationRelativeTo(null);
+            this.dispose();
+        });
+
+        // --- Citas ---
+        MenuManager_BttnAppointments.addActionListener(e -> {
+            Appointment_Menu MenuAppointmentFrame = new Appointment_Menu(logUser);
+            MenuAppointmentFrame.setVisible(true);
+            MenuAppointmentFrame.pack();
+            MenuAppointmentFrame.setLocationRelativeTo(null);
+            this.dispose();
+        });
+
+        // --- Pacientes ---
+        MenuManager_BttnPatients.addActionListener(e -> {
+            PatientsMenu patientFrame = new PatientsMenu(logUser);
+            patientFrame.setVisible(true);
+            patientFrame.pack();
+            patientFrame.setLocationRelativeTo(null);
+            this.dispose();
+        });
+
+        // --- Cerrar sesión ---
+        MenuManager_BttnLogOut.addActionListener(e -> {
+            LogIn LogInFrame = new LogIn();
+            LogInFrame.setVisible(true);
+            LogInFrame.pack();
+            LogInFrame.setLocationRelativeTo(null);
+            this.dispose();
+        });
+    }
+
+
 }

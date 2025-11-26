@@ -1,6 +1,11 @@
 package project.vetsys.view.manager;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
+import javax.swing.KeyStroke;
 import project.vetsys.model.User;
 
 public class UsersMenu extends javax.swing.JFrame {
@@ -10,6 +15,8 @@ public class UsersMenu extends javax.swing.JFrame {
     
     public UsersMenu(User logUser) {
         initComponents();
+        aplicarAccesibilidad();
+        conectarAccionesBotones();
         this.logUser = logUser;
         System.out.println("Usuario logueado en MenuManager: " + logUser.getUsername());
         if(!"Administrador".equalsIgnoreCase(logUser.getName_role()))
@@ -21,6 +28,8 @@ public class UsersMenu extends javax.swing.JFrame {
 
     public UsersMenu() {
         initComponents();
+        aplicarAccesibilidad();
+        conectarAccionesBotones();
     }
 
     @SuppressWarnings("unchecked")
@@ -79,7 +88,7 @@ public class UsersMenu extends javax.swing.JFrame {
         MenuUsers_BttnCreateUser.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         MenuUsers_BttnCreateUser.setForeground(new java.awt.Color(255, 255, 255));
         MenuUsers_BttnCreateUser.setText("Crear Usuario");
-        MenuUsers_BttnCreateUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuUsers_BttnCreateUser.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuUsers_BttnCreateUser.setFocusPainted(false);
         MenuUsers_BttnCreateUser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -97,7 +106,7 @@ public class UsersMenu extends javax.swing.JFrame {
         MenuUsers_BttnSearchUser.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         MenuUsers_BttnSearchUser.setForeground(new java.awt.Color(255, 255, 255));
         MenuUsers_BttnSearchUser.setText("Buscar Usuario");
-        MenuUsers_BttnSearchUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuUsers_BttnSearchUser.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuUsers_BttnSearchUser.setFocusPainted(false);
         MenuUsers_BttnSearchUser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -115,7 +124,7 @@ public class UsersMenu extends javax.swing.JFrame {
         MenuUsers_BttnBack.setFont(new java.awt.Font("Arial Black", 0, 20)); // NOI18N
         MenuUsers_BttnBack.setForeground(new java.awt.Color(255, 255, 255));
         MenuUsers_BttnBack.setText("Regresar");
-        MenuUsers_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuUsers_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuUsers_BttnBack.setFocusPainted(false);
         MenuUsers_BttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -247,4 +256,112 @@ public class UsersMenu extends javax.swing.JFrame {
     private javax.swing.JLabel MenuUsers_ImgVetSys;
     private javax.swing.JPanel Right;
     // End of variables declaration//GEN-END:variables
+
+    private void aplicarAccesibilidad() {
+    // ============================================================
+    //  ACCESIBILIDAD – TITULO / CONTENEDORES
+    // ============================================================
+    this.getAccessibleContext().setAccessibleName("Menú de Usuarios");
+    this.getAccessibleContext().setAccessibleDescription("Pantalla principal para gestionar usuarios del sistema.");
+
+    MenuUsersPanel.setFocusable(true);
+    Left.setFocusable(true);
+    Right.setFocusable(true);
+
+    // ============================================================
+    //  ACCESIBILIDAD – BOTONES (Nombres, descripciones, tooltips)
+    // ============================================================
+
+    // --- Crear Usuario ---
+    MenuUsers_BttnCreateUser.getAccessibleContext().setAccessibleName("Crear usuario");
+    MenuUsers_BttnCreateUser.getAccessibleContext().setAccessibleDescription("Abre el formulario para crear un nuevo usuario.");
+    MenuUsers_BttnCreateUser.setToolTipText("Crear usuario (Alt+C)");
+    MenuUsers_BttnCreateUser.setMnemonic('C');   // Evitar duplicados
+
+    // --- Buscar Usuario ---
+    MenuUsers_BttnSearchUser.getAccessibleContext().setAccessibleName("Buscar usuario");
+    MenuUsers_BttnSearchUser.getAccessibleContext().setAccessibleDescription("Abre el formulario para buscar un usuario.");
+    MenuUsers_BttnSearchUser.setToolTipText("Buscar usuario (Alt+B)");
+    MenuUsers_BttnSearchUser.setMnemonic('B');
+
+    // --- Regresar ---
+    MenuUsers_BttnBack.getAccessibleContext().setAccessibleName("Regresar al menú anterior");
+    MenuUsers_BttnBack.getAccessibleContext().setAccessibleDescription("Regresa al menú principal.");
+    MenuUsers_BttnBack.setToolTipText("Regresar (Alt+R)");
+    MenuUsers_BttnBack.setMnemonic('R');
+
+    // ============================================================
+    //  TAB ORDER – ORDEN DE NAVEGACIÓN CON TAB
+    // ============================================================
+    MenuUsers_BttnCreateUser.setNextFocusableComponent(MenuUsers_BttnSearchUser);
+    MenuUsers_BttnSearchUser.setNextFocusableComponent(MenuUsers_BttnBack);
+    MenuUsers_BttnBack.setNextFocusableComponent(MenuUsers_BttnCreateUser);
+
+    // ============================================================
+    //  ATAJOS GLOBALS – ALT+C / ALT+B / ALT+R
+    // ============================================================
+    InputMap inputMap = getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
+    ActionMap actionMap = getRootPane().getActionMap();
+
+    // --- ALT+C Crear usuario ---
+    inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.ALT_DOWN_MASK), "accion_crear_usuario");
+    actionMap.put("accion_crear_usuario", new AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            MenuUsers_BttnCreateUser.doClick();
+        }
+    });
+
+    // --- ALT+B Buscar usuario ---
+    inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_B, KeyEvent.ALT_DOWN_MASK), "accion_buscar_usuario");
+    actionMap.put("accion_buscar_usuario", new AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            MenuUsers_BttnSearchUser.doClick();
+        }
+    });
+
+    // --- ALT+R Regresar ---
+    inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.ALT_DOWN_MASK), "accion_regresar");
+    actionMap.put("accion_regresar", new AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            MenuUsers_BttnBack.doClick();
+        }
+    });
+}
+private void conectarAccionesBotones() {
+
+    // --- Acción REAL del botón Crear Usuario ---
+    MenuUsers_BttnCreateUser.addActionListener(e -> {
+        System.out.println("MenuManager -> logUser: " +
+        (logUser != null ? logUser.getUsername() + " id_clinic=" + logUser.getId_clinic() + " role=" + logUser.getName_role() : "logUser es null"));
+        CreateUser CreateUserFrame = new CreateUser(logUser);
+        CreateUserFrame.setVisible(true);
+        CreateUserFrame.pack();
+        CreateUserFrame.setLocationRelativeTo(null);
+        this.dispose();
+    });
+
+    // --- Acción REAL del botón Buscar Usuario ---
+    MenuUsers_BttnSearchUser.addActionListener(e -> {
+        System.out.println("MenuManager -> logUser: " +
+        (logUser != null ? logUser.getUsername() + " id_clinic=" + logUser.getId_clinic() + " role=" + logUser.getName_role() : "logUser es null"));
+        SearchUser SearchUserFrame = new SearchUser(logUser);
+        SearchUserFrame.setVisible(true);
+        SearchUserFrame.pack();
+        SearchUserFrame.setLocationRelativeTo(null);
+        this.dispose();
+    });
+
+    // --- Acción REAL del botón Regresar ---
+    MenuUsers_BttnBack.addActionListener(e -> {
+        MenuManager menuManager = new MenuManager(logUser);
+        menuManager.setVisible(true);
+        menuManager.pack();
+        menuManager.setLocationRelativeTo(null);
+        this.dispose();
+    });
+}
+
 }

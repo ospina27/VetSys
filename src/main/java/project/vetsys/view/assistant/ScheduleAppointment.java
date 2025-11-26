@@ -13,6 +13,7 @@ import project.vetsys.model.ClienteModel;
 import project.vetsys.model.Pet;
 import project.vetsys.model.User;
 import project.vetsys.view.Nimbus;
+import project.vetsys.utils.ValidationInput;
 import project.vetsys.view.manager.Appointment_Menu;
 
 
@@ -35,6 +36,9 @@ public class ScheduleAppointment extends javax.swing.JFrame {
         ScheduleAppointment_lblTittle.setText(logUser.getClinic().getName_clinic());
         Nimbus.styleTitleLabel(ScheduleAppointment_lblSubTittle);
         Nimbus.styleAllTextFields(this);
+        cargarHorasDisponiblesVeterinario();
+        ValidationInput.numbers(txtDocumentoCliente);
+       
     }
     
     /**
@@ -429,7 +433,7 @@ public class ScheduleAppointment extends javax.swing.JFrame {
                 .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ScheduleAppointment_BttnSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ScheduleAppointment_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         ScheduleAppointmentPanel.add(Down, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1000, 740));

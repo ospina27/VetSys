@@ -260,7 +260,11 @@
                           <Component id="ScheduleAppointment_BttnSchedule" min="-2" max="-2" attributes="0"/>
                           <Component id="ScheduleAppointment_BttnBack" min="-2" max="-2" attributes="0"/>
                       </Group>
+
+                      <EmptySpace pref="102" max="32767" attributes="0"/>
+
                       <EmptySpace pref="101" max="32767" attributes="0"/>
+
                   </Group>
               </Group>
             </DimensionLayout>
