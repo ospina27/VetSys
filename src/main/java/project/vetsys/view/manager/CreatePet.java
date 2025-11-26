@@ -174,6 +174,7 @@ public class CreatePet extends javax.swing.JFrame {
         btnCreatePet.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         btnCreatePet.setForeground(new java.awt.Color(0, 102, 102));
         btnCreatePet.setText("Crear");
+        btnCreatePet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCreatePet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreatePetActionPerformed(evt);
@@ -182,9 +183,11 @@ public class CreatePet extends javax.swing.JFrame {
 
         sexHembra_Rbutton.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         sexHembra_Rbutton.setText("Hembra");
+        sexHembra_Rbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         sexMacho_Rbutton.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         sexMacho_Rbutton.setText("Macho");
+        sexMacho_Rbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         sexMacho_Rbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sexMacho_RbuttonActionPerformed(evt);
@@ -197,6 +200,7 @@ public class CreatePet extends javax.swing.JFrame {
         bttonEmptyFields_pet.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         bttonEmptyFields_pet.setForeground(new java.awt.Color(0, 102, 102));
         bttonEmptyFields_pet.setText("Limpiar");
+        bttonEmptyFields_pet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttonEmptyFields_pet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttonEmptyFields_petActionPerformed(evt);
@@ -240,6 +244,7 @@ public class CreatePet extends javax.swing.JFrame {
         btnExit1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         btnExit1.setForeground(new java.awt.Color(0, 102, 102));
         btnExit1.setText("Salir");
+        btnExit1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExit1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExit1ActionPerformed(evt);
@@ -383,7 +388,7 @@ public class CreatePet extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jDesktopPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 809, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -398,7 +403,7 @@ public class CreatePet extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 6, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 809, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

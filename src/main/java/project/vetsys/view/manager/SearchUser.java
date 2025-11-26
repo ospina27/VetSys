@@ -446,6 +446,7 @@ public class SearchUser extends javax.swing.JFrame {
         btnActualizar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnActualizar.setForeground(new java.awt.Color(0, 102, 102));
         btnActualizar.setText("Actualizar");
+        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
@@ -455,6 +456,7 @@ public class SearchUser extends javax.swing.JFrame {
         btnSalir.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnSalir.setForeground(new java.awt.Color(0, 102, 102));
         btnSalir.setText("Salir");
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -464,6 +466,7 @@ public class SearchUser extends javax.swing.JFrame {
         btnDelete.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(0, 102, 102));
         btnDelete.setText("Eliminar");
+        btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -473,6 +476,7 @@ public class SearchUser extends javax.swing.JFrame {
         btnSearchDocument.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnSearchDocument.setForeground(new java.awt.Color(0, 102, 102));
         btnSearchDocument.setText("Buscar");
+        btnSearchDocument.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSearchDocument.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchDocumentActionPerformed(evt);

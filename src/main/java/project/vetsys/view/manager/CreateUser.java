@@ -241,6 +241,7 @@ public class CreateUser extends javax.swing.JFrame {
         btnCreateUser.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnCreateUser.setForeground(new java.awt.Color(0, 102, 102));
         btnCreateUser.setText("Crear");
+        btnCreateUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCreateUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateUserActionPerformed(evt);
@@ -250,6 +251,7 @@ public class CreateUser extends javax.swing.JFrame {
         btnExit.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnExit.setForeground(new java.awt.Color(0, 102, 102));
         btnExit.setText("Salir");
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
@@ -259,6 +261,7 @@ public class CreateUser extends javax.swing.JFrame {
         bttonEmptyFields_pet.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         bttonEmptyFields_pet.setForeground(new java.awt.Color(0, 102, 102));
         bttonEmptyFields_pet.setText("Limpiar");
+        bttonEmptyFields_pet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttonEmptyFields_pet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttonEmptyFields_petActionPerformed(evt);

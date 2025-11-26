@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package project.vetsys.view.manager;
 
 import java.sql.Connection;
@@ -33,11 +29,6 @@ public class SearchClient extends javax.swing.JFrame {
     private ClienteDAO clienteDAO = new ClienteDAO();
     private DefaultTableModel modeloTabla;
     private Utils utils;
-
-    /**
-     * Creates new form SearchUser
-     * @param logUser
-     */
     
     // Constructor que recibe el usuario logueado
     public SearchClient(User logUser) {
@@ -207,6 +198,7 @@ public class SearchClient extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        txtIdCliente = new javax.swing.JTextField();
         jDateChooserFechaInicio = new com.toedter.calendar.JDateChooser();
         jDateChooserFechaFin = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
@@ -239,19 +231,9 @@ public class SearchClient extends javax.swing.JFrame {
         txtApellidos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtApellidos.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtApellidos.setBorder(null);
-        txtApellidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellidosActionPerformed(evt);
-            }
-        });
 
         txtNombres.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtNombres.setBorder(null);
-        txtNombres.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombresActionPerformed(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -261,20 +243,10 @@ public class SearchClient extends javax.swing.JFrame {
         txtDocumento.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtDocumento.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtDocumento.setBorder(null);
-        txtDocumento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDocumentoActionPerformed(evt);
-            }
-        });
 
         txtTelefono.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtTelefono.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtTelefono.setBorder(null);
-        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTelefonoActionPerformed(evt);
-            }
-        });
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -291,11 +263,6 @@ public class SearchClient extends javax.swing.JFrame {
         txtCorreo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtCorreo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtCorreo.setBorder(null);
-        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCorreoActionPerformed(evt);
-            }
-        });
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -303,11 +270,6 @@ public class SearchClient extends javax.swing.JFrame {
 
         cmboxMembresias.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         cmboxMembresias.setBorder(null);
-        cmboxMembresias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmboxMembresiasActionPerformed(evt);
-            }
-        });
 
         jLabel15.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
@@ -324,15 +286,16 @@ public class SearchClient extends javax.swing.JFrame {
         txtDireccion.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtDireccion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtDireccion.setBorder(null);
-        txtDireccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDireccionActionPerformed(evt);
-            }
-        });
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Id");
+
+        txtIdCliente.setBackground(new java.awt.Color(0, 102, 102));
+        txtIdCliente.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtIdCliente.setForeground(new java.awt.Color(255, 255, 255));
+        txtIdCliente.setBorder(null);
+        txtIdCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lbl_IdCliente.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lbl_IdCliente.setForeground(new java.awt.Color(255, 255, 255));
@@ -433,7 +396,7 @@ public class SearchClient extends javax.swing.JFrame {
         btnActualizar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnActualizar.setForeground(new java.awt.Color(0, 102, 102));
         btnActualizar.setText("Actualizar");
-        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
@@ -444,7 +407,7 @@ public class SearchClient extends javax.swing.JFrame {
         btnSalir.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnSalir.setForeground(new java.awt.Color(255, 255, 255));
         btnSalir.setText("Atrás");
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -454,7 +417,7 @@ public class SearchClient extends javax.swing.JFrame {
         btnEliminar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(0, 102, 102));
         btnEliminar.setText("Eliminar");
-        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -488,7 +451,7 @@ public class SearchClient extends javax.swing.JFrame {
         btnConsultaCliente.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnConsultaCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnConsultaCliente.setText("Buscar");
-        btnConsultaCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnConsultaCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnConsultaCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultaClienteActionPerformed(evt);
@@ -548,14 +511,6 @@ public class SearchClient extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtApellidosActionPerformed
-
-    private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombresActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         try {
@@ -628,18 +583,6 @@ public class SearchClient extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void txtDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDocumentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDocumentoActionPerformed
-
-    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelefonoActionPerformed
-
-    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoActionPerformed
-
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         try {
             int id = Integer.parseInt(lbl_IdCliente.getText());
@@ -670,14 +613,6 @@ public class SearchClient extends javax.swing.JFrame {
         }
         buscarPorDocumento(documento);
     }//GEN-LAST:event_btnConsultaClienteActionPerformed
-
-    private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireccionActionPerformed
-
-    private void cmboxMembresiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmboxMembresiasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmboxMembresiasActionPerformed
 
     private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
         int fila = tablaClientes.getSelectedRow();
@@ -791,6 +726,7 @@ public class SearchClient extends javax.swing.JFrame {
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtDocumento;
     private javax.swing.JTextField txtDocumentoIngresado;
+    private javax.swing.JTextField txtIdCliente;
     private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables

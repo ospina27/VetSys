@@ -263,7 +263,6 @@ public class SearchPet extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(getMinimumSize());
-        setPreferredSize(getMaximumSize());
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setToolTipText("");
@@ -275,11 +274,6 @@ public class SearchPet extends javax.swing.JFrame {
         jScrollPane2.setMinimumSize(new java.awt.Dimension(800, 22));
         jScrollPane2.setPreferredSize(new java.awt.Dimension(800, 406));
         jScrollPane2.setWheelScrollingEnabled(false);
-        jScrollPane2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jScrollPane2MouseClicked(evt);
-            }
-        });
 
         petTable.setAutoCreateRowSorter(true);
         petTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -300,6 +294,7 @@ public class SearchPet extends javax.swing.JFrame {
         btnActualizar.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         btnActualizar.setForeground(new java.awt.Color(0, 102, 102));
         btnActualizar.setText("Actualizar");
+        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnActualizar.setMaximumSize(new java.awt.Dimension(78, 23));
         btnActualizar.setMinimumSize(new java.awt.Dimension(78, 23));
         btnActualizar.setPreferredSize(new java.awt.Dimension(78, 23));
@@ -312,6 +307,7 @@ public class SearchPet extends javax.swing.JFrame {
         btnSalir.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         btnSalir.setForeground(new java.awt.Color(0, 102, 102));
         btnSalir.setText("Salir");
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalir.setMaximumSize(new java.awt.Dimension(78, 23));
         btnSalir.setMinimumSize(new java.awt.Dimension(78, 23));
         btnSalir.setPreferredSize(new java.awt.Dimension(78, 23));
@@ -324,6 +320,7 @@ public class SearchPet extends javax.swing.JFrame {
         btnDelete.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(0, 102, 102));
         btnDelete.setText("Eliminar");
+        btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -335,6 +332,7 @@ public class SearchPet extends javax.swing.JFrame {
         btnSearchDocumet_client.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         btnSearchDocumet_client.setForeground(new java.awt.Color(0, 102, 102));
         btnSearchDocumet_client.setText("Buscar");
+        btnSearchDocumet_client.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSearchDocumet_client.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchDocumet_clientActionPerformed(evt);
@@ -344,6 +342,7 @@ public class SearchPet extends javax.swing.JFrame {
         btnRefreshTable_pet.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         btnRefreshTable_pet.setForeground(new java.awt.Color(0, 102, 102));
         btnRefreshTable_pet.setText("Refrescar");
+        btnRefreshTable_pet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRefreshTable_pet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRefreshTable_petActionPerformed(evt);
@@ -445,12 +444,6 @@ public class SearchPet extends javax.swing.JFrame {
         idPet_lbl.setForeground(new java.awt.Color(255, 255, 255));
         idPet_lbl.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         idPet_lbl.setText("ID");
-
-        cboxBred_pet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboxBred_petActionPerformed(evt);
-            }
-        });
 
         jDesktopPane1.setLayer(speciesPet_lbl, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(idPet_Field, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -754,10 +747,6 @@ public class SearchPet extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void jScrollPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jScrollPane2MouseClicked
-
     private void btnSearchDocumet_clientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchDocumet_clientActionPerformed
         
         String documentClient = searchDocumentClient_field.getText();
@@ -789,10 +778,6 @@ public class SearchPet extends javax.swing.JFrame {
         loadAllPets(logUser);
         hideField(false);
     }//GEN-LAST:event_btnRefreshTable_petActionPerformed
-
-    private void cboxBred_petActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxBred_petActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboxBred_petActionPerformed
 
     /**
      * @param args the command line arguments

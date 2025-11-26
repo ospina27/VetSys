@@ -90,7 +90,7 @@ public class MenuManager extends javax.swing.JFrame {
         MenuManager_BttnUsers.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         MenuManager_BttnUsers.setForeground(new java.awt.Color(255, 255, 255));
         MenuManager_BttnUsers.setText("Usuarios");
-        MenuManager_BttnUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuManager_BttnUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuManager_BttnUsers.setFocusPainted(false);
         MenuManager_BttnUsers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -108,7 +108,7 @@ public class MenuManager extends javax.swing.JFrame {
         MenuManager_BttnAppointments.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         MenuManager_BttnAppointments.setForeground(new java.awt.Color(255, 255, 255));
         MenuManager_BttnAppointments.setText("Citas");
-        MenuManager_BttnAppointments.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuManager_BttnAppointments.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuManager_BttnAppointments.setFocusPainted(false);
         MenuManager_BttnAppointments.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -126,7 +126,7 @@ public class MenuManager extends javax.swing.JFrame {
         MenuManager_BttnPatients.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         MenuManager_BttnPatients.setForeground(new java.awt.Color(255, 255, 255));
         MenuManager_BttnPatients.setText("Pacientes");
-        MenuManager_BttnPatients.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuManager_BttnPatients.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuManager_BttnPatients.setFocusPainted(false);
         MenuManager_BttnPatients.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -145,7 +145,7 @@ public class MenuManager extends javax.swing.JFrame {
         MenuManager_BttnNotifications.setForeground(new java.awt.Color(255, 255, 255));
         MenuManager_BttnNotifications.setText("Pendientes");
         MenuManager_BttnNotifications.setToolTipText("");
-        MenuManager_BttnNotifications.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuManager_BttnNotifications.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuManager_BttnNotifications.setFocusPainted(false);
         MenuManager_BttnNotifications.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -163,7 +163,7 @@ public class MenuManager extends javax.swing.JFrame {
         MenuManager_BttnLogOut.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         MenuManager_BttnLogOut.setForeground(new java.awt.Color(255, 255, 255));
         MenuManager_BttnLogOut.setText("Cerrar Sesion");
-        MenuManager_BttnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuManager_BttnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuManager_BttnLogOut.setFocusPainted(false);
         MenuManager_BttnLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

@@ -45,7 +45,6 @@ public class UsersMenu extends javax.swing.JFrame {
         MenuUsers_BttnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
@@ -88,7 +87,7 @@ public class UsersMenu extends javax.swing.JFrame {
         MenuUsers_BttnCreateUser.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         MenuUsers_BttnCreateUser.setForeground(new java.awt.Color(255, 255, 255));
         MenuUsers_BttnCreateUser.setText("Crear Usuario");
-        MenuUsers_BttnCreateUser.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuUsers_BttnCreateUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuUsers_BttnCreateUser.setFocusPainted(false);
         MenuUsers_BttnCreateUser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -101,12 +100,17 @@ public class UsersMenu extends javax.swing.JFrame {
                 MenuUsers_BttnCreateUserMouseExited(evt);
             }
         });
+        MenuUsers_BttnCreateUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuUsers_BttnCreateUserActionPerformed(evt);
+            }
+        });
 
         MenuUsers_BttnSearchUser.setBackground(new java.awt.Color(0, 153, 153));
         MenuUsers_BttnSearchUser.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         MenuUsers_BttnSearchUser.setForeground(new java.awt.Color(255, 255, 255));
         MenuUsers_BttnSearchUser.setText("Buscar Usuario");
-        MenuUsers_BttnSearchUser.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuUsers_BttnSearchUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuUsers_BttnSearchUser.setFocusPainted(false);
         MenuUsers_BttnSearchUser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -124,7 +128,7 @@ public class UsersMenu extends javax.swing.JFrame {
         MenuUsers_BttnBack.setFont(new java.awt.Font("Arial Black", 0, 20)); // NOI18N
         MenuUsers_BttnBack.setForeground(new java.awt.Color(255, 255, 255));
         MenuUsers_BttnBack.setText("Regresar");
-        MenuUsers_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuUsers_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuUsers_BttnBack.setFocusPainted(false);
         MenuUsers_BttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -242,6 +246,10 @@ public class UsersMenu extends javax.swing.JFrame {
         MenuUsers_BttnBack.setBackground(new Color(0,153,153));
         MenuUsers_BttnBack.setForeground(Color.WHITE);
     }//GEN-LAST:event_MenuUsers_BttnBackMouseExited
+
+    private void MenuUsers_BttnCreateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuUsers_BttnCreateUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuUsers_BttnCreateUserActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new UsersMenu().setVisible(true));

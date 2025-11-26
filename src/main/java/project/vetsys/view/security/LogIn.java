@@ -47,7 +47,6 @@ public class LogIn extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LOGIN");
-        setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
@@ -111,7 +110,7 @@ public class LogIn extends javax.swing.JFrame {
         LogInPanel_BttnResetPassword.setForeground(new java.awt.Color(0, 153, 153));
         LogInPanel_BttnResetPassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LogInPanel_BttnResetPassword.setText("Click Aquí");
-        LogInPanel_BttnResetPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        LogInPanel_BttnResetPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         LogInPanel_BttnResetPassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LogInPanel_BttnResetPasswordMouseClicked(evt);
@@ -131,7 +130,7 @@ public class LogIn extends javax.swing.JFrame {
         LogInPanel_BttnLogin.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         LogInPanel_BttnLogin.setForeground(new java.awt.Color(255, 255, 255));
         LogInPanel_BttnLogin.setText("Ingresar");
-        LogInPanel_BttnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        LogInPanel_BttnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         LogInPanel_BttnLogin.setFocusPainted(false);
         LogInPanel_BttnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

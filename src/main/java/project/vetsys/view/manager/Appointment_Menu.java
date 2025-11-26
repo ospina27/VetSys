@@ -85,7 +85,7 @@ public class Appointment_Menu extends javax.swing.JFrame {
         MenuAppointment_BttnScheduleAppointment.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         MenuAppointment_BttnScheduleAppointment.setForeground(new java.awt.Color(255, 255, 255));
         MenuAppointment_BttnScheduleAppointment.setText("Agendar Cita");
-        MenuAppointment_BttnScheduleAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuAppointment_BttnScheduleAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuAppointment_BttnScheduleAppointment.setFocusPainted(false);
         MenuAppointment_BttnScheduleAppointment.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -98,17 +98,12 @@ public class Appointment_Menu extends javax.swing.JFrame {
                 MenuAppointment_BttnScheduleAppointmentMouseExited(evt);
             }
         });
-        MenuAppointment_BttnScheduleAppointment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuAppointment_BttnScheduleAppointmentActionPerformed(evt);
-            }
-        });
 
         MenuAppointment_BttnSearchAppointment.setBackground(new java.awt.Color(0, 153, 153));
         MenuAppointment_BttnSearchAppointment.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         MenuAppointment_BttnSearchAppointment.setForeground(new java.awt.Color(255, 255, 255));
         MenuAppointment_BttnSearchAppointment.setText("Consultar Cita");
-        MenuAppointment_BttnSearchAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuAppointment_BttnSearchAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuAppointment_BttnSearchAppointment.setFocusPainted(false);
         MenuAppointment_BttnSearchAppointment.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -126,7 +121,7 @@ public class Appointment_Menu extends javax.swing.JFrame {
         MenuAppointment_BttnBacks.setFont(new java.awt.Font("Arial Black", 0, 20)); // NOI18N
         MenuAppointment_BttnBacks.setForeground(new java.awt.Color(255, 255, 255));
         MenuAppointment_BttnBacks.setText("Regresar");
-        MenuAppointment_BttnBacks.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuAppointment_BttnBacks.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuAppointment_BttnBacks.setFocusPainted(false);
         MenuAppointment_BttnBacks.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -144,7 +139,7 @@ public class Appointment_Menu extends javax.swing.JFrame {
         MenuAppointment_Reports.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         MenuAppointment_Reports.setForeground(new java.awt.Color(255, 255, 255));
         MenuAppointment_Reports.setText("Reportes");
-        MenuAppointment_Reports.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuAppointment_Reports.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuAppointment_Reports.setFocusPainted(false);
         MenuAppointment_Reports.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -340,10 +335,6 @@ public class Appointment_Menu extends javax.swing.JFrame {
         MenuAppointment_Reports.setBackground(new Color(0,153,153));
         MenuAppointment_Reports.setForeground(Color.WHITE);
     }//GEN-LAST:event_MenuAppointment_ReportsMouseExited
-
-    private void MenuAppointment_BttnScheduleAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuAppointment_BttnScheduleAppointmentActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MenuAppointment_BttnScheduleAppointmentActionPerformed
 
     
     public static void main(String args[]) {

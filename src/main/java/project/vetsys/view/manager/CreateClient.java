@@ -231,16 +231,6 @@ public class CreateClient extends javax.swing.JFrame {
         txtNombreCliente.setForeground(java.awt.Color.gray);
         txtNombreCliente.setMinimumSize(new java.awt.Dimension(68, 26));
         txtNombreCliente.setPreferredSize(new java.awt.Dimension(68, 26));
-        txtNombreCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtNombreClienteMousePressed(evt);
-            }
-        });
-        txtNombreCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreClienteActionPerformed(evt);
-            }
-        });
 
         CreateUser_LastName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CreateUser_LastName.setText("Apellidos");
@@ -249,16 +239,6 @@ public class CreateClient extends javax.swing.JFrame {
         txtApellidos.setForeground(java.awt.Color.gray);
         txtApellidos.setMinimumSize(new java.awt.Dimension(68, 26));
         txtApellidos.setPreferredSize(new java.awt.Dimension(68, 26));
-        txtApellidos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtApellidosMousePressed(evt);
-            }
-        });
-        txtApellidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellidosActionPerformed(evt);
-            }
-        });
 
         CreateUser_lblPhone.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CreateUser_lblPhone.setText("Telefono");
@@ -267,16 +247,6 @@ public class CreateClient extends javax.swing.JFrame {
         txtTelefono.setForeground(java.awt.Color.gray);
         txtTelefono.setMinimumSize(new java.awt.Dimension(68, 26));
         txtTelefono.setPreferredSize(new java.awt.Dimension(68, 26));
-        txtTelefono.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtTelefonoMousePressed(evt);
-            }
-        });
-        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTelefonoActionPerformed(evt);
-            }
-        });
 
         CreateUser_lbl_ID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CreateUser_lbl_ID.setText("Documento");
@@ -285,16 +255,6 @@ public class CreateClient extends javax.swing.JFrame {
         txtDocumento.setForeground(java.awt.Color.gray);
         txtDocumento.setMinimumSize(new java.awt.Dimension(68, 26));
         txtDocumento.setPreferredSize(new java.awt.Dimension(68, 26));
-        txtDocumento.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtDocumentoMousePressed(evt);
-            }
-        });
-        txtDocumento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDocumentoActionPerformed(evt);
-            }
-        });
 
         CreateUser_lblEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CreateUser_lblEmail.setText("Correo electronico");
@@ -303,16 +263,6 @@ public class CreateClient extends javax.swing.JFrame {
         txtCorreo.setForeground(java.awt.Color.gray);
         txtCorreo.setMinimumSize(new java.awt.Dimension(68, 26));
         txtCorreo.setPreferredSize(new java.awt.Dimension(68, 26));
-        txtCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtCorreoMousePressed(evt);
-            }
-        });
-        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCorreoActionPerformed(evt);
-            }
-        });
 
         CreateUser_lblMembresia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CreateUser_lblMembresia.setText("Membresía");
@@ -327,16 +277,6 @@ public class CreateClient extends javax.swing.JFrame {
         txtDireccion.setForeground(java.awt.Color.gray);
         txtDireccion.setMinimumSize(new java.awt.Dimension(68, 26));
         txtDireccion.setPreferredSize(new java.awt.Dimension(68, 26));
-        txtDireccion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtDireccionMousePressed(evt);
-            }
-        });
-        txtDireccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDireccionActionPerformed(evt);
-            }
-        });
 
         CreateUser_lblFechaFin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CreateUser_lblFechaFin.setText("Fecha de vigencia");
@@ -351,6 +291,7 @@ public class CreateClient extends javax.swing.JFrame {
         btnRegistrar.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrar.setText("Registrar");
+        btnRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
@@ -369,6 +310,7 @@ public class CreateClient extends javax.swing.JFrame {
         btnSalir.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         btnSalir.setForeground(new java.awt.Color(255, 255, 255));
         btnSalir.setText("Regresar");
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -618,54 +560,6 @@ public class CreateClient extends javax.swing.JFrame {
                 mostrarDetallesMembresia(idMembresia);
             }
     }//GEN-LAST:event_jComboBoxMembresiaActionPerformed
-
-    private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireccionActionPerformed
-
-    private void txtDireccionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDireccionMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireccionMousePressed
-
-    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoActionPerformed
-
-    private void txtCorreoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCorreoMousePressed
-
-    }//GEN-LAST:event_txtCorreoMousePressed
-
-    private void txtDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDocumentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDocumentoActionPerformed
-
-    private void txtDocumentoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDocumentoMousePressed
-
-    }//GEN-LAST:event_txtDocumentoMousePressed
-
-    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelefonoActionPerformed
-
-    private void txtTelefonoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoMousePressed
-
-    }//GEN-LAST:event_txtTelefonoMousePressed
-
-    private void txtApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtApellidosActionPerformed
-
-    private void txtApellidosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtApellidosMousePressed
-
-    }//GEN-LAST:event_txtApellidosMousePressed
-
-    private void txtNombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreClienteActionPerformed
-
-    private void txtNombreClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreClienteMousePressed
-
-    }//GEN-LAST:event_txtNombreClienteMousePressed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         PatientsMenu MenuManagerFrame = new PatientsMenu(logUser);  

@@ -169,12 +169,6 @@ public class SearchAppointment extends javax.swing.JFrame {
         txtIdCita = new javax.swing.JTextField();
         SearchAppoint_lblNameClinic = new javax.swing.JLabel();
         Right = new javax.swing.JPanel();
-        SearchAppointment_BttnBack = new javax.swing.JPanel();
-        SearchAppointment_lblBttnBack = new javax.swing.JLabel();
-        SearchAppointment_BttnSearch = new javax.swing.JPanel();
-        SearchAppointment_lblBttnCancel = new javax.swing.JLabel();
-        SearchAppointment_BttnUpdate = new javax.swing.JPanel();
-        SearchAppointment_lblBttnUpdate = new javax.swing.JLabel();
         SearchAppointment_lblClientID = new javax.swing.JLabel();
         txtDocumentoCliente = new javax.swing.JTextField();
         btnConsultar = new javax.swing.JButton();
@@ -182,7 +176,10 @@ public class SearchAppointment extends javax.swing.JFrame {
         tableCitas = new javax.swing.JTable();
         SearchAppointment_lblClientID1 = new javax.swing.JLabel();
         cmbEstado = new javax.swing.JComboBox<>();
+        MenuUsers_BttnUpdateUser = new javax.swing.JButton();
+        MenuUsers_BttnCancelUser = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        SearchAppointment_BttnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 800));
@@ -205,11 +202,6 @@ public class SearchAppointment extends javax.swing.JFrame {
         SearchAppointment_lblVet.setText("Veterinario");
 
         txtNombreVet.setEditable(false);
-        txtNombreVet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreVetActionPerformed(evt);
-            }
-        });
 
         SearchAppointment_lblDate.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         SearchAppointment_lblDate.setText("Fecha");
@@ -230,11 +222,6 @@ public class SearchAppointment extends javax.swing.JFrame {
         JLabelCliente.setText("Cliente");
 
         txtNombreCliente.setEditable(false);
-        txtNombreCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreClienteActionPerformed(evt);
-            }
-        });
 
         txtIdCliente1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtIdCliente1.setText("ID Cita");
@@ -327,126 +314,15 @@ public class SearchAppointment extends javax.swing.JFrame {
         Right.setMinimumSize(new java.awt.Dimension(500, 800));
         Right.setPreferredSize(new java.awt.Dimension(500, 800));
 
-        SearchAppointment_BttnBack.setBackground(new java.awt.Color(0, 153, 153));
-        SearchAppointment_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        SearchAppointment_lblBttnBack.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        SearchAppointment_lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
-        SearchAppointment_lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        SearchAppointment_lblBttnBack.setText("Salir");
-        SearchAppointment_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        SearchAppointment_lblBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SearchAppointment_lblBttnBackMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                SearchAppointment_lblBttnBackMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                SearchAppointment_lblBttnBackMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout SearchAppointment_BttnBackLayout = new javax.swing.GroupLayout(SearchAppointment_BttnBack);
-        SearchAppointment_BttnBack.setLayout(SearchAppointment_BttnBackLayout);
-        SearchAppointment_BttnBackLayout.setHorizontalGroup(
-            SearchAppointment_BttnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(SearchAppointment_lblBttnBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-        );
-        SearchAppointment_BttnBackLayout.setVerticalGroup(
-            SearchAppointment_BttnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SearchAppointment_BttnBackLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(SearchAppointment_lblBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        SearchAppointment_BttnSearch.setBackground(new java.awt.Color(0, 153, 153));
-        SearchAppointment_BttnSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        SearchAppointment_lblBttnCancel.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        SearchAppointment_lblBttnCancel.setForeground(new java.awt.Color(255, 255, 255));
-        SearchAppointment_lblBttnCancel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        SearchAppointment_lblBttnCancel.setText("Cancelar cita");
-        SearchAppointment_lblBttnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        SearchAppointment_lblBttnCancel.setMaximumSize(new java.awt.Dimension(97, 26));
-        SearchAppointment_lblBttnCancel.setMinimumSize(new java.awt.Dimension(97, 26));
-        SearchAppointment_lblBttnCancel.setName(""); // NOI18N
-        SearchAppointment_lblBttnCancel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SearchAppointment_lblBttnCancelMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                SearchAppointment_lblBttnCancelMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                SearchAppointment_lblBttnCancelMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout SearchAppointment_BttnSearchLayout = new javax.swing.GroupLayout(SearchAppointment_BttnSearch);
-        SearchAppointment_BttnSearch.setLayout(SearchAppointment_BttnSearchLayout);
-        SearchAppointment_BttnSearchLayout.setHorizontalGroup(
-            SearchAppointment_BttnSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SearchAppointment_BttnSearchLayout.createSequentialGroup()
-                .addComponent(SearchAppointment_lblBttnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        SearchAppointment_BttnSearchLayout.setVerticalGroup(
-            SearchAppointment_BttnSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SearchAppointment_BttnSearchLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(SearchAppointment_lblBttnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        SearchAppointment_BttnUpdate.setBackground(new java.awt.Color(0, 153, 153));
-        SearchAppointment_BttnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        SearchAppointment_lblBttnUpdate.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        SearchAppointment_lblBttnUpdate.setForeground(new java.awt.Color(255, 255, 255));
-        SearchAppointment_lblBttnUpdate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        SearchAppointment_lblBttnUpdate.setText("Modificar cita");
-        SearchAppointment_lblBttnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        SearchAppointment_lblBttnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SearchAppointment_lblBttnUpdateMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                SearchAppointment_lblBttnUpdateMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                SearchAppointment_lblBttnUpdateMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout SearchAppointment_BttnUpdateLayout = new javax.swing.GroupLayout(SearchAppointment_BttnUpdate);
-        SearchAppointment_BttnUpdate.setLayout(SearchAppointment_BttnUpdateLayout);
-        SearchAppointment_BttnUpdateLayout.setHorizontalGroup(
-            SearchAppointment_BttnUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SearchAppointment_BttnUpdateLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(SearchAppointment_lblBttnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        SearchAppointment_BttnUpdateLayout.setVerticalGroup(
-            SearchAppointment_BttnUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SearchAppointment_BttnUpdateLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(SearchAppointment_lblBttnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
         SearchAppointment_lblClientID.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         SearchAppointment_lblClientID.setText("Documento Cliente");
-
-        txtDocumentoCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDocumentoClienteActionPerformed(evt);
-            }
-        });
 
         btnConsultar.setBackground(new java.awt.Color(0, 153, 153));
         btnConsultar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnConsultar.setForeground(new java.awt.Color(255, 255, 255));
         btnConsultar.setText("Consultar");
         btnConsultar.setBorder(null);
+        btnConsultar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarActionPerformed(evt);
@@ -469,13 +345,83 @@ public class SearchAppointment extends javax.swing.JFrame {
             }
         });
 
+        MenuUsers_BttnUpdateUser.setBackground(new java.awt.Color(0, 153, 153));
+        MenuUsers_BttnUpdateUser.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        MenuUsers_BttnUpdateUser.setForeground(new java.awt.Color(255, 255, 255));
+        MenuUsers_BttnUpdateUser.setText("Modificar");
+        MenuUsers_BttnUpdateUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuUsers_BttnUpdateUser.setFocusPainted(false);
+        MenuUsers_BttnUpdateUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                MenuUsers_BttnUpdateUserMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                MenuUsers_BttnUpdateUserMouseExited(evt);
+            }
+        });
+        MenuUsers_BttnUpdateUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuUsers_BttnUpdateUserActionPerformed(evt);
+            }
+        });
+
+        MenuUsers_BttnCancelUser.setBackground(new java.awt.Color(0, 153, 153));
+        MenuUsers_BttnCancelUser.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        MenuUsers_BttnCancelUser.setForeground(new java.awt.Color(255, 255, 255));
+        MenuUsers_BttnCancelUser.setText("Cancelar");
+        MenuUsers_BttnCancelUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuUsers_BttnCancelUser.setFocusPainted(false);
+        MenuUsers_BttnCancelUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                MenuUsers_BttnCancelUserMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                MenuUsers_BttnCancelUserMouseExited(evt);
+            }
+        });
+        MenuUsers_BttnCancelUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuUsers_BttnCancelUserActionPerformed(evt);
+            }
+        });
+
         btnEliminar.setBackground(new java.awt.Color(0, 153, 153));
-        btnEliminar.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        btnEliminar.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminar.setText("Eliminar cita");
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminar.setFocusPainted(false);
+        btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseExited(evt);
+            }
+        });
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
+            }
+        });
+
+        SearchAppointment_BttnBack.setBackground(new java.awt.Color(0, 153, 153));
+        SearchAppointment_BttnBack.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        SearchAppointment_BttnBack.setForeground(new java.awt.Color(255, 255, 255));
+        SearchAppointment_BttnBack.setText("Salir");
+        SearchAppointment_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SearchAppointment_BttnBack.setFocusPainted(false);
+        SearchAppointment_BttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                SearchAppointment_BttnBackMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                SearchAppointment_BttnBackMouseExited(evt);
+            }
+        });
+        SearchAppointment_BttnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchAppointment_BttnBackActionPerformed(evt);
             }
         });
 
@@ -492,21 +438,22 @@ public class SearchAppointment extends javax.swing.JFrame {
                         .addGap(33, 33, 33)
                         .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(SearchAppointment_lblClientID))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
                 .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(SearchAppointment_lblClientID1)
                     .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31))
-            .addGroup(RightLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(SearchAppointment_BttnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71)
-                .addComponent(SearchAppointment_BttnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SearchAppointment_BttnBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(35, 35, 35))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(SearchAppointment_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(RightLayout.createSequentialGroup()
+                        .addComponent(MenuUsers_BttnUpdateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(MenuUsers_BttnCancelUser, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(82, 82, 82))
         );
         RightLayout.setVerticalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -521,21 +468,17 @@ public class SearchAppointment extends javax.swing.JFrame {
                     .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(82, 82, 82)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78)
-                .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(RightLayout.createSequentialGroup()
-                        .addComponent(SearchAppointment_BttnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(RightLayout.createSequentialGroup()
-                        .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(SearchAppointment_BttnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                        .addComponent(SearchAppointment_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(83, 83, 83))))
+                .addGap(70, 70, 70)
+                .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MenuUsers_BttnUpdateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MenuUsers_BttnCancelUser, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(SearchAppointment_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83))
         );
 
-        SearchAppointmentPanel.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 680, 800));
+        SearchAppointmentPanel.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 680, 730));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -548,102 +491,12 @@ public class SearchAppointment extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(SearchAppointmentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SearchAppointmentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 728, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtDocumentoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDocumentoClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDocumentoClienteActionPerformed
-
-    private void txtNombreVetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreVetActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreVetActionPerformed
-
-    private void SearchAppointment_lblBttnUpdateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchAppointment_lblBttnUpdateMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SearchAppointment_lblBttnUpdateMouseExited
-
-    private void SearchAppointment_lblBttnUpdateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchAppointment_lblBttnUpdateMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SearchAppointment_lblBttnUpdateMouseEntered
-
-    private void SearchAppointment_lblBttnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchAppointment_lblBttnUpdateMouseClicked
-        
-        if (txtIdCita.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Seleccione una cita.");
-            return;
-        }
-        // Validar estado
-        String estado = txtEstado.getText().trim();
-        if (estado.equalsIgnoreCase("cancelada")) {
-            JOptionPane.showMessageDialog(this, "No se puede actualizar una cita cancelada.");
-            return;
-        }
-        int idCita = Integer.parseInt(txtIdCita.getText());
-        java.util.Date utilFecha = jDateChooserFecha.getDate();
-        String hora = cmbHora.getSelectedItem().toString();
-
-        String fechaStr = new java.text.SimpleDateFormat("yyyy-MM-dd").format(utilFecha);
-        String fechaHora = fechaStr + " " + hora + ":00";
-        
-        // Crear objeto Cita actualizado
-        Cita cita = new Cita();
-        cita.setIdCita(idCita);
-        cita.setFecha(java.sql.Timestamp.valueOf(fechaHora));
-        
-        //  crear DAO Actualizar en DB
-        CitaDAO dao = new CitaDAO();
-        if (dao.actualizarCita(cita)) {
-            JOptionPane.showMessageDialog(this, "Cita actualizada.");
-            cargarTodasLasCitas();
-        } else {
-            JOptionPane.showMessageDialog(this, "No se pudo actualizar.");
-        }
-    }//GEN-LAST:event_SearchAppointment_lblBttnUpdateMouseClicked
-
-    private void SearchAppointment_lblBttnCancelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchAppointment_lblBttnCancelMouseExited
-        SearchAppointment_BttnSearch.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_SearchAppointment_lblBttnCancelMouseExited
-
-    private void SearchAppointment_lblBttnCancelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchAppointment_lblBttnCancelMouseEntered
-        SearchAppointment_BttnSearch.setBackground(Color.LIGHT_GRAY);
-    }//GEN-LAST:event_SearchAppointment_lblBttnCancelMouseEntered
-
-    private void SearchAppointment_lblBttnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchAppointment_lblBttnCancelMouseClicked
-        
-        if (txtIdCita.getText().isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Seleccione una cita.");
-        return;
-        }
-        int idCita = Integer.parseInt(txtIdCita.getText());
-        CitaDAO dao = new CitaDAO();
-        if (dao.cancelarCita(idCita)) {
-            JOptionPane.showMessageDialog(this, "Cita cancelada.");
-            cargarTodasLasCitas();
-        } else {
-            JOptionPane.showMessageDialog(this, "No se pudo cancelar.");
-        }
-    }//GEN-LAST:event_SearchAppointment_lblBttnCancelMouseClicked
-
-    private void SearchAppointment_lblBttnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchAppointment_lblBttnBackMouseExited
-        SearchAppointment_BttnBack.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_SearchAppointment_lblBttnBackMouseExited
-
-    private void SearchAppointment_lblBttnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchAppointment_lblBttnBackMouseEntered
-        SearchAppointment_BttnBack.setBackground(Color.LIGHT_GRAY);
-    }//GEN-LAST:event_SearchAppointment_lblBttnBackMouseEntered
-
-    private void SearchAppointment_lblBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchAppointment_lblBttnBackMouseClicked
-        Appointment_Menu MenuAppointmentFrame = new Appointment_Menu(logUser);
-        MenuAppointmentFrame.setVisible(true);
-        MenuAppointmentFrame.pack();
-        MenuAppointmentFrame.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_SearchAppointment_lblBttnBackMouseClicked
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         cmbEstado.setSelectedItem("Todos");
@@ -699,44 +552,6 @@ public class SearchAppointment extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tableCitasMouseClicked
 
-    private void txtNombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreClienteActionPerformed
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if (txtIdCita.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Seleccione una cita.");
-            return;
-        }
-        String estado = txtEstado.getText().trim();
-        if (!estado.equalsIgnoreCase("cancelada")) {
-            JOptionPane.showMessageDialog(this, 
-                "Solo se pueden eliminar las citas CANCELADAS",
-                "No permitido",
-                JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        int confirm = JOptionPane.showConfirmDialog(this,
-                "¿Seguro que deseas eliminar esta cita?",
-                "Confirmar eliminación",
-                JOptionPane.YES_NO_OPTION);
-
-        if (confirm != JOptionPane.YES_OPTION) {
-            return;
-        }
-
-        int idCita = Integer.parseInt(txtIdCita.getText());
-        CitaDAO dao = new CitaDAO();
-
-        if (dao.eliminarCita(idCita)) {
-            JOptionPane.showMessageDialog(this, "Cita eliminada correctamente.");
-            limpiarCampos();
-            cargarTodasLasCitas();
-        } else {
-            JOptionPane.showMessageDialog(this, "No se pudo eliminar la cita.");
-        }
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
     private void cmbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEstadoActionPerformed
         
         String estadoSeleccionado = (String) cmbEstado.getSelectedItem();
@@ -779,9 +594,137 @@ public class SearchAppointment extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cmbEstadoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void MenuUsers_BttnUpdateUserMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_BttnUpdateUserMouseEntered
+        MenuUsers_BttnUpdateUser.setBackground(Color.LIGHT_GRAY);
+        MenuUsers_BttnUpdateUser.setForeground(Color.BLACK);
+    }//GEN-LAST:event_MenuUsers_BttnUpdateUserMouseEntered
+
+    private void MenuUsers_BttnUpdateUserMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_BttnUpdateUserMouseExited
+        MenuUsers_BttnUpdateUser.setBackground(new Color(0,153,153));
+        MenuUsers_BttnUpdateUser.setForeground(Color.WHITE);
+    }//GEN-LAST:event_MenuUsers_BttnUpdateUserMouseExited
+
+    private void MenuUsers_BttnUpdateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuUsers_BttnUpdateUserActionPerformed
+                if (txtIdCita.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Seleccione una cita.");
+            return;
+        }
+        // Validar estado
+        String estado = txtEstado.getText().trim();
+        if (estado.equalsIgnoreCase("cancelada")) {
+            JOptionPane.showMessageDialog(this, "No se puede actualizar una cita cancelada.");
+            return;
+        }
+        int idCita = Integer.parseInt(txtIdCita.getText());
+        java.util.Date utilFecha = jDateChooserFecha.getDate();
+        String hora = cmbHora.getSelectedItem().toString();
+
+        String fechaStr = new java.text.SimpleDateFormat("yyyy-MM-dd").format(utilFecha);
+        String fechaHora = fechaStr + " " + hora + ":00";
+        
+        // Crear objeto Cita actualizado
+        Cita cita = new Cita();
+        cita.setIdCita(idCita);
+        cita.setFecha(java.sql.Timestamp.valueOf(fechaHora));
+        
+        //  crear DAO Actualizar en DB
+        CitaDAO dao = new CitaDAO();
+        if (dao.actualizarCita(cita)) {
+            JOptionPane.showMessageDialog(this, "Cita actualizada.");
+            cargarTodasLasCitas();
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo actualizar.");
+        }
+    }//GEN-LAST:event_MenuUsers_BttnUpdateUserActionPerformed
+
+    private void MenuUsers_BttnCancelUserMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_BttnCancelUserMouseEntered
+        MenuUsers_BttnCancelUser.setBackground(Color.LIGHT_GRAY);
+        MenuUsers_BttnCancelUser.setForeground(Color.BLACK);
+    }//GEN-LAST:event_MenuUsers_BttnCancelUserMouseEntered
+
+    private void MenuUsers_BttnCancelUserMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_BttnCancelUserMouseExited
+        MenuUsers_BttnCancelUser.setBackground(new Color(0,153,153));
+        MenuUsers_BttnCancelUser.setForeground(Color.WHITE);
+    }//GEN-LAST:event_MenuUsers_BttnCancelUserMouseExited
+
+    private void MenuUsers_BttnCancelUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuUsers_BttnCancelUserActionPerformed
+                
+        if (txtIdCita.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Seleccione una cita.");
+        return;
+        }
+        int idCita = Integer.parseInt(txtIdCita.getText());
+        CitaDAO dao = new CitaDAO();
+        if (dao.cancelarCita(idCita)) {
+            JOptionPane.showMessageDialog(this, "Cita cancelada.");
+            cargarTodasLasCitas();
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo cancelar.");
+        }
+    }//GEN-LAST:event_MenuUsers_BttnCancelUserActionPerformed
+
+    private void btnEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseEntered
+        btnEliminar.setBackground(Color.LIGHT_GRAY);
+        btnEliminar.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnEliminarMouseEntered
+
+    private void btnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseExited
+        btnEliminar.setBackground(new Color(0,153,153));
+        btnEliminar.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnEliminarMouseExited
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        if (txtIdCita.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Seleccione una cita.");
+            return;
+        }
+        String estado = txtEstado.getText().trim();
+        if (!estado.equalsIgnoreCase("cancelada")) {
+            JOptionPane.showMessageDialog(this, 
+                "Solo se pueden eliminar las citas CANCELADAS",
+                "No permitido",
+                JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int confirm = JOptionPane.showConfirmDialog(this,
+                "¿Seguro que deseas eliminar esta cita?",
+                "Confirmar eliminación",
+                JOptionPane.YES_NO_OPTION);
+
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        int idCita = Integer.parseInt(txtIdCita.getText());
+        CitaDAO dao = new CitaDAO();
+
+        if (dao.eliminarCita(idCita)) {
+            JOptionPane.showMessageDialog(this, "Cita eliminada correctamente.");
+            limpiarCampos();
+            cargarTodasLasCitas();
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo eliminar la cita.");
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void SearchAppointment_BttnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchAppointment_BttnBackMouseEntered
+        SearchAppointment_BttnBack.setBackground(Color.LIGHT_GRAY);
+        SearchAppointment_BttnBack.setForeground(Color.BLACK);
+    }//GEN-LAST:event_SearchAppointment_BttnBackMouseEntered
+
+    private void SearchAppointment_BttnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchAppointment_BttnBackMouseExited
+        SearchAppointment_BttnBack.setBackground(new Color(0,153,153));
+        SearchAppointment_BttnBack.setForeground(Color.WHITE);
+    }//GEN-LAST:event_SearchAppointment_BttnBackMouseExited
+
+    private void SearchAppointment_BttnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchAppointment_BttnBackActionPerformed
+        Appointment_Menu MenuAppointmentFrame = new Appointment_Menu(logUser);
+        MenuAppointmentFrame.setVisible(true);
+        MenuAppointmentFrame.pack();
+        MenuAppointmentFrame.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_SearchAppointment_BttnBackActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -807,15 +750,12 @@ public class SearchAppointment extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLabelCliente;
     private javax.swing.JPanel Left;
+    private javax.swing.JButton MenuUsers_BttnCancelUser;
+    private javax.swing.JButton MenuUsers_BttnUpdateUser;
     private javax.swing.JPanel Right;
     private javax.swing.JLabel SearchAppoint_lblNameClinic;
     private javax.swing.JPanel SearchAppointmentPanel;
-    private javax.swing.JPanel SearchAppointment_BttnBack;
-    private javax.swing.JPanel SearchAppointment_BttnSearch;
-    private javax.swing.JPanel SearchAppointment_BttnUpdate;
-    private javax.swing.JLabel SearchAppointment_lblBttnBack;
-    private javax.swing.JLabel SearchAppointment_lblBttnCancel;
-    private javax.swing.JLabel SearchAppointment_lblBttnUpdate;
+    private javax.swing.JButton SearchAppointment_BttnBack;
     private javax.swing.JLabel SearchAppointment_lblClientID;
     private javax.swing.JLabel SearchAppointment_lblClientID1;
     private javax.swing.JLabel SearchAppointment_lblDate;

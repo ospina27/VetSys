@@ -38,6 +38,7 @@ public class Nimbus {
     
     ///estilo para las tablas
     public static void styleTable(JTable table) {
+
         table.setRowHeight(25);
         table.setFont(new Font("Arial", Font.PLAIN, 12));
         table.setForeground(Color.BLACK);
@@ -56,33 +57,29 @@ public class Nimbus {
         header.setReorderingAllowed(false);
         header.setOpaque(true);
         header.setBorder(BorderFactory.createEmptyBorder());
-
         ///Estilo zebra (filas alternadas)
         table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value,boolean isSelected, boolean hasFocus,
-                    int row, int column) 
-            {
-                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                if (!isSelected) {
-                    c.setBackground(row % 2 == 0 ? new Color(250, 250, 250) : Color.WHITE);
+                int row, int column){
+                    Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                    if (!isSelected) {
+                        c.setBackground(row % 2 == 0 ? new Color(250, 250, 250) : Color.WHITE);
+                    }
+                    setHorizontalAlignment(LEFT);
+                    setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5)); 
+                    return c;
                 }
-                setHorizontalAlignment(LEFT);
-                setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5)); 
-                return c;
+            });
+            if (table.getParent() != null && table.getParent().getParent() instanceof JScrollPane scrollPane){
+                scrollPane.getViewport().setBackground(Color.WHITE);
+                scrollPane.setBackground(Color.WHITE);
+                scrollPane.setBorder(BorderFactory.createEmptyBorder());
             }
-        });
-        
-        if (table.getParent() != null && table.getParent().getParent() instanceof JScrollPane scrollPane)
-            {
-            scrollPane.getViewport().setBackground(Color.WHITE);
-            scrollPane.setBackground(Color.WHITE);
-            scrollPane.setBorder(BorderFactory.createEmptyBorder());
-        }
-        
-        resizeColumnWidths(table);
-        
+            resizeColumnWidths(table);
     }
+
+    
     
      ///aplicar el estilo para todos los texfield en la vista
     public static void styleAllTextFields(Container container) {

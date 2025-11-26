@@ -45,9 +45,7 @@ public class PatientsMenu extends javax.swing.JFrame {
         MenuPatients_BttnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
         MenuPatientsPanel.setMaximumSize(new java.awt.Dimension(800, 600));
