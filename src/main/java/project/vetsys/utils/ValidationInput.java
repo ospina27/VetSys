@@ -26,13 +26,16 @@ public class ValidationInput {
     public static class numbersFilter extends DocumentFilter {
         @Override
         public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
-            if(string.matches("\\d+"))
+            ///condicion adicional para que se identifiquen los campos vacíos o nulos
+            ///esto para que se puedan limpiar los campos cuando se requiera
+            ///se agregan tambien en los otros metodos de valicación
+            if(string == null || string.isEmpty()|| string.matches("\\d+"))
                 super.insertString(fb, offset, string, attr);
         }
         
         @Override
         public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
-            if (text.matches("\\d+"))
+            if (text == null|| text.isEmpty() || text.matches("\\d+"))
                 super.replace(fb, offset, length, text, attrs);
         }
     }
@@ -43,8 +46,8 @@ public class ValidationInput {
         @Override
         public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attr)
                 throws BadLocationException {
-
-            if (pattern.matcher(text).matches())
+            
+            if (text == null || text.isEmpty() || pattern.matcher(text).matches())
                 super.replace(fb, offset, length, text, attr);
         }
     }
@@ -59,7 +62,7 @@ public class ValidationInput {
             String actual = fb.getDocument().getText(0, fb.getDocument().getLength());
             String nuevo = actual.substring(0, offset) + text + actual.substring(offset + length);
 
-            if (nuevo.matches(regex) && nuevo.length() <= 10)
+            if (nuevo.matches(regex) && nuevo.length() <= 10 || nuevo.isEmpty())
                 super.replace(fb, offset, length, text, attrs);
         }
     }

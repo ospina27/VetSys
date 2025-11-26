@@ -20,6 +20,7 @@ import project.vetsys.model.ClienteModel;
 import project.vetsys.model.User;
 import project.vetsys.view.Nimbus;
 import project.vetsys.utils.ValidationInput;
+import project.vetsys.utils.Utils;
 
 /**
  *
@@ -31,6 +32,7 @@ public class SearchClient extends javax.swing.JFrame {
     private User logUser; //user que inicio sesion
     private ClienteDAO clienteDAO = new ClienteDAO();
     private DefaultTableModel modeloTabla;
+    private Utils utils;
 
     /**
      * Creates new form SearchUser
@@ -41,6 +43,7 @@ public class SearchClient extends javax.swing.JFrame {
     public SearchClient(User logUser) {
         Nimbus.LookandFeel();
         this.logUser = logUser;
+        utils = new Utils();
         initComponents();
         aplicarAccesibilidad();
         configurarTabla();
@@ -65,8 +68,6 @@ public class SearchClient extends javax.swing.JFrame {
         
         ValidationInput.numbers(txtDocumentoIngresado);
         ValidationInput.numbers(txtDocumento);
-
-
         
     }
 
@@ -565,8 +566,8 @@ public class SearchClient extends javax.swing.JFrame {
             cliente.setDocumento(txtDocumento.getText());
             cliente.setTelefono(txtTelefono.getText());
             cliente.setCorreo(txtCorreo.getText());
-            cliente.setDireccion(txtDireccion.getText());
-
+            cliente.setDireccion(txtDireccion.getText());  
+            
             String item = (String) cmboxMembresias.getSelectedItem();
             Integer idMembresia = null;
             
@@ -599,6 +600,11 @@ public class SearchClient extends javax.swing.JFrame {
                 cliente.setFechaInicio(null);
                 cliente.setFechaVigencia(null);
                 cliente.setEstadoMembresia(0);
+            }
+            
+            ///Validación del formato de correo
+            if (!utils.validationEmail(txtCorreo, this, logUser.getClinic().getName_clinic())) {
+                return;
             }
             
             boolean actualizado = clienteDAO.actualizarCliente(cliente);

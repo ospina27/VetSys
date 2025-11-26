@@ -11,7 +11,7 @@ import project.vetsys.model.Pet;
 import project.vetsys.model.User;
 import project.vetsys.utils.ValidationInput;
 import project.vetsys.view.Nimbus;
-import project.vetsys.view.Utils;
+import project.vetsys.utils.Utils;
 
 public class SearchPet extends javax.swing.JFrame {
     

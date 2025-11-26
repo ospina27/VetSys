@@ -14,7 +14,7 @@ import project.vetsys.model.Status;
 import project.vetsys.model.User;
 import project.vetsys.utils.ValidationInput;
 import project.vetsys.view.Nimbus;
-import project.vetsys.view.Utils;
+import project.vetsys.utils.Utils;
 
 
 public class SearchUser extends javax.swing.JFrame {
@@ -549,11 +549,10 @@ public class SearchUser extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2_InfoLayout.createSequentialGroup()
-                        .addGap(13, 13, 13)
                         .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(idUserField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(idUserField, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2_InfoLayout.createSequentialGroup()
-                                .addGap(8, 8, 8)
+                                .addGap(6, 6, 6)
                                 .addComponent(jLabel7)))
                         .addGroup(jPanel2_InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2_InfoLayout.createSequentialGroup()
@@ -738,13 +737,17 @@ public class SearchUser extends javax.swing.JFrame {
             user.setId_clinic(logUser.getId_clinic()); ///mismo id de clínica
 
             UserDAO userDAO = new UserDAO();
-
+            
             ///validar campos obligatorios
             if(name_userField.getText().isEmpty()|| LastNameField.getText().isEmpty()||
-                usernameField.getText().isEmpty()|| DocumentField.getText().isEmpty())
+                usernameField.getText().isEmpty()|| DocumentField.getText().isEmpty()||
+                        EmailField.getText().isEmpty())    
             {
                 JOptionPane.showMessageDialog(this, "Complete los campos obligatorios *", "ATENCIÓN", JOptionPane.WARNING_MESSAGE);
-            }else
+            }else if (!Utils.validationEmail(EmailField, this, logUser.getClinic().getName_clinic())) {
+                return;
+            }
+            else
             {
                 String message = "¿Desea confirmar la actualización?";
                 String title = "Confirmación";

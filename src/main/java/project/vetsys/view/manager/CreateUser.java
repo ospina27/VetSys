@@ -6,12 +6,13 @@ import project.vetsys.view.security.LogIn;
 import javax.swing.JOptionPane;
 import project.vetsys.dao.RoleDAO;
 import project.vetsys.dao.StatusDAO;
+import project.vetsys.dao.UserDAO;
 import project.vetsys.model.Role;
 import project.vetsys.model.Status;
 import project.vetsys.model.User;
 import project.vetsys.utils.ValidationInput;
 import project.vetsys.view.Nimbus;
-import project.vetsys.view.Utils;
+import project.vetsys.utils.Utils;
 import project.vetsys.view.manager.MenuManager;
 
 public class CreateUser extends javax.swing.JFrame {
@@ -37,9 +38,8 @@ public class CreateUser extends javax.swing.JFrame {
         Nimbus.styleAllLabelsExcept(this,CreateUser_lblTittle);
         Nimbus.styleTitleLabel(CreateUser_lblSubTittle);
         loadRolesStatus();
-       
         ValidationInput.numbers(documentUser_field);
-
+        ValidationInput.numbers(phoneUser_field);
     }
       
     private void emptyFields(){
@@ -430,11 +430,16 @@ public class CreateUser extends javax.swing.JFrame {
         user.setPassword(password);
         user.setId_role(r.getId());   ///se actualizan los roles con el id y el nombre en el combobox
         user.setName_role(r.getName());
-            user.setId_status(s.getId());
+        user.setId_status(s.getId());
         user.setName_status(s.getName());
         user.setId_clinic(logUser.getId_clinic());
         
-        project.vetsys.dao.UserDAO userDAO = new project.vetsys.dao.UserDAO();
+        ///Validación del formato de correo
+        if (!Utils.validationEmail(emailUser_field, this, logUser.getClinic().getName_clinic())) {
+            return;
+        }
+        
+        UserDAO userDAO = new project.vetsys.dao.UserDAO();
         boolean success = userDAO.Create(user);
 
         if (success) {

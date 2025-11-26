@@ -13,6 +13,7 @@ import project.vetsys.model.User;
 import project.vetsys.dao.ClienteDAO;
 import project.vetsys.database.DBConnection;
 import project.vetsys.model.ClienteModel;
+import project.vetsys.utils.Utils;
 import project.vetsys.view.Nimbus;
 import project.vetsys.utils.ValidationInput;
 
@@ -49,15 +50,16 @@ public class CreateClient extends javax.swing.JFrame {
         // Accesibilidad para el botón "Regresar"
         btnSalir.setFocusable(true);
         btnSalir.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
+        @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    btnSalirActionPerformed(null);
-            }
-        }
-    });
+                        btnSalirActionPerformed(null);
+                    }
+                }   
+            });
         
         ValidationInput.numbers(txtDocumento);
+        ValidationInput.numbers(txtTelefono);
     }
     private void resaltarFoco() {
     java.awt.Color focusColor = new java.awt.Color(0, 153, 153);
@@ -570,6 +572,11 @@ public class CreateClient extends javax.swing.JFrame {
                 cliente.setFechaInicio(null);
                 cliente.setFechaVigencia(null);
                 cliente.setEstadoMembresia(0);
+            }
+            
+            ///Validación del formato de correo
+            if (!Utils.validationEmail(txtCorreo, this, logUser.getClinic().getName_clinic())) {
+                return;
             }
 
             // Insertar cliente DAO a la BD

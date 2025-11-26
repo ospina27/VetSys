@@ -6,6 +6,7 @@ import javax.swing.table.DefaultTableModel;
 import project.vetsys.dao.CitaDAO;
 import project.vetsys.model.Cita;
 import project.vetsys.model.User;
+import project.vetsys.view.Nimbus;
 import project.vetsys.view.manager.MenuManager;
 
 public class NotificationPanel extends javax.swing.JFrame {
@@ -20,10 +21,13 @@ public class NotificationPanel extends javax.swing.JFrame {
     }
         
     public NotificationPanel(User logUser){
+        Nimbus.LookandFeel();
         initComponents();
         this.logUser = logUser;
         cargarColumnasTabla();
         cargarTodasLasCitas();
+        Nimbus.styleTable(NotificationPanel_Table);
+        setTitle("Gestión de citas"+ logUser.getClinic().getName_clinic());
     }  
     
     private void ocultarColumnaVeterinario() {
