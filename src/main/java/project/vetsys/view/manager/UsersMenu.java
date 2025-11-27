@@ -24,6 +24,8 @@ public class UsersMenu extends javax.swing.JFrame {
             MenuUsers_BttnCreateUser.setVisible(false);
         }
         setTitle("Gestión de Usuarios "+logUser.getClinic().getName_clinic());
+        //aplicarPermisosPorRol();
+        setTitle(logUser.getClinic().getName_clinic());
     }
 
     public UsersMenu() {
@@ -187,7 +189,22 @@ public class UsersMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    
+    private void aplicarPermisosPorRol() {
 
+        String rol = logUser.getName_role();
+        System.out.println("Usuario logueado en MenuManager: " + logUser.getUsername());
+        // admin puede crear usuario
+        if (rol.equalsIgnoreCase("Administrador")) {
+            MenuUsers_BttnCreateUser.setVisible(true);
+        } else {
+            MenuUsers_BttnCreateUser.setVisible(false);
+        }
+    }
+
+    
+    
     private void MenuUsers_BttnCreateUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_BttnCreateUserMouseClicked
         System.out.println("MenuManager -> logUser: " +
         (logUser != null ? logUser.getUsername() + " id_clinic=" + logUser.getId_clinic() + " role=" + logUser.getName_role() : "logUser es null"));
