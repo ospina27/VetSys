@@ -11,11 +11,7 @@ public class PatientsMenu extends javax.swing.JFrame {
     public PatientsMenu(User logUser) {
         initComponents();
         this.logUser = logUser;
-        System.out.println("Usuario logueado en MenuManager: " + logUser.getUsername());
-        if(!"Administrador".equalsIgnoreCase(logUser.getName_role()))
-        {
-            MenuPatients_BttnCreatePatient.setVisible(false);
-        }
+        aplicarPermisosPorRol();
         setTitle(logUser.getClinic().getName_clinic());
     }
 
@@ -182,24 +178,24 @@ public class PatientsMenu extends javax.swing.JFrame {
                             .addComponent(MenuPatients_BttnCreatePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(MenuPatients_BttnSearchPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(RightLayout.createSequentialGroup()
-                        .addGap(157, 157, 157)
+                        .addGap(164, 164, 164)
                         .addComponent(MenuPatients_BttnBack)))
                 .addContainerGap(107, Short.MAX_VALUE))
         );
         RightLayout.setVerticalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RightLayout.createSequentialGroup()
-                .addContainerGap(90, Short.MAX_VALUE)
+                .addContainerGap(83, Short.MAX_VALUE)
                 .addComponent(MenuPatients_BttnCreatePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addComponent(MenuPatients_BttnSearchPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addGap(49, 49, 49)
                 .addComponent(MenuPatients_BttnCreatePet, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addGap(45, 45, 45)
+                .addComponent(MenuPatients_BttnSearchPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
                 .addComponent(MenuPatients_BttnSearchPet, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
+                .addGap(54, 54, 54)
                 .addComponent(MenuPatients_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
+                .addGap(76, 76, 76))
         );
 
         MenuPatientsPanel.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 460, -1));
@@ -221,7 +217,22 @@ public class PatientsMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void aplicarPermisosPorRol() {
 
+        String rol = logUser.getName_role();
+        System.out.println("Usuario logueado en MenuManager: " + logUser.getUsername());
+        if (rol.equalsIgnoreCase("Veterinario")) {
+            MenuPatients_BttnCreatePatient.setVisible(false);  // registrar cliente
+            MenuPatients_BttnCreatePet.setVisible(false);      // registrar mascota
+        } else {
+            // Asistente y Administrador todo visible
+            MenuPatients_BttnCreatePatient.setVisible(true);
+            MenuPatients_BttnCreatePet.setVisible(true);
+        }
+    }
+
+    
     private void MenuPatients_BttnCreatePatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuPatients_BttnCreatePatientMouseClicked
         // boton registrar cliente
         System.out.println("MenuManager -> logUser: " +
