@@ -118,7 +118,7 @@ public class AttendAppointment extends javax.swing.JFrame {
         SearchAppointment_lblBttnBack = new javax.swing.JLabel();
         SearchAppointment_lblClientID = new javax.swing.JLabel();
         txtDocumentoCliente = new javax.swing.JTextField();
-        btnConsultar = new javax.swing.JButton();
+        btnConsultarCitas = new javax.swing.JButton();
         btnRegistrarHC = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableCitas = new javax.swing.JTable();
@@ -184,14 +184,14 @@ public class AttendAppointment extends javax.swing.JFrame {
             }
         });
 
-        btnConsultar.setBackground(new java.awt.Color(0, 153, 153));
-        btnConsultar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnConsultar.setForeground(new java.awt.Color(255, 255, 255));
-        btnConsultar.setText("Consultar");
-        btnConsultar.setBorder(null);
-        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultarCitas.setBackground(new java.awt.Color(0, 153, 153));
+        btnConsultarCitas.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnConsultarCitas.setForeground(new java.awt.Color(255, 255, 255));
+        btnConsultarCitas.setText("Consultar");
+        btnConsultarCitas.setBorder(null);
+        btnConsultarCitas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarActionPerformed(evt);
+                btnConsultarCitasActionPerformed(evt);
             }
         });
 
@@ -267,8 +267,8 @@ public class AttendAppointment extends javax.swing.JFrame {
                             .addComponent(SearchAppointment_lblClientID1)
                             .addGroup(RightLayout.createSequentialGroup()
                                 .addComponent(txtDocumentoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(88, 88, 88)
-                                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(34, 34, 34)
+                                .addComponent(btnConsultarCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(SearchAppointment_lblClientID)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(RightLayout.createSequentialGroup()
@@ -290,7 +290,7 @@ public class AttendAppointment extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDocumentoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnConsultarCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
@@ -332,18 +332,14 @@ public class AttendAppointment extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarHCActionPerformed
 
     
-    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+    private void btnConsultarCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCitasActionPerformed
         String doc = txtDocumentoCliente.getText().trim();
 
         List<Cita> lista;
         if (doc.isEmpty()) {
             lista = citaDAO.listarCitasPendientes(logUser.getId_clinic(), logUser.getId_user());
         } else {
-            lista = citaDAO.buscarCitasPendientesPorDocumento(
-                    logUser.getId_clinic(),
-                    logUser.getId_user(),
-                    doc
-            );
+            lista = citaDAO.buscarCitasPendientesPorDocumento(logUser.getId_clinic(), logUser.getId_user(), doc);
             if (lista == null || lista.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "No se encontraron citas programadas.", "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
                 txtDocumentoCliente.setText(""); 
@@ -353,7 +349,7 @@ public class AttendAppointment extends javax.swing.JFrame {
         cargarTabla(lista);
         btnRegistrarHC.setEnabled(false);
         idCitaSeleccionada = -1;
-    }//GEN-LAST:event_btnConsultarActionPerformed
+    }//GEN-LAST:event_btnConsultarCitasActionPerformed
 
     private void txtDocumentoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDocumentoClienteActionPerformed
         // TODO add your handling code here:
@@ -438,7 +434,7 @@ public class AttendAppointment extends javax.swing.JFrame {
     private javax.swing.JLabel SearchAppointment_lblClientID;
     private javax.swing.JLabel SearchAppointment_lblClientID1;
     private javax.swing.JPanel Up;
-    private javax.swing.JButton btnConsultar;
+    private javax.swing.JButton btnConsultarCitas;
     private javax.swing.JButton btnRegistrarHC;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;

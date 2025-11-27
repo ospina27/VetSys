@@ -5,6 +5,7 @@ import project.vetsys.model.User;
 import project.vetsys.view.assistant.AttendAppointment;
 import project.vetsys.view.assistant.ScheduleAppointment;
 import project.vetsys.view.assistant.SearchAppointment;
+import project.vetsys.view.assistant.SearchHistory;
 
 
 public class Appointment_Menu extends javax.swing.JFrame {
@@ -202,6 +203,11 @@ public class Appointment_Menu extends javax.swing.JFrame {
                 btnConsultarHistorialMouseExited(evt);
             }
         });
+        btnConsultarHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarHistorialActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout RightLayout = new javax.swing.GroupLayout(Right);
         Right.setLayout(RightLayout);
@@ -346,6 +352,14 @@ public class Appointment_Menu extends javax.swing.JFrame {
     private void btnAtenderCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtenderCitaActionPerformed
        
     }//GEN-LAST:event_btnAtenderCitaActionPerformed
+
+    private void btnConsultarHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarHistorialActionPerformed
+        SearchHistory Historyframe = new SearchHistory(logUser);
+        Historyframe.setVisible(true);
+        Historyframe.pack();
+        Historyframe.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_btnConsultarHistorialActionPerformed
 
     
     public static void main(String args[]) {

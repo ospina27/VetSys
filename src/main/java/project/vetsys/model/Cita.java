@@ -1,17 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package project.vetsys.model;
 
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-/**
- *
- * @author Asus
- */
+
 public class Cita {
     
     private Integer idCita;
@@ -123,8 +116,6 @@ public class Cita {
         this.NombreVeterinario = NombreVeterinario;
     }
     
-    
-
     
     
 }
