@@ -151,7 +151,7 @@ public class SearchHistory extends javax.swing.JFrame {
         lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
         lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBttnBack.setText("Salir");
-        lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBttnBackMouseClicked(evt);
@@ -191,6 +191,7 @@ public class SearchHistory extends javax.swing.JFrame {
         btnConsultar.setForeground(new java.awt.Color(255, 255, 255));
         btnConsultar.setText("Consultar");
         btnConsultar.setBorder(null);
+        btnConsultar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarActionPerformed(evt);
@@ -201,6 +202,7 @@ public class SearchHistory extends javax.swing.JFrame {
         btnVerDetalle.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         btnVerDetalle.setForeground(new java.awt.Color(255, 255, 255));
         btnVerDetalle.setText("Ver detalle");
+        btnVerDetalle.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVerDetalle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerDetalleActionPerformed(evt);

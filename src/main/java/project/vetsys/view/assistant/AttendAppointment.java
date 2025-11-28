@@ -149,7 +149,7 @@ public class AttendAppointment extends javax.swing.JFrame {
         SearchAppointment_lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
         SearchAppointment_lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         SearchAppointment_lblBttnBack.setText("Salir");
-        SearchAppointment_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        SearchAppointment_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         SearchAppointment_lblBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SearchAppointment_lblBttnBackMouseClicked(evt);
@@ -189,6 +189,7 @@ public class AttendAppointment extends javax.swing.JFrame {
         btnConsultarCitas.setForeground(new java.awt.Color(255, 255, 255));
         btnConsultarCitas.setText("Consultar");
         btnConsultarCitas.setBorder(null);
+        btnConsultarCitas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnConsultarCitas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarCitasActionPerformed(evt);
@@ -199,7 +200,7 @@ public class AttendAppointment extends javax.swing.JFrame {
         btnRegistrarHC.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         btnRegistrarHC.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrarHC.setText("Registrar Historia Clinica");
-        btnRegistrarHC.setActionCommand("Registrar Historia Clinica");
+        btnRegistrarHC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistrarHC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarHCActionPerformed(evt);

@@ -6,10 +6,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
-    private static final String url = "jdbc:mysql://localhost:3306/vetsys";
+    ///conexión con la base de datos railway
+    private static final String url = "jdbc:mysql://yamabiko.proxy.rlwy.net:26735/railway";
     private static final String user = "root";
     //private static final String password = "12345";
-    private static final String password = "alejo2705";
+    private static final String password = "TsECVebNpaRmDcuzmaMqAoJKJHbBTDyv";
     //private static final String password = "root";
     //private static final String password = "mysql";
 

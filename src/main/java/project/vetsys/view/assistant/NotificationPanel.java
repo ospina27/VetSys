@@ -86,7 +86,6 @@ public class NotificationPanel extends javax.swing.JFrame {
         NotificationPanel_BttnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
 
         NotificationPanel.setBackground(new java.awt.Color(255, 255, 255));

@@ -8,12 +8,14 @@ import project.vetsys.view.security.LogIn;
 
 import project.vetsys.model.User;
 import project.vetsys.view.assistant.NotificationPanel;
+import project.vetsys.utils.Utils;
 
 
 public class MenuManager extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenuManager.class.getName());
     private User logUser;
+    private Utils utils;
     
     
     public MenuManager(User logUser) {
@@ -21,6 +23,7 @@ public class MenuManager extends javax.swing.JFrame {
         aplicarAccesibilidad();
         conectarAccionesBotones();
         this.logUser = logUser;
+        utils = new Utils();
         System.out.println("Usuario logueado en MenuManager: " + logUser.getUsername());
         setTitle("Gestión Veterinaria "+logUser.getClinic().getName_clinic());
         if(!"Administrador".equalsIgnoreCase(logUser.getName_role()))
@@ -176,6 +179,11 @@ public class MenuManager extends javax.swing.JFrame {
                 MenuManager_BttnLogOutMouseExited(evt);
             }
         });
+        MenuManager_BttnLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuManager_BttnLogOutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout RightLayout = new javax.swing.GroupLayout(Right);
         Right.setLayout(RightLayout);
@@ -283,11 +291,6 @@ public class MenuManager extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuManager_BttnPatientsMouseExited
 
     private void MenuManager_BttnLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuManager_BttnLogOutMouseClicked
-        LogIn LogInFrame = new LogIn();
-        LogInFrame.setVisible(true);
-        LogInFrame.pack();
-        LogInFrame.setLocationRelativeTo(null);
-        this.dispose();
     }//GEN-LAST:event_MenuManager_BttnLogOutMouseClicked
 
     private void MenuManager_BttnLogOutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuManager_BttnLogOutMouseEntered
@@ -317,6 +320,10 @@ public class MenuManager extends javax.swing.JFrame {
         MenuManager_BttnNotifications.setBackground(new Color(0,153,153));
         MenuManager_BttnNotifications.setForeground(Color.WHITE);
     }//GEN-LAST:event_MenuManager_BttnNotificationsMouseExited
+
+    private void MenuManager_BttnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuManager_BttnLogOutActionPerformed
+
+    }//GEN-LAST:event_MenuManager_BttnLogOutActionPerformed
 
     
     public static void main(String args[]) {
@@ -451,11 +458,15 @@ public class MenuManager extends javax.swing.JFrame {
 
         // --- Cerrar sesión ---
         MenuManager_BttnLogOut.addActionListener(e -> {
+        String messageConfirm = "¿Estas seguro de cerrar serión?";
+        String title = logUser.getClinic().getName_clinic();
+        if(utils.validation(messageConfirm, title) ==1){
             LogIn LogInFrame = new LogIn();
             LogInFrame.setVisible(true);
             LogInFrame.pack();
             LogInFrame.setLocationRelativeTo(null);
             this.dispose();
+        }
         });
     }
 

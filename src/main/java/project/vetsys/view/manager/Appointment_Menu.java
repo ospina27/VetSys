@@ -72,12 +72,9 @@ public class Appointment_Menu extends javax.swing.JFrame {
         MenuAppointment_BttnScheduleAppointment = new javax.swing.JButton();
         MenuAppointment_BttnSearchAppointment = new javax.swing.JButton();
         MenuAppointment_BttnBacks = new javax.swing.JButton();
-
         MenuAppointment_Reports = new javax.swing.JButton();
-
         btnAtenderCita = new javax.swing.JButton();
         btnConsultarHistorial = new javax.swing.JButton();
-
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Appointment_Menu");
@@ -174,7 +171,6 @@ public class Appointment_Menu extends javax.swing.JFrame {
             }
         });
 
-
         MenuAppointment_Reports.setBackground(new java.awt.Color(0, 153, 153));
         MenuAppointment_Reports.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         MenuAppointment_Reports.setForeground(new java.awt.Color(255, 255, 255));
@@ -190,8 +186,8 @@ public class Appointment_Menu extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 MenuAppointment_ReportsMouseExited(evt);
-	}
-            });
+            }
+        });
 
         btnAtenderCita.setBackground(new java.awt.Color(0, 153, 153));
         btnAtenderCita.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
@@ -236,32 +232,28 @@ public class Appointment_Menu extends javax.swing.JFrame {
         btnConsultarHistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarHistorialActionPerformed(evt);
-
             }
         });
 
-javax.swing.GroupLayout RightLayout = new javax.swing.GroupLayout(Right);
+        javax.swing.GroupLayout RightLayout = new javax.swing.GroupLayout(Right);
         Right.setLayout(RightLayout);
-        
         RightLayout.setHorizontalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RightLayout.createSequentialGroup()
                 .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(RightLayout.createSequentialGroup()
-                        .addGap(85, 85, 85) // Margen izquierdo
+                        .addGap(85, 85, 85)
                         .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            // Lista de todos los botones centrados
+                            .addComponent(btnAtenderCita, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnConsultarHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(MenuAppointment_BttnScheduleAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(MenuAppointment_BttnSearchAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(MenuAppointment_Reports, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnConsultarHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAtenderCita, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(MenuAppointment_Reports, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(RightLayout.createSequentialGroup()
-                        .addGap(142, 142, 142) // Margen para centrar el botón de regreso
+                        .addGap(136, 136, 136)
                         .addComponent(MenuAppointment_BttnBacks)))
                 .addContainerGap(115, Short.MAX_VALUE))
         );
-
         RightLayout.setVerticalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RightLayout.createSequentialGroup()
@@ -269,15 +261,15 @@ javax.swing.GroupLayout RightLayout = new javax.swing.GroupLayout(Right);
                 .addComponent(MenuAppointment_BttnScheduleAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(MenuAppointment_BttnSearchAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44) // Espaciado consistente
+                .addGap(41, 41, 41)
                 .addComponent(MenuAppointment_Reports, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(btnConsultarHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(btnAtenderCita, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE) // Espacio flexible
+                .addGap(40, 40, 40)
                 .addComponent(MenuAppointment_BttnBacks, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
+                .addGap(29, 29, 29))
         );
 
         Menu_AppointmentPanel.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 450, -1));

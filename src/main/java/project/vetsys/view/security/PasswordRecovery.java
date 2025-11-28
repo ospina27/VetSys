@@ -11,6 +11,7 @@ import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import project.vetsys.utils.ValidationInput;
 import project.vetsys.view.Nimbus;
+import project.vetsys.view.manager.MenuManager;
 
 public class PasswordRecovery extends javax.swing.JFrame {
     
@@ -405,8 +406,11 @@ public class PasswordRecovery extends javax.swing.JFrame {
 
         if (updated) {
             JOptionPane.showMessageDialog(this, "Contraseña actualizada correctamente.");
+            LogIn LogInFrame = new LogIn();
+            LogInFrame.setVisible(true);
+            LogInFrame.pack();
+            LogInFrame.setLocationRelativeTo(null);
             this.dispose();
-            new LogIn().setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Error al actualizar contraseña.");
         }
