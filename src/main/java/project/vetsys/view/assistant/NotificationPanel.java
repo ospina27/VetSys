@@ -47,7 +47,7 @@ public class NotificationPanel extends javax.swing.JFrame {
     }
     
     private void agregarMensajeSinAlertas() {
-        JLabel label = new JLabel("No hay citas programadas para hoy.");
+        JLabel label = new JLabel("No hay citas programadas para mañana.");
         label.setFont(new Font("Arial black", Font.PLAIN, 16));
         Down_NotificationPanel.add(label);
         Down_NotificationPanel.revalidate();
