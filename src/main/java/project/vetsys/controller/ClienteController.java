@@ -1,17 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package project.vetsys.controller;
 
 import java.util.List;
 import project.vetsys.dao.ClienteDAO;
 import project.vetsys.model.ClienteModel;
 
-/**
- *
- * @author Asus
- */
 public class ClienteController {
 
     
@@ -32,7 +24,4 @@ public class ClienteController {
     public boolean eliminarCliente(int idCliente) {
         return clienteDAO.eliminarCliente(idCliente);
     }
-    
-    
-    
 }

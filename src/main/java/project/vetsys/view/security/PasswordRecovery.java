@@ -41,7 +41,13 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_textNewPasswordOK.setEnabled(false);
         setTitle("Recuperar contraseña");
         
-        ValidationInput.numbers(PassRec_textID);
+        // Validaciones en entrada de campos de textos
+        ValidationInput.text(PassRec_textUser, 30);
+        ValidationInput.numbers(PassRec_textID, 11);
+        
+        ValidationInput.maxLength(PassRec_textNewPassword, 20);
+        ValidationInput.maxLength(PassRec_textNewPasswordOK, 20);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -115,6 +121,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PasswordRecoveryPanel.add(Left_PasswordRecovery, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         Right_PasswordRecovery.setBackground(new java.awt.Color(255, 255, 255));
+        Right_PasswordRecovery.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         Right_PasswordRecovery.setMaximumSize(new java.awt.Dimension(400, 600));
         Right_PasswordRecovery.setMinimumSize(new java.awt.Dimension(400, 600));
         Right_PasswordRecovery.setPreferredSize(new java.awt.Dimension(400, 600));
@@ -150,6 +157,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_textNewPasswordOK.setBorder(null);
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 

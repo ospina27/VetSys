@@ -5,15 +5,61 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbc809e9-af47-4368-bb02-2040b85fd837" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/LogInPanel.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/LogInPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/MainPanel.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/MainPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/Login.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/Login.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/controller/CitaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/controller/CitaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/controller/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/controller/ClienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/dao/CitaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/dao/CitaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/dao/ClienteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/dao/ClienteDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/dao/ClinicDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/dao/ClinicDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/dao/StatusDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/dao/StatusDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/model/ClienteModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/model/ClienteModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/model/Clinic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/model/Clinic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/model/HistoriaClinica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/model/HistoriaClinica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/model/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/model/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/model/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/model/Status.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/model/Veterinarian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/model/Veterinarian.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/security/PasswordUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/security/PasswordUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/utils/ValidationInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/utils/ValidationInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/CreateClinic.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/CreateClinic.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/CreateClinic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/CreateClinic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/assistant/AttendAppointment.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/assistant/AttendAppointment.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/assistant/AttendAppointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/assistant/AttendAppointment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/assistant/NotificationPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/assistant/NotificationPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/assistant/RecordHistory.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/assistant/RecordHistory.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/assistant/RecordHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/assistant/RecordHistory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/assistant/ScheduleAppointment.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/assistant/ScheduleAppointment.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/assistant/ScheduleAppointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/assistant/ScheduleAppointment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/assistant/SearchAppointment.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/assistant/SearchAppointment.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/assistant/SearchAppointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/assistant/SearchAppointment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/assistant/SearchHistory.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/assistant/SearchHistory.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/assistant/SearchHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/assistant/SearchHistory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/Appointment_Menu.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/Appointment_Menu.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/CreateClient.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/CreateClient.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/CreateClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/CreateClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/CreatePet.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/CreatePet.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/CreatePet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/CreatePet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/CreateUser.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/CreateUser.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/CreateUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/CreateUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/MenuManager.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/MenuManager.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/PatientsMenu.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/PatientsMenu.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/SearchClient.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/SearchClient.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/SearchClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/SearchClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/SearchPet.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/SearchPet.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/SearchPet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/SearchPet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/SearchUser.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/SearchUser.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/SearchUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/SearchUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/UsersMenu.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/UsersMenu.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/UsersMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/manager/UsersMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/security/LogIn.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/security/LogIn.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/security/LogIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/security/LogIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/security/PasswordRecovery.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/security/PasswordRecovery.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/security/PasswordRecovery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/security/PasswordRecovery.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +92,7 @@
   &quot;keyToString&quot;: {
     &quot;Application.VetSys.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;fronted&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Merging veterinaryManagement&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/San/Documents/Universidad/Semestre 4/Bases de Datos/Proyecto Final/Centro_Medico_Salud_Vital&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -57,6 +103,27 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.24807.4" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.24807.4" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -68,6 +135,9 @@
       <workItem from="1760833187254" duration="4000" />
       <workItem from="1760833203726" duration="1811000" />
       <workItem from="1764264692570" duration="3000" />
+      <workItem from="1764571657728" duration="519000" />
+      <workItem from="1764572190405" duration="47000" />
+      <workItem from="1764572252084" duration="124000" />
     </task>
     <servers />
   </component>

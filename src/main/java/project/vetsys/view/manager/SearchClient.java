@@ -18,10 +18,6 @@ import project.vetsys.view.Nimbus;
 import project.vetsys.utils.ValidationInput;
 import project.vetsys.utils.Utils;
 
-/**
- *
- * @author San
- */
 public class SearchClient extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SearchClient.class.getName());
@@ -57,8 +53,14 @@ public class SearchClient extends javax.swing.JFrame {
                 
         System.out.println("Usuario logueado recibido: " + logUser.getUsername()); //prueba en consola
         
-        ValidationInput.numbers(txtDocumentoIngresado);
-        ValidationInput.numbers(txtDocumento);
+        // Validaciones en entrada de campos de textos
+        ValidationInput.text(txtNombres, 30);
+        ValidationInput.text(txtApellidos, 35);
+        ValidationInput.numbers(txtDocumento, 11);
+        ValidationInput.numbers(txtTelefono, 10);
+        ValidationInput.regex(txtCorreo, ValidationInput.EMAIL, 60);
+        ValidationInput.maxLength(txtDireccion, 80);
+        ValidationInput.numbers(txtDocumentoIngresado, 11);
         
     }
 
@@ -221,7 +223,7 @@ public class SearchClient extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
         jPanel1.setLayout(null);
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
         jPanel2.setMinimumSize(new java.awt.Dimension(400, 600));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -394,7 +396,7 @@ public class SearchClient extends javax.swing.JFrame {
         jPanel3.setPreferredSize(new java.awt.Dimension(800, 800));
 
         btnActualizar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnActualizar.setForeground(new java.awt.Color(0, 102, 102));
+        btnActualizar.setForeground(new java.awt.Color(0, 153, 153));
         btnActualizar.setText("Actualizar");
         btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -403,7 +405,7 @@ public class SearchClient extends javax.swing.JFrame {
             }
         });
 
-        btnSalir.setBackground(new java.awt.Color(0, 102, 102));
+        btnSalir.setBackground(new java.awt.Color(0, 153, 153));
         btnSalir.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnSalir.setForeground(new java.awt.Color(255, 255, 255));
         btnSalir.setText("Atrás");
@@ -415,7 +417,7 @@ public class SearchClient extends javax.swing.JFrame {
         });
 
         btnEliminar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnEliminar.setForeground(new java.awt.Color(0, 102, 102));
+        btnEliminar.setForeground(new java.awt.Color(0, 153, 153));
         btnEliminar.setText("Eliminar");
         btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -447,7 +449,7 @@ public class SearchClient extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaClientes);
 
-        btnConsultaCliente.setBackground(new java.awt.Color(0, 102, 102));
+        btnConsultaCliente.setBackground(new java.awt.Color(0, 153, 153));
         btnConsultaCliente.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnConsultaCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnConsultaCliente.setText("Buscar");

@@ -41,7 +41,10 @@ public class ScheduleAppointment extends javax.swing.JFrame {
         Nimbus.styleAllTextFields(this);
         cargarHorasDisponiblesVeterinario();
         configurarFechaCita();
-        ValidationInput.numbers(txtDocumentoCliente);
+        // Validaciones en entrada de campos de textos
+        ValidationInput.numbers(txtDocumentoCliente, 11);
+        ValidationInput.text(txtNombresCliente, 30);
+        ValidationInput.text(txtApellidosCliente, 35);
        
     }
     
@@ -53,7 +56,7 @@ public class ScheduleAppointment extends javax.swing.JFrame {
         Date manana = cal.getTime();
         jDateChooserFecha.setMinSelectableDate(manana);
     }
-    
+
     private void cargarHorasDisponiblesVeterinario() {
         
         cmbHora.removeAllItems();
@@ -245,9 +248,10 @@ public class ScheduleAppointment extends javax.swing.JFrame {
         ScheduleAppointment_lblDayMonth2.setText("Hora");
 
         cmbHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbHora.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         ScheduleAppointment_BttnBack.setBackground(new java.awt.Color(0, 153, 153));
-        ScheduleAppointment_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ScheduleAppointment_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ScheduleAppointment_BttnBack.setPreferredSize(new java.awt.Dimension(260, 50));
 
         ScheduleAppointment_lblBttnBack.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
@@ -281,7 +285,7 @@ public class ScheduleAppointment extends javax.swing.JFrame {
         );
 
         ScheduleAppointment_BttnSchedule.setBackground(new java.awt.Color(0, 153, 153));
-        ScheduleAppointment_BttnSchedule.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ScheduleAppointment_BttnSchedule.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         ScheduleAppointment_lblBttnSchedule.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         ScheduleAppointment_lblBttnSchedule.setForeground(new java.awt.Color(255, 255, 255));

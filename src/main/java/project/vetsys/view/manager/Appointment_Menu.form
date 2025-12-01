@@ -196,7 +196,7 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Agendar Cita"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Default Cursor"/>
+                  <Color id="Hand Cursor"/>
                 </Property>
                 <Property name="focusPainted" type="boolean" value="false"/>
               </Properties>
@@ -219,7 +219,7 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Consultar Cita"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Default Cursor"/>
+                  <Color id="Hand Cursor"/>
                 </Property>
                 <Property name="focusPainted" type="boolean" value="false"/>
               </Properties>
@@ -242,7 +242,7 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Regresar"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Default Cursor"/>
+                  <Color id="Hand Cursor"/>
                 </Property>
                 <Property name="focusPainted" type="boolean" value="false"/>
               </Properties>
@@ -265,7 +265,7 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Reportes"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Default Cursor"/>
+                  <Color id="Hand Cursor"/>
                 </Property>
                 <Property name="focusPainted" type="boolean" value="false"/>
               </Properties>
@@ -288,7 +288,7 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Atender Cita"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Default Cursor"/>
+                  <Color id="Hand Cursor"/>
                 </Property>
                 <Property name="focusPainted" type="boolean" value="false"/>
               </Properties>
@@ -312,7 +312,7 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Historial Clinico"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Default Cursor"/>
+                  <Color id="Hand Cursor"/>
                 </Property>
                 <Property name="focusPainted" type="boolean" value="false"/>
               </Properties>

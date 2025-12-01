@@ -37,6 +37,15 @@ public class SearchAppointment extends javax.swing.JFrame {
         SearchAppoint_lblNameClinic.setText(logUser.getClinic().getName_clinic());
         Nimbus.styleAllTextFields(this);
         Nimbus.styleTable(tableCitas);
+        
+        
+        // Validaciones en entrada de campos de textos
+        ValidationInput.text(txtNombreCliente, 30);
+        ValidationInput.text(txtNombreMascota, 30);
+        ValidationInput.text(txtNombreVet, 30);
+        ValidationInput.text(txtEstado, 30);
+        ValidationInput.numbers(txtDocumentoCliente, 11);
+        
     }
     
     
@@ -339,6 +348,7 @@ public class SearchAppointment extends javax.swing.JFrame {
         SearchAppointment_lblClientID1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         SearchAppointment_lblClientID1.setText("Estado cita");
 
+        cmbEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmbEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbEstadoActionPerformed(evt);
