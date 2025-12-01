@@ -1,8 +1,6 @@
 package project.vetsys.model;
 
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 
 public class Cita {
@@ -11,6 +9,7 @@ public class Cita {
     private Integer idClinica;
     private Integer idCliente;
     private String NombreCliente;
+    private String telefonoCliente;
     private Integer idMascota;
     private String NombreMascota;
     private Integer idVeterinario;
@@ -75,6 +74,14 @@ public class Cita {
         this.idVeterinario = idVeterinario;
     }
 
+    public String getTelefonoCliente() {
+        return telefonoCliente;
+    }
+
+    public void setTelefonoCliente(String telefonoCliente) {
+        this.telefonoCliente = telefonoCliente;
+    }
+    
     public Timestamp getFecha() {
         return fecha;
     }

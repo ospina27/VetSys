@@ -1,11 +1,9 @@
 package project.vetsys.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -198,18 +196,13 @@ public class CitaDAO {
                 cita.setIdCita(rs.getInt("id_cita"));
                 cita.setFecha(rs.getTimestamp("fecha_cita"));
                 cita.setEstado(rs.getString("estado"));
-
                 cita.setIdCliente(rs.getInt("id_cliente"));
-                cita.setNombreCliente(rs.getString("cliente_nombre") + " " +
-                                      rs.getString("cliente_apellido"));
-
+                cita.setNombreCliente(rs.getString("cliente_nombre") + " " + rs.getString("cliente_apellido"));
                 cita.setIdMascota(rs.getInt("id_mascota"));
                 cita.setNombreMascota(rs.getString("mascota_nombre"));
-
                 cita.setIdVeterinario(rs.getInt("vet_id"));
                 cita.setNombreVeterinario(rs.getString("vet_nombre") + " " +
                                           rs.getString("vet_apellido"));
-
                 lista.add(cita);
             }
 
@@ -365,6 +358,48 @@ public class CitaDAO {
             return false;
         }
     }
+    
+    
+    public List<Cita> obtenerCitasProgramadas(int idClinica) {
+        
+        List<Cita> lista = new ArrayList<>();
+
+        String sql = "SELECT c.id_cita, c.fecha_cita, " +
+                     "m.nombre AS mascota, " +
+                     "CONCAT(cl.nombres, ' ', cl.apellidos) AS cliente, " +
+                     "cl.telefono AS telefono_cliente, " +
+                     "CONCAT(v.nombres, ' ', v.apellidos) AS veterinario " +
+                     "FROM cita c " +
+                     "INNER JOIN mascota m ON c.id_mascota = m.id_mascota " +
+                     "INNER JOIN cliente cl ON c.id_cliente = cl.id_cliente " +
+                     "INNER JOIN usuario v ON c.id_veterinario = v.id_usuario " +
+                     "WHERE DATE(c.fecha_cita) = DATE_ADD(CURDATE(), INTERVAL 1 DAY) " +
+                     "AND c.estado = 'programada' " +
+                     "AND c.id_clinica = ?";
+
+        try (Connection con = DBConnection.getConnection();
+           
+           PreparedStatement ps = con.prepareStatement(sql)) {
+
+           ps.setInt(1, idClinica);
+           ResultSet rs = ps.executeQuery();
+
+           while (rs.next()) {
+               Cita cita = new Cita();
+               cita.setIdCita(rs.getInt("id_cita"));
+               cita.setFecha(rs.getTimestamp("fecha_cita"));
+               cita.setNombreMascota(rs.getString("mascota"));
+               cita.setNombreCliente(rs.getString("cliente"));
+               cita.setTelefonoCliente(rs.getString("telefono_cliente"));
+               cita.setNombreVeterinario(rs.getString("veterinario"));
+               lista.add(cita);
+           }
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+       return lista;
+   }
+
     
     
     //consultar el estado de las citas, para los reportes

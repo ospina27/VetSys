@@ -1,8 +1,6 @@
 package project.vetsys.view.manager;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import project.vetsys.view.security.LogIn;
 
@@ -236,6 +234,7 @@ public class MenuManager extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void MenuManager_BttnUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuManager_BttnUsersMouseClicked
         UsersMenu MenuUserFrame = new UsersMenu(logUser);
         MenuUserFrame.setVisible(true);
