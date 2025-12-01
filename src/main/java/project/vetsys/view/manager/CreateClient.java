@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import project.vetsys.model.User;
 import project.vetsys.dao.ClienteDAO;
 import project.vetsys.database.DBConnection;
@@ -33,15 +34,18 @@ public class CreateClient extends javax.swing.JFrame {
         initComponents();
         aplicarAccesibilidad();
         resaltarFoco();
+        
     }
  
     public CreateClient(User logUser){
+        
         this.logUser = logUser;
         Nimbus.LookandFeel();
         initComponents();
         aplicarAccesibilidad();
         resaltarFoco();
         cargarMembresias();
+        configurarFechaMembresia();
         CreateUser_lblTittle.setText(logUser.getClinic().getName_clinic());
         Nimbus.styleAllLabelsExcept(this,CreateUser_lblTittle);
         Nimbus.styleAllTextFields(this);
@@ -61,28 +65,38 @@ public class CreateClient extends javax.swing.JFrame {
         ValidationInput.numbers(txtDocumento);
         ValidationInput.numbers(txtTelefono);
     }
+    
+    
     private void resaltarFoco() {
-    java.awt.Color focusColor = new java.awt.Color(0, 153, 153);
-    java.awt.Color normalColor = Color.GRAY;
+        java.awt.Color focusColor = new java.awt.Color(0, 153, 153);
+        java.awt.Color normalColor = Color.GRAY;
 
-    javax.swing.JTextField[] campos = {
-        txtNombreCliente, txtApellidos, txtDocumento, txtTelefono,
-        txtCorreo, txtDireccion, txtDescripcionMembresia, txtPrecioMembresia
-    };
+        javax.swing.JTextField[] campos = {
+            txtNombreCliente, txtApellidos, txtDocumento, txtTelefono,
+            txtCorreo, txtDireccion, txtDescripcionMembresia, txtPrecioMembresia
+        };
 
-    for (javax.swing.JTextField campo : campos) {
-        campo.addFocusListener(new java.awt.event.FocusAdapter() {
-            @Override
-            public void focusGained(java.awt.event.FocusEvent e) {
-                campo.setBorder(javax.swing.BorderFactory.createLineBorder(focusColor, 2));
-            }
+        for (javax.swing.JTextField campo : campos) {
+            campo.addFocusListener(new java.awt.event.FocusAdapter() {
+                @Override
+                public void focusGained(java.awt.event.FocusEvent e) {
+                    campo.setBorder(javax.swing.BorderFactory.createLineBorder(focusColor, 2));
+                }
 
-            @Override
-            public void focusLost(java.awt.event.FocusEvent e) {
-                campo.setBorder(javax.swing.BorderFactory.createLineBorder(normalColor, 1));
-            }
-        });
+                @Override
+                public void focusLost(java.awt.event.FocusEvent e) {
+                    campo.setBorder(javax.swing.BorderFactory.createLineBorder(normalColor, 1));
+                }
+            });
+        }
     }
+    
+    private void configurarFechaMembresia() {
+        ((JTextField) jDateChooserFechaInicio.getDateEditor().getUiComponent()).setEditable(false);
+        ((JTextField) jDateChooserFechaFin.getDateEditor().getUiComponent()).setEditable(false);
+        Date hoy = new Date();
+        jDateChooserFechaInicio.setMinSelectableDate(hoy);
+        jDateChooserFechaFin.setMinSelectableDate(hoy);
     }
 
     

@@ -3,7 +3,10 @@ package project.vetsys.view.assistant;
 import java.awt.Color;
 import java.util.List;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import project.vetsys.dao.CitaDAO;
 import project.vetsys.dao.ClienteDAO;
 import project.vetsys.dao.PetDAO;
@@ -37,8 +40,18 @@ public class ScheduleAppointment extends javax.swing.JFrame {
         Nimbus.styleTitleLabel(ScheduleAppointment_lblSubTittle);
         Nimbus.styleAllTextFields(this);
         cargarHorasDisponiblesVeterinario();
+        configurarFechaCita();
         ValidationInput.numbers(txtDocumentoCliente);
        
+    }
+    
+    private void configurarFechaCita() {
+
+        ((JTextField) jDateChooserFecha.getDateEditor().getUiComponent()).setEditable(false);
+        Calendar cal = Calendar.getInstance(); //calcular fecha mañana
+        cal.add(Calendar.DAY_OF_MONTH, 1);
+        Date manana = cal.getTime();
+        jDateChooserFecha.setMinSelectableDate(manana);
     }
     
     private void cargarHorasDisponiblesVeterinario() {

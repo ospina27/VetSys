@@ -93,7 +93,7 @@ public class MenuManager extends javax.swing.JFrame {
         MenuManager_BttnUsers.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         MenuManager_BttnUsers.setForeground(new java.awt.Color(255, 255, 255));
         MenuManager_BttnUsers.setText("Usuarios");
-        MenuManager_BttnUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuManager_BttnUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuManager_BttnUsers.setFocusPainted(false);
         MenuManager_BttnUsers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -111,7 +111,7 @@ public class MenuManager extends javax.swing.JFrame {
         MenuManager_BttnAppointments.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         MenuManager_BttnAppointments.setForeground(new java.awt.Color(255, 255, 255));
         MenuManager_BttnAppointments.setText("Citas");
-        MenuManager_BttnAppointments.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuManager_BttnAppointments.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuManager_BttnAppointments.setFocusPainted(false);
         MenuManager_BttnAppointments.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -129,7 +129,7 @@ public class MenuManager extends javax.swing.JFrame {
         MenuManager_BttnPatients.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         MenuManager_BttnPatients.setForeground(new java.awt.Color(255, 255, 255));
         MenuManager_BttnPatients.setText("Pacientes");
-        MenuManager_BttnPatients.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuManager_BttnPatients.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuManager_BttnPatients.setFocusPainted(false);
         MenuManager_BttnPatients.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -148,7 +148,7 @@ public class MenuManager extends javax.swing.JFrame {
         MenuManager_BttnNotifications.setForeground(new java.awt.Color(255, 255, 255));
         MenuManager_BttnNotifications.setText("Pendientes");
         MenuManager_BttnNotifications.setToolTipText("");
-        MenuManager_BttnNotifications.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuManager_BttnNotifications.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuManager_BttnNotifications.setFocusPainted(false);
         MenuManager_BttnNotifications.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -166,7 +166,7 @@ public class MenuManager extends javax.swing.JFrame {
         MenuManager_BttnLogOut.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         MenuManager_BttnLogOut.setForeground(new java.awt.Color(255, 255, 255));
         MenuManager_BttnLogOut.setText("Cerrar Sesion");
-        MenuManager_BttnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuManager_BttnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MenuManager_BttnLogOut.setFocusPainted(false);
         MenuManager_BttnLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -207,13 +207,13 @@ public class MenuManager extends javax.swing.JFrame {
             .addGroup(RightLayout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addComponent(MenuManager_BttnUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
+                .addGap(64, 64, 64)
                 .addComponent(MenuManager_BttnAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72)
+                .addGap(62, 62, 62)
                 .addComponent(MenuManager_BttnPatients, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addGap(63, 63, 63)
                 .addComponent(MenuManager_BttnNotifications, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addComponent(MenuManager_BttnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
