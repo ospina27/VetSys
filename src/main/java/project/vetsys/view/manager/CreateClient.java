@@ -23,12 +23,7 @@ public class CreateClient extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CreateClient.class.getName());
     private User logUser;
     private final ClienteDAO clienteDAO = new ClienteDAO();
-    
-    /**
-     * Creates new form SearchUser
-     * @param logUser
-     */
-    
+        
     public CreateClient() {
         initComponents();
         aplicarAccesibilidad();
@@ -58,8 +53,15 @@ public class CreateClient extends javax.swing.JFrame {
                 }   
             });
         
-        ValidationInput.numbers(txtDocumento);
-        ValidationInput.numbers(txtTelefono);
+        // Validaciones en entrada de campos de textos
+        ValidationInput.text(txtNombreCliente, 30);
+        ValidationInput.text(txtApellidos, 35);
+        ValidationInput.numbers(txtDocumento, 11);
+        ValidationInput.numbers(txtTelefono, 10);
+        ValidationInput.regex(txtCorreo, ValidationInput.EMAIL, 60);
+        ValidationInput.maxLength(txtDireccion, 80);
+        ValidationInput.numbers(txtPrecioMembresia, 9);
+        
     }
     private void resaltarFoco() {
     java.awt.Color focusColor = new java.awt.Color(0, 153, 153);

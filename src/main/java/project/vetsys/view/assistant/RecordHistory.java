@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import project.vetsys.dao.HistoriaClinicaDAO;
 import project.vetsys.model.HistoriaClinica;
 import project.vetsys.model.User;
+import project.vetsys.utils.ValidationInput;
 import project.vetsys.view.manager.Appointment_Menu;
 
 
@@ -52,12 +53,10 @@ public class RecordHistory extends javax.swing.JFrame {
         this.logUser = logUser;
         initComponents();
         cargarDatos();
+        
+        // Validaciones en entrada de campos de textos
+        ValidationInput.numbers(txtPeso, 3);
     }
-    
-    /**
-     * Creates new form SearchUser
-     * @param logUser
-     */
     
     private void cargarDatos() {
 
@@ -162,7 +161,7 @@ public class RecordHistory extends javax.swing.JFrame {
         ScheduleAppointment_lblPet.setText("Mascota");
 
         ScheduleAppointment_BttnBack.setBackground(new java.awt.Color(0, 153, 153));
-        ScheduleAppointment_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ScheduleAppointment_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ScheduleAppointment_BttnBack.setPreferredSize(new java.awt.Dimension(260, 50));
 
         ScheduleAppointment_lblBttnBack.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
@@ -196,7 +195,7 @@ public class RecordHistory extends javax.swing.JFrame {
         );
 
         ScheduleAppointment_BttnSchedule.setBackground(new java.awt.Color(0, 153, 153));
-        ScheduleAppointment_BttnSchedule.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ScheduleAppointment_BttnSchedule.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         btnGuardar.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         btnGuardar.setForeground(new java.awt.Color(255, 255, 255));

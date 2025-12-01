@@ -1,16 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package project.vetsys.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-/**
- *
- * @author Asus
- */
 public class HistoriaClinica {
     
     private Integer idHistoria;

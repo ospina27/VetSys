@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package project.vetsys.dao;
 
 import java.sql.Connection;
@@ -14,10 +10,6 @@ import project.vetsys.database.DBConnection;
 import project.vetsys.model.Status;
 import project.vetsys.model.User;
 
-/**
- *
- * @author User
- */
 public class StatusDAO {
     
     public List<Status> getAllStatus(User logUser){

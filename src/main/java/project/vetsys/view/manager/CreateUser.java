@@ -38,8 +38,15 @@ public class CreateUser extends javax.swing.JFrame {
         Nimbus.styleAllLabelsExcept(this,CreateUser_lblTittle);
         Nimbus.styleTitleLabel(CreateUser_lblSubTittle);
         loadRolesStatus();
-        ValidationInput.numbers(documentUser_field);
-        ValidationInput.numbers(phoneUser_field);
+        
+        // Validaciones en entrada de campos de textos
+        ValidationInput.text(nameUser_field, 30);
+        ValidationInput.text(lastNameUser_field, 35);
+        ValidationInput.numbers(phoneUser_field, 10);
+        ValidationInput.numbers(documentUser_field, 11);
+        ValidationInput.regex(emailUser_field, ValidationInput.EMAIL, 60);
+        ValidationInput.maxLength(usernameUser_field, 20);
+        ValidationInput.maxLength(passwordUser_psfield, 20);
     }
       
     private void emptyFields(){
@@ -239,7 +246,7 @@ public class CreateUser extends javax.swing.JFrame {
         CreateUser_lblStatus.setText("Estado *");
 
         btnCreateUser.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnCreateUser.setForeground(new java.awt.Color(0, 102, 102));
+        btnCreateUser.setForeground(new java.awt.Color(0, 153, 153));
         btnCreateUser.setText("Crear");
         btnCreateUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCreateUser.addActionListener(new java.awt.event.ActionListener() {
@@ -249,7 +256,7 @@ public class CreateUser extends javax.swing.JFrame {
         });
 
         btnExit.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnExit.setForeground(new java.awt.Color(0, 102, 102));
+        btnExit.setForeground(new java.awt.Color(0, 153, 153));
         btnExit.setText("Salir");
         btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -259,7 +266,7 @@ public class CreateUser extends javax.swing.JFrame {
         });
 
         bttonEmptyFields_pet.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        bttonEmptyFields_pet.setForeground(new java.awt.Color(0, 102, 102));
+        bttonEmptyFields_pet.setForeground(new java.awt.Color(0, 153, 153));
         bttonEmptyFields_pet.setText("Limpiar");
         bttonEmptyFields_pet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttonEmptyFields_pet.addActionListener(new java.awt.event.ActionListener() {

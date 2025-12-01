@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import project.vetsys.dao.UserDAO;
 import project.vetsys.model.User;
 import java.awt.event.KeyEvent;
+import project.vetsys.utils.ValidationInput;
 import project.vetsys.view.Nimbus;
 import project.vetsys.view.manager.MenuManager;
 
@@ -25,7 +26,10 @@ public class LogIn extends javax.swing.JFrame {
         Nimbus.styleLabel(LogInPanel_lblPassword);
         setTitle("VET SYS");
         //Nimbus.styleAllLabelsExcept(this, LogInPanel_lblTittle);
-        //ValidationInput.numbers(LogInPanel_txtPassword);
+        
+        // Validaciones en entrada de campos de textos
+        ValidationInput.maxLength(LogInPanel_txtUsername,20);
+        ValidationInput.maxLength(LogInPanel_txtPassword,20);         //Validar que sean solamente numeros (caso de prueba)
     }
 
     @SuppressWarnings("unchecked")

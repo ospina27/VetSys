@@ -16,6 +16,7 @@ import project.vetsys.model.ClienteModel;
 import project.vetsys.model.HistoriaClinicaDetalle;
 import project.vetsys.model.Pet;
 import project.vetsys.model.User;
+import project.vetsys.utils.ValidationInput;
 import project.vetsys.view.manager.Appointment_Menu;
 
 
@@ -49,6 +50,9 @@ public class SearchHistory extends javax.swing.JFrame {
         cargarHistorialClinico();
         cargarVeterinarios();
         btnVerDetalle.setEnabled(false);
+        
+        // Validaciones en entrada de campos de textos
+        ValidationInput.numbers(txtDocumentoCliente, 11);
     }
     
     
@@ -145,13 +149,13 @@ public class SearchHistory extends javax.swing.JFrame {
         Right.setPreferredSize(new java.awt.Dimension(500, 800));
 
         SearchAppointment_BttnBack.setBackground(new java.awt.Color(0, 153, 153));
-        SearchAppointment_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        SearchAppointment_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         lblBttnBack.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
         lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBttnBack.setText("Salir");
-        lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBttnBackMouseClicked(evt);
@@ -275,9 +279,10 @@ public class SearchHistory extends javax.swing.JFrame {
 
         btnLimpiarFecha.setBackground(new java.awt.Color(204, 204, 204));
         btnLimpiarFecha.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnLimpiarFecha.setForeground(new java.awt.Color(0, 102, 102));
+        btnLimpiarFecha.setForeground(new java.awt.Color(0, 153, 153));
         btnLimpiarFecha.setText("Limpiar");
         btnLimpiarFecha.setBorder(null);
+        btnLimpiarFecha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLimpiarFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarFechaActionPerformed(evt);

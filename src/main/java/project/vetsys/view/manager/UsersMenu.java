@@ -102,11 +102,6 @@ public class UsersMenu extends javax.swing.JFrame {
                 MenuUsers_BttnCreateUserMouseExited(evt);
             }
         });
-        MenuUsers_BttnCreateUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuUsers_BttnCreateUserActionPerformed(evt);
-            }
-        });
 
         MenuUsers_BttnSearchUser.setBackground(new java.awt.Color(0, 153, 153));
         MenuUsers_BttnSearchUser.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
@@ -263,10 +258,6 @@ public class UsersMenu extends javax.swing.JFrame {
         MenuUsers_BttnBack.setBackground(new Color(0,153,153));
         MenuUsers_BttnBack.setForeground(Color.WHITE);
     }//GEN-LAST:event_MenuUsers_BttnBackMouseExited
-
-    private void MenuUsers_BttnCreateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuUsers_BttnCreateUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MenuUsers_BttnCreateUserActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new UsersMenu().setVisible(true));

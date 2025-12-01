@@ -44,8 +44,10 @@ public class CreatePet extends javax.swing.JFrame {
         buttonGroupSexPet.add(sexMacho_Rbutton); ///añadir los rbutton al group 
         buttonGroupSexPet.add(sexHembra_Rbutton);
         
-        ValidationInput.numbers(CreatePet_textOwnerDocument);
-
+        // Validaciones en entrada de campos de textos
+        ValidationInput.text(CreatePet_tetxNamePet, 30);
+        ValidationInput.text(CreatePet_textColorPet, 25);
+        ValidationInput.numbers(CreatePet_textOwnerDocument, 11);
     }
     
     private void initListeners(){
@@ -172,7 +174,7 @@ public class CreatePet extends javax.swing.JFrame {
         CreatePet_tetxNamePet.setPreferredSize(new java.awt.Dimension(68, 26));
 
         btnCreatePet.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        btnCreatePet.setForeground(new java.awt.Color(0, 102, 102));
+        btnCreatePet.setForeground(new java.awt.Color(0, 153, 153));
         btnCreatePet.setText("Crear");
         btnCreatePet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCreatePet.addActionListener(new java.awt.event.ActionListener() {
@@ -183,11 +185,11 @@ public class CreatePet extends javax.swing.JFrame {
 
         sexHembra_Rbutton.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         sexHembra_Rbutton.setText("Hembra");
-        sexHembra_Rbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        sexHembra_Rbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         sexMacho_Rbutton.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         sexMacho_Rbutton.setText("Macho");
-        sexMacho_Rbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        sexMacho_Rbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         sexMacho_Rbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sexMacho_RbuttonActionPerformed(evt);
@@ -198,7 +200,7 @@ public class CreatePet extends javax.swing.JFrame {
         CreatePet_lblSexPet.setText("Sexo*");
 
         bttonEmptyFields_pet.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        bttonEmptyFields_pet.setForeground(new java.awt.Color(0, 102, 102));
+        bttonEmptyFields_pet.setForeground(new java.awt.Color(0, 153, 153));
         bttonEmptyFields_pet.setText("Limpiar");
         bttonEmptyFields_pet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttonEmptyFields_pet.addActionListener(new java.awt.event.ActionListener() {
@@ -242,7 +244,7 @@ public class CreatePet extends javax.swing.JFrame {
         });
 
         btnExit1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        btnExit1.setForeground(new java.awt.Color(0, 102, 102));
+        btnExit1.setForeground(new java.awt.Color(0, 153, 153));
         btnExit1.setText("Salir");
         btnExit1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExit1.addActionListener(new java.awt.event.ActionListener() {

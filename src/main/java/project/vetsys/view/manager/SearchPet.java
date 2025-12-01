@@ -47,8 +47,13 @@ public class SearchPet extends javax.swing.JFrame {
         Nimbus.styleAllLabelsExcept(this,jLabelTitleClinic_pets); 
         setTitle("Gestión de Mascotas");
         
-        ValidationInput.numbers(searchDocumentClient_field);
-        ValidationInput.numbers(documentOwner_field);
+        // Validaciones en entrada de campos de textos
+        ValidationInput.text(namePet_Field, 30);
+        ValidationInput.text(colorPet_Field, 25);
+        ValidationInput.text(nameOwner_field, 30);
+        ValidationInput.numbers(documentOwner_field, 11);
+        ValidationInput.numbers(searchDocumentClient_field, 11);
+        
     }
     
     private void initListeners(){
@@ -292,7 +297,7 @@ public class SearchPet extends javax.swing.JFrame {
         jScrollPane2.setViewportView(petTable);
 
         btnActualizar.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
-        btnActualizar.setForeground(new java.awt.Color(0, 102, 102));
+        btnActualizar.setForeground(new java.awt.Color(0, 153, 153));
         btnActualizar.setText("Actualizar");
         btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnActualizar.setMaximumSize(new java.awt.Dimension(78, 23));
@@ -305,7 +310,7 @@ public class SearchPet extends javax.swing.JFrame {
         });
 
         btnSalir.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
-        btnSalir.setForeground(new java.awt.Color(0, 102, 102));
+        btnSalir.setForeground(new java.awt.Color(0, 153, 153));
         btnSalir.setText("Salir");
         btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalir.setMaximumSize(new java.awt.Dimension(78, 23));
@@ -318,7 +323,7 @@ public class SearchPet extends javax.swing.JFrame {
         });
 
         btnDelete.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
-        btnDelete.setForeground(new java.awt.Color(0, 102, 102));
+        btnDelete.setForeground(new java.awt.Color(0, 153, 153));
         btnDelete.setText("Eliminar");
         btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -330,7 +335,7 @@ public class SearchPet extends javax.swing.JFrame {
         jLabel13.setText("Ingrese documento");
 
         btnSearchDocumet_client.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        btnSearchDocumet_client.setForeground(new java.awt.Color(0, 102, 102));
+        btnSearchDocumet_client.setForeground(new java.awt.Color(0, 153, 153));
         btnSearchDocumet_client.setText("Buscar");
         btnSearchDocumet_client.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSearchDocumet_client.addActionListener(new java.awt.event.ActionListener() {
@@ -340,7 +345,7 @@ public class SearchPet extends javax.swing.JFrame {
         });
 
         btnRefreshTable_pet.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        btnRefreshTable_pet.setForeground(new java.awt.Color(0, 102, 102));
+        btnRefreshTable_pet.setForeground(new java.awt.Color(0, 153, 153));
         btnRefreshTable_pet.setText("Refrescar");
         btnRefreshTable_pet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRefreshTable_pet.addActionListener(new java.awt.event.ActionListener() {
@@ -408,7 +413,7 @@ public class SearchPet extends javax.swing.JFrame {
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.EAST);
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
         jPanel2.setAlignmentX(1.0F);
         jPanel2.setAlignmentY(1.0F);
         jPanel2.setMaximumSize(getPreferredSize());
@@ -779,28 +784,7 @@ public class SearchPet extends javax.swing.JFrame {
         hideField(false);
     }//GEN-LAST:event_btnRefreshTable_petActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new SearchPet().setVisible(true));
     }
 

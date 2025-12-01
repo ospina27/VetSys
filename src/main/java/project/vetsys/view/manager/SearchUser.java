@@ -54,8 +54,15 @@ public class SearchUser extends javax.swing.JFrame {
         System.out.println("Usuario logueado recibido: " + logUser.getUsername()); //prueba en consola
         initListeners(); 
         
-        ValidationInput.numbers(searchDocument_field);
-        ValidationInput.numbers(DocumentField);
+        
+        // Validaciones en entrada de campos de textos
+        ValidationInput.numbers(searchDocument_field, 11);
+        ValidationInput.numbers(DocumentField, 11);
+        ValidationInput.text(name_userField, 30);
+        ValidationInput.text(LastNameField, 35);
+        ValidationInput.numbers(PhoneField, 10);
+        ValidationInput.regex(EmailField, ValidationInput.EMAIL, 60);
+        
     }
     
     // Constructor sin parámetros 
@@ -330,11 +337,11 @@ public class SearchUser extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jPanel2_Info.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel2_Info.setBackground(new java.awt.Color(0, 153, 153));
         jPanel2_Info.setMinimumSize(new java.awt.Dimension(300, 600));
         jPanel2_Info.setPreferredSize(new java.awt.Dimension(288, 470));
 
-        jPanel_titleClinic.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel_titleClinic.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabelTitleClinic_users.setFont(new java.awt.Font("Bookman Old Style", 3, 24)); // NOI18N
         jLabelTitleClinic_users.setForeground(java.awt.SystemColor.activeCaption);
@@ -427,6 +434,8 @@ public class SearchUser extends javax.swing.JFrame {
         jPanel3.setMinimumSize(new java.awt.Dimension(600, 600));
         jPanel3.setPreferredSize(new java.awt.Dimension(800, 800));
 
+        cboxRole.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         jLabel6.setText("Ingrese documento");
 
         userTable.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
@@ -444,7 +453,7 @@ public class SearchUser extends javax.swing.JFrame {
         jScrollPane2.setViewportView(userTable);
 
         btnActualizar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnActualizar.setForeground(new java.awt.Color(0, 102, 102));
+        btnActualizar.setForeground(new java.awt.Color(0, 153, 153));
         btnActualizar.setText("Actualizar");
         btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -454,7 +463,7 @@ public class SearchUser extends javax.swing.JFrame {
         });
 
         btnSalir.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnSalir.setForeground(new java.awt.Color(0, 102, 102));
+        btnSalir.setForeground(new java.awt.Color(0, 153, 153));
         btnSalir.setText("Salir");
         btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -464,7 +473,7 @@ public class SearchUser extends javax.swing.JFrame {
         });
 
         btnDelete.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnDelete.setForeground(new java.awt.Color(0, 102, 102));
+        btnDelete.setForeground(new java.awt.Color(0, 153, 153));
         btnDelete.setText("Eliminar");
         btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -474,7 +483,7 @@ public class SearchUser extends javax.swing.JFrame {
         });
 
         btnSearchDocument.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnSearchDocument.setForeground(new java.awt.Color(0, 102, 102));
+        btnSearchDocument.setForeground(new java.awt.Color(0, 153, 153));
         btnSearchDocument.setText("Buscar");
         btnSearchDocument.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSearchDocument.addActionListener(new java.awt.event.ActionListener() {
@@ -540,7 +549,7 @@ public class SearchUser extends javax.swing.JFrame {
                     .addComponent(btnActualizar)
                     .addComponent(btnSalir)
                     .addComponent(btnDelete))
-                .addContainerGap(227, Short.MAX_VALUE))
+                .addContainerGap(239, Short.MAX_VALUE))
         );
 
         cboxRole.getAccessibleContext().setAccessibleDescription("");
@@ -780,28 +789,7 @@ public class SearchUser extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new SearchUser().setVisible(true));
     }
 

@@ -11,6 +11,7 @@ import project.vetsys.model.Cita;
 import project.vetsys.model.ClienteModel;
 import project.vetsys.model.Pet;
 import project.vetsys.model.User;
+import project.vetsys.utils.ValidationInput;
 import project.vetsys.view.manager.Appointment_Menu;
 
 
@@ -42,6 +43,9 @@ public class AttendAppointment extends javax.swing.JFrame {
         cargarColumnasTabla();
         cargarCitasPendientes();
         btnRegistrarHC.setEnabled(false);
+        
+        // Validaciones en entrada de campos de textos
+        ValidationInput.numbers(txtDocumentoCliente, 11);
     }
     
     
@@ -143,7 +147,7 @@ public class AttendAppointment extends javax.swing.JFrame {
         Right.setPreferredSize(new java.awt.Dimension(500, 800));
 
         SearchAppointment_BttnBack.setBackground(new java.awt.Color(0, 153, 153));
-        SearchAppointment_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        SearchAppointment_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         SearchAppointment_lblBttnBack.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         SearchAppointment_lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
