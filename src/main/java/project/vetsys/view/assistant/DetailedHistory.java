@@ -245,6 +245,7 @@ public class DetailedHistory extends javax.swing.JDialog {
         txtAreaMotivo.setEditable(false);
         txtAreaMotivo.setColumns(20);
         txtAreaMotivo.setRows(5);
+        txtAreaMotivo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(txtAreaMotivo);
 
         txtAreaTratamiento.setEditable(false);
@@ -442,41 +443,6 @@ public class DetailedHistory extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ScheduleAppointment_lblTittle;
-    private javax.swing.JLabel SearchAppointment_lblClientID;
-    private javax.swing.JLabel SearchAppointment_lblClientID1;
-    private javax.swing.JLabel SearchAppointment_lblClientID10;
-    private javax.swing.JLabel SearchAppointment_lblClientID11;
-    private javax.swing.JLabel SearchAppointment_lblClientID12;
-    private javax.swing.JLabel SearchAppointment_lblClientID13;
-    private javax.swing.JLabel SearchAppointment_lblClientID14;
-    private javax.swing.JLabel SearchAppointment_lblClientID15;
-    private javax.swing.JLabel SearchAppointment_lblClientID16;
-    private javax.swing.JLabel SearchAppointment_lblClientID17;
-    private javax.swing.JLabel SearchAppointment_lblClientID18;
-    private javax.swing.JLabel SearchAppointment_lblClientID19;
-    private javax.swing.JLabel SearchAppointment_lblClientID2;
-    private javax.swing.JLabel SearchAppointment_lblClientID20;
-    private javax.swing.JLabel SearchAppointment_lblClientID21;
-    private javax.swing.JLabel SearchAppointment_lblClientID22;
-    private javax.swing.JLabel SearchAppointment_lblClientID23;
-    private javax.swing.JLabel SearchAppointment_lblClientID24;
-    private javax.swing.JLabel SearchAppointment_lblClientID25;
-    private javax.swing.JLabel SearchAppointment_lblClientID26;
-    private javax.swing.JLabel SearchAppointment_lblClientID27;
-    private javax.swing.JLabel SearchAppointment_lblClientID28;
-    private javax.swing.JLabel SearchAppointment_lblClientID29;
-    private javax.swing.JLabel SearchAppointment_lblClientID3;
-    private javax.swing.JLabel SearchAppointment_lblClientID30;
-    private javax.swing.JLabel SearchAppointment_lblClientID31;
-    private javax.swing.JLabel SearchAppointment_lblClientID32;
-    private javax.swing.JLabel SearchAppointment_lblClientID33;
-    private javax.swing.JLabel SearchAppointment_lblClientID34;
-    private javax.swing.JLabel SearchAppointment_lblClientID35;
-    private javax.swing.JLabel SearchAppointment_lblClientID36;
-    private javax.swing.JLabel SearchAppointment_lblClientID37;
-    private javax.swing.JLabel SearchAppointment_lblClientID38;
-    private javax.swing.JLabel SearchAppointment_lblClientID39;
-    private javax.swing.JLabel SearchAppointment_lblClientID4;
     private javax.swing.JLabel SearchAppointment_lblClientID40;
     private javax.swing.JLabel SearchAppointment_lblClientID41;
     private javax.swing.JLabel SearchAppointment_lblClientID42;
@@ -484,17 +450,10 @@ public class DetailedHistory extends javax.swing.JDialog {
     private javax.swing.JLabel SearchAppointment_lblClientID44;
     private javax.swing.JLabel SearchAppointment_lblClientID45;
     private javax.swing.JLabel SearchAppointment_lblClientID46;
-    private javax.swing.JLabel SearchAppointment_lblClientID5;
-    private javax.swing.JLabel SearchAppointment_lblClientID6;
-    private javax.swing.JLabel SearchAppointment_lblClientID7;
-    private javax.swing.JLabel SearchAppointment_lblClientID8;
     private javax.swing.JLabel SearchAppointment_lblClientID84;
     private javax.swing.JLabel SearchAppointment_lblClientID86;
     private javax.swing.JLabel SearchAppointment_lblClientID88;
-    private javax.swing.JLabel SearchAppointment_lblClientID9;
     private javax.swing.JLabel SearchAppointment_lblClientID90;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;

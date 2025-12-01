@@ -121,7 +121,7 @@ public class Appointment_Menu extends javax.swing.JFrame {
         MenuAppointment_BttnScheduleAppointment.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         MenuAppointment_BttnScheduleAppointment.setForeground(new java.awt.Color(255, 255, 255));
         MenuAppointment_BttnScheduleAppointment.setText("Agendar Cita");
-        MenuAppointment_BttnScheduleAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuAppointment_BttnScheduleAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuAppointment_BttnScheduleAppointment.setFocusPainted(false);
         MenuAppointment_BttnScheduleAppointment.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -139,7 +139,7 @@ public class Appointment_Menu extends javax.swing.JFrame {
         MenuAppointment_BttnSearchAppointment.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         MenuAppointment_BttnSearchAppointment.setForeground(new java.awt.Color(255, 255, 255));
         MenuAppointment_BttnSearchAppointment.setText("Consultar Cita");
-        MenuAppointment_BttnSearchAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuAppointment_BttnSearchAppointment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuAppointment_BttnSearchAppointment.setFocusPainted(false);
         MenuAppointment_BttnSearchAppointment.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -157,7 +157,7 @@ public class Appointment_Menu extends javax.swing.JFrame {
         MenuAppointment_BttnBacks.setFont(new java.awt.Font("Arial Black", 0, 20)); // NOI18N
         MenuAppointment_BttnBacks.setForeground(new java.awt.Color(255, 255, 255));
         MenuAppointment_BttnBacks.setText("Regresar");
-        MenuAppointment_BttnBacks.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuAppointment_BttnBacks.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuAppointment_BttnBacks.setFocusPainted(false);
         MenuAppointment_BttnBacks.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -175,7 +175,7 @@ public class Appointment_Menu extends javax.swing.JFrame {
         MenuAppointment_Reports.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         MenuAppointment_Reports.setForeground(new java.awt.Color(255, 255, 255));
         MenuAppointment_Reports.setText("Reportes");
-        MenuAppointment_Reports.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuAppointment_Reports.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuAppointment_Reports.setFocusPainted(false);
         MenuAppointment_Reports.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -193,7 +193,7 @@ public class Appointment_Menu extends javax.swing.JFrame {
         btnAtenderCita.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         btnAtenderCita.setForeground(new java.awt.Color(255, 255, 255));
         btnAtenderCita.setText("Atender Cita");
-        btnAtenderCita.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAtenderCita.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAtenderCita.setFocusPainted(false);
         btnAtenderCita.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -216,7 +216,7 @@ public class Appointment_Menu extends javax.swing.JFrame {
         btnConsultarHistorial.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         btnConsultarHistorial.setForeground(new java.awt.Color(255, 255, 255));
         btnConsultarHistorial.setText("Historial Clinico");
-        btnConsultarHistorial.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnConsultarHistorial.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnConsultarHistorial.setFocusPainted(false);
         btnConsultarHistorial.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
