@@ -26,6 +26,21 @@ public class ClienteDAO {
         }
         return false;
     }
+    
+    public boolean clienteTieneMascotas(int idCliente){
+        String sql = "Select Count(*) From mascota Where id_cliente =?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, idCliente);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) return rs.getInt(1) > 0;
+
+        } catch (SQLException e) {
+            System.out.println("Error verificando mascotas del cliente: " + e.getMessage());
+        }
+        return false;
+    }
 
     
     public boolean insertarCliente(ClienteModel client) {
@@ -137,6 +152,12 @@ public class ClienteDAO {
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
             return false;
+            //verificar si el cliente tiene mascotas registradas
+        }else if(clienteTieneMascotas(idCliente)){
+             JOptionPane.showMessageDialog(null,"No se puede eliminar el cliente porque tiene mascotas registradas.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);   
+             return false;
         }
         String sql = "DELETE FROM cliente WHERE id_cliente=?";
         try (Connection connection = DBConnection.getConnection();
