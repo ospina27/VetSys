@@ -35,7 +35,6 @@ public class InitPanel extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
@@ -49,7 +48,7 @@ public class InitPanel extends javax.swing.JFrame {
         InitPanel_ImgVetSys.setBackground(new java.awt.Color(255, 255, 255));
         InitPanel_ImgVetSys.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         InitPanel_ImgVetSys.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vetSysBg.png"))); // NOI18N
-        background.add(InitPanel_ImgVetSys, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 460));
+        background.add(InitPanel_ImgVetSys, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 420));
 
         InitPanel_BttnEnter.setBackground(new java.awt.Color(0, 153, 153));
         InitPanel_BttnEnter.setFont(new java.awt.Font("Arial Black", 1, 48)); // NOI18N

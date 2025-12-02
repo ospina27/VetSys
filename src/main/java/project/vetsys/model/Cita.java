@@ -1,23 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package project.vetsys.model;
 
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
-/**
- *
- * @author Asus
- */
+
 public class Cita {
     
     private Integer idCita;
     private Integer idClinica;
     private Integer idCliente;
     private String NombreCliente;
+    private String telefonoCliente;
     private Integer idMascota;
     private String NombreMascota;
     private Integer idVeterinario;
@@ -25,6 +17,7 @@ public class Cita {
     private Timestamp fecha;
     private String estado; // programada, atendida, cancelada
 
+    
     public Cita() {}
     
     
@@ -81,6 +74,14 @@ public class Cita {
         this.idVeterinario = idVeterinario;
     }
 
+    public String getTelefonoCliente() {
+        return telefonoCliente;
+    }
+
+    public void setTelefonoCliente(String telefonoCliente) {
+        this.telefonoCliente = telefonoCliente;
+    }
+    
     public Timestamp getFecha() {
         return fecha;
     }
@@ -122,8 +123,6 @@ public class Cita {
         this.NombreVeterinario = NombreVeterinario;
     }
     
-    
-
     
     
 }

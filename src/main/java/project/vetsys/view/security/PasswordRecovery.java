@@ -1,23 +1,32 @@
 package project.vetsys.view.security;
 
-import project.vetsys.view.security.LogIn;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import project.vetsys.dao.UserDAO;
 import project.vetsys.model.User;
-import project.vetsys.security.PasswordUtil;
+import javax.swing.KeyStroke;
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
+import project.vetsys.utils.ValidationInput;
 import project.vetsys.view.Nimbus;
+import project.vetsys.view.manager.MenuManager;
 
 public class PasswordRecovery extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PasswordRecovery.class.getName());
     private User user = null;
     
+    
     public PasswordRecovery() {
         initComponents();
+        aplicarAccesibilidad();
+        conectarAccionesBotones();
         Nimbus.LookandFeel();
         Nimbus.styleAllTextFields(this);
         Nimbus.styleAllLabelsExcept(this,Left_PassRec_ImgVetSys);
+
         PassRec_textNewPassword.setVisible(false);
         PassRec_textNewPasswordOK.setVisible(false);
         PassRec_BttnSavePassword.setVisible(false);
@@ -30,6 +39,15 @@ public class PasswordRecovery extends javax.swing.JFrame {
         
         PassRec_textNewPassword.setEnabled(false);
         PassRec_textNewPasswordOK.setEnabled(false);
+        setTitle("Recuperar contraseña");
+        
+        // Validaciones en entrada de campos de textos
+        ValidationInput.text(PassRec_textUser, 30);
+        ValidationInput.numbers(PassRec_textID, 11);
+        
+        ValidationInput.maxLength(PassRec_textNewPassword, 20);
+        ValidationInput.maxLength(PassRec_textNewPasswordOK, 20);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -103,6 +121,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PasswordRecoveryPanel.add(Left_PasswordRecovery, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         Right_PasswordRecovery.setBackground(new java.awt.Color(255, 255, 255));
+        Right_PasswordRecovery.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         Right_PasswordRecovery.setMaximumSize(new java.awt.Dimension(400, 600));
         Right_PasswordRecovery.setMinimumSize(new java.awt.Dimension(400, 600));
         Right_PasswordRecovery.setPreferredSize(new java.awt.Dimension(400, 600));
@@ -138,6 +157,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
         PassRec_textNewPasswordOK.setBorder(null);
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -394,8 +414,11 @@ public class PasswordRecovery extends javax.swing.JFrame {
 
         if (updated) {
             JOptionPane.showMessageDialog(this, "Contraseña actualizada correctamente.");
+            LogIn LogInFrame = new LogIn();
+            LogInFrame.setVisible(true);
+            LogInFrame.pack();
+            LogInFrame.setLocationRelativeTo(null);
             this.dispose();
-            new LogIn().setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Error al actualizar contraseña.");
         }
@@ -412,9 +435,6 @@ public class PasswordRecovery extends javax.swing.JFrame {
     }//GEN-LAST:event_PassRec_BttnSavePasswordMouseExited
 
     
-   
-    
-
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new PasswordRecovery().setVisible(true));
     }
@@ -441,4 +461,168 @@ public class PasswordRecovery extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     // End of variables declaration//GEN-END:variables
+
+    private void aplicarAccesibilidad() {
+
+    // -------------------------------------------------------
+    // TÍTULO Y PANEL PRINCIPAL
+    // -------------------------------------------------------
+    PasswordRecoveryPanel.setFocusable(true);
+    PasswordRecoveryPanel.getAccessibleContext().setAccessibleName("Panel de recuperación de contraseña");
+    PasswordRecoveryPanel.getAccessibleContext().setAccessibleDescription("Panel principal para recuperar la contraseña del usuario");
+
+    Right_PasswordRecovery.setFocusable(true);
+    Right_PasswordRecovery.getAccessibleContext().setAccessibleName("Panel derecho");
+    Right_PasswordRecovery.getAccessibleContext().setAccessibleDescription("Panel con los campos para recuperación");
+
+    // -------------------------------------------------------
+    // LABELS → setLabelFor + mnemonic + accessibleName
+    // -------------------------------------------------------
+
+    PassRec_lblUser.setLabelFor(PassRec_textUser);
+    PassRec_lblUser.setDisplayedMnemonic('N'); 
+    PassRec_lblUser.setToolTipText("Nombre de usuario (Alt+N)");
+    PassRec_lblUser.getAccessibleContext().setAccessibleName("Etiqueta Nombre de usuario");
+    PassRec_lblUser.getAccessibleContext().setAccessibleDescription("Etiqueta para el campo nombre de usuario");
+
+    PassRec_lblID.setLabelFor(PassRec_textID);
+    PassRec_lblID.setDisplayedMnemonic('I');
+    PassRec_lblID.setToolTipText("Número de identificación (Alt+I)");
+    PassRec_lblID.getAccessibleContext().setAccessibleName("Etiqueta Número de identificación");
+    PassRec_lblID.getAccessibleContext().setAccessibleDescription("Etiqueta para el campo número de identificación");
+
+    PassRec_lblNewPassword.setLabelFor(PassRec_textNewPassword);
+    PassRec_lblNewPassword.setDisplayedMnemonic('C');
+    PassRec_lblNewPassword.setToolTipText("Contraseña nueva (Alt+C)");
+    PassRec_lblNewPassword.getAccessibleContext().setAccessibleName("Etiqueta Contraseña nueva");
+    PassRec_lblNewPassword.getAccessibleContext().setAccessibleDescription("Etiqueta para el campo contraseña nueva");
+
+    PassRec_lblNewPasswordOK.setLabelFor(PassRec_textNewPasswordOK);
+    PassRec_lblNewPasswordOK.setDisplayedMnemonic('F');
+    PassRec_lblNewPasswordOK.setToolTipText("Confirmar contraseña (Alt+F)");
+    PassRec_lblNewPasswordOK.getAccessibleContext().setAccessibleName("Etiqueta confirmar contraseña");
+    PassRec_lblNewPasswordOK.getAccessibleContext().setAccessibleDescription("Etiqueta para el campo de confirmar contraseña");
+
+    // -------------------------------------------------------
+    // CAMPOS DE TEXTO → accessibleName + tooltips
+    // -------------------------------------------------------
+
+    PassRec_textUser.getAccessibleContext().setAccessibleName("Campo nombre de usuario");
+    PassRec_textUser.getAccessibleContext().setAccessibleDescription("Ingrese su nombre de usuario");
+    PassRec_textUser.setToolTipText("Ingrese su nombre (Alt+N)");
+
+    PassRec_textID.getAccessibleContext().setAccessibleName("Campo número de identificación");
+    PassRec_textID.getAccessibleContext().setAccessibleDescription("Ingrese su número de identificación");
+    PassRec_textID.setToolTipText("Ingrese su número de identificación (Alt+I)");
+
+    PassRec_textNewPassword.getAccessibleContext().setAccessibleName("Campo nueva contraseña");
+    PassRec_textNewPassword.getAccessibleContext().setAccessibleDescription("Ingrese su nueva contraseña");
+    PassRec_textNewPassword.setToolTipText("Ingrese su nueva contraseña (Alt+C)");
+
+    PassRec_textNewPasswordOK.getAccessibleContext().setAccessibleName("Campo confirmar contraseña");
+    PassRec_textNewPasswordOK.getAccessibleContext().setAccessibleDescription("Confirme su contraseña");
+    PassRec_textNewPasswordOK.setToolTipText("Confirme su nueva contraseña (Alt+F)");
+
+    // -------------------------------------------------------
+    // BOTONES → Mnemonics + tooltips + accesibilidad
+    // -------------------------------------------------------
+
+    PassRec_BttnCheckCredential.setMnemonic('V');
+    PassRec_BttnCheckCredential.setToolTipText("Verificar credenciales (Alt+V)");
+    PassRec_BttnCheckCredential.getAccessibleContext().setAccessibleName("Botón verificar");
+    PassRec_BttnCheckCredential.getAccessibleContext().setAccessibleDescription("Botón para verificar credenciales de usuario");
+
+    PassRec_BttnBack.setMnemonic('A'); // A = Atrás
+    PassRec_BttnBack.setToolTipText("Cancelar y regresar (Alt+A)");
+    PassRec_BttnBack.getAccessibleContext().setAccessibleName("Botón cancelar");
+    PassRec_BttnBack.getAccessibleContext().setAccessibleDescription("Botón para regresar al inicio");
+
+    PassRec_BttnSavePassword.setMnemonic('G'); // G = Guardar
+    PassRec_BttnSavePassword.setToolTipText("Guardar contraseña nueva (Alt+G)");
+    PassRec_BttnSavePassword.getAccessibleContext().setAccessibleName("Botón guardar contraseña");
+    PassRec_BttnSavePassword.getAccessibleContext().setAccessibleDescription("Botón para guardar la nueva contraseña");
+
+    // -------------------------------------------------------
+    // ORDEN DE TABULACIÓN
+    // -------------------------------------------------------
+    PassRec_textUser.setNextFocusableComponent(PassRec_textID);
+    PassRec_textID.setNextFocusableComponent(PassRec_BttnCheckCredential);
+    PassRec_BttnCheckCredential.setNextFocusableComponent(PassRec_BttnBack);
+    PassRec_BttnBack.setNextFocusableComponent(PassRec_textNewPassword);
+    PassRec_textNewPassword.setNextFocusableComponent(PassRec_textNewPasswordOK);
+    PassRec_textNewPasswordOK.setNextFocusableComponent(PassRec_BttnSavePassword);
+
+    // -------------------------------------------------------
+    // ATAJOS GLOBALS ALT + Letra (cuando la ventana tiene foco)
+    // -------------------------------------------------------
+    InputMap im = getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
+    ActionMap am = getRootPane().getActionMap();
+
+    // Alt+V → Verificar
+    im.put(KeyStroke.getKeyStroke("alt V"), "accion_verificar");
+    am.put("accion_verificar", new AbstractAction() {
+        @Override public void actionPerformed(ActionEvent e) {
+            PassRec_BttnCheckCredential.doClick();
+        }
+    });
+
+    // Alt+A → Cancelar
+    im.put(KeyStroke.getKeyStroke("alt A"), "accion_cancelar");
+    am.put("accion_cancelar", new AbstractAction() {
+        @Override public void actionPerformed(ActionEvent e) {
+            PassRec_BttnBack.doClick();
+        }
+    });
+
+    // Alt+G → Guardar contraseña
+    im.put(KeyStroke.getKeyStroke("alt G"), "accion_guardar");
+    am.put("accion_guardar", new AbstractAction() {
+        @Override public void actionPerformed(ActionEvent e) {
+            PassRec_BttnSavePassword.doClick();
+        }
+    });
+}
+
+        private void conectarAccionesBotones() {
+
+        // --- Verificar credenciales ---
+        PassRec_BttnCheckCredential.addActionListener(e -> {
+            PassRec_BttnCheckCredentialMouseClicked(null);
+        });
+        PassRec_BttnCheckCredential.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent e) {
+                if (e.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER || e.getKeyCode() == java.awt.event.KeyEvent.VK_SPACE) {
+                    PassRec_BttnCheckCredential.doClick();
+                }
+            }
+        });
+
+        // --- Cancelar / Volver atrás ---
+        PassRec_BttnBack.addActionListener(e -> {
+            PassRec_BttnBackMouseClicked(null);
+        });
+        PassRec_BttnBack.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent e) {
+                if (e.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER || e.getKeyCode() == java.awt.event.KeyEvent.VK_SPACE) {
+                    PassRec_BttnBack.doClick();
+                }
+            }
+        });
+
+        // --- Guardar nueva contraseña ---
+        PassRec_BttnSavePassword.addActionListener(e -> {
+            PassRec_BttnSavePasswordMouseClicked(null);
+        });
+        PassRec_BttnSavePassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent e) {
+                if (e.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER || e.getKeyCode() == java.awt.event.KeyEvent.VK_SPACE) {
+                    PassRec_BttnSavePassword.doClick();
+                }
+            }
+        });
+    }
+
 }

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package project.vetsys.dao;
 
 import java.sql.Connection;
@@ -14,10 +10,6 @@ import javax.swing.JOptionPane;
 import project.vetsys.database.DBConnection;
 import project.vetsys.model.ClienteModel;
 
-/**
- *
- * @author Asus
- */
 public class ClienteDAO {
     
     public boolean clienteTieneCitas(int idCliente) {
@@ -34,9 +26,52 @@ public class ClienteDAO {
         }
         return false;
     }
+    
+    public boolean clienteTieneMascotas(int idCliente){
+        String sql = "Select Count(*) From mascota Where id_cliente =?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, idCliente);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) return rs.getInt(1) > 0;
+
+        } catch (SQLException e) {
+            System.out.println("Error verificando mascotas del cliente: " + e.getMessage());
+        }
+        return false;
+    }
+    
+    private boolean existeCliente(String documento, int idClinica) {
+        String sql = "SELECT COUNT(*) FROM cliente WHERE documento = ? AND id_clinica = ?";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, documento);
+            ps.setInt(2, idClinica);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error verificando existencia de cliente: " + e.getMessage());
+        }
+        return false;
+    }
 
     
     public boolean insertarCliente(ClienteModel client) {
+        
+        
+        if (existeCliente(client.getDocumento(), client.getIdClinica())) {
+        JOptionPane.showMessageDialog(null, 
+            "El cliente con cédula " + client.getDocumento() + " ya se encuentra registrado en esta clínica.", 
+            "Cliente Duplicado", 
+            JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
         String sql = "INSERT INTO cliente (id_clinica, nombres, apellidos, documento, telefono, correo, direccion, id_membresia, fecha_inicio, fecha_vigencia, id_estado_membresia) "
                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = DBConnection.getConnection();
@@ -145,6 +180,12 @@ public class ClienteDAO {
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
             return false;
+            //verificar si el cliente tiene mascotas registradas
+        }else if(clienteTieneMascotas(idCliente)){
+             JOptionPane.showMessageDialog(null,"No se puede eliminar el cliente porque tiene mascotas registradas.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);   
+             return false;
         }
         String sql = "DELETE FROM cliente WHERE id_cliente=?";
         try (Connection connection = DBConnection.getConnection();
@@ -195,12 +236,33 @@ public class ClienteDAO {
             }
             return cliente;
     }
+    
+    
+    
+    public ClienteModel ReadId(int idCliente) {
+        
+        String sql = "SELECT * FROM cliente WHERE id_cliente = ?";
+        
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            
+            ps.setInt(1, idCliente);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                ClienteModel c = new ClienteModel();
+                c.setIdCliente(rs.getInt("id_cliente"));
+                c.setNombres(rs.getString("nombres"));
+                c.setApellidos(rs.getString("apellidos"));
+                c.setDocumento(rs.getString("documento"));
+                
+                return c;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al leer cliente: " + e.getMessage());
+        }
+        return null;
+    }
 
-
-    
-    
-   
-    
     
     
 }

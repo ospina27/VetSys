@@ -1,6 +1,11 @@
 package project.vetsys.view.manager;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
+import javax.swing.KeyStroke;
 import project.vetsys.model.User;
 
 public class UsersMenu extends javax.swing.JFrame {
@@ -10,17 +15,23 @@ public class UsersMenu extends javax.swing.JFrame {
     
     public UsersMenu(User logUser) {
         initComponents();
+        aplicarAccesibilidad();
+        conectarAccionesBotones();
         this.logUser = logUser;
         System.out.println("Usuario logueado en MenuManager: " + logUser.getUsername());
         if(!"Administrador".equalsIgnoreCase(logUser.getName_role()))
         {
             MenuUsers_BttnCreateUser.setVisible(false);
         }
+        setTitle("Gestión de Usuarios "+logUser.getClinic().getName_clinic());
+        //aplicarPermisosPorRol();
         setTitle(logUser.getClinic().getName_clinic());
     }
 
     public UsersMenu() {
         initComponents();
+        aplicarAccesibilidad();
+        conectarAccionesBotones();
     }
 
     @SuppressWarnings("unchecked")
@@ -36,7 +47,6 @@ public class UsersMenu extends javax.swing.JFrame {
         MenuUsers_BttnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
@@ -174,7 +184,22 @@ public class UsersMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    
+    private void aplicarPermisosPorRol() {
 
+        String rol = logUser.getName_role();
+        System.out.println("Usuario logueado en MenuManager: " + logUser.getUsername());
+        // admin puede crear usuario
+        if (rol.equalsIgnoreCase("Administrador")) {
+            MenuUsers_BttnCreateUser.setVisible(true);
+        } else {
+            MenuUsers_BttnCreateUser.setVisible(false);
+        }
+    }
+
+    
+    
     private void MenuUsers_BttnCreateUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUsers_BttnCreateUserMouseClicked
         System.out.println("MenuManager -> logUser: " +
         (logUser != null ? logUser.getUsername() + " id_clinic=" + logUser.getId_clinic() + " role=" + logUser.getName_role() : "logUser es null"));
@@ -247,4 +272,112 @@ public class UsersMenu extends javax.swing.JFrame {
     private javax.swing.JLabel MenuUsers_ImgVetSys;
     private javax.swing.JPanel Right;
     // End of variables declaration//GEN-END:variables
+
+    private void aplicarAccesibilidad() {
+    // ============================================================
+    //  ACCESIBILIDAD – TITULO / CONTENEDORES
+    // ============================================================
+    this.getAccessibleContext().setAccessibleName("Menú de Usuarios");
+    this.getAccessibleContext().setAccessibleDescription("Pantalla principal para gestionar usuarios del sistema.");
+
+    MenuUsersPanel.setFocusable(true);
+    Left.setFocusable(true);
+    Right.setFocusable(true);
+
+    // ============================================================
+    //  ACCESIBILIDAD – BOTONES (Nombres, descripciones, tooltips)
+    // ============================================================
+
+    // --- Crear Usuario ---
+    MenuUsers_BttnCreateUser.getAccessibleContext().setAccessibleName("Crear usuario");
+    MenuUsers_BttnCreateUser.getAccessibleContext().setAccessibleDescription("Abre el formulario para crear un nuevo usuario.");
+    MenuUsers_BttnCreateUser.setToolTipText("Crear usuario (Alt+C)");
+    MenuUsers_BttnCreateUser.setMnemonic('C');   // Evitar duplicados
+
+    // --- Buscar Usuario ---
+    MenuUsers_BttnSearchUser.getAccessibleContext().setAccessibleName("Buscar usuario");
+    MenuUsers_BttnSearchUser.getAccessibleContext().setAccessibleDescription("Abre el formulario para buscar un usuario.");
+    MenuUsers_BttnSearchUser.setToolTipText("Buscar usuario (Alt+B)");
+    MenuUsers_BttnSearchUser.setMnemonic('B');
+
+    // --- Regresar ---
+    MenuUsers_BttnBack.getAccessibleContext().setAccessibleName("Regresar al menú anterior");
+    MenuUsers_BttnBack.getAccessibleContext().setAccessibleDescription("Regresa al menú principal.");
+    MenuUsers_BttnBack.setToolTipText("Regresar (Alt+R)");
+    MenuUsers_BttnBack.setMnemonic('R');
+
+    // ============================================================
+    //  TAB ORDER – ORDEN DE NAVEGACIÓN CON TAB
+    // ============================================================
+    MenuUsers_BttnCreateUser.setNextFocusableComponent(MenuUsers_BttnSearchUser);
+    MenuUsers_BttnSearchUser.setNextFocusableComponent(MenuUsers_BttnBack);
+    MenuUsers_BttnBack.setNextFocusableComponent(MenuUsers_BttnCreateUser);
+
+    // ============================================================
+    //  ATAJOS GLOBALS – ALT+C / ALT+B / ALT+R
+    // ============================================================
+    InputMap inputMap = getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
+    ActionMap actionMap = getRootPane().getActionMap();
+
+    // --- ALT+C Crear usuario ---
+    inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.ALT_DOWN_MASK), "accion_crear_usuario");
+    actionMap.put("accion_crear_usuario", new AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            MenuUsers_BttnCreateUser.doClick();
+        }
+    });
+
+    // --- ALT+B Buscar usuario ---
+    inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_B, KeyEvent.ALT_DOWN_MASK), "accion_buscar_usuario");
+    actionMap.put("accion_buscar_usuario", new AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            MenuUsers_BttnSearchUser.doClick();
+        }
+    });
+
+    // --- ALT+R Regresar ---
+    inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.ALT_DOWN_MASK), "accion_regresar");
+    actionMap.put("accion_regresar", new AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            MenuUsers_BttnBack.doClick();
+        }
+    });
+}
+private void conectarAccionesBotones() {
+
+    // --- Acción REAL del botón Crear Usuario ---
+    MenuUsers_BttnCreateUser.addActionListener(e -> {
+        System.out.println("MenuManager -> logUser: " +
+        (logUser != null ? logUser.getUsername() + " id_clinic=" + logUser.getId_clinic() + " role=" + logUser.getName_role() : "logUser es null"));
+        CreateUser CreateUserFrame = new CreateUser(logUser);
+        CreateUserFrame.setVisible(true);
+        CreateUserFrame.pack();
+        CreateUserFrame.setLocationRelativeTo(null);
+        this.dispose();
+    });
+
+    // --- Acción REAL del botón Buscar Usuario ---
+    MenuUsers_BttnSearchUser.addActionListener(e -> {
+        System.out.println("MenuManager -> logUser: " +
+        (logUser != null ? logUser.getUsername() + " id_clinic=" + logUser.getId_clinic() + " role=" + logUser.getName_role() : "logUser es null"));
+        SearchUser SearchUserFrame = new SearchUser(logUser);
+        SearchUserFrame.setVisible(true);
+        SearchUserFrame.pack();
+        SearchUserFrame.setLocationRelativeTo(null);
+        this.dispose();
+    });
+
+    // --- Acción REAL del botón Regresar ---
+    MenuUsers_BttnBack.addActionListener(e -> {
+        MenuManager menuManager = new MenuManager(logUser);
+        menuManager.setVisible(true);
+        menuManager.pack();
+        menuManager.setLocationRelativeTo(null);
+        this.dispose();
+    });
+}
+
 }

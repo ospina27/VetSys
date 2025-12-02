@@ -6,11 +6,13 @@ import project.vetsys.view.security.LogIn;
 import javax.swing.JOptionPane;
 import project.vetsys.dao.RoleDAO;
 import project.vetsys.dao.StatusDAO;
+import project.vetsys.dao.UserDAO;
 import project.vetsys.model.Role;
 import project.vetsys.model.Status;
 import project.vetsys.model.User;
+import project.vetsys.utils.ValidationInput;
 import project.vetsys.view.Nimbus;
-import project.vetsys.view.Utils;
+import project.vetsys.utils.Utils;
 import project.vetsys.view.manager.MenuManager;
 
 public class CreateUser extends javax.swing.JFrame {
@@ -21,6 +23,7 @@ public class CreateUser extends javax.swing.JFrame {
 
     public CreateUser() {
         initComponents();
+        aplicarAccesibilidad();
     }
     
     public CreateUser(User logUser) {
@@ -28,14 +31,22 @@ public class CreateUser extends javax.swing.JFrame {
         this.logUser = logUser;  
         this.utils = new Utils();
         initComponents();
+        aplicarAccesibilidad();
         Nimbus.styleAllTextFields(this);
-        setTitle("Gestión de usuarios");
-        CreateUser_lblTittle.setText("Usuarios "+ logUser.getClinic().getName_clinic());
-        Nimbus.styleTitleLabel(CreateUser_lblTittle);
+        setTitle("Gestión de Usuarios");
+        CreateUser_lblTittle.setText(logUser.getClinic().getName_clinic());
         Nimbus.styleAllLabelsExcept(this,CreateUser_lblTittle);
         Nimbus.styleTitleLabel(CreateUser_lblSubTittle);
         loadRolesStatus();
-       
+        
+        // Validaciones en entrada de campos de textos
+        ValidationInput.text(nameUser_field, 30);
+        ValidationInput.text(lastNameUser_field, 35);
+        ValidationInput.numbers(phoneUser_field, 10);
+        ValidationInput.numbers(documentUser_field, 11);
+        ValidationInput.regex(emailUser_field, ValidationInput.EMAIL, 60);
+        ValidationInput.maxLength(usernameUser_field, 20);
+        ValidationInput.maxLength(passwordUser_psfield, 20);
     }
       
     private void emptyFields(){
@@ -143,6 +154,8 @@ public class CreateUser extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        CreateUser_lblTittle.getAccessibleContext().setAccessibleName("VetSys");
+
         CreateUserPanel.add(Up, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
 
         Down.setBackground(new java.awt.Color(255, 255, 255));
@@ -233,8 +246,9 @@ public class CreateUser extends javax.swing.JFrame {
         CreateUser_lblStatus.setText("Estado *");
 
         btnCreateUser.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnCreateUser.setForeground(new java.awt.Color(0, 102, 102));
+        btnCreateUser.setForeground(new java.awt.Color(0, 153, 153));
         btnCreateUser.setText("Crear");
+        btnCreateUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCreateUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateUserActionPerformed(evt);
@@ -242,8 +256,9 @@ public class CreateUser extends javax.swing.JFrame {
         });
 
         btnExit.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnExit.setForeground(new java.awt.Color(0, 102, 102));
+        btnExit.setForeground(new java.awt.Color(0, 153, 153));
         btnExit.setText("Salir");
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
@@ -251,8 +266,9 @@ public class CreateUser extends javax.swing.JFrame {
         });
 
         bttonEmptyFields_pet.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        bttonEmptyFields_pet.setForeground(new java.awt.Color(0, 102, 102));
+        bttonEmptyFields_pet.setForeground(new java.awt.Color(0, 153, 153));
         bttonEmptyFields_pet.setText("Limpiar");
+        bttonEmptyFields_pet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttonEmptyFields_pet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttonEmptyFields_petActionPerformed(evt);
@@ -424,11 +440,16 @@ public class CreateUser extends javax.swing.JFrame {
         user.setPassword(password);
         user.setId_role(r.getId());   ///se actualizan los roles con el id y el nombre en el combobox
         user.setName_role(r.getName());
-            user.setId_status(s.getId());
+        user.setId_status(s.getId());
         user.setName_status(s.getName());
         user.setId_clinic(logUser.getId_clinic());
         
-        project.vetsys.dao.UserDAO userDAO = new project.vetsys.dao.UserDAO();
+        ///Validación del formato de correo
+        if (!Utils.validationEmail(emailUser_field, this, logUser.getClinic().getName_clinic())) {
+            return;
+        }
+        
+        UserDAO userDAO = new project.vetsys.dao.UserDAO();
         boolean success = userDAO.Create(user);
 
         if (success) {
@@ -503,4 +524,183 @@ public class CreateUser extends javax.swing.JFrame {
     private javax.swing.JTextField phoneUser_field;
     private javax.swing.JTextField usernameUser_field;
     // End of variables declaration//GEN-END:variables
+
+    private void aplicarAccesibilidad() {
+
+    // ===========================
+    //  TÍTULO Y PANEL PRINCIPAL
+    // ===========================
+    CreateUserPanel.setFocusable(true);
+    Up.setFocusable(true);
+    Down.setFocusable(true);
+
+    CreateUser_lblTittle.getAccessibleContext().setAccessibleName("Título principal: gestión de usuarios");
+    CreateUser_lblTittle.getAccessibleContext().setAccessibleDescription("Indica la gestión de usuarios de la clínica");
+
+    CreateUser_lblSubTittle.getAccessibleContext().setAccessibleName("Subtítulo crear usuario");
+    CreateUser_lblSubTittle.getAccessibleContext().setAccessibleDescription("Indica el formulario para crear usuario");
+
+    // ===========================
+    //  LABELS (setLabelFor + Mnemonics)
+    // ===========================
+
+    // Nombres
+    CreateUser_lblName.setLabelFor(nameUser_field);
+    CreateUser_lblName.setDisplayedMnemonic('N'); // Alt+N
+    CreateUser_lblName.setToolTipText("Campo nombres (Alt+N)");
+    CreateUser_lblName.getAccessibleContext().setAccessibleName("Etiqueta nombres");
+    CreateUser_lblName.getAccessibleContext().setAccessibleDescription("Etiqueta del campo nombres");
+
+    // Apellidos
+    CreateUser_LastName.setLabelFor(lastNameUser_field);
+    CreateUser_LastName.setDisplayedMnemonic('A'); // Alt+A
+    CreateUser_LastName.setToolTipText("Campo apellidos (Alt+A)");
+    CreateUser_LastName.getAccessibleContext().setAccessibleName("Etiqueta apellidos");
+    CreateUser_LastName.getAccessibleContext().setAccessibleDescription("Etiqueta del campo apellidos");
+
+    // Teléfono
+    CreateUser_lblPhone.setLabelFor(phoneUser_field);
+    CreateUser_lblPhone.setDisplayedMnemonic('T'); // Alt+T
+    CreateUser_lblPhone.setToolTipText("Campo teléfono (Alt+T)");
+    CreateUser_lblPhone.getAccessibleContext().setAccessibleName("Etiqueta teléfono");
+    CreateUser_lblPhone.getAccessibleContext().setAccessibleDescription("Etiqueta del campo teléfono");
+
+    // Documento
+    CreateUser_lbl_ID.setLabelFor(documentUser_field);
+    CreateUser_lbl_ID.setDisplayedMnemonic('D'); // Alt+D
+    CreateUser_lbl_ID.setToolTipText("Campo documento (Alt+D)");
+    CreateUser_lbl_ID.getAccessibleContext().setAccessibleName("Etiqueta documento");
+    CreateUser_lbl_ID.getAccessibleContext().setAccessibleDescription("Etiqueta del campo documento");
+
+    // Email
+    CreateUser_lblEmail.setLabelFor(emailUser_field);
+    CreateUser_lblEmail.setDisplayedMnemonic('E'); // Alt+E
+    CreateUser_lblEmail.setToolTipText("Campo correo electrónico (Alt+E)");
+    CreateUser_lblEmail.getAccessibleContext().setAccessibleName("Etiqueta correo electrónico");
+    CreateUser_lblEmail.getAccessibleContext().setAccessibleDescription("Etiqueta del campo correo electrónico");
+
+    // Usuario
+    CreateUser_lblUsername.setLabelFor(usernameUser_field);
+    CreateUser_lblUsername.setDisplayedMnemonic('U'); // Alt+U
+    CreateUser_lblUsername.setToolTipText("Campo usuario (Alt+U)");
+    CreateUser_lblUsername.getAccessibleContext().setAccessibleName("Etiqueta usuario");
+    CreateUser_lblUsername.getAccessibleContext().setAccessibleDescription("Etiqueta del campo nombre de usuario");
+
+    // Contraseña
+    CreateUser_lblPassword.setLabelFor(passwordUser_psfield);
+    CreateUser_lblPassword.setDisplayedMnemonic('C'); // Alt+C
+    CreateUser_lblPassword.setToolTipText("Campo contraseña (Alt+C)");
+    CreateUser_lblPassword.getAccessibleContext().setAccessibleName("Etiqueta contraseña");
+    CreateUser_lblPassword.getAccessibleContext().setAccessibleDescription("Etiqueta del campo contraseña");
+
+    // Rol
+    CreateUser_lblRol.setLabelFor(cboxRoleUser);
+    CreateUser_lblRol.setDisplayedMnemonic('R'); // Alt+R
+    CreateUser_lblRol.setToolTipText("Seleccionar rol (Alt+R)");
+    CreateUser_lblRol.getAccessibleContext().setAccessibleName("Etiqueta rol de usuario");
+    CreateUser_lblRol.getAccessibleContext().setAccessibleDescription("Etiqueta del campo roles");
+
+    // Estado
+    CreateUser_lblStatus.setLabelFor(cboxStatusUser);
+    CreateUser_lblStatus.setDisplayedMnemonic('S'); // Alt+S
+    CreateUser_lblStatus.setToolTipText("Seleccionar estado (Alt+S)");
+    CreateUser_lblStatus.getAccessibleContext().setAccessibleName("Etiqueta estado del usuario");
+    CreateUser_lblStatus.getAccessibleContext().setAccessibleDescription("Etiqueta del campo estados");
+
+    // ===========================
+    //  CAMPOS DE TEXTO ACCESSIBLE
+    // ===========================
+
+    nameUser_field.getAccessibleContext().setAccessibleName("Campo nombres");
+    nameUser_field.getAccessibleContext().setAccessibleDescription("Ingrese los nombres del usuario");
+
+    lastNameUser_field.getAccessibleContext().setAccessibleName("Campo apellidos");
+    lastNameUser_field.getAccessibleContext().setAccessibleDescription("Ingrese los apellidos del usuario");
+
+    phoneUser_field.getAccessibleContext().setAccessibleName("Campo teléfono");
+    phoneUser_field.getAccessibleContext().setAccessibleDescription("Ingrese el número de teléfono");
+
+    documentUser_field.getAccessibleContext().setAccessibleName("Campo documento");
+    documentUser_field.getAccessibleContext().setAccessibleDescription("Ingrese el número de documento");
+
+    emailUser_field.getAccessibleContext().setAccessibleName("Campo correo electrónico");
+    emailUser_field.getAccessibleContext().setAccessibleDescription("Ingrese un correo electrónico válido");
+
+    usernameUser_field.getAccessibleContext().setAccessibleName("Campo usuario");
+    usernameUser_field.getAccessibleContext().setAccessibleDescription("Ingrese el nombre de usuario");
+
+    passwordUser_psfield.getAccessibleContext().setAccessibleName("Campo contraseña");
+    passwordUser_psfield.getAccessibleContext().setAccessibleDescription("Ingrese la contraseña del usuario");
+
+    cboxRoleUser.getAccessibleContext().setAccessibleName("Combo rol");
+    cboxRoleUser.getAccessibleContext().setAccessibleDescription("Seleccione el rol del usuario");
+
+    cboxStatusUser.getAccessibleContext().setAccessibleName("Combo estado");
+    cboxStatusUser.getAccessibleContext().setAccessibleDescription("Seleccione el estado del usuario");
+
+    // ===========================
+    //  BOTONES + mnemonics
+    // ===========================
+
+    btnCreateUser.setMnemonic('G'); // Alt+G (Guardar/Crear)
+    btnCreateUser.setToolTipText("Crear usuario (Alt+G)");
+    btnCreateUser.getAccessibleContext().setAccessibleName("Botón crear usuario");
+
+    btnExit.setMnemonic('L'); // Alt+L (Salir)
+    btnExit.setToolTipText("Salir (Alt+L)");
+    btnExit.getAccessibleContext().setAccessibleName("Botón salir");
+
+    bttonEmptyFields_pet.setMnemonic('M'); // Alt+M (Limpiar)
+    bttonEmptyFields_pet.setToolTipText("Limpiar formulario (Alt+M)");
+    bttonEmptyFields_pet.getAccessibleContext().setAccessibleName("Botón limpiar campos");
+
+    // ===========================
+    //   TAB ORDER PRINCIPAL
+    // ===========================
+    nameUser_field.setNextFocusableComponent(lastNameUser_field);
+    lastNameUser_field.setNextFocusableComponent(phoneUser_field);
+    phoneUser_field.setNextFocusableComponent(documentUser_field);
+    documentUser_field.setNextFocusableComponent(emailUser_field);
+    emailUser_field.setNextFocusableComponent(usernameUser_field);
+    usernameUser_field.setNextFocusableComponent(passwordUser_psfield);
+    passwordUser_psfield.setNextFocusableComponent(cboxStatusUser);
+    cboxStatusUser.setNextFocusableComponent(cboxRoleUser);
+    cboxRoleUser.setNextFocusableComponent(btnCreateUser);
+    btnCreateUser.setNextFocusableComponent(btnExit);
+    btnExit.setNextFocusableComponent(bttonEmptyFields_pet);
+
+    // ===========================
+    //   ATAJOS ALT (rootPane)
+    // ===========================
+    javax.swing.InputMap im = getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
+    javax.swing.ActionMap am = getRootPane().getActionMap();
+
+    // Crear usuario → Alt+G
+    im.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_crear");
+    am.put("accion_crear", new javax.swing.AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            btnCreateUser.doClick();
+        }
+    });
+
+    // Salir → Alt+L
+    im.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_salir");
+    am.put("accion_salir", new javax.swing.AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            btnExit.doClick();
+        }
+    });
+
+    // Limpiar → Alt+M
+    im.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_limpiar");
+    am.put("accion_limpiar", new javax.swing.AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            bttonEmptyFields_pet.doClick();
+        }
+    });
+}
+
 }

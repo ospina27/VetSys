@@ -1,6 +1,7 @@
 package project.vetsys.view.manager;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,10 +9,14 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import project.vetsys.model.User;
 import project.vetsys.dao.ClienteDAO;
 import project.vetsys.database.DBConnection;
 import project.vetsys.model.ClienteModel;
+import project.vetsys.utils.Utils;
+import project.vetsys.view.Nimbus;
+import project.vetsys.utils.ValidationInput;
 
 
 public class CreateClient extends javax.swing.JFrame {
@@ -19,22 +24,83 @@ public class CreateClient extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CreateClient.class.getName());
     private User logUser;
     private final ClienteDAO clienteDAO = new ClienteDAO();
-    
-    /**
-     * Creates new form SearchUser
-     * @param logUser
-     */
-    
+        
     public CreateClient() {
         initComponents();
+        aplicarAccesibilidad();
+        resaltarFoco();
+        
+    }
+ 
+    public CreateClient(User logUser){
+        
+        this.logUser = logUser;
+        Nimbus.LookandFeel();
+        initComponents();
+        aplicarAccesibilidad();
+        resaltarFoco();
+        cargarMembresias();
+        configurarFechaMembresia();
+        CreateUser_lblTittle.setText(logUser.getClinic().getName_clinic());
+        Nimbus.styleAllLabelsExcept(this,CreateUser_lblTittle);
+        Nimbus.styleAllTextFields(this);
+        Nimbus.styleTitleLabel(CreateUser_lblSubTittle);
+        setTitle("Gestión de Clientes");
+        // Accesibilidad para el botón "Regresar"
+        btnSalir.setFocusable(true);
+        btnSalir.addKeyListener(new java.awt.event.KeyAdapter() {
+        @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_SPACE) {
+                        btnSalirActionPerformed(null);
+                    }
+                }   
+            });
+        
+        // Validaciones en entrada de campos de textos
+        ValidationInput.text(txtNombreCliente, 30);
+        ValidationInput.text(txtApellidos, 35);
+        ValidationInput.numbers(txtDocumento, 11);
+        ValidationInput.numbers(txtTelefono, 10);
+        //ValidationInput.regex(txtCorreo, ValidationInput.EMAIL, 60);
+        ValidationInput.maxLength(txtDireccion, 80);
+        //ValidationInput.numbers(txtPrecioMembresia, 9);
+        
     }
     
-    public CreateClient(User logUser) {
-        this.logUser = logUser;
-        initComponents();
-        cargarMembresias();
-       
+    
+    private void resaltarFoco() {
+        java.awt.Color focusColor = new java.awt.Color(0, 153, 153);
+        java.awt.Color normalColor = Color.GRAY;
+
+        javax.swing.JTextField[] campos = {
+            txtNombreCliente, txtApellidos, txtDocumento, txtTelefono,
+            txtCorreo, txtDireccion, txtDescripcionMembresia, txtPrecioMembresia
+        };
+
+        for (javax.swing.JTextField campo : campos) {
+            campo.addFocusListener(new java.awt.event.FocusAdapter() {
+                @Override
+                public void focusGained(java.awt.event.FocusEvent e) {
+                    campo.setBorder(javax.swing.BorderFactory.createLineBorder(focusColor, 2));
+                }
+
+                @Override
+                public void focusLost(java.awt.event.FocusEvent e) {
+                    campo.setBorder(javax.swing.BorderFactory.createLineBorder(normalColor, 1));
+                }
+            });
+        }
     }
+    
+    private void configurarFechaMembresia() {
+        ((JTextField) jDateChooserFechaInicio.getDateEditor().getUiComponent()).setEditable(false);
+        ((JTextField) jDateChooserFechaFin.getDateEditor().getUiComponent()).setEditable(false);
+        Date hoy = new Date();
+        jDateChooserFechaInicio.setMinSelectableDate(hoy);
+        jDateChooserFechaFin.setMinSelectableDate(hoy);
+    }
+
     
     private void limpiarCampos() {
         txtNombreCliente.setText("");
@@ -117,8 +183,6 @@ public class CreateClient extends javax.swing.JFrame {
         txtCorreo = new javax.swing.JTextField();
         CreateUser_lblMembresia = new javax.swing.JLabel();
         CreateUser_lblFechaIni = new javax.swing.JLabel();
-        CreateUser_BttnBack = new javax.swing.JPanel();
-        CreateUser_lblBttnBack = new javax.swing.JLabel();
         CreateUser_lblDireccion = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
         CreateUser_lblFechaFin = new javax.swing.JLabel();
@@ -130,6 +194,7 @@ public class CreateClient extends javax.swing.JFrame {
         CreateUser_lblMembresia2 = new javax.swing.JLabel();
         jDateChooserFechaInicio = new com.toedter.calendar.JDateChooser();
         jDateChooserFechaFin = new com.toedter.calendar.JDateChooser();
+        btnSalir = new javax.swing.JButton();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -182,16 +247,6 @@ public class CreateClient extends javax.swing.JFrame {
         txtNombreCliente.setForeground(java.awt.Color.gray);
         txtNombreCliente.setMinimumSize(new java.awt.Dimension(68, 26));
         txtNombreCliente.setPreferredSize(new java.awt.Dimension(68, 26));
-        txtNombreCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtNombreClienteMousePressed(evt);
-            }
-        });
-        txtNombreCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreClienteActionPerformed(evt);
-            }
-        });
 
         CreateUser_LastName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CreateUser_LastName.setText("Apellidos");
@@ -200,16 +255,6 @@ public class CreateClient extends javax.swing.JFrame {
         txtApellidos.setForeground(java.awt.Color.gray);
         txtApellidos.setMinimumSize(new java.awt.Dimension(68, 26));
         txtApellidos.setPreferredSize(new java.awt.Dimension(68, 26));
-        txtApellidos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtApellidosMousePressed(evt);
-            }
-        });
-        txtApellidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellidosActionPerformed(evt);
-            }
-        });
 
         CreateUser_lblPhone.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CreateUser_lblPhone.setText("Telefono");
@@ -218,16 +263,6 @@ public class CreateClient extends javax.swing.JFrame {
         txtTelefono.setForeground(java.awt.Color.gray);
         txtTelefono.setMinimumSize(new java.awt.Dimension(68, 26));
         txtTelefono.setPreferredSize(new java.awt.Dimension(68, 26));
-        txtTelefono.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtTelefonoMousePressed(evt);
-            }
-        });
-        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTelefonoActionPerformed(evt);
-            }
-        });
 
         CreateUser_lbl_ID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CreateUser_lbl_ID.setText("Documento");
@@ -236,16 +271,6 @@ public class CreateClient extends javax.swing.JFrame {
         txtDocumento.setForeground(java.awt.Color.gray);
         txtDocumento.setMinimumSize(new java.awt.Dimension(68, 26));
         txtDocumento.setPreferredSize(new java.awt.Dimension(68, 26));
-        txtDocumento.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtDocumentoMousePressed(evt);
-            }
-        });
-        txtDocumento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDocumentoActionPerformed(evt);
-            }
-        });
 
         CreateUser_lblEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CreateUser_lblEmail.setText("Correo electronico");
@@ -254,55 +279,12 @@ public class CreateClient extends javax.swing.JFrame {
         txtCorreo.setForeground(java.awt.Color.gray);
         txtCorreo.setMinimumSize(new java.awt.Dimension(68, 26));
         txtCorreo.setPreferredSize(new java.awt.Dimension(68, 26));
-        txtCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtCorreoMousePressed(evt);
-            }
-        });
-        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCorreoActionPerformed(evt);
-            }
-        });
 
         CreateUser_lblMembresia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CreateUser_lblMembresia.setText("Membresía");
 
         CreateUser_lblFechaIni.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CreateUser_lblFechaIni.setText("Fecha de inicio");
-
-        CreateUser_BttnBack.setBackground(new java.awt.Color(0, 153, 153));
-        CreateUser_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        CreateUser_lblBttnBack.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
-        CreateUser_lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
-        CreateUser_lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        CreateUser_lblBttnBack.setText("Regresar");
-        CreateUser_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        CreateUser_lblBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CreateUser_lblBttnBackMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                CreateUser_lblBttnBackMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                CreateUser_lblBttnBackMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout CreateUser_BttnBackLayout = new javax.swing.GroupLayout(CreateUser_BttnBack);
-        CreateUser_BttnBack.setLayout(CreateUser_BttnBackLayout);
-        CreateUser_BttnBackLayout.setHorizontalGroup(
-            CreateUser_BttnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(CreateUser_lblBttnBack, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-        );
-        CreateUser_BttnBackLayout.setVerticalGroup(
-            CreateUser_BttnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CreateUser_BttnBackLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(CreateUser_lblBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
 
         CreateUser_lblDireccion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CreateUser_lblDireccion.setText("Dirección");
@@ -311,16 +293,6 @@ public class CreateClient extends javax.swing.JFrame {
         txtDireccion.setForeground(java.awt.Color.gray);
         txtDireccion.setMinimumSize(new java.awt.Dimension(68, 26));
         txtDireccion.setPreferredSize(new java.awt.Dimension(68, 26));
-        txtDireccion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtDireccionMousePressed(evt);
-            }
-        });
-        txtDireccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDireccionActionPerformed(evt);
-            }
-        });
 
         CreateUser_lblFechaFin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CreateUser_lblFechaFin.setText("Fecha de vigencia");
@@ -335,6 +307,7 @@ public class CreateClient extends javax.swing.JFrame {
         btnRegistrar.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrar.setText("Registrar");
+        btnRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
@@ -348,6 +321,17 @@ public class CreateClient extends javax.swing.JFrame {
 
         CreateUser_lblMembresia2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CreateUser_lblMembresia2.setText("Descripción");
+
+        btnSalir.setBackground(new java.awt.Color(0, 159, 159));
+        btnSalir.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalir.setText("Regresar");
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout DownLayout = new javax.swing.GroupLayout(Down);
         Down.setLayout(DownLayout);
@@ -402,8 +386,8 @@ public class CreateClient extends javax.swing.JFrame {
                     .addGroup(DownLayout.createSequentialGroup()
                         .addGap(304, 304, 304)
                         .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(90, 90, 90)
-                        .addComponent(CreateUser_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(65, 65, 65)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 37, Short.MAX_VALUE))
         );
         DownLayout.setVerticalGroup(
@@ -456,9 +440,9 @@ public class CreateClient extends javax.swing.JFrame {
                     .addComponent(txtDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jDateChooserFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(57, 57, 57)
-                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(DownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CreateUser_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(90, 90, 90))
         );
 
@@ -547,6 +531,11 @@ public class CreateClient extends javax.swing.JFrame {
                 cliente.setFechaVigencia(null);
                 cliente.setEstadoMembresia(0);
             }
+            
+            ///Validación del formato de correo
+            if (!Utils.validationEmail(txtCorreo, this, logUser.getClinic().getName_clinic())) {
+                return;
+            }
 
             // Insertar cliente DAO a la BD
             ClienteDAO clienteDAO = new ClienteDAO();
@@ -563,6 +552,7 @@ public class CreateClient extends javax.swing.JFrame {
                     "No se pudo registrar el cliente",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
+                limpiarCampos();
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,
@@ -588,70 +578,13 @@ public class CreateClient extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_jComboBoxMembresiaActionPerformed
 
-    private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireccionActionPerformed
-
-    private void txtDireccionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDireccionMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireccionMousePressed
-
-    private void CreateUser_lblBttnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_lblBttnBackMouseExited
-        CreateUser_BttnBack.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_CreateUser_lblBttnBackMouseExited
-
-    private void CreateUser_lblBttnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_lblBttnBackMouseEntered
-        CreateUser_BttnBack.setBackground(Color.LIGHT_GRAY);
-    }//GEN-LAST:event_CreateUser_lblBttnBackMouseEntered
-
-    private void CreateUser_lblBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateUser_lblBttnBackMouseClicked
-
-        PatientsMenu MenuPatients = new PatientsMenu(logUser);
-        MenuPatients.setVisible(true);
-        MenuPatients.pack();
-        MenuPatients.setLocationRelativeTo(null);
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        PatientsMenu MenuManagerFrame = new PatientsMenu(logUser);  
+        MenuManagerFrame.setVisible(true);
+        MenuManagerFrame.pack();
+        MenuManagerFrame.setLocationRelativeTo(null);
         this.dispose();
-    }//GEN-LAST:event_CreateUser_lblBttnBackMouseClicked
-
-    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoActionPerformed
-
-    private void txtCorreoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCorreoMousePressed
-
-    }//GEN-LAST:event_txtCorreoMousePressed
-
-    private void txtDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDocumentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDocumentoActionPerformed
-
-    private void txtDocumentoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDocumentoMousePressed
-
-    }//GEN-LAST:event_txtDocumentoMousePressed
-
-    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelefonoActionPerformed
-
-    private void txtTelefonoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoMousePressed
-
-    }//GEN-LAST:event_txtTelefonoMousePressed
-
-    private void txtApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtApellidosActionPerformed
-
-    private void txtApellidosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtApellidosMousePressed
-
-    }//GEN-LAST:event_txtApellidosMousePressed
-
-    private void txtNombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreClienteActionPerformed
-
-    private void txtNombreClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreClienteMousePressed
-
-    }//GEN-LAST:event_txtNombreClienteMousePressed
+    }//GEN-LAST:event_btnSalirActionPerformed
         
     
     public static void main(String args[]) {
@@ -660,9 +593,7 @@ public class CreateClient extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CreateUserPanel;
-    private javax.swing.JPanel CreateUser_BttnBack;
     private javax.swing.JLabel CreateUser_LastName;
-    private javax.swing.JLabel CreateUser_lblBttnBack;
     private javax.swing.JLabel CreateUser_lblDireccion;
     private javax.swing.JLabel CreateUser_lblEmail;
     private javax.swing.JLabel CreateUser_lblFechaFin;
@@ -678,6 +609,7 @@ public class CreateClient extends javax.swing.JFrame {
     private javax.swing.JPanel Down;
     private javax.swing.JPanel Up;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBoxMembresia;
     private com.toedter.calendar.JDateChooser jDateChooserFechaFin;
@@ -691,4 +623,145 @@ public class CreateClient extends javax.swing.JFrame {
     private javax.swing.JTextField txtPrecioMembresia;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
+    private void aplicarAccesibilidad() {
+    // ===== TÍTULO =====
+    CreateUser_lblTittle.getAccessibleContext().setAccessibleName("Título VetSys");
+    CreateUser_lblTittle.getAccessibleContext().setAccessibleDescription("Título principal de la aplicación VetSys");
+    CreateUser_lblTittle.setToolTipText("VetSys - sistema de gestión");
+
+    // ===== LABELS -> setLabelFor + mnemonics + tooltips =====
+    CreateUser_lblName.setLabelFor(txtNombreCliente);
+    CreateUser_lblName.setDisplayedMnemonic('N');
+    CreateUser_lblName.setToolTipText("Nombres (Alt+N)");
+    CreateUser_lblName.getAccessibleContext().setAccessibleDescription("Etiqueta para el campo nombres");
+
+    CreateUser_LastName.setLabelFor(txtApellidos);
+    CreateUser_LastName.setDisplayedMnemonic('A');
+    CreateUser_LastName.setToolTipText("Apellidos (Alt+A)");
+    CreateUser_LastName.getAccessibleContext().setAccessibleDescription("Etiqueta para el campo apellidos");
+
+    CreateUser_lbl_ID.setLabelFor(txtDocumento);
+    CreateUser_lbl_ID.setDisplayedMnemonic('D');
+    CreateUser_lbl_ID.setToolTipText("Documento (Alt+D)");
+    CreateUser_lbl_ID.getAccessibleContext().setAccessibleDescription("Etiqueta para el campo documento");
+
+    CreateUser_lblPhone.setLabelFor(txtTelefono);
+    CreateUser_lblPhone.setDisplayedMnemonic('T'); // T de Teléfono
+    CreateUser_lblPhone.setToolTipText("Teléfono (Alt+T)");
+    CreateUser_lblPhone.getAccessibleContext().setAccessibleDescription("Etiqueta para el campo teléfono");
+
+    CreateUser_lblEmail.setLabelFor(txtCorreo);
+    CreateUser_lblEmail.setDisplayedMnemonic('C'); // C de Correo
+    CreateUser_lblEmail.setToolTipText("Correo electrónico (Alt+C)");
+    CreateUser_lblEmail.getAccessibleContext().setAccessibleDescription("Etiqueta para el campo correo");
+
+    CreateUser_lblDireccion.setLabelFor(txtDireccion);
+    CreateUser_lblDireccion.setDisplayedMnemonic('I'); // elegí I (direccIón) para evitar duplicados
+    CreateUser_lblDireccion.setToolTipText("Dirección (Alt+I)");
+    CreateUser_lblDireccion.getAccessibleContext().setAccessibleDescription("Etiqueta para el campo dirección");
+
+    CreateUser_lblMembresia.setLabelFor(jComboBoxMembresia);
+    CreateUser_lblMembresia.setDisplayedMnemonic('M');
+    CreateUser_lblMembresia.setToolTipText("Membresía (Alt+M)");
+    CreateUser_lblMembresia.getAccessibleContext().setAccessibleDescription("Etiqueta para selección de membresía");
+
+    CreateUser_lblFechaIni.setLabelFor(jDateChooserFechaInicio);
+    CreateUser_lblFechaIni.setDisplayedMnemonic('F');
+    CreateUser_lblFechaIni.setToolTipText("Fecha inicio (Alt+F)");
+    CreateUser_lblFechaIni.getAccessibleContext().setAccessibleDescription("Etiqueta para fecha de inicio");
+
+    CreateUser_lblFechaFin.setLabelFor(jDateChooserFechaFin);
+    CreateUser_lblFechaFin.setToolTipText("Fecha fin de vigencia");
+    CreateUser_lblFechaFin.getAccessibleContext().setAccessibleDescription("Etiqueta para fecha de fin");
+
+    CreateUser_lblMembresia2.setLabelFor(txtDescripcionMembresia);
+    CreateUser_lblMembresia1.setLabelFor(txtPrecioMembresia);
+
+    // ===== CAMPOS DE TEXTO: accessible name/description + tooltips =====
+    txtNombreCliente.getAccessibleContext().setAccessibleName("Nombre del cliente");
+    txtNombreCliente.getAccessibleContext().setAccessibleDescription("Ingrese los nombres del cliente");
+    txtNombreCliente.setToolTipText("Ingrese nombres");
+
+    txtApellidos.getAccessibleContext().setAccessibleName("Apellidos del cliente");
+    txtApellidos.getAccessibleContext().setAccessibleDescription("Ingrese los apellidos del cliente");
+    txtApellidos.setToolTipText("Ingrese apellidos");
+
+    txtDocumento.getAccessibleContext().setAccessibleName("Número de documento");
+    txtDocumento.getAccessibleContext().setAccessibleDescription("Ingrese el número de documento sin puntos");
+    txtDocumento.setToolTipText("Ejemplo: 1002457896");
+
+    txtTelefono.getAccessibleContext().setAccessibleName("Número de teléfono");
+    txtTelefono.getAccessibleContext().setAccessibleDescription("Ingrese el teléfono, sólo números");
+    txtTelefono.setToolTipText("Ingrese solo números");
+
+    txtCorreo.getAccessibleContext().setAccessibleName("Correo electrónico");
+    txtCorreo.getAccessibleContext().setAccessibleDescription("Ingrese correo tipo correo@ejemplo.com");
+    txtCorreo.setToolTipText("Formato: correo@ejemplo.com");
+
+    txtDireccion.getAccessibleContext().setAccessibleName("Dirección");
+    txtDireccion.getAccessibleContext().setAccessibleDescription("Ingrese la dirección del cliente");
+    txtDireccion.setToolTipText("Calle, número, ciudad...");
+
+    txtDescripcionMembresia.getAccessibleContext().setAccessibleName("Descripción de la membresía");
+    txtPrecioMembresia.getAccessibleContext().setAccessibleName("Precio de la membresía");
+
+    jDateChooserFechaInicio.getAccessibleContext().setAccessibleName("Fecha de inicio de la membresía");
+    jDateChooserFechaInicio.getAccessibleContext().setAccessibleDescription("Formato yyyy/mm/dd");
+    jDateChooserFechaInicio.setToolTipText("Formato: yyyy/mm/dd");
+
+    jDateChooserFechaFin.getAccessibleContext().setAccessibleName("Fecha de fin de la membresía");
+    jDateChooserFechaFin.getAccessibleContext().setAccessibleDescription("Formato yyyy/mm/dd");
+    jDateChooserFechaFin.setToolTipText("Formato: yyyy/mm/dd");
+
+    jComboBoxMembresia.getAccessibleContext().setAccessibleName("Selección de membresía");
+    jComboBoxMembresia.getAccessibleContext().setAccessibleDescription("Seleccione una membresía o Ninguna");
+
+    // ===== BOTONES / PANELES =====
+    btnRegistrar.getAccessibleContext().setAccessibleName("Botón registrar cliente");
+    btnRegistrar.getAccessibleContext().setAccessibleDescription("Activa el registro del cliente");
+    btnRegistrar.setToolTipText("Registrar cliente (Alt+G)");
+    // botón como elemento nativo: setMnemonic agrega Alt+G automáticamente
+    btnRegistrar.setMnemonic(java.awt.event.KeyEvent.VK_G);
+
+    btnSalir.getAccessibleContext().setAccessibleName("Botón regresar");
+    btnSalir.getAccessibleContext().setAccessibleDescription("Regresa al menú anterior");
+    btnSalir.setToolTipText("Regresar (Alt+R)");
+    // permitir foco en el label (ya lo tienes en algunos sitios)
+    btnSalir.setFocusable(true);
+
+    // ===== TAB ORDER (opcional, refuerza) =====
+    txtNombreCliente.setNextFocusableComponent(txtApellidos);
+    txtApellidos.setNextFocusableComponent(txtDocumento);
+    txtDocumento.setNextFocusableComponent(txtTelefono);
+    txtTelefono.setNextFocusableComponent(txtCorreo);
+    txtCorreo.setNextFocusableComponent(txtDireccion);
+    txtDireccion.setNextFocusableComponent(jComboBoxMembresia);
+
+    // ===== ATAJOS GLOBALES ALT + TECLA (InputMap + ActionMap) =====
+    javax.swing.InputMap im = this.getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
+    javax.swing.ActionMap am = this.getRootPane().getActionMap();
+
+    // Alt + R -> Regresar (label)
+    im.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_regresar");
+    am.put("accion_regresar", new javax.swing.AbstractAction() {
+        @Override public void actionPerformed(java.awt.event.ActionEvent e) {
+            // reutiliza tu handler de mouse click para mantener lógica intacta
+            btnSalirActionPerformed(null);
+        }
+    });
+
+    // Alt + G -> Registrar (botón)
+    im.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_registrar");
+    am.put("accion_registrar", new javax.swing.AbstractAction() {
+        @Override public void actionPerformed(java.awt.event.ActionEvent e) {
+            // usamos doClick para que se ejecute exactamente igual que pulsar el botón
+            btnRegistrar.doClick();
+        }
+    });
+
+    // Información general accesible de la ventana
+    this.getAccessibleContext().setAccessibleDescription("Formulario de registro de cliente en VetSys");
 }
+
+}
+

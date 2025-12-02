@@ -1,25 +1,64 @@
 package project.vetsys.view.manager;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import javax.swing.JOptionPane;
+import org.jfree.chart.ChartPanel;
 import project.vetsys.model.User;
-import project.vetsys.view.assistant.DeleteAppointment;
+import project.vetsys.utils.BarGraph;
+import project.vetsys.view.assistant.AttendAppointment;
 import project.vetsys.view.assistant.ScheduleAppointment;
 import project.vetsys.view.assistant.SearchAppointment;
+import project.vetsys.view.assistant.SearchHistory;
 
 
 public class Appointment_Menu extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Appointment_Menu.class.getName());
     private User logUser;
+    
+    
 
-       public Appointment_Menu() {
+    public Appointment_Menu() {
         initComponents();
     }
        
-       public Appointment_Menu(User logUser){
-            initComponents();
-            this.logUser = logUser;
-       }
+    public Appointment_Menu(User logUser){
+        initComponents();
+        this.logUser = logUser;
+        aplicarPermisosPorRol();
+           if(!"Administrador".equalsIgnoreCase(logUser.getName_role())){
+                MenuAppointment_Reports.setVisible(false);
+            }
+            setTitle("Gestión de Citas "+logUser.getClinic().getName_clinic());
+    }
+    
+    
+    private void aplicarPermisosPorRol() {
+
+        if (logUser == null) return;
+
+        String rol = logUser.getName_role();
+
+        if (rol.equalsIgnoreCase("Veterinario")) {
+            MenuAppointment_BttnScheduleAppointment.setVisible(false);
+            MenuAppointment_BttnSearchAppointment.setVisible(false);
+            btnAtenderCita.setVisible(true);
+            btnConsultarHistorial.setVisible(true);
+
+        } else if (rol.equalsIgnoreCase("Asistente")) {
+            btnAtenderCita.setVisible(false);
+            btnConsultarHistorial.setVisible(true);
+            MenuAppointment_BttnScheduleAppointment.setVisible(true);
+            MenuAppointment_BttnSearchAppointment.setVisible(true);
+
+        } else {
+            btnAtenderCita.setVisible(true);
+            btnConsultarHistorial.setVisible(true);
+            MenuAppointment_BttnScheduleAppointment.setVisible(true);
+            MenuAppointment_BttnSearchAppointment.setVisible(true);
+        }
+    }
 
     
     @SuppressWarnings("unchecked")
@@ -33,10 +72,12 @@ public class Appointment_Menu extends javax.swing.JFrame {
         MenuAppointment_BttnScheduleAppointment = new javax.swing.JButton();
         MenuAppointment_BttnSearchAppointment = new javax.swing.JButton();
         MenuAppointment_BttnBacks = new javax.swing.JButton();
+        MenuAppointment_Reports = new javax.swing.JButton();
+        btnAtenderCita = new javax.swing.JButton();
+        btnConsultarHistorial = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Appointment_Menu");
-        setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
@@ -59,14 +100,16 @@ public class Appointment_Menu extends javax.swing.JFrame {
         Left.setLayout(LeftLayout);
         LeftLayout.setHorizontalGroup(
             LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MenuAppointment_ImgVetSys, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(LeftLayout.createSequentialGroup()
+                .addComponent(MenuAppointment_ImgVetSys, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 51, Short.MAX_VALUE))
         );
         LeftLayout.setVerticalGroup(
             LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(MenuAppointment_ImgVetSys, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
 
-        Menu_AppointmentPanel.add(Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        Menu_AppointmentPanel.add(Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, -1));
         Left.getAccessibleContext().setAccessibleName("");
 
         Right.setBackground(new java.awt.Color(255, 255, 255));
@@ -128,35 +171,108 @@ public class Appointment_Menu extends javax.swing.JFrame {
             }
         });
 
+        MenuAppointment_Reports.setBackground(new java.awt.Color(0, 153, 153));
+        MenuAppointment_Reports.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        MenuAppointment_Reports.setForeground(new java.awt.Color(255, 255, 255));
+        MenuAppointment_Reports.setText("Reportes");
+        MenuAppointment_Reports.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuAppointment_Reports.setFocusPainted(false);
+        MenuAppointment_Reports.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuAppointment_ReportsMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                MenuAppointment_ReportsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                MenuAppointment_ReportsMouseExited(evt);
+            }
+        });
+
+        btnAtenderCita.setBackground(new java.awt.Color(0, 153, 153));
+        btnAtenderCita.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        btnAtenderCita.setForeground(new java.awt.Color(255, 255, 255));
+        btnAtenderCita.setText("Atender Cita");
+        btnAtenderCita.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAtenderCita.setFocusPainted(false);
+        btnAtenderCita.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAtenderCitaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAtenderCitaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAtenderCitaMouseExited(evt);
+            }
+        });
+        btnAtenderCita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtenderCitaActionPerformed(evt);
+            }
+        });
+
+        btnConsultarHistorial.setBackground(new java.awt.Color(0, 153, 153));
+        btnConsultarHistorial.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        btnConsultarHistorial.setForeground(new java.awt.Color(255, 255, 255));
+        btnConsultarHistorial.setText("Historial Clinico");
+        btnConsultarHistorial.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnConsultarHistorial.setFocusPainted(false);
+        btnConsultarHistorial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnConsultarHistorialMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnConsultarHistorialMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnConsultarHistorialMouseExited(evt);
+            }
+        });
+        btnConsultarHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarHistorialActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout RightLayout = new javax.swing.GroupLayout(Right);
         Right.setLayout(RightLayout);
         RightLayout.setHorizontalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RightLayout.createSequentialGroup()
-                .addGap(0, 83, Short.MAX_VALUE)
                 .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
+                    .addGroup(RightLayout.createSequentialGroup()
+                        .addGap(85, 85, 85)
                         .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAtenderCita, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnConsultarHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(MenuAppointment_BttnScheduleAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(MenuAppointment_BttnSearchAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(67, 67, 67))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
-                        .addComponent(MenuAppointment_BttnBacks)
-                        .addGap(129, 129, 129))))
+                            .addComponent(MenuAppointment_BttnSearchAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(MenuAppointment_Reports, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(RightLayout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(MenuAppointment_BttnBacks)))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
         RightLayout.setVerticalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RightLayout.createSequentialGroup()
-                .addGap(102, 102, 102)
+                .addGap(45, 45, 45)
                 .addComponent(MenuAppointment_BttnScheduleAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
+                .addGap(44, 44, 44)
                 .addComponent(MenuAppointment_BttnSearchAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
+                .addGap(44, 44, 44)
+                .addComponent(btnConsultarHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(btnAtenderCita, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(MenuAppointment_Reports, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
                 .addComponent(MenuAppointment_BttnBacks, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67))
+                .addGap(29, 29, 29))
         );
 
-        Menu_AppointmentPanel.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, -1, -1));
+        Menu_AppointmentPanel.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 450, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,7 +297,7 @@ public class Appointment_Menu extends javax.swing.JFrame {
         ScheduleAppointmentFrame.setVisible(true);
         ScheduleAppointmentFrame.pack();
         ScheduleAppointmentFrame.setLocationRelativeTo(null);
-        this.dispose();
+            this.dispose();
     }//GEN-LAST:event_MenuAppointment_BttnScheduleAppointmentMouseClicked
 
     private void MenuAppointment_BttnScheduleAppointmentMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAppointment_BttnScheduleAppointmentMouseEntered
@@ -217,7 +333,7 @@ public class Appointment_Menu extends javax.swing.JFrame {
         menuManager.setVisible(true);
         menuManager.pack();
         menuManager.setLocationRelativeTo(null);
-        this.dispose();
+         this.dispose();
     }//GEN-LAST:event_MenuAppointment_BttnBacksMouseClicked
 
     private void MenuAppointment_BttnBacksMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAppointment_BttnBacksMouseEntered
@@ -229,6 +345,128 @@ public class Appointment_Menu extends javax.swing.JFrame {
         MenuAppointment_BttnBacks.setBackground(new Color(0,153,153));
         MenuAppointment_BttnBacks.setForeground(Color.WHITE);
     }//GEN-LAST:event_MenuAppointment_BttnBacksMouseExited
+
+    private void MenuAppointment_ReportsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAppointment_ReportsMouseClicked
+        if (logUser != null) {
+                ///Definir las opciones de reportes disponibles
+                String[] options = {
+                    "Citas por Veterinario", 
+                    "Estado de Citas", 
+                    "Horarios más frecuentes", 
+                    "Retención de Clientes",
+                    "Demografía de Pacientes",
+                    "Distribución de Membresías",
+                    "Tendencia en Citas",
+                    "Top de Clientes"
+                };
+
+              ///definir un dialogo para preguntar que grafico desea ver
+            String selection = (String) JOptionPane.showInputDialog(
+                null, 
+                "Seleccione el tipo de reporte que desea visualizar:", 
+                "Generador de Reportes", 
+                javax.swing.JOptionPane.QUESTION_MESSAGE, 
+                null, 
+                options, 
+                options[0]
+            );
+
+            if (selection != null) {
+                org.jfree.chart.ChartPanel chartPanel = null;
+
+                ///Generar el panel según la opción
+                switch (selection) {
+                    case "Citas por Veterinario":
+                        chartPanel = project.vetsys.utils.BarGraph.getChartPanel(logUser.getId_clinic());
+                        break;
+                    case "Estado de Citas":
+                        chartPanel = project.vetsys.utils.BarGraph.createReport(1, logUser.getId_clinic());
+                        break;
+                    case "Horarios más frecuentes":
+                        chartPanel = project.vetsys.utils.BarGraph.createReport(2, logUser.getId_clinic());
+                        break;
+                    case "Retención de Clientes":
+                        chartPanel = project.vetsys.utils.BarGraph.createReport(3, logUser.getId_clinic());
+                        break;
+                    case "Demografía de Pacientes":
+                        chartPanel = project.vetsys.utils.BarGraph.createReport(4, logUser.getId_clinic());
+                        break;
+                    case "Distribución de Membresías":
+                        chartPanel = project.vetsys.utils.BarGraph.createReport(5, logUser.getId_clinic());
+                        break;
+                    case "Tendencia en Citas":
+                        chartPanel = project.vetsys.utils.BarGraph.createReport(6, logUser.getId_clinic());
+                        break;
+                    case "Top de Clientes":
+                        chartPanel = project.vetsys.utils.BarGraph.createReport(7, logUser.getId_clinic());
+                        break;
+                }
+                ///abrir ventana con el grafico
+                if (chartPanel != null) {
+                    javax.swing.JFrame ventanaReporte = new javax.swing.JFrame("Reporte: " + selection);
+                    ventanaReporte.setContentPane(chartPanel);
+                    ventanaReporte.setSize(800, 600);
+                    ventanaReporte.setLocationRelativeTo(null);
+                    ventanaReporte.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+                    ventanaReporte.setVisible(true);
+                }
+            }
+        }
+    }//GEN-LAST:event_MenuAppointment_ReportsMouseClicked
+
+    private void MenuAppointment_ReportsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAppointment_ReportsMouseEntered
+        MenuAppointment_Reports.setBackground(Color.LIGHT_GRAY);
+        MenuAppointment_Reports.setForeground(Color.BLACK);
+    }//GEN-LAST:event_MenuAppointment_ReportsMouseEntered
+
+    private void MenuAppointment_ReportsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAppointment_ReportsMouseExited
+        MenuAppointment_Reports.setBackground(new Color(0,153,153));
+        MenuAppointment_Reports.setForeground(Color.WHITE);
+    }//GEN-LAST:event_MenuAppointment_ReportsMouseExited
+
+    private void btnAtenderCitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtenderCitaMouseClicked
+        AttendAppointment AttendAppointmentFrame = new AttendAppointment(logUser);
+        AttendAppointmentFrame.setVisible(true);
+        AttendAppointmentFrame.pack();
+        AttendAppointmentFrame.setLocationRelativeTo(null);
+          this.dispose();
+    }//GEN-LAST:event_btnAtenderCitaMouseClicked
+
+    private void btnAtenderCitaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtenderCitaMouseEntered
+        btnAtenderCita.setBackground(Color.LIGHT_GRAY);
+        btnAtenderCita.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnAtenderCitaMouseEntered
+
+    private void btnAtenderCitaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtenderCitaMouseExited
+        btnAtenderCita.setBackground(new Color(0,153,153));
+        btnAtenderCita.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnAtenderCitaMouseExited
+
+    private void btnConsultarHistorialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarHistorialMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConsultarHistorialMouseClicked
+
+    private void btnConsultarHistorialMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarHistorialMouseEntered
+        btnConsultarHistorial.setBackground(Color.LIGHT_GRAY);
+        btnConsultarHistorial.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnConsultarHistorialMouseEntered
+
+    private void btnConsultarHistorialMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarHistorialMouseExited
+        btnConsultarHistorial.setBackground(new Color(0,153,153));
+        btnConsultarHistorial.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnConsultarHistorialMouseExited
+
+    private void btnAtenderCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtenderCitaActionPerformed
+       
+    }//GEN-LAST:event_btnAtenderCitaActionPerformed
+
+    private void btnConsultarHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarHistorialActionPerformed
+        SearchHistory Historyframe = new SearchHistory(logUser);
+        Historyframe.setVisible(true);
+        Historyframe.pack();
+        Historyframe.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_btnConsultarHistorialActionPerformed
 
     
     public static void main(String args[]) {
@@ -242,7 +480,10 @@ public class Appointment_Menu extends javax.swing.JFrame {
     private javax.swing.JButton MenuAppointment_BttnScheduleAppointment;
     private javax.swing.JButton MenuAppointment_BttnSearchAppointment;
     private javax.swing.JLabel MenuAppointment_ImgVetSys;
+    private javax.swing.JButton MenuAppointment_Reports;
     private javax.swing.JPanel Menu_AppointmentPanel;
     private javax.swing.JPanel Right;
+    private javax.swing.JButton btnAtenderCita;
+    private javax.swing.JButton btnConsultarHistorial;
     // End of variables declaration//GEN-END:variables
 }

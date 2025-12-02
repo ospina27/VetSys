@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package project.vetsys.view.manager;
 
 import java.sql.Connection;
@@ -18,50 +14,64 @@ import project.vetsys.dao.ClienteDAO;
 import project.vetsys.database.DBConnection;
 import project.vetsys.model.ClienteModel;
 import project.vetsys.model.User;
+import project.vetsys.view.Nimbus;
+import project.vetsys.utils.ValidationInput;
+import project.vetsys.utils.Utils;
 
-/**
- *
- * @author San
- */
 public class SearchClient extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SearchClient.class.getName());
     private User logUser; //user que inicio sesion
     private ClienteDAO clienteDAO = new ClienteDAO();
     private DefaultTableModel modeloTabla;
-
-    /**
-     * Creates new form SearchUser
-     * @param logUser
-     */
+    private Utils utils;
     
     // Constructor que recibe el usuario logueado
     public SearchClient(User logUser) {
+        Nimbus.LookandFeel();
         this.logUser = logUser;
+        utils = new Utils();
         initComponents();
+        aplicarAccesibilidad();
         configurarTabla();
         cargarClientes();
         cargarMembresias();
-        txtClinica.setText(obtenerNombreClinica(logUser.getId_clinic()));
+        Nimbus.styleAllTextFields(this);
+       
+        Nimbus.styleTitleLabel(jLabel4);
+        Nimbus.styleAllLabelsExcept(this, jLabel4);
+        jLabel4.setText(obtenerNombreClinica(logUser.getId_clinic()));
+        Nimbus.styleTable(tablaClientes);
         
-        //validacion del rol, para que no pueda modificar usuarios si no es administrador
+        //validacion del rol, para que no pueda modificar clientes si no es administrador
         if(!"Administrador".equalsIgnoreCase(logUser.getName_role())){
             btnActualizar.setVisible(false);
             btnEliminar.setVisible(false);
-        }
-        txtClinica.setEditable(false); ///no editar la clinica
-        
+        } 
+        setTitle("Gestión de Clientes");
+        //txtClinica.setEditable(false); ///no editar la clinica
+                
         System.out.println("Usuario logueado recibido: " + logUser.getUsername()); //prueba en consola
+        
+        // Validaciones en entrada de campos de textos
+        ValidationInput.text(txtNombres, 30);
+        ValidationInput.text(txtApellidos, 35);
+        ValidationInput.numbers(txtDocumento, 11);
+        ValidationInput.numbers(txtTelefono, 10);
+        ValidationInput.regex(txtCorreo, ValidationInput.EMAIL, 60);
+        ValidationInput.maxLength(txtDireccion, 80);
+        ValidationInput.numbers(txtDocumentoIngresado, 11);
         
     }
 
     // Constructor sin parámetros 
     public SearchClient() {
         initComponents();
+        aplicarAccesibilidad();
         configurarTabla();
         cargarClientes();
         cargarMembresias();
-        txtClinica.setText(obtenerNombreClinica(logUser.getId_clinic()));
+        //txtClinica.setText(obtenerNombreClinica(logUser.getId_clinic()));
     }
     
     private void configurarTabla() {
@@ -191,9 +201,10 @@ public class SearchClient extends javax.swing.JFrame {
         txtDireccion = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtIdCliente = new javax.swing.JTextField();
-        txtClinica = new javax.swing.JTextField();
         jDateChooserFechaInicio = new com.toedter.calendar.JDateChooser();
         jDateChooserFechaFin = new com.toedter.calendar.JDateChooser();
+        jLabel4 = new javax.swing.JLabel();
+        lbl_IdCliente = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnActualizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
@@ -212,7 +223,7 @@ public class SearchClient extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
         jPanel1.setLayout(null);
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
         jPanel2.setMinimumSize(new java.awt.Dimension(400, 600));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -222,19 +233,9 @@ public class SearchClient extends javax.swing.JFrame {
         txtApellidos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtApellidos.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtApellidos.setBorder(null);
-        txtApellidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellidosActionPerformed(evt);
-            }
-        });
 
         txtNombres.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtNombres.setBorder(null);
-        txtNombres.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombresActionPerformed(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -244,20 +245,10 @@ public class SearchClient extends javax.swing.JFrame {
         txtDocumento.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtDocumento.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtDocumento.setBorder(null);
-        txtDocumento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDocumentoActionPerformed(evt);
-            }
-        });
 
         txtTelefono.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtTelefono.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtTelefono.setBorder(null);
-        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTelefonoActionPerformed(evt);
-            }
-        });
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -274,11 +265,6 @@ public class SearchClient extends javax.swing.JFrame {
         txtCorreo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtCorreo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtCorreo.setBorder(null);
-        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCorreoActionPerformed(evt);
-            }
-        });
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -286,11 +272,6 @@ public class SearchClient extends javax.swing.JFrame {
 
         cmboxMembresias.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         cmboxMembresias.setBorder(null);
-        cmboxMembresias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmboxMembresiasActionPerformed(evt);
-            }
-        });
 
         jLabel15.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
@@ -307,11 +288,6 @@ public class SearchClient extends javax.swing.JFrame {
         txtDireccion.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtDireccion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtDireccion.setBorder(null);
-        txtDireccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDireccionActionPerformed(evt);
-            }
-        });
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -323,18 +299,8 @@ public class SearchClient extends javax.swing.JFrame {
         txtIdCliente.setBorder(null);
         txtIdCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        txtClinica.setEditable(false);
-        txtClinica.setBackground(new java.awt.Color(0, 102, 102));
-        txtClinica.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        txtClinica.setForeground(new java.awt.Color(255, 255, 255));
-        txtClinica.setBorder(null);
-        txtClinica.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtClinica.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        txtClinica.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtClinicaActionPerformed(evt);
-            }
-        });
+        lbl_IdCliente.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lbl_IdCliente.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -343,15 +309,13 @@ public class SearchClient extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lbl_IdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel17)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(198, 198, 198))
                         .addComponent(jLabel16)
                         .addComponent(jLabel15)
                         .addComponent(jLabel14)
@@ -366,26 +330,28 @@ public class SearchClient extends javax.swing.JFrame {
                             .addComponent(txtApellidos, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtDocumento, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING)))
-                    .addComponent(txtClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(198, 198, 198)))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jDateChooserFechaFin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                         .addComponent(jDateChooserFechaInicio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(txtClinica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel6)
-                    .addComponent(txtIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(lbl_IdCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -401,16 +367,16 @@ public class SearchClient extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmboxMembresias, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jDateChooserFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -418,7 +384,7 @@ public class SearchClient extends javax.swing.JFrame {
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jDateChooserFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel1.add(jPanel2);
@@ -430,16 +396,16 @@ public class SearchClient extends javax.swing.JFrame {
         jPanel3.setPreferredSize(new java.awt.Dimension(800, 800));
 
         btnActualizar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnActualizar.setForeground(new java.awt.Color(0, 102, 102));
+        btnActualizar.setForeground(new java.awt.Color(0, 153, 153));
         btnActualizar.setText("Actualizar");
-        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
             }
         });
 
-        btnSalir.setBackground(new java.awt.Color(0, 102, 102));
+        btnSalir.setBackground(new java.awt.Color(0, 153, 153));
         btnSalir.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnSalir.setForeground(new java.awt.Color(255, 255, 255));
         btnSalir.setText("Atrás");
@@ -451,9 +417,9 @@ public class SearchClient extends javax.swing.JFrame {
         });
 
         btnEliminar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnEliminar.setForeground(new java.awt.Color(0, 102, 102));
+        btnEliminar.setForeground(new java.awt.Color(0, 153, 153));
         btnEliminar.setText("Eliminar");
-        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -483,7 +449,7 @@ public class SearchClient extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaClientes);
 
-        btnConsultaCliente.setBackground(new java.awt.Color(0, 102, 102));
+        btnConsultaCliente.setBackground(new java.awt.Color(0, 153, 153));
         btnConsultaCliente.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnConsultaCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnConsultaCliente.setText("Buscar");
@@ -548,25 +514,17 @@ public class SearchClient extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtApellidosActionPerformed
-
-    private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombresActionPerformed
-
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         try {
             ClienteModel cliente = new ClienteModel();
-            cliente.setIdCliente(Integer.parseInt(txtIdCliente.getText()));
+            cliente.setIdCliente(Integer.parseInt(lbl_IdCliente.getText()));
             cliente.setNombres(txtNombres.getText());
             cliente.setApellidos(txtApellidos.getText());
             cliente.setDocumento(txtDocumento.getText());
             cliente.setTelefono(txtTelefono.getText());
             cliente.setCorreo(txtCorreo.getText());
-            cliente.setDireccion(txtDireccion.getText());
-
+            cliente.setDireccion(txtDireccion.getText());  
+            
             String item = (String) cmboxMembresias.getSelectedItem();
             Integer idMembresia = null;
             
@@ -601,6 +559,11 @@ public class SearchClient extends javax.swing.JFrame {
                 cliente.setEstadoMembresia(0);
             }
             
+            ///Validación del formato de correo
+            if (!utils.validationEmail(txtCorreo, this, logUser.getClinic().getName_clinic())) {
+                return;
+            }
+            
             boolean actualizado = clienteDAO.actualizarCliente(cliente);
             if (actualizado) {
                 JOptionPane.showMessageDialog(this, "Cliente actualizado correctamente.");
@@ -622,25 +585,9 @@ public class SearchClient extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void txtDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDocumentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDocumentoActionPerformed
-
-    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelefonoActionPerformed
-
-    private void txtClinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClinicaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtClinicaActionPerformed
-
-    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoActionPerformed
-
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         try {
-            int id = Integer.parseInt(txtIdCliente.getText());
+            int id = Integer.parseInt(lbl_IdCliente.getText());
             int confirm = JOptionPane.showConfirmDialog(this, "¿Eliminar este cliente?", "Confirmar", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
                 boolean eliminado = clienteDAO.eliminarCliente(id);
@@ -669,21 +616,13 @@ public class SearchClient extends javax.swing.JFrame {
         buscarPorDocumento(documento);
     }//GEN-LAST:event_btnConsultaClienteActionPerformed
 
-    private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireccionActionPerformed
-
-    private void cmboxMembresiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmboxMembresiasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmboxMembresiasActionPerformed
-
     private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
         int fila = tablaClientes.getSelectedRow();
         if (fila >= 0) {
             
             try {
-                txtIdCliente.setText(modeloTabla.getValueAt(fila, 0).toString());
-                txtIdCliente.setEditable(false); 
+                lbl_IdCliente.setText(modeloTabla.getValueAt(fila, 0).toString());
+                //txtIdCliente.setEditable(false); 
                 txtNombres.setText(modeloTabla.getValueAt(fila, 1).toString());
                 txtApellidos.setText(modeloTabla.getValueAt(fila, 2).toString());
                 txtDocumento.setText(modeloTabla.getValueAt(fila, 3).toString());
@@ -776,14 +715,15 @@ public class SearchClient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbl_IdCliente;
     private javax.swing.JTable tablaClientes;
     private javax.swing.JTextField txtApellidos;
-    private javax.swing.JTextField txtClinica;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtDocumento;
@@ -792,4 +732,140 @@ public class SearchClient extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
+
+    private void aplicarAccesibilidad() {
+
+    // --- PANEL PRINCIPAL ---
+    jPanel1.setFocusable(true);
+    jPanel2.setFocusable(true);
+    jPanel3.setFocusable(true);
+    // --- CAMPOS DE INFORMACIÓN DEL CLIENTE ---
+    //txtClinica.getAccessibleContext().setAccessibleName("Nombre de la clínica");
+    //txtClinica.getAccessibleContext().setAccessibleDescription("Nombre de la clínica asociada al usuario");
+    //txtClinica.setToolTipText("Nombre de la clínica");
+ 
+    //txtIdCliente.getAccessibleContext().setAccessibleName("ID del cliente");
+    //txtIdCliente.getAccessibleContext().setAccessibleDescription("Identificador único del cliente");
+    //txtIdCliente.setToolTipText("ID del cliente (Alt+I)");
+    //txtIdCliente.setNextFocusableComponent(txtNombres);
+
+    txtNombres.getAccessibleContext().setAccessibleName("Campo Nombres");
+    txtNombres.getAccessibleContext().setAccessibleDescription("Ingrese los nombres del cliente");
+    txtNombres.setToolTipText("Nombres del cliente (Alt+N)");
+    txtNombres.setNextFocusableComponent(txtApellidos);
+
+    txtApellidos.getAccessibleContext().setAccessibleName("Campo Apellidos");
+    txtApellidos.getAccessibleContext().setAccessibleDescription("Ingrese los apellidos del cliente");
+    txtApellidos.setToolTipText("Apellidos del cliente (Alt+A)");
+    txtApellidos.setNextFocusableComponent(txtDocumento);
+
+    txtDocumento.getAccessibleContext().setAccessibleName("Documento del cliente");
+    txtDocumento.getAccessibleContext().setAccessibleDescription("Número de documento del cliente");
+    txtDocumento.setToolTipText("Documento del cliente (Alt+D)");
+    txtDocumento.setNextFocusableComponent(txtTelefono);
+
+    txtTelefono.getAccessibleContext().setAccessibleName("Teléfono del cliente");
+    txtTelefono.getAccessibleContext().setAccessibleDescription("Ingrese el teléfono del cliente");
+    txtTelefono.setToolTipText("Teléfono del cliente (Alt+T)");
+    txtTelefono.setNextFocusableComponent(txtCorreo);
+
+    txtCorreo.getAccessibleContext().setAccessibleName("Correo del cliente");
+    txtCorreo.getAccessibleContext().setAccessibleDescription("Ingrese el correo electrónico del cliente");
+    txtCorreo.setToolTipText("Correo del cliente (Alt+O)");
+    txtCorreo.setNextFocusableComponent(txtDireccion);
+
+    txtDireccion.getAccessibleContext().setAccessibleName("Dirección del cliente");
+    txtDireccion.getAccessibleContext().setAccessibleDescription("Ingrese la dirección del cliente");
+    txtDireccion.setToolTipText("Dirección del cliente (Alt+R)");
+    txtDireccion.setNextFocusableComponent(cmboxMembresias);
+
+    // --- COMBOBOX MEMBRESÍAS ---
+    cmboxMembresias.getAccessibleContext().setAccessibleName("Membresía");
+    cmboxMembresias.getAccessibleContext().setAccessibleDescription("Seleccione la membresía del cliente");
+    cmboxMembresias.setToolTipText("Seleccionar membresía (Alt+M)");
+    cmboxMembresias.setNextFocusableComponent(jDateChooserFechaInicio);
+
+    jDateChooserFechaInicio.getAccessibleContext().setAccessibleName("Fecha inicio membresía");
+    jDateChooserFechaInicio.getAccessibleContext().setAccessibleDescription("Fecha de inicio de la membresía");
+    jDateChooserFechaInicio.setToolTipText("Fecha inicio (yyyy/mm/dd) (Alt+F)");
+    jDateChooserFechaInicio.setNextFocusableComponent(jDateChooserFechaFin);
+
+    jDateChooserFechaFin.getAccessibleContext().setAccessibleName("Fecha fin membresía");
+    jDateChooserFechaFin.getAccessibleContext().setAccessibleDescription("Fecha de finalización de la membresía");
+    jDateChooserFechaFin.setToolTipText("Fecha fin (yyyy/mm/dd) (Alt+G)");
+    jDateChooserFechaFin.setNextFocusableComponent(txtDocumentoIngresado);
+
+    // --- CAMPO BÚSQUEDA ---
+    txtDocumentoIngresado.getAccessibleContext().setAccessibleName("Documento a buscar");
+    txtDocumentoIngresado.getAccessibleContext().setAccessibleDescription("Ingrese el número de documento del cliente a buscar");
+    txtDocumentoIngresado.setToolTipText("Número de documento del cliente (Alt+B)");
+    txtDocumentoIngresado.setNextFocusableComponent(btnConsultaCliente);
+
+    // --- BOTONES ---
+    btnConsultaCliente.getAccessibleContext().setAccessibleName("Buscar cliente");
+    btnConsultaCliente.getAccessibleContext().setAccessibleDescription("Buscar cliente por documento");
+    btnConsultaCliente.setToolTipText("Buscar cliente (Alt+B)");
+    btnConsultaCliente.setMnemonic('B');
+    btnConsultaCliente.setNextFocusableComponent(btnActualizar);
+
+    btnActualizar.getAccessibleContext().setAccessibleName("Actualizar cliente");
+    btnActualizar.getAccessibleContext().setAccessibleDescription("Actualizar los datos del cliente seleccionado");
+    btnActualizar.setToolTipText("Actualizar cliente (Alt+U)");
+    btnActualizar.setMnemonic('U');
+    btnActualizar.setNextFocusableComponent(btnEliminar);
+
+    btnEliminar.getAccessibleContext().setAccessibleName("Eliminar cliente");
+    btnEliminar.getAccessibleContext().setAccessibleDescription("Eliminar el cliente seleccionado");
+    btnEliminar.setToolTipText("Eliminar cliente (Alt+E)");
+    btnEliminar.setMnemonic('E');
+    btnEliminar.setNextFocusableComponent(btnSalir);
+
+    btnSalir.getAccessibleContext().setAccessibleName("Atrás");
+    btnSalir.getAccessibleContext().setAccessibleDescription("Volver al menú anterior");
+    btnSalir.setToolTipText("Atrás (Alt+S)");
+    btnSalir.setMnemonic('S');
+
+    // --- TABLA ---
+    tablaClientes.getAccessibleContext().setAccessibleName("Tabla de clientes");
+    tablaClientes.getAccessibleContext().setAccessibleDescription("Listado de clientes con sus datos");
+
+    // --- ATAJOS GLOBALES ALT ---
+    getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW)
+        .put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_buscar");
+    getRootPane().getActionMap().put("accion_buscar", new javax.swing.AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            btnConsultaCliente.doClick();
+        }
+    });
+
+    getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW)
+        .put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_actualizar");
+    getRootPane().getActionMap().put("accion_actualizar", new javax.swing.AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            btnActualizar.doClick();
+        }
+    });
+
+    getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW)
+        .put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_eliminar");
+    getRootPane().getActionMap().put("accion_eliminar", new javax.swing.AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            btnEliminar.doClick();
+        }
+    });
+
+    getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW)
+        .put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_salir");
+    getRootPane().getActionMap().put("accion_salir", new javax.swing.AbstractAction() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            btnSalir.doClick();
+        }
+    });
+}
+
+
 }
