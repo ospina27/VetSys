@@ -34,7 +34,7 @@
         <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="autoscrolls" type="boolean" value="true"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Cursor Por defecto"/>
         </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[800, 600]"/>
@@ -100,14 +100,14 @@
                       <Component id="btnRefreshTable_pet" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" pref="349" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" pref="346" max="32767" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnDelete" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnActualizar" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="btnSalir" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -200,7 +200,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Actualizar"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor de Mano"/>
             </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[78, 23]"/>
@@ -226,7 +226,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Salir"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor de Mano"/>
             </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[78, 23]"/>
@@ -252,7 +252,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Eliminar"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor de Mano"/>
             </Property>
           </Properties>
           <Events>
@@ -276,7 +276,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Buscar"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor de Mano"/>
             </Property>
           </Properties>
           <Events>
@@ -293,7 +293,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Refrescar"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor de Mano"/>
             </Property>
           </Properties>
           <Events>
@@ -501,6 +501,9 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" id="Control" palette="2" red="f0" type="palette"/>
             </Property>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[300, 180]"/>
+            </Property>
           </Properties>
 
           <Layout>
@@ -512,21 +515,25 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="sexPet_lbl" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="colorPet_lbl" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="colorPet_lbl" alignment="0" pref="159" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="dateBirthPet_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jDateChooserFecha" min="-2" pref="199" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="colorPet_Field" min="-2" pref="180" max="-2" attributes="0"/>
-                                  <Component id="sexPet_Field" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
+                                  <Component id="dateBirthPet_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="colorPet_Field" min="-2" pref="180" max="-2" attributes="0"/>
+                                          <Component id="sexPet_Field" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="jDateChooserFecha" alignment="1" min="-2" pref="181" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -547,7 +554,7 @@
                       <Component id="dateBirthPet_lbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jDateChooserFecha" min="-2" pref="28" max="-2" attributes="0"/>
-                      <EmptySpace pref="9" max="32767" attributes="0"/>
+                      <EmptySpace pref="16" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -617,6 +624,9 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" id="Control" palette="2" red="f0" type="palette"/>
             </Property>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[300, 180]"/>
+            </Property>
           </Properties>
 
           <Layout>
@@ -633,10 +643,10 @@
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="nameOwner_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="OwnerTitle_petLbl" alignment="0" min="-2" pref="218" max="-2" attributes="0"/>
-                                  <Component id="nameOwner_field" alignment="0" pref="280" max="32767" attributes="0"/>
+                                  <Component id="nameOwner_field" alignment="0" pref="253" max="32767" attributes="0"/>
                                   <Component id="documentOwner_field" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -647,7 +657,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Component id="OwnerTitle_petLbl" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="nameOwner_lbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="nameOwner_field" min="-2" max="-2" attributes="0"/>
@@ -655,7 +665,7 @@
                       <Component id="documentOwner_lbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="documentOwner_field" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="7" max="32767" attributes="0"/>
+                      <EmptySpace pref="17" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
