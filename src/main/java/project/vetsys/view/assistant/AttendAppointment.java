@@ -118,8 +118,6 @@ public class AttendAppointment extends javax.swing.JFrame {
 
         SearchAppointmentPanel = new javax.swing.JPanel();
         Right = new javax.swing.JPanel();
-        SearchAppointment_BttnBack = new javax.swing.JPanel();
-        SearchAppointment_lblBttnBack = new javax.swing.JLabel();
         SearchAppointment_lblClientID = new javax.swing.JLabel();
         txtDocumentoCliente = new javax.swing.JTextField();
         btnConsultarCitas = new javax.swing.JButton();
@@ -130,6 +128,7 @@ public class AttendAppointment extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         Up = new javax.swing.JPanel();
         ScheduleAppointment_lblTittle = new javax.swing.JLabel();
+        btnVerDetalle1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 800));
@@ -146,39 +145,6 @@ public class AttendAppointment extends javax.swing.JFrame {
         Right.setMinimumSize(new java.awt.Dimension(500, 800));
         Right.setPreferredSize(new java.awt.Dimension(500, 800));
 
-        SearchAppointment_BttnBack.setBackground(new java.awt.Color(0, 153, 153));
-        SearchAppointment_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        SearchAppointment_lblBttnBack.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        SearchAppointment_lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
-        SearchAppointment_lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        SearchAppointment_lblBttnBack.setText("Salir");
-        SearchAppointment_lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        SearchAppointment_lblBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SearchAppointment_lblBttnBackMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                SearchAppointment_lblBttnBackMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                SearchAppointment_lblBttnBackMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout SearchAppointment_BttnBackLayout = new javax.swing.GroupLayout(SearchAppointment_BttnBack);
-        SearchAppointment_BttnBack.setLayout(SearchAppointment_BttnBackLayout);
-        SearchAppointment_BttnBackLayout.setHorizontalGroup(
-            SearchAppointment_BttnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(SearchAppointment_lblBttnBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-        );
-        SearchAppointment_BttnBackLayout.setVerticalGroup(
-            SearchAppointment_BttnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SearchAppointment_BttnBackLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(SearchAppointment_lblBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
         SearchAppointment_lblClientID.setFont(new java.awt.Font("Arial", 0, 17)); // NOI18N
         SearchAppointment_lblClientID.setText("Documento Cliente");
 
@@ -193,7 +159,7 @@ public class AttendAppointment extends javax.swing.JFrame {
         btnConsultarCitas.setForeground(new java.awt.Color(255, 255, 255));
         btnConsultarCitas.setText("Consultar");
         btnConsultarCitas.setBorder(null);
-        btnConsultarCitas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnConsultarCitas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnConsultarCitas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarCitasActionPerformed(evt);
@@ -251,34 +217,41 @@ public class AttendAppointment extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        btnVerDetalle1.setBackground(new java.awt.Color(0, 153, 153));
+        btnVerDetalle1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        btnVerDetalle1.setForeground(new java.awt.Color(255, 255, 255));
+        btnVerDetalle1.setText("Salir");
+        btnVerDetalle1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVerDetalle1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerDetalle1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout RightLayout = new javax.swing.GroupLayout(Right);
         Right.setLayout(RightLayout);
         RightLayout.setHorizontalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
-                        .addComponent(SearchAppointment_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
-                        .addComponent(btnRegistrarHC)
-                        .addGap(348, 348, 348))))
             .addGroup(RightLayout.createSequentialGroup()
                 .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(RightLayout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SearchAppointment_lblClientID1)
-                            .addGroup(RightLayout.createSequentialGroup()
-                                .addComponent(txtDocumentoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(btnConsultarCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(SearchAppointment_lblClientID)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(RightLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 962, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 962, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(RightLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(RightLayout.createSequentialGroup()
+                                .addComponent(btnRegistrarHC)
+                                .addGap(226, 226, 226)
+                                .addComponent(btnVerDetalle1))
+                            .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(SearchAppointment_lblClientID1)
+                                .addGroup(RightLayout.createSequentialGroup()
+                                    .addComponent(txtDocumentoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(34, 34, 34)
+                                    .addComponent(btnConsultarCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(SearchAppointment_lblClientID)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(0, 20, Short.MAX_VALUE))
             .addComponent(Up, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -299,10 +272,10 @@ public class AttendAppointment extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(btnRegistrarHC, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(SearchAppointment_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(114, 114, 114))
+                .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegistrarHC, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVerDetalle1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(114, 169, Short.MAX_VALUE))
         );
 
         SearchAppointmentPanel.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 800));
@@ -360,22 +333,6 @@ public class AttendAppointment extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDocumentoClienteActionPerformed
 
-    private void SearchAppointment_lblBttnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchAppointment_lblBttnBackMouseExited
-        SearchAppointment_BttnBack.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_SearchAppointment_lblBttnBackMouseExited
-
-    private void SearchAppointment_lblBttnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchAppointment_lblBttnBackMouseEntered
-        SearchAppointment_BttnBack.setBackground(Color.LIGHT_GRAY);
-    }//GEN-LAST:event_SearchAppointment_lblBttnBackMouseEntered
-
-    private void SearchAppointment_lblBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchAppointment_lblBttnBackMouseClicked
-        Appointment_Menu MenuAppointmentFrame = new Appointment_Menu(logUser);
-        MenuAppointmentFrame.setVisible(true);
-        MenuAppointmentFrame.pack();
-        MenuAppointmentFrame.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_SearchAppointment_lblBttnBackMouseClicked
-
     private void tableCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCitasMouseClicked
         
         int fila = tableCitas.getSelectedRow();
@@ -404,6 +361,14 @@ public class AttendAppointment extends javax.swing.JFrame {
             btnRegistrarHC.setEnabled(true);
         }
     }//GEN-LAST:event_tableCitasMouseClicked
+
+    private void btnVerDetalle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDetalle1ActionPerformed
+        Appointment_Menu MenuAppointmentFrame = new Appointment_Menu(logUser);
+        MenuAppointmentFrame.setVisible(true);
+        MenuAppointmentFrame.pack();
+        MenuAppointmentFrame.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_btnVerDetalle1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -434,13 +399,12 @@ public class AttendAppointment extends javax.swing.JFrame {
     private javax.swing.JPanel Right;
     private javax.swing.JLabel ScheduleAppointment_lblTittle;
     private javax.swing.JPanel SearchAppointmentPanel;
-    private javax.swing.JPanel SearchAppointment_BttnBack;
-    private javax.swing.JLabel SearchAppointment_lblBttnBack;
     private javax.swing.JLabel SearchAppointment_lblClientID;
     private javax.swing.JLabel SearchAppointment_lblClientID1;
     private javax.swing.JPanel Up;
     private javax.swing.JButton btnConsultarCitas;
     private javax.swing.JButton btnRegistrarHC;
+    private javax.swing.JButton btnVerDetalle1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tableCitas;

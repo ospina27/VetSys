@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import project.vetsys.database.DBConnection;
@@ -424,7 +425,7 @@ public class CitaDAO {
     
     ///buscar horas de las citas, para el reporte de las mas frecuentes
     public Map<String, Integer> getGraphHour(int idClinic) {
-        Map<String, Integer> stats = new HashMap<>();
+        Map<String, Integer> stats = new LinkedHashMap<>();
         String sql = "SELECT HOUR(fecha_cita) as hora, COUNT(*) FROM cita WHERE id_clinica = ? GROUP BY hora ORDER BY hora";
 
         try (Connection con = DBConnection.getConnection();
@@ -487,7 +488,7 @@ public class CitaDAO {
 
     ///Reporte de Membresías, cuantas de cada una
     public Map<String, Integer> getStatsMembership(int idClinic) {
-        Map<String, Integer> stats = new HashMap<>();
+        Map<String, Integer> stats = new LinkedHashMap<>();
         String sql = "SELECT m.nombre, COUNT(c.id_cliente) FROM cliente c " +
                      "JOIN membresia m ON c.id_membresia = m.id_membresia " +
                      "WHERE c.id_clinica = ? GROUP BY m.nombre";
@@ -500,17 +501,32 @@ public class CitaDAO {
         return stats;
     }
 
-    ///Tendencia mensual 
+    ///Tendencia mensual de las citas 
     public Map<String, Integer> getStatsTendency(int idClinic) {
         //LinkedHashMap para orden cronológico
         Map<String, Integer> stats = new java.util.LinkedHashMap<>();
-        String sql = "SELECT MONTHNAME(fecha_cita), COUNT(*) FROM cita " +
-                     "WHERE id_clinica = ? AND YEAR(fecha_cita) = YEAR(CURDATE()) " +
-                     "GROUP BY MONTH(fecha_cita), MONTHNAME(fecha_cita) ORDER BY MONTH(fecha_cita)";
+        String[] nombresMeses = {
+            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+        };
+        String sql = "SELECT MONTH(fecha_cita), COUNT(*) " +
+            "FROM cita " +
+            "WHERE id_clinica = ? AND YEAR(fecha_cita) = YEAR(CURDATE()) " +
+            "GROUP BY MONTH(fecha_cita) " +
+            "ORDER BY MONTH(fecha_cita)";
         try (Connection con = DBConnection.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, idClinic);
             try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) stats.put(rs.getString(1), rs.getInt(2));
+                while (rs.next()) {
+                    int numeroMes = rs.getInt(1); /// 1 para Enero, 2 para Febrero y así sucesivamente
+                    int cantidad = rs.getInt(2);
+                    ///validar el numero del mes
+                    if (numeroMes >= 1 && numeroMes <= 12) {
+
+                        String nombreMes = nombresMeses[numeroMes - 1]; 
+                        stats.put(nombreMes, cantidad);
+                    }
+                }
             }
         } catch (SQLException e) { e.printStackTrace(); }
         return stats;
@@ -520,8 +536,9 @@ public class CitaDAO {
     public Map<String, Integer> getStatsTopClients(int idClinic) {
         
         ///LinkedHashMap para orden descendente
-        Map<String, Integer> stats = new java.util.LinkedHashMap<>();
-        String sql = "SELECT CONCAT(c.nombres, ' ', c.apellidos), COUNT(ci.id_cita) FROM cita ci " +
+        Map<String, Integer> stats = new LinkedHashMap<>();
+        String sql = "SELECT CONCAT(c.nombres, ' ', c.apellidos, ' CC: ', c.documento, '-Tel: ', c.telefono), "
+                + "COUNT(ci.id_cita) FROM cita ci " +
                      "JOIN cliente c ON ci.id_cliente = c.id_cliente " +
                      "WHERE ci.id_clinica = ? GROUP BY ci.id_cliente " +
                      "ORDER BY COUNT(ci.id_cita) DESC LIMIT 5";

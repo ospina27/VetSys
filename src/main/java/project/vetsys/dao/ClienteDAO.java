@@ -41,9 +41,37 @@ public class ClienteDAO {
         }
         return false;
     }
+    
+    private boolean existeCliente(String documento, int idClinica) {
+        String sql = "SELECT COUNT(*) FROM cliente WHERE documento = ? AND id_clinica = ?";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, documento);
+            ps.setInt(2, idClinica);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error verificando existencia de cliente: " + e.getMessage());
+        }
+        return false;
+    }
 
     
     public boolean insertarCliente(ClienteModel client) {
+        
+        
+        if (existeCliente(client.getDocumento(), client.getIdClinica())) {
+        JOptionPane.showMessageDialog(null, 
+            "El cliente con cédula " + client.getDocumento() + " ya se encuentra registrado en esta clínica.", 
+            "Cliente Duplicado", 
+            JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
         String sql = "INSERT INTO cliente (id_clinica, nombres, apellidos, documento, telefono, correo, direccion, id_membresia, fecha_inicio, fecha_vigencia, id_estado_membresia) "
                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = DBConnection.getConnection();

@@ -62,9 +62,9 @@ public class CreateClient extends javax.swing.JFrame {
         ValidationInput.text(txtApellidos, 35);
         ValidationInput.numbers(txtDocumento, 11);
         ValidationInput.numbers(txtTelefono, 10);
-        ValidationInput.regex(txtCorreo, ValidationInput.EMAIL, 60);
+        //ValidationInput.regex(txtCorreo, ValidationInput.EMAIL, 60);
         ValidationInput.maxLength(txtDireccion, 80);
-        ValidationInput.numbers(txtPrecioMembresia, 9);
+        //ValidationInput.numbers(txtPrecioMembresia, 9);
         
     }
     
@@ -552,6 +552,7 @@ public class CreateClient extends javax.swing.JFrame {
                     "No se pudo registrar el cliente",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
+                limpiarCampos();
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,

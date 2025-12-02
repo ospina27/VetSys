@@ -31,7 +31,7 @@ public class PetDAO {
             return false;
         }
         
-        ///se usa para validar que no exista una mascota con los datos inrgesado
+        ///se usa para validar que no exista una mascota con los datos ingresados
         ///relacionado al cliente
         String sqlCheck = "SELECT COUNT(*) FROM mascota "
                         + "WHERE id_cliente =? AND nombre =? AND especie=?"

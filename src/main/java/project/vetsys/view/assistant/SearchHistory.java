@@ -115,8 +115,6 @@ public class SearchHistory extends javax.swing.JFrame {
 
         SearchAppointmentPanel = new javax.swing.JPanel();
         Right = new javax.swing.JPanel();
-        SearchAppointment_BttnBack = new javax.swing.JPanel();
-        lblBttnBack = new javax.swing.JLabel();
         SearchAppointment_lblClientID = new javax.swing.JLabel();
         txtDocumentoCliente = new javax.swing.JTextField();
         btnConsultar = new javax.swing.JButton();
@@ -132,6 +130,7 @@ public class SearchHistory extends javax.swing.JFrame {
         SearchAppointment_lblClientID3 = new javax.swing.JLabel();
         dateChooser = new com.toedter.calendar.JDateChooser();
         btnLimpiarFecha = new javax.swing.JButton();
+        btnVerDetalle1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 800));
@@ -148,39 +147,6 @@ public class SearchHistory extends javax.swing.JFrame {
         Right.setMinimumSize(new java.awt.Dimension(500, 800));
         Right.setPreferredSize(new java.awt.Dimension(500, 800));
 
-        SearchAppointment_BttnBack.setBackground(new java.awt.Color(0, 153, 153));
-        SearchAppointment_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        lblBttnBack.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblBttnBack.setForeground(new java.awt.Color(255, 255, 255));
-        lblBttnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblBttnBack.setText("Salir");
-        lblBttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblBttnBackMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblBttnBackMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblBttnBackMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout SearchAppointment_BttnBackLayout = new javax.swing.GroupLayout(SearchAppointment_BttnBack);
-        SearchAppointment_BttnBack.setLayout(SearchAppointment_BttnBackLayout);
-        SearchAppointment_BttnBackLayout.setHorizontalGroup(
-            SearchAppointment_BttnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblBttnBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-        );
-        SearchAppointment_BttnBackLayout.setVerticalGroup(
-            SearchAppointment_BttnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SearchAppointment_BttnBackLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
         SearchAppointment_lblClientID.setFont(new java.awt.Font("Arial", 0, 17)); // NOI18N
         SearchAppointment_lblClientID.setText("Documento Cliente");
 
@@ -195,7 +161,7 @@ public class SearchHistory extends javax.swing.JFrame {
         btnConsultar.setForeground(new java.awt.Color(255, 255, 255));
         btnConsultar.setText("Consultar");
         btnConsultar.setBorder(null);
-        btnConsultar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnConsultar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarActionPerformed(evt);
@@ -282,10 +248,21 @@ public class SearchHistory extends javax.swing.JFrame {
         btnLimpiarFecha.setForeground(new java.awt.Color(0, 153, 153));
         btnLimpiarFecha.setText("Limpiar");
         btnLimpiarFecha.setBorder(null);
-        btnLimpiarFecha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLimpiarFecha.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnLimpiarFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarFechaActionPerformed(evt);
+            }
+        });
+
+        btnVerDetalle1.setBackground(new java.awt.Color(0, 153, 153));
+        btnVerDetalle1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        btnVerDetalle1.setForeground(new java.awt.Color(255, 255, 255));
+        btnVerDetalle1.setText("Salir");
+        btnVerDetalle1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVerDetalle1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerDetalle1ActionPerformed(evt);
             }
         });
 
@@ -295,6 +272,17 @@ public class SearchHistory extends javax.swing.JFrame {
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Up, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(ScheduleAppointment_lblSubTittle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 962, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
+                        .addComponent(btnVerDetalle)
+                        .addGap(293, 293, 293)
+                        .addComponent(btnVerDetalle1)
+                        .addGap(77, 77, 77))))
             .addGroup(RightLayout.createSequentialGroup()
                 .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(RightLayout.createSequentialGroup()
@@ -319,17 +307,6 @@ public class SearchHistory extends javax.swing.JFrame {
                                     .addComponent(dateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
                                     .addComponent(comboVeterinario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 962, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
-                        .addComponent(btnVerDetalle)
-                        .addGap(293, 293, 293)
-                        .addComponent(SearchAppointment_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66))))
         );
         RightLayout.setVerticalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -358,12 +335,12 @@ public class SearchHistory extends javax.swing.JFrame {
                 .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(RightLayout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(SearchAppointment_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(114, 114, 114))
+                        .addGap(76, 76, 76))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
                         .addGap(314, 314, 314)
-                        .addComponent(btnVerDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnVerDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnVerDetalle1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(142, 142, 142))))
         );
 
@@ -424,22 +401,6 @@ public class SearchHistory extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDocumentoClienteActionPerformed
 
-    private void lblBttnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBttnBackMouseExited
-        SearchAppointment_BttnBack.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_lblBttnBackMouseExited
-
-    private void lblBttnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBttnBackMouseEntered
-        SearchAppointment_BttnBack.setBackground(Color.LIGHT_GRAY);
-    }//GEN-LAST:event_lblBttnBackMouseEntered
-
-    private void lblBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBttnBackMouseClicked
-        Appointment_Menu MenuAppointmentFrame = new Appointment_Menu(logUser);
-        MenuAppointmentFrame.setVisible(true);
-        MenuAppointmentFrame.pack();
-        MenuAppointmentFrame.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_lblBttnBackMouseClicked
-
     private void tablaHistorialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaHistorialMouseClicked
         
         int fila = tablaHistorial.getSelectedRow();
@@ -493,6 +454,14 @@ public class SearchHistory extends javax.swing.JFrame {
         btnVerDetalle.setEnabled(false);
     }//GEN-LAST:event_btnLimpiarFechaActionPerformed
 
+    private void btnVerDetalle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDetalle1ActionPerformed
+        Appointment_Menu MenuAppointmentFrame = new Appointment_Menu(logUser);
+        MenuAppointmentFrame.setVisible(true);
+        MenuAppointmentFrame.pack();
+        MenuAppointmentFrame.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_btnVerDetalle1ActionPerformed
+
     
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new SearchHistory().setVisible(true));
@@ -503,7 +472,6 @@ public class SearchHistory extends javax.swing.JFrame {
     private javax.swing.JLabel ScheduleAppointment_lblSubTittle;
     private javax.swing.JLabel ScheduleAppointment_lblTittle;
     private javax.swing.JPanel SearchAppointmentPanel;
-    private javax.swing.JPanel SearchAppointment_BttnBack;
     private javax.swing.JLabel SearchAppointment_lblClientID;
     private javax.swing.JLabel SearchAppointment_lblClientID2;
     private javax.swing.JLabel SearchAppointment_lblClientID3;
@@ -511,11 +479,11 @@ public class SearchHistory extends javax.swing.JFrame {
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnLimpiarFecha;
     private javax.swing.JButton btnVerDetalle;
+    private javax.swing.JButton btnVerDetalle1;
     private javax.swing.JComboBox<String> comboVeterinario;
     private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lblBttnBack;
     private javax.swing.JTable tablaHistorial;
     private javax.swing.JTextField txtDocumentoCliente;
     // End of variables declaration//GEN-END:variables

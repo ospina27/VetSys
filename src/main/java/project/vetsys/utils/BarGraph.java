@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
 import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.CategoryPlot;
@@ -71,7 +72,7 @@ public class BarGraph {
         return dataset;
     }    
     
-    ///crear los reportes dependiente el caso
+    ///crear los reportes dependiendo el caso
     public static ChartPanel createReport(int type, int idClinic) {
         CitaDAO dao = new CitaDAO();
         JFreeChart chart = null;
@@ -136,6 +137,10 @@ public class BarGraph {
                 dao.getStatsTopClients(idClinic).forEach((cli, cant) -> datasetTop.addValue(cant, "Visitas", cli));
                 chart = ChartFactory.createBarChart("Top 5 Clientes VIP", "Cliente", "Visitas", datasetTop, PlotOrientation.HORIZONTAL, true, true, false);
                 customizeBar(chart);
+                CategoryPlot plot = chart.getCategoryPlot();
+                CategoryAxis domainAxisxis = plot.getDomainAxis();
+                domainAxisxis.setTickLabelFont(new Font("Arial", Font.PLAIN, 11));
+                domainAxisxis.setMaximumCategoryLabelWidthRatio(5.0f);
                 lecture = "FIDELIZACIÓN: Estos son sus clientes más valiosos.\nConsidere darles un trato preferencial o descuentos exclusivos.";
                 
                 break;
