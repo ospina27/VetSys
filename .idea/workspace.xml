@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbc809e9-af47-4368-bb02-2040b85fd837" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/InitPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/LogInPanel.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/LogInPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/MainPanel.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/project/vetsys/view/MainPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/Login.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/vetsys/view/Login.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +40,7 @@
   "keyToString": {
     "Application.VetSys.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "fronted",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/San/Documents/Universidad/Semestre 4/Bases de Datos/Proyecto Final/Centro_Medico_Salud_Vital",
     "node.js.detected.package.eslint": "true",
@@ -60,8 +54,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.387" />
-        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.387" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.24807.4" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.24807.4" />
       </set>
     </attachedChunks>
   </component>
@@ -75,6 +69,7 @@
       <updated>1760833173137</updated>
       <workItem from="1760833187254" duration="4000" />
       <workItem from="1760833203726" duration="1811000" />
+      <workItem from="1764643241375" duration="970000" />
     </task>
     <servers />
   </component>

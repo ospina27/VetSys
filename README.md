@@ -1,32 +1,66 @@
-<<<<<<< HEAD
-# 🐶 VetSys – Sistema de Gestión para Clínicas Veterinarias
+# VetSys – Sistema de Gestión Clínica para Veterinarias
 
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Swing](https://img.shields.io/badge/Java%20Swing-007396?style=for-the-badge&logo=coffeescript&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
 ![Scrum](https://img.shields.io/badge/Scrum-2C8EBB?style=for-the-badge&logo=agile&logoColor=white)
 
+
 ---
 
 ## 📋 Descripción del Proyecto
-**VetSys** es un software de gestión desarrollado en **Java Swing** con base de datos **MySQL**, pensado para optimizar la administración de clínicas veterinarias.  
-Permite gestionar clientes, mascotas, citas, facturación, inventario y notificaciones automáticas.
+**VetSys** es un software de escritorio desarrollado en **Java Swing** con base de datos **MySQL**, diseñado para 
+optimizar la gestión clínica y administrativa de clínicas veterinarias.  
+Permite gestionar clientes, mascotas, citas, veterinarios, historial clínico y alertas automáticas.
 
 ---
 
-## 🚀 Objetivo
+## Objetivo
 Automatizar los procesos clínicos y administrativos de una veterinaria, mejorando la organización, eficiencia y atención al cliente.
 
 ---
-=======
-# VetSys
 
-En la carpeta `/database` se encuentran los archivos necesarios para configurar la base de datos MySQL local:
+Este proyecto se desarrolló como trabajo académico. Su uso puede adaptarse para propósitos profesionales o personales.
 
-**vetsys_schema.sql**: creación de tablas y relaciones.
-**vetsys_data.sql**: datos iniciales de roles, estados y clínica para prueba.
 
-Ejecutar ambos archivos en el siguiente orden:
-1. `vetsys_schema.sql`
-2. `vetsys_data.sql`
->>>>>>> origin/login
+---
+
+
+## Características principales
+
+### Gestión de Veterinarios
+- Registro, actualización y eliminación de veterinarios.
+- Listado con búsqueda y filtrado.
+
+### Gestión de Clientes
+- Almacenamiento de información de clientes.
+- Relación directa con sus mascotas.
+
+### Gestión de Mascotas
+- Datos completos por mascota.
+- Asociación al cliente correspondiente.
+- Acceso rápido a historial clínico.
+
+### Módulo de Citas
+- Programación de citas con fecha y hora.
+- Validación para evitar fechas pasadas.
+- Listado y control de citas diarias.
+
+### Historial Clínico
+- Registro de consultas por mascota.
+- Datos del veterinario, fecha, síntomas, diagnóstico, tratamiento y notas.
+- Vista completa del historial del animal.
+
+### Módulo de Notificaciones
+- **Citas programadas para mañana**.
+- **Membresías próximas a vencer en el mes**.
+- Panel deslizable accesible desde el menú principal.
+
+### Interfaz amigable
+- Tarjetas informativas con estilos.
+- Paneles organizados y consistentes.
+- Navegación intuitiva entre módulos.
+
+### Módulo de Reportes Gráficos
+- Incluye panel de estadísticas con gráficos generados dinámicamente.
+- Permite obtener una visión clara del rendimiento de la clínica y apoyar en la toma de decisiones.
