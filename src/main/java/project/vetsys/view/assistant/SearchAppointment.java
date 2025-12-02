@@ -38,14 +38,12 @@ public class SearchAppointment extends javax.swing.JFrame {
         Nimbus.styleAllTextFields(this);
         Nimbus.styleTable(tableCitas);
         
-        
         // Validaciones en entrada de campos de textos
         ValidationInput.text(txtNombreCliente, 30);
         ValidationInput.text(txtNombreMascota, 30);
         ValidationInput.text(txtNombreVet, 30);
         ValidationInput.text(txtEstado, 30);
         ValidationInput.numbers(txtDocumentoCliente, 11);
-        
     }
     
     
@@ -316,7 +314,7 @@ public class SearchAppointment extends javax.swing.JFrame {
                 .addGap(221, 221, 221))
         );
 
-        SearchAppointmentPanel.add(Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 800));
+        SearchAppointmentPanel.add(Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 800));
 
         Right.setBackground(new java.awt.Color(255, 255, 255));
         Right.setMaximumSize(new java.awt.Dimension(500, 800));
@@ -356,7 +354,7 @@ public class SearchAppointment extends javax.swing.JFrame {
         });
 
         MenuUsers_BttnUpdateUser.setBackground(new java.awt.Color(0, 153, 153));
-        MenuUsers_BttnUpdateUser.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        MenuUsers_BttnUpdateUser.setFont(new java.awt.Font("Arial Black", 0, 20)); // NOI18N
         MenuUsers_BttnUpdateUser.setForeground(new java.awt.Color(255, 255, 255));
         MenuUsers_BttnUpdateUser.setText("Modificar");
         MenuUsers_BttnUpdateUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -376,7 +374,7 @@ public class SearchAppointment extends javax.swing.JFrame {
         });
 
         MenuUsers_BttnCancelUser.setBackground(new java.awt.Color(0, 153, 153));
-        MenuUsers_BttnCancelUser.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        MenuUsers_BttnCancelUser.setFont(new java.awt.Font("Arial Black", 0, 20)); // NOI18N
         MenuUsers_BttnCancelUser.setForeground(new java.awt.Color(255, 255, 255));
         MenuUsers_BttnCancelUser.setText("Cancelar");
         MenuUsers_BttnCancelUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -396,7 +394,7 @@ public class SearchAppointment extends javax.swing.JFrame {
         });
 
         btnEliminar.setBackground(new java.awt.Color(0, 153, 153));
-        btnEliminar.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        btnEliminar.setFont(new java.awt.Font("Arial Black", 0, 20)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("Eliminar");
         btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -416,7 +414,7 @@ public class SearchAppointment extends javax.swing.JFrame {
         });
 
         SearchAppointment_BttnBack.setBackground(new java.awt.Color(0, 153, 153));
-        SearchAppointment_BttnBack.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        SearchAppointment_BttnBack.setFont(new java.awt.Font("Arial Black", 0, 20)); // NOI18N
         SearchAppointment_BttnBack.setForeground(new java.awt.Color(255, 255, 255));
         SearchAppointment_BttnBack.setText("Salir");
         SearchAppointment_BttnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -439,7 +437,6 @@ public class SearchAppointment extends javax.swing.JFrame {
         Right.setLayout(RightLayout);
         RightLayout.setHorizontalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
             .addGroup(RightLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -448,22 +445,26 @@ public class SearchAppointment extends javax.swing.JFrame {
                         .addGap(33, 33, 33)
                         .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(SearchAppointment_lblClientID))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
                 .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(SearchAppointment_lblClientID1)
                     .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(SearchAppointment_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(RightLayout.createSequentialGroup()
-                        .addComponent(MenuUsers_BttnUpdateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(MenuUsers_BttnCancelUser, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82))
+                .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
+                        .addComponent(MenuUsers_BttnUpdateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(SearchAppointment_BttnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(MenuUsers_BttnCancelUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(31, 31, 31)
+                        .addComponent(btnEliminar)
+                        .addGap(102, 102, 102))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 668, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         RightLayout.setVerticalGroup(
             RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -480,15 +481,15 @@ public class SearchAppointment extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70)
                 .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(MenuUsers_BttnUpdateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MenuUsers_BttnCancelUser, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(MenuUsers_BttnUpdateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MenuUsers_BttnCancelUser, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(SearchAppointment_BttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83))
+                .addComponent(SearchAppointment_BttnBack)
+                .addGap(137, 137, 137))
         );
 
-        SearchAppointmentPanel.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 680, 730));
+        SearchAppointmentPanel.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 690, 730));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -621,8 +622,8 @@ public class SearchAppointment extends javax.swing.JFrame {
         }
         // Validar estado
         String estado = txtEstado.getText().trim();
-        if (estado.equalsIgnoreCase("cancelada")) {
-            JOptionPane.showMessageDialog(this, "No se puede actualizar una cita cancelada.");
+        if (!estado.equalsIgnoreCase("programada")) {
+            JOptionPane.showMessageDialog(this, "No se puede modificar una cita cancelada o realizada.");
             return;
         }
         int idCita = Integer.parseInt(txtIdCita.getText());

@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import project.vetsys.view.manager.CreateUser;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -44,12 +43,11 @@ public class SearchClient extends javax.swing.JFrame {
         Nimbus.styleTable(tablaClientes);
         
         //validacion del rol, para que no pueda modificar clientes si no es administrador
-        if(!"Administrador".equalsIgnoreCase(logUser.getName_role())){
+        if("Veterinario".equalsIgnoreCase(logUser.getName_role())){
             btnActualizar.setVisible(false);
             btnEliminar.setVisible(false);
         } 
         setTitle("Gestión de Clientes");
-        //txtClinica.setEditable(false); ///no editar la clinica
                 
         System.out.println("Usuario logueado recibido: " + logUser.getUsername()); //prueba en consola
         
@@ -126,7 +124,6 @@ public class SearchClient extends javax.swing.JFrame {
         List<ClienteModel> listaClientes = clienteDAO.listarClientes(logUser.getId_clinic());
         for (ClienteModel cliente : listaClientes) {
             modeloTabla.addRow(new Object[]{
-               
                 cliente.getIdCliente(),
                 cliente.getNombres(),
                 cliente.getApellidos(),
@@ -398,7 +395,7 @@ public class SearchClient extends javax.swing.JFrame {
         btnActualizar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnActualizar.setForeground(new java.awt.Color(0, 153, 153));
         btnActualizar.setText("Actualizar");
-        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
@@ -419,7 +416,7 @@ public class SearchClient extends javax.swing.JFrame {
         btnEliminar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(0, 153, 153));
         btnEliminar.setText("Eliminar");
-        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -466,7 +463,7 @@ public class SearchClient extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(btnActualizar)
+                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEliminar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -497,13 +494,13 @@ public class SearchClient extends javax.swing.JFrame {
                     .addComponent(txtDocumentoIngresado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConsultaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(82, 82, 82)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnActualizar)
-                    .addComponent(btnEliminar)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addContainerGap(225, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel3);

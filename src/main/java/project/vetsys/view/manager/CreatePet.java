@@ -1,5 +1,7 @@
 package project.vetsys.view.manager;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,10 +29,21 @@ public class CreatePet extends javax.swing.JFrame {
     }
     
     public CreatePet(User logUser){
-        Nimbus.LookandFeel();
+        //Nimbus.LookandFeel();
         this.logUser = logUser;
         utils = new Utils();
         initComponents();
+        
+        jDesktopPane2.setOpaque(true);
+        jDesktopPane2 = new javax.swing.JDesktopPane() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.setColor(Color.WHITE);
+                g.fillRect(0, 0, getWidth(), getHeight());
+                super.paintComponent(g);
+            }
+        };
+
         aplicarAccesibilidad();
         initListeners();
         configurarFechaNacimiento();
@@ -41,12 +54,10 @@ public class CreatePet extends javax.swing.JFrame {
         setTitle("Gestión de Mascotas");
         emptyFields();
         loadSpecies(cboxSpecies_pet,cboxBred_pet);
-        
        
         CreatePet_lblTittle.setText(logUser.getClinic().getName_clinic());
         buttonGroupSexPet.add(sexMacho_Rbutton); ///añadir los rbutton al group 
         buttonGroupSexPet.add(sexHembra_Rbutton);
-        
         // Validaciones en entrada de campos de textos
         ValidationInput.text(CreatePet_tetxNamePet, 30);
         ValidationInput.text(CreatePet_textColorPet, 25);
@@ -56,6 +67,7 @@ public class CreatePet extends javax.swing.JFrame {
     private void initListeners(){
         cboxSpecies_pet.addActionListener(evt ->speciesSelected(cboxSpecies_pet, cboxBred_pet));
     }
+
     
     private void configurarFechaNacimiento() {
         
@@ -173,7 +185,9 @@ public class CreatePet extends javax.swing.JFrame {
         setResizable(false);
         setState(getCursorType());
 
-        jDesktopPane2.setBackground(java.awt.SystemColor.control);
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
+
+        jDesktopPane2.setBackground(new java.awt.Color(255, 255, 255));
         jDesktopPane2.setMaximumSize(new java.awt.Dimension(32767, 32767));
         jDesktopPane2.setMinimumSize(new java.awt.Dimension(800, 600));
         jDesktopPane2.setPreferredSize(new java.awt.Dimension(800, 565));
@@ -186,7 +200,7 @@ public class CreatePet extends javax.swing.JFrame {
         btnCreatePet.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         btnCreatePet.setForeground(new java.awt.Color(0, 153, 153));
         btnCreatePet.setText("Crear");
-        btnCreatePet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCreatePet.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCreatePet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreatePetActionPerformed(evt);
@@ -212,7 +226,7 @@ public class CreatePet extends javax.swing.JFrame {
         bttonEmptyFields_pet.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         bttonEmptyFields_pet.setForeground(new java.awt.Color(0, 153, 153));
         bttonEmptyFields_pet.setText("Limpiar");
-        bttonEmptyFields_pet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttonEmptyFields_pet.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         bttonEmptyFields_pet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttonEmptyFields_petActionPerformed(evt);
@@ -256,7 +270,7 @@ public class CreatePet extends javax.swing.JFrame {
         btnExit1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         btnExit1.setForeground(new java.awt.Color(0, 153, 153));
         btnExit1.setText("Salir");
-        btnExit1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExit1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnExit1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExit1ActionPerformed(evt);
@@ -388,7 +402,7 @@ public class CreatePet extends javax.swing.JFrame {
                     .addComponent(btnExit1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bttonEmptyFields_pet, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCreatePet, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -476,31 +490,24 @@ public class CreatePet extends javax.swing.JFrame {
         String bredPet = (String) cboxBred_pet.getSelectedItem();
         String colorPet = CreatePet_textColorPet.getText();
 
-        if(sexMacho_Rbutton.isSelected())
-        {
+        if(sexMacho_Rbutton.isSelected()){
             sexPet = sexMacho_Rbutton.getText();
-
-        }else if(sexHembra_Rbutton.isSelected())
-        {
+        }else if(sexHembra_Rbutton.isSelected()) {
             sexPet = sexHembra_Rbutton.getText();
         }
         java.util.Date datePet = jDateChooserFecha.getDate();
         String documentOwner = CreatePet_textOwnerDocument.getText();
 
         if (namePet.isEmpty() || documentOwner.isEmpty() || speciesPet.isEmpty() || bredPet.isEmpty() || bredPet.isEmpty()
-            ||colorPet.isEmpty() ||  buttonGroupSexPet.getSelection() == null || datePet == null)
-        {
-            JOptionPane.showMessageDialog(this, "Por favor completa todos los campos obligatorios *",logUser.getClinic().getName_clinic()
-                ,JOptionPane.WARNING_MESSAGE);
+            ||colorPet.isEmpty() ||  buttonGroupSexPet.getSelection() == null || datePet == null) {
+            JOptionPane.showMessageDialog(this, "Por favor completa todos los campos obligatorios *",logUser.getClinic().getName_clinic(),JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         // restringir fechas futuras
         if (datePet.after(new java.util.Date())) {
             JOptionPane.showMessageDialog(this,
-                "La fecha de nacimiento no puede ser futura.",
-                logUser.getClinic().getName_clinic(),
-                JOptionPane.ERROR_MESSAGE
+                "La fecha de nacimiento no puede ser futura.",logUser.getClinic().getName_clinic(),JOptionPane.ERROR_MESSAGE
             );
             return;
         }
@@ -568,125 +575,125 @@ public class CreatePet extends javax.swing.JFrame {
 
     private void aplicarAccesibilidad() {
 
-    // ---------------------- TÍTULOS ----------------------
-    CreatePet_lblTittle.getAccessibleContext().setAccessibleName("Título de la ventana");
-    CreatePet_lblTittle.getAccessibleContext().setAccessibleDescription("Nombre de la clínica");
+        // ---------------------- TÍTULOS ----------------------
+        CreatePet_lblTittle.getAccessibleContext().setAccessibleName("Título de la ventana");
+        CreatePet_lblTittle.getAccessibleContext().setAccessibleDescription("Nombre de la clínica");
 
-    CreatePet_lblSubTittle.getAccessibleContext().setAccessibleName("Subtítulo Crear Mascota");
-    CreatePet_lblSubTittle.getAccessibleContext().setAccessibleDescription("Indica que se está creando una mascota");
+        CreatePet_lblSubTittle.getAccessibleContext().setAccessibleName("Subtítulo Crear Mascota");
+        CreatePet_lblSubTittle.getAccessibleContext().setAccessibleDescription("Indica que se está creando una mascota");
 
-    // ---------------------- LABELS ----------------------
-    CreatePet_lblNamePet.setLabelFor(CreatePet_tetxNamePet);
-    CreatePet_lblNamePet.setDisplayedMnemonic('N');
-    CreatePet_lblNamePet.setToolTipText("Nombre de la mascota (Alt+N)");
-    CreatePet_lblNamePet.getAccessibleContext().setAccessibleName("Etiqueta Nombre Mascota");
-    CreatePet_lblNamePet.getAccessibleContext().setAccessibleDescription("Etiqueta que indica el campo nombre de la mascota");
+        // ---------------------- LABELS ----------------------
+        CreatePet_lblNamePet.setLabelFor(CreatePet_tetxNamePet);
+        CreatePet_lblNamePet.setDisplayedMnemonic('N');
+        CreatePet_lblNamePet.setToolTipText("Nombre de la mascota (Alt+N)");
+        CreatePet_lblNamePet.getAccessibleContext().setAccessibleName("Etiqueta Nombre Mascota");
+        CreatePet_lblNamePet.getAccessibleContext().setAccessibleDescription("Etiqueta que indica el campo nombre de la mascota");
 
-    CreatePet_lblSpecies.setLabelFor(cboxSpecies_pet);
-    CreatePet_lblSpecies.setDisplayedMnemonic('E');
-    CreatePet_lblSpecies.setToolTipText("Seleccionar especie (Alt+E)");
-    CreatePet_lblSpecies.getAccessibleContext().setAccessibleName("Etiqueta Especie Mascota");
-    CreatePet_lblSpecies.getAccessibleContext().setAccessibleDescription("Etiqueta para seleccionar especie");
+        CreatePet_lblSpecies.setLabelFor(cboxSpecies_pet);
+        CreatePet_lblSpecies.setDisplayedMnemonic('E');
+        CreatePet_lblSpecies.setToolTipText("Seleccionar especie (Alt+E)");
+        CreatePet_lblSpecies.getAccessibleContext().setAccessibleName("Etiqueta Especie Mascota");
+        CreatePet_lblSpecies.getAccessibleContext().setAccessibleDescription("Etiqueta para seleccionar especie");
 
-    CreatePet_lblBreed.setLabelFor(cboxBred_pet);
-    CreatePet_lblBreed.setDisplayedMnemonic('R');
-    CreatePet_lblBreed.setToolTipText("Seleccionar raza (Alt+R)");
-    CreatePet_lblBreed.getAccessibleContext().setAccessibleName("Etiqueta Raza Mascota");
-    CreatePet_lblBreed.getAccessibleContext().setAccessibleDescription("Etiqueta que indica la raza de la mascota");
+        CreatePet_lblBreed.setLabelFor(cboxBred_pet);
+        CreatePet_lblBreed.setDisplayedMnemonic('R');
+        CreatePet_lblBreed.setToolTipText("Seleccionar raza (Alt+R)");
+        CreatePet_lblBreed.getAccessibleContext().setAccessibleName("Etiqueta Raza Mascota");
+        CreatePet_lblBreed.getAccessibleContext().setAccessibleDescription("Etiqueta que indica la raza de la mascota");
 
-    CreatePet_lblColorPet.setLabelFor(CreatePet_textColorPet);
-    CreatePet_lblColorPet.setDisplayedMnemonic('C');
-    CreatePet_lblColorPet.setToolTipText("Color de la mascota (Alt+C)");
-    CreatePet_lblColorPet.getAccessibleContext().setAccessibleName("Etiqueta Color Mascota");
-    CreatePet_lblColorPet.getAccessibleContext().setAccessibleDescription("Etiqueta color de la mascota");
+        CreatePet_lblColorPet.setLabelFor(CreatePet_textColorPet);
+        CreatePet_lblColorPet.setDisplayedMnemonic('C');
+        CreatePet_lblColorPet.setToolTipText("Color de la mascota (Alt+C)");
+        CreatePet_lblColorPet.getAccessibleContext().setAccessibleName("Etiqueta Color Mascota");
+        CreatePet_lblColorPet.getAccessibleContext().setAccessibleDescription("Etiqueta color de la mascota");
 
-    CreatePet_lblSexPet.setDisplayedMnemonic('S');
-    CreatePet_lblSexPet.setLabelFor(sexMacho_Rbutton);
-    CreatePet_lblSexPet.setToolTipText("Seleccionar sexo (Alt+S)");
-    CreatePet_lblSexPet.getAccessibleContext().setAccessibleName("Etiqueta Sexo Mascota");
-    CreatePet_lblSexPet.getAccessibleContext().setAccessibleDescription("Etiqueta sexo de la mascota");
+        CreatePet_lblSexPet.setDisplayedMnemonic('S');
+        CreatePet_lblSexPet.setLabelFor(sexMacho_Rbutton);
+        CreatePet_lblSexPet.setToolTipText("Seleccionar sexo (Alt+S)");
+        CreatePet_lblSexPet.getAccessibleContext().setAccessibleName("Etiqueta Sexo Mascota");
+        CreatePet_lblSexPet.getAccessibleContext().setAccessibleDescription("Etiqueta sexo de la mascota");
 
-    CreatePet_lblDateBirthdayPet.setLabelFor(CreatePet_lblDateBirthdayPet);
-    CreatePet_lblDateBirthdayPet.setDisplayedMnemonic('F');
-    CreatePet_lblDateBirthdayPet.setToolTipText("Fecha de nacimiento (Alt+F)");
-    CreatePet_lblDateBirthdayPet.getAccessibleContext().setAccessibleName("Etiqueta Fecha de Nacimiento");
-    CreatePet_lblDateBirthdayPet.getAccessibleContext().setAccessibleDescription("Etiqueta fecha de nacimiento de la mascota");
+        CreatePet_lblDateBirthdayPet.setLabelFor(CreatePet_lblDateBirthdayPet);
+        CreatePet_lblDateBirthdayPet.setDisplayedMnemonic('F');
+        CreatePet_lblDateBirthdayPet.setToolTipText("Fecha de nacimiento (Alt+F)");
+        CreatePet_lblDateBirthdayPet.getAccessibleContext().setAccessibleName("Etiqueta Fecha de Nacimiento");
+        CreatePet_lblDateBirthdayPet.getAccessibleContext().setAccessibleDescription("Etiqueta fecha de nacimiento de la mascota");
 
-    CreatePet_lblOwnerID.setLabelFor(CreatePet_textOwnerDocument);
-    CreatePet_lblOwnerID.setDisplayedMnemonic('O');
-    CreatePet_lblOwnerID.setToolTipText("Documento del propietario (Alt+O)");
-    CreatePet_lblOwnerID.getAccessibleContext().setAccessibleName("Etiqueta Documento Propietario");
-    CreatePet_lblOwnerID.getAccessibleContext().setAccessibleDescription("Etiqueta documento del propietario");
+        CreatePet_lblOwnerID.setLabelFor(CreatePet_textOwnerDocument);
+        CreatePet_lblOwnerID.setDisplayedMnemonic('O');
+        CreatePet_lblOwnerID.setToolTipText("Documento del propietario (Alt+O)");
+        CreatePet_lblOwnerID.getAccessibleContext().setAccessibleName("Etiqueta Documento Propietario");
+        CreatePet_lblOwnerID.getAccessibleContext().setAccessibleDescription("Etiqueta documento del propietario");
 
-    // ---------------------- CAMPOS ----------------------
-    CreatePet_tetxNamePet.getAccessibleContext().setAccessibleName("Campo Nombre Mascota");
-    CreatePet_tetxNamePet.getAccessibleContext().setAccessibleDescription("Ingrese el nombre de la mascota");
+        // ---------------------- CAMPOS ----------------------
+        CreatePet_tetxNamePet.getAccessibleContext().setAccessibleName("Campo Nombre Mascota");
+        CreatePet_tetxNamePet.getAccessibleContext().setAccessibleDescription("Ingrese el nombre de la mascota");
 
-    cboxSpecies_pet.getAccessibleContext().setAccessibleName("Combo Especie Mascota");
-    cboxSpecies_pet.getAccessibleContext().setAccessibleDescription("Lista desplegable para elegir la especie");
+        cboxSpecies_pet.getAccessibleContext().setAccessibleName("Combo Especie Mascota");
+        cboxSpecies_pet.getAccessibleContext().setAccessibleDescription("Lista desplegable para elegir la especie");
 
-    cboxBred_pet.getAccessibleContext().setAccessibleName("Combo Raza Mascota");
-    cboxBred_pet.getAccessibleContext().setAccessibleDescription("Lista desplegable para elegir la raza");
+        cboxBred_pet.getAccessibleContext().setAccessibleName("Combo Raza Mascota");
+        cboxBred_pet.getAccessibleContext().setAccessibleDescription("Lista desplegable para elegir la raza");
 
-    CreatePet_textColorPet.getAccessibleContext().setAccessibleName("Campo Color Mascota");
-    CreatePet_textColorPet.getAccessibleContext().setAccessibleDescription("Ingrese el color de la mascota");
+        CreatePet_textColorPet.getAccessibleContext().setAccessibleName("Campo Color Mascota");
+        CreatePet_textColorPet.getAccessibleContext().setAccessibleDescription("Ingrese el color de la mascota");
 
-    CreatePet_lblDateBirthdayPet.getAccessibleContext().setAccessibleName("Campo Fecha de nacimiento");
-    CreatePet_lblDateBirthdayPet.getAccessibleContext().setAccessibleDescription("Ingrese fecha formateada YYYY-MM-DD");
+        CreatePet_lblDateBirthdayPet.getAccessibleContext().setAccessibleName("Campo Fecha de nacimiento");
+        CreatePet_lblDateBirthdayPet.getAccessibleContext().setAccessibleDescription("Ingrese fecha formateada YYYY-MM-DD");
 
-    CreatePet_textOwnerDocument.getAccessibleContext().setAccessibleName("Campo Documento Propietario");
-    CreatePet_textOwnerDocument.getAccessibleContext().setAccessibleDescription("Ingrese el documento del propietario");
+        CreatePet_textOwnerDocument.getAccessibleContext().setAccessibleName("Campo Documento Propietario");
+        CreatePet_textOwnerDocument.getAccessibleContext().setAccessibleDescription("Ingrese el documento del propietario");
 
-    sexMacho_Rbutton.getAccessibleContext().setAccessibleName("Radio botón Macho");
-    sexHembra_Rbutton.getAccessibleContext().setAccessibleName("Radio botón Hembra");
+        sexMacho_Rbutton.getAccessibleContext().setAccessibleName("Radio botón Macho");
+        sexHembra_Rbutton.getAccessibleContext().setAccessibleName("Radio botón Hembra");
 
-    // ---------------------- BOTONES ----------------------
-    btnCreatePet.setMnemonic('G'); // Crear (Guardar)
-    btnCreatePet.setToolTipText("Crear mascota (Alt+G)");
-    btnCreatePet.getAccessibleContext().setAccessibleName("Botón Crear Mascota");
+        // ---------------------- BOTONES ----------------------
+        btnCreatePet.setMnemonic('G'); // Crear (Guardar)
+        btnCreatePet.setToolTipText("Crear mascota (Alt+G)");
+        btnCreatePet.getAccessibleContext().setAccessibleName("Botón Crear Mascota");
 
-    bttonEmptyFields_pet.setMnemonic('L'); // Limpiar
-    bttonEmptyFields_pet.setToolTipText("Limpiar campos (Alt+L)");
-    bttonEmptyFields_pet.getAccessibleContext().setAccessibleName("Botón Limpiar Campos");
+        bttonEmptyFields_pet.setMnemonic('L'); // Limpiar
+        bttonEmptyFields_pet.setToolTipText("Limpiar campos (Alt+L)");
+        bttonEmptyFields_pet.getAccessibleContext().setAccessibleName("Botón Limpiar Campos");
 
-    btnExit1.setMnemonic('S'); // Salir
-    btnExit1.setToolTipText("Salir (Alt+S)");
-    btnExit1.getAccessibleContext().setAccessibleName("Botón Salir");
+        btnExit1.setMnemonic('S'); // Salir
+        btnExit1.setToolTipText("Salir (Alt+S)");
+        btnExit1.getAccessibleContext().setAccessibleName("Botón Salir");
 
-    // ---------------------- TAB ORDER ----------------------
-    CreatePet_tetxNamePet.setNextFocusableComponent(cboxSpecies_pet);
-    cboxSpecies_pet.setNextFocusableComponent(cboxBred_pet);
-    cboxBred_pet.setNextFocusableComponent(CreatePet_textColorPet);
-    CreatePet_textColorPet.setNextFocusableComponent(CreatePet_lblDateBirthdayPet);
-    CreatePet_lblDateBirthdayPet.setNextFocusableComponent(CreatePet_textOwnerDocument);
-    CreatePet_textOwnerDocument.setNextFocusableComponent(sexMacho_Rbutton);
-    sexMacho_Rbutton.setNextFocusableComponent(sexHembra_Rbutton);
-    sexHembra_Rbutton.setNextFocusableComponent(btnCreatePet);
+        // ---------------------- TAB ORDER ----------------------
+        CreatePet_tetxNamePet.setNextFocusableComponent(cboxSpecies_pet);
+        cboxSpecies_pet.setNextFocusableComponent(cboxBred_pet);
+        cboxBred_pet.setNextFocusableComponent(CreatePet_textColorPet);
+        CreatePet_textColorPet.setNextFocusableComponent(CreatePet_lblDateBirthdayPet);
+        CreatePet_lblDateBirthdayPet.setNextFocusableComponent(CreatePet_textOwnerDocument);
+        CreatePet_textOwnerDocument.setNextFocusableComponent(sexMacho_Rbutton);
+        sexMacho_Rbutton.setNextFocusableComponent(sexHembra_Rbutton);
+        sexHembra_Rbutton.setNextFocusableComponent(btnCreatePet);
 
-    // ---------------------- FOCUSABLE EN PANELS ----------------------
-    //CreatePet.setFocusable(true);
-    //Down.setFocusable(true);
-    //Up.setFocusable(true);
+        // ---------------------- FOCUSABLE EN PANELS ----------------------
+        //CreatePet.setFocusable(true);
+        //Down.setFocusable(true);
+        //Up.setFocusable(true);
 
-    // ---------------------- ATAJOS ALT GLOBALES ----------------------
-    javax.swing.InputMap im = getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
-    javax.swing.ActionMap am = getRootPane().getActionMap();
+        // ---------------------- ATAJOS ALT GLOBALES ----------------------
+        javax.swing.InputMap im = getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
+        javax.swing.ActionMap am = getRootPane().getActionMap();
 
-    im.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_crear");
-    am.put("accion_crear", new javax.swing.AbstractAction() {
-        @Override public void actionPerformed(java.awt.event.ActionEvent e) { btnCreatePet.doClick(); }
-    });
+        im.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_crear");
+        am.put("accion_crear", new javax.swing.AbstractAction() {
+            @Override public void actionPerformed(java.awt.event.ActionEvent e) { btnCreatePet.doClick(); }
+        });
 
-    im.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_limpiar");
-    am.put("accion_limpiar", new javax.swing.AbstractAction() {
-        @Override public void actionPerformed(java.awt.event.ActionEvent e) { bttonEmptyFields_pet.doClick(); }
-    });
+        im.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_limpiar");
+        am.put("accion_limpiar", new javax.swing.AbstractAction() {
+            @Override public void actionPerformed(java.awt.event.ActionEvent e) { bttonEmptyFields_pet.doClick(); }
+        });
 
-    im.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_salir");
-    am.put("accion_salir", new javax.swing.AbstractAction() {
-        @Override public void actionPerformed(java.awt.event.ActionEvent e) { btnExit1.doClick(); }
-    });
-}
+        im.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK), "accion_salir");
+        am.put("accion_salir", new javax.swing.AbstractAction() {
+            @Override public void actionPerformed(java.awt.event.ActionEvent e) { btnExit1.doClick(); }
+        });
+    }
 
 
 }

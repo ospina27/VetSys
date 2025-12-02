@@ -43,6 +43,7 @@ replay_pid*
 /nbbuild/
 /dist/
 /build/
+nbactions.xml
 
 # Eclipse
 /.settings/

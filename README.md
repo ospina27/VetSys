@@ -64,3 +64,30 @@ Este proyecto se desarrolló como trabajo académico. Su uso puede adaptarse par
 ### Módulo de Reportes Gráficos
 - Incluye panel de estadísticas con gráficos generados dinámicamente.
 - Permite obtener una visión clara del rendimiento de la clínica y apoyar en la toma de decisiones.
+
+---
+
+## Dataset
+
+Para este proyecto se generó un **dataset realista y totalmente coherente** para inicializar 
+la base de datos y permite probar el flujo completo del módulo clínico.
+
+En la carpeta `/database` se encuentra este archivo que contiene:
+
+* Creación de tablas
+* Inserción de roles y estados.
+* Usuarios, incluyendo administradores, asistentes y veterinarios.
+* Clientes y sus mascotas asociadas correctamente.
+* Citas generadas en estados programadas, canceladas y realizadas.
+* Historial clínico únicamente para las citas realizadas.
+* IDs totalmente coherentes con las llaves foráneas:
+
+
+### Objetivo de generar este dataset
+
+Este conjunto de datos de prueba permite:
+
+* Validar el módulo de citas y historial clínico.
+* Probar consultas, reportes y dashboards.
+Revisar el comportamiento del sistema con diferentes estados de cita.
+* Evaluar integridad referencial entre tablas.
