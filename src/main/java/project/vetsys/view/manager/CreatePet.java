@@ -186,7 +186,7 @@ public class CreatePet extends javax.swing.JFrame {
         btnCreatePet.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         btnCreatePet.setForeground(new java.awt.Color(0, 153, 153));
         btnCreatePet.setText("Crear");
-        btnCreatePet.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCreatePet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCreatePet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreatePetActionPerformed(evt);
@@ -212,7 +212,7 @@ public class CreatePet extends javax.swing.JFrame {
         bttonEmptyFields_pet.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         bttonEmptyFields_pet.setForeground(new java.awt.Color(0, 153, 153));
         bttonEmptyFields_pet.setText("Limpiar");
-        bttonEmptyFields_pet.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        bttonEmptyFields_pet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttonEmptyFields_pet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttonEmptyFields_petActionPerformed(evt);
@@ -256,7 +256,7 @@ public class CreatePet extends javax.swing.JFrame {
         btnExit1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         btnExit1.setForeground(new java.awt.Color(0, 153, 153));
         btnExit1.setText("Salir");
-        btnExit1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnExit1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExit1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExit1ActionPerformed(evt);
@@ -305,10 +305,12 @@ public class CreatePet extends javax.swing.JFrame {
         jDesktopPane2Layout.setHorizontalGroup(
             jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CreatePet_lblTittle, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jDesktopPane2Layout.createSequentialGroup()
                 .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CreatePet_lblSubTittle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane2Layout.createSequentialGroup()
+                    .addGroup(jDesktopPane2Layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
                         .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cboxSpecies_pet, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CreatePet_lblSpecies, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -342,10 +344,9 @@ public class CreatePet extends javax.swing.JFrame {
                                                     .addComponent(sexHembra_Rbutton)))
                                             .addComponent(CreatePet_lblOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(CreatePet_lblDateBirthdayPet, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGap(63, 63, 63)))
+                                            .addComponent(CreatePet_lblDateBirthdayPet, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                    .addComponent(CreatePet_lblSubTittle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addComponent(CreatePet_lblTittle, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE, Short.MAX_VALUE)
         );
         jDesktopPane2Layout.setVerticalGroup(
             jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,7 +388,7 @@ public class CreatePet extends javax.swing.JFrame {
                     .addComponent(btnExit1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bttonEmptyFields_pet, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCreatePet, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
